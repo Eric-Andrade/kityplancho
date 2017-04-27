@@ -1,0 +1,41 @@
+   <div class="kpgoogle-maps">
+    <agm-map
+        (mapClick)="mapClicked($event)"
+        [latitude]="lat"
+        [longitude]="lng"
+        [zoom]="zoom"
+        [mapDraggable]="true"
+        [disableDoubleClickZoom]="false"
+        [disableDefaultUI]="false"
+        [zoomControl]="true"
+        [streetViewControl]="false"
+        >
+
+        <agm-marker
+        *ngIf="lat != null && lng != null"
+        [latitude]="lat" [longitude]="lng"
+        [iconUrl]="kityplancho"
+        >
+        </agm-marker>
+
+        <agm-marker *ngFor="let marker of markers; let i = index"
+            (markerClick)="markerClicked(marker, i)"
+            (dragEnd)="markerDragEnd(marker, $event)"
+            [latitude]="marker.lat"
+            [longitude]="marker.lng"
+
+            [markerDraggable]="marker.draggable"
+            [iconUrl]="imageEC"
+            [opacity]="1"
+              >
+
+              <agm-info-window>
+                <p>{{marker.name}}</p>
+                <h5>Dirección</h5>
+                <span>{{marker.lat}}</span>
+                <span>{{marker.lng}}</span>
+              </agm-info-window>
+        </agm-marker>
+
+    </agm-map>
+</div>

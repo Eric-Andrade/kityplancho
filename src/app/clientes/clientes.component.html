@@ -1,0 +1,74 @@
+<div class="container-fluid">
+ <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="inputfilter">
+           <md-input-container dividerColor="accent">
+            <input mdInput placeholder="Busca un cliente por nombre de cliente..." name="search">
+          </md-input-container>
+      </div>
+
+        <kp-cliente></kp-cliente>
+        <button md-icon-button (click)="clientesCard = true">
+            <md-icon >view_comfy</md-icon>
+        </button>
+        <button md-icon-button (click)="clientesCard = false">
+            <md-icon >list</md-icon>
+        </button>
+           <br>
+            <div *ngIf="clientesCard; then thenTemplate; else elseTemplate"></div>
+            <ng-template #thenTemplate>
+                  <div class="datacontainer" *ngIf="clientes">
+                   <div class="datarepite" *ngFor="let cliente of clientes">
+                     <a [routerLink]="['.',cliente.IDCLIENTE]">
+                       <md-card>
+                          <md-card-header>
+                            <div md-card-avatar class="example-header-image"><span *ngIf="cliente.ACTIVO" class="circle"></span></div>
+                            <md-card-title> {{cliente.IDCLIENTE}} | {{cliente.CNOMBRE | truncate: 10}} </md-card-title>
+                            <md-card-subtitle> {{cliente.CEMAIL | truncate: 10}}</md-card-subtitle>
+                          </md-card-header>
+                          <md-card-content>
+                            {{cliente.CPASSWORD | truncate: 5}}
+                            <strong>{{cliente.CTELEFONO}}</strong>
+                            <!--<md-chip-list>
+                                <md-chip color="accent" selected="true" *ngIf="cliente.ACTIVO"><span>o</span></md-chip>
+                            </md-chip-list>-->
+                          </md-card-content>
+                       </md-card>
+                       </a>
+                  </div>
+                   </div>
+            </ng-template>
+            <ng-template #elseTemplate>
+                    <div class="table-responsive content" >
+                        <table class="table table-hover" >
+                        <thead class="thead">
+                          <tr>
+                            <th style="width: 10%" >ID</th>
+                            <th style="width: 25%" >Nombre</th>
+                            <th style="width: 30%">Email</th>
+                            <th style="width: 18%" >Password</th>
+                            <th style="width: 10%" >Teléfono</th>
+                            <th style="width: 7%" >Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         <tr *ngFor="let cliente of clientes">
+                            <td>{{cliente.IDCLIENTE}}</td>
+                            <td>{{cliente.CNOMBRE}} {{cliente.CAPELLIDOS}}</td>
+                            <td class="enfasis-td">{{cliente.CEMAIL}}</td>
+                            <td>{{cliente.CPASSWORD}}</td>
+                            <td>{{cliente.CTELEFONO}}</td>
+                            <td *ngIf="cliente.ACTIVO"><p>Activo</p></td>
+                         </tr>
+                        </tbody>
+                      </table>
+                    </div>
+            </ng-template>
+            <div class="loading" *ngIf="loading">
+              <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
+                <!--<md-spinner color="accent"></md-spinner>-->
+                <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+            </div>
+    </div>
+  </div>
+</div>

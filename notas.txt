@@ -1,0 +1,2 @@
+Crear componentes personalizados sin carpeta extra
+  ./node_modules/@angular/cli/bin/ng g c nombreCarpeta/nombreComponent --flat true

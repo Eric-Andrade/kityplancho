@@ -1,0 +1,34 @@
+<a [routerLink]="['/clientes']">Clientes...</a>
+  <div class="loading" *ngIf="loading">
+    <img src="assets/kity.gif" width="68" height="50" alt="Buscando información...">
+      <!--<md-spinner color="accent"></md-spinner>-->
+      <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+  </div>
+<div *ngIf="cliente">
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <div *ngFor="let c of cliente">
+        <md-card>
+            <md-card-header>
+              <div md-card-avatar class="avatar"></div>
+            </md-card-header>
+        <br>
+          <md-card-title> {{c.IDCLIENTE}} | {{c.CNOMBRE}} {{c.CAPELLIDOS}}</md-card-title>
+          <md-chip-list>
+              <md-chip color="accent" selected="true" align="end">{{c.CTELEFONO}}</md-chip>
+          </md-chip-list>
+        <md-card-content>
+          <md-card-subtitle>{{c.ETELEFONO}}</md-card-subtitle>
+          {{c.CCORREO}}
+          {{c.CCONTRASENA}}
+        </md-card-content>
+        </md-card>
+        </div>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+        Historial de cliente...
+        </div>
+    </div>
+  </div>
+</div>

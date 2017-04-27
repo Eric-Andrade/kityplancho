@@ -1,0 +1,76 @@
+/*Nuevo pedido*/
+md2-dialog-header {
+    background: #fe8686 !important;
+    color: #ffbfbf;
+    font-size: 25px;
+}
+
+.md2-dialog-header h2{
+    font-weight: 200;
+}
+
+md2-dialog-footer{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.new-request{
+    background-color: #fec0da;
+    box-shadow: 0 0 0 0;
+    /*border-bottom: solid #FF82B8 2px;*/
+    border-radius: 5em;
+}
+
+.nota{
+    font-size: 12px;
+    color: #8b8b8b;
+    font-style: italic;
+    text-align: right;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+.enfasis{
+    font-size: 14px;
+    color:#fe8686
+}
+
+.form-space, .form-select{
+    margin-bottom: 2px;
+    margin: .5em 0 !important;
+    width: 100%;
+}
+
+.form-radiobutton{
+    margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.button-form{
+    color: #ff4081;
+    background: #ffe8e8;
+}
+
+.md2-select-header {
+  position: relative;
+  display: block;
+  height: 48px;
+  padding-left: 10px;
+  border-bottom: 1px solid rgba(black, 0.12);
+
+  input {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.resumenbocado{
+    text-align: center;
+    font-weight: 500;
+    color: #03A9F4;
+    margin: 0;
+}

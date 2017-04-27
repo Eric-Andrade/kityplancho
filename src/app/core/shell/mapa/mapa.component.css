@@ -1,0 +1,13 @@
+.sebm-google-map-container {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+}
+
+agm-marker{
+    background: #c64545
+}
+
+.kpgoogle-maps{
+    height: 100%;
+}

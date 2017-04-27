@@ -1,0 +1,51 @@
+<md2-dialog #clientedialog>
+        <h5>{{opcioncliente | uppercase}}</h5>
+        <form #formCliente="ngForm" (ngSubmit)="postJSON()">
+        <table class="example-full-width" cellspacing="0">
+           <tr>
+            <td><md-input-container dividerColor="accent">
+                <input type="email" mdInput name="CCORREO" [(ngModel)]="cliente.CCORREO" #CCORREO="ngModel" maxlength="45" autofocus="autofocus" placeholder="Correo eléctronico" autocomplete="off" required>
+                <!--<md-hint align="end">{{CCORREO.value.length}}/45</md-hint>-->
+
+                </md-input-container></td>
+            <td>
+              <md-input-container dividerColor="accent">
+        <input type="text" name="CCONTRASENA" #CCONTRASENA="ngModel" [(ngModel)]="cliente.CCONTRASENA" mdInput maxlength="45" placeholder="Contraseña" required autocomplete="off">
+        <!--<span *ngIf="CCONTRASENA.touched && !CCONTRASENA.valid">Ingrese un nombre de cliente por favor</span>
+        <md-hint align="end">{{CCONTRASENA.value.length}}/45</md-hint>-->
+        </md-input-container></td>
+             </tr>
+         </table>
+
+         <table class="example-full-width" cellspacing="0">
+           <tr>
+            <td><md-input-container class="example-full-width"  dividerColor="accent">
+                <input type="text" name="CNOMBRE" #CNOMBRE="ngModel" [(ngModel)]="cliente.CNOMBRE" mdInput maxlength="45" placeholder="Nombre de cliente" required autocomplete="off">
+                  <!--<span *ngIf="CNOMBRE.touched && !CNOMBRE.valid">Ingrese un nombre de cliente valido por favor</span>
+                  <md-hint align="end">{{CNOMBRE.value.length}}/45</md-hint>-->
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width"  dividerColor="accent">
+              <input type="text" name="CAPELLIDOS" #CAPELLIDOS="ngModel" [(ngModel)]="cliente.CAPELLIDOS" mdInput maxlength="45" placeholder="Apellidos de cliente" required autocomplete="off">
+                 <!--<span *ngIf="CAPELLIDOS.touched && !CAPELLIDOS.valid">Ingrese un nombre de cliente valido por favor</span>
+                  <md-hint align="end">{{CAPELLIDOS.value.length}}/65</md-hint>                  -->
+            </md-input-container></td>
+          </tr>
+         </table>
+
+        <md-input-container class="example-full-width form-space"  dividerColor="accent">
+          <input type="tel" name="CTELEFONO" #CTELEFONO="ngModel" [(ngModel)]="cliente.CTELEFONO" mdInput maxlength="10" placeholder="Número de teléfono/celular" required autocomplete="off">
+          <!--<md-hint align="end">{{CTELEFONO.value.length}}/10</md-hint>-->
+          </md-input-container>
+        <!--<div style="margin:0 auto; text-align: center;">
+            <md-radio-group dividerColor="accent" name="activo" #activo="ngModel" [(ngModel)]="cliente.activo">
+              <md-radio-button class="form-radiobutton" checked="checked" value="1">Cuenta activada</md-radio-button>
+              <md-radio-button class="form-radiobutton" value="0">Cuenta desactivada</md-radio-button>
+            </md-radio-group>
+        </div>-->
+
+        <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formCliente.form.valid">Crear {{opcioncliente}}</button>
+          </form>
+        <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
+    </md2-dialog>
+
+    <button md-raised-button color="accent" (click)="clientedialog.open()">Añadir cliente</button>

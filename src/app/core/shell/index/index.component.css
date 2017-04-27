@@ -1,0 +1,85 @@
+/** Toolbar */
+md-toolbar{
+    background: #fff;
+    /*box-shadow: 0px 1px 5px 0 rgba(51, 51, 51, 0.25);*/
+    border-bottom: solid #FEC0DA 3px;
+    height: 56px;
+    min-height: 56px;
+    padding: 0 26px;
+    color: hsla(0, 0%, 6.7%, .4);
+    position: fixed;
+    top: 0;
+    z-index: 980;
+    font-size: 18px
+}
+
+.fill-toolbar-space {
+    flex: 1 1 auto;
+}
+
+md-toolbar button{
+    margin-right: 10px;
+}
+
+.namecompany{
+    color: #FB5BA0;
+    font-weight: 400;
+
+}
+
+.toolbar{
+    padding-bottom: 56px
+}
+
+/** Sidenav */
+
+md-sidenav-container{
+    background-color: #fff;
+    height: 91vh;
+}
+
+md-sidenav button{
+    text-align: center;
+    width: 100%;
+}
+
+md-sidenav a{
+    display: block;
+    text-align: center;
+    padding: .75em 1em;
+    color: #525252;
+    margin: 0em 0;
+    text-decoration: none
+}
+
+.seccion:focus, .seccion:hover{
+    background-color: #FB5BA0;
+    color: #fff !important;
+    -webkit-transition-duration: .65s;
+    transition-duration: .65s;
+    cursor: pointer
+}
+
+md-sidenav a:first-letter {
+    text-transform: uppercase;
+}
+
+.mat-sidenav-backdrop.mat-sidenav-shown {
+    /*-webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);*/
+    background-color: rgba(255, 200, 200, 0.7);
+}
+
+md-card {
+    max-width: 80%;
+    margin: 2em auto;
+    text-align: center;
+}
+
+.functions{
+    height: 100%
+}
+

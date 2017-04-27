@@ -1,1 +1,316 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+
+::-webkit-scrollbar-thumb:vertical{height:5px;background-color:#FB5BA0;}
+::-webkit-scrollbar-thumb:horizontal{height:5px;background-color:#FB5BA0;}
+/*cambia de tamaño*/
+::-webkit-scrollbar{width:5.5px;height:4px;background-color:transparent;cursor: pointer}
+
+::selection {
+background:#ffeaea;/* Color de fondo*/
+color:#90022a; /*Color de la fuente*/
+}
+
+::-moz-selection {
+background:#ffe1eb;
+color:#90022a;
+}
+
+::-webkit-selection {
+background:#ffeaea;
+color:#90022a;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: #fff;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+a:focus, a:hover {
+    color: none;
+    text-decoration: none;
+}
+
+.mat-sidenav-backdrop.mat-sidenav-shown {
+    /*-webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);*/
+    background-color: rgba(255, 112, 112, 0.75);
+}
+
+a:focus{
+    outline: none;
+}
+
+.col-md-5, .col-lg-5{
+    padding-right: 0;
+     padding-left: 0;
+}
+
+
+/*Map*/
+.sebm-google-map-container-inner{
+    height: 100%
+}
+
+.mat-input-wrapper {
+    margin: .5em 0 !important;
+    padding-bottom: 15px !important;
+}
+
+.cdk-overlay-dark-backdrop {
+    background-color: rgba(255, 112, 112, 0.75) !important;
+}
+
+md-radio-button{
+    margin-bottom: 5px !important;
+}
+/*Tablas*/
+
+thead{
+    background: #F3F3F3;
+    box-shadow: 0px 1px 5px 0 rgba(51, 51, 51, 0.25);
+}
+
+.table, .table th{
+    text-align: center
+}
+
+/*#fff1f7;*/
+.table-hover>tbody>tr:hover {
+    background-color: #f1f1f1;
+    color: #8a8a8a;
+    -webkit-transition-duration: .35s;
+    transition-duration: .35s;
+    cursor: pointer
+}
+
+.enfasis-td{
+    background:#FFDBEA
+}
+
+.inputfilter{
+    padding-top: 15px;
+    width: 100%
+
+}
+
+md-spinner{
+    width: 350px !important;
+    height: 50px !important;
+    margin: 0 auto;
+    margin-top: 75px
+}
+
+.mat-chip:not(.mat-basic-chip) {
+    padding: 5px 7px 4px 7px !important;
+}
+
+.mat-chip:not(.mat-basic-chip) {
+    display: inline-block !important;
+    padding:5px 10px 5px 10px !important;
+    border-radius: 12px !important;
+    font-size: 11px !important;
+    line-height: 14px !important;
+}
+
+.datarepite{
+    display: inline-block !important;
+}
+
+.datacontainer{
+    text-align: center;
+}
+
+
+.loading{
+  margin: 0 auto;
+  width: 69px;
+}
+
+.mat-chip-list-wrapper{
+    margin: 0 auto;
+    width: 90px;
+}
+/*Media's*/
+
+@media (min-width: 320px) {
+    .namecompany{
+        display:none;
+    }
+
+    .slogan{
+    font-size: 12px !important;
+    }
+
+    md-input-container{
+        margin: 0 auto;
+        width: 100%
+    }
+
+    .sidesection{
+        width:100%;
+    }
+
+    .sidemap{
+        width:100%;
+    }
+
+    md-sidenav-container {
+    height: 88vh !important;
+}
+
+}
+
+@media (min-width: 480px) {
+    .namecompany{
+        display:none;
+    }
+
+    md-input-container{
+        margin: 0 auto;
+        width: 100%
+    }
+
+    .slogan{
+    font-size: 12px !important;
+    }
+
+    .sidesection{
+        width:100%;
+    }
+
+    .sidemap{
+        width:100%;
+    }
+
+}
+
+/*Samsung j7*/
+@media (min-width: 720px) {
+    .namecompany{
+        display:inherit;
+    }
+
+   .inputfilter{
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    md-input-container{
+        margin: 0 auto;
+    }
+
+    .sidesection{
+        width:100%;
+    }
+
+    .sidemap{
+        width:100%;
+    }
+
+}
+
+/*Móviles en horizontal o tablets en vertical*/
+@media (min-width: 768px) {
+    .namecompany{
+        display:inherit;
+    }
+
+    .slogan{
+    font-size: 16px !important;
+    }
+
+    md-input-container{
+        margin: 0 auto;
+        width: 100%
+    }
+
+    .sidesection{
+        width:200px;
+    }
+
+    .sidemap{
+        width:40%;
+    }
+
+    md-sidenav-container {
+        height: 91vh !important;
+    }
+}
+
+/*Tablets en horizonal y escritorios normales*/
+@media (min-width: 1024px) {
+    .namecompany{
+        display:inherit;
+    }
+
+    .row{
+        margin:0 auto; width:90%;
+    }
+
+    .inputfilter{
+        width: 45%;
+        margin: 0 auto;
+    }
+
+    md-input-container{
+        margin: 0 auto;
+    }
+
+    .sidesection{
+        width:200px;
+    }
+
+    .sidemap{
+        width:40%;
+    }
+
+    md-sidenav-container{
+        height: 91vh !important;
+    }
+}
+
+/*Escritorios muy anchos*/
+@media (min-width: 1200px) {
+    .namecompany{
+        display:inherit;
+    }
+
+    .row{
+        margin:0 auto; width:90%;
+    }
+
+    .inputfilter{
+        width: 45%;
+        margin: 0 auto;
+    }
+
+    md-input-container{
+        margin: 0 auto;
+    }
+
+    .sidesection{
+        width:200px;
+    }
+
+    .sidemap{
+        width:40%;
+    }
+
+    md-sidenav-container{
+        height: 91vh !important;
+    }
+
+}/* You can add global styles to this file, and also import other style files */

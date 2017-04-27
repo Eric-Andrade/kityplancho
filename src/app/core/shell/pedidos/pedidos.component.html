@@ -1,0 +1,57 @@
+
+<div class="container-fluid">
+ <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="inputfilter">
+           <md-input-container dividerColor="accent">
+            <input mdInput placeholder="Busca un pedido por nombre de cliente...">
+          </md-input-container>
+      </div>
+
+    <div class="table-responsive content">
+      <table class="table table-hover">
+        <thead class="thead">
+          <!--<tr>
+            <td colspan="4">
+              <input placeholder="Filter By Name" class="md2-input" [(ngModel)]="search" />
+            </td>
+          </tr>-->
+          <tr>
+            <th style="width: 10%">ID</th>
+            <th style="width: 25%">Cliente</th>
+            <th style="width: 30%">Servicio</th>
+            <th style="width: 5%">#</th>
+            <th style="width: 5%">$</th>
+            <th style="width: 15%">Fecha</th>
+            <th style="width: 10%">Status</th>
+          </tr>
+        </thead>
+
+        <tbody *ngIf="pedidos">
+         <tr *ngFor="let pedido of pedidos">
+            <td>{{pedido.IDPEDIDO}}</td>
+            <td>{{pedido.PDIRECCION_E}}</td>
+            <td>{{pedido.PDIRECCION_R}}</td>
+            <td class="enfasis-td">{{pedido.IDCLIENTE}}</td>
+            <td>{{pedido.PPRECIOTOTAL}}</td>
+            <td>{{pedido.PFECHA}}</td>
+            <td><p class="label label-info">{{pedido.PPAGADO}}</p></td>
+         </tr>
+        </tbody>
+        <tfoot>
+          <!--<tr>
+            <td colspan="4">
+              <md2-pagination [rowsPerPageSet]="[5,10,15]"></md2-pagination>
+            </td>
+          </tr>-->
+        </tfoot>
+      </table>
+        <div class="loading" *ngIf="loading">
+          <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
+          <!--<md-spinner color="accent"></md-spinner>-->
+        <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
