@@ -1,59 +1,66 @@
 <md2-dialog #empleadodialog>
         <h5>{{opcionempleado | uppercase}}</h5>
         <form #formEmpleado="ngForm" (ngSubmit)="postEmpleado()">
-        <table class="example-full-width" cellspacing="0">
-           <tr>
-            <td><md-input-container class="example-full-width"  dividerColor="accent">
-              <input mdInput #ENOMBRE="ngModel" [(ngModel)]="empleado.ENOMBRE" maxlength="45" name="ENOMBRE" autofocus="autofocus" placeholder="Nombre de empleado" required autocomplete="off">
-                  <!--<md-hint align="end">{{ENOMBRE.value.length}}/45</md-hint>-->
-            </md-input-container></td>
-            <td><md-input-container class="example-full-width"  dividerColor="accent">
-              <input mdInput #EAPELLIDOS="ngModel" [(ngModel)]="empleado.EAPELLIDOS" maxlength="45" name="EAPELLIDOS" placeholder="Apellidos de empleado" required autocomplete="off">
-                  <!--<md-hint align="end">{{EAPELLIDOS.value.length}}/65</md-hint>-->
-            </md-input-container></td>
-          </tr>
-         </table>
 
         <table class="example-full-width" cellspacing="0">
            <tr>
             <td><md-input-container dividerColor="accent">
-                <input mdInput #EEMAIL="ngModel" [(ngModel)]="empleado.EEMAIL" maxlength="45" name="EEMAIL" placeholder="Correo eléctronico" required autocomplete="off">
-                <!--<md-hint align="end">{{EEMAIL.value.length}}/45</md-hint>-->
+                <input mdInput #email #EEMAIL="ngModel" [(ngModel)]="empleado.EEMAIL" maxlength="45" name="EEMAIL" placeholder="Correo eléctronico" required autocomplete="off">
+                <md-hint align="end">{{email.value.length}}/45</md-hint>
                 </md-input-container></td>
-            <td><md-input-container class="example-full-width form-space"  dividerColor="accent">
-                <input mdInput #ETELEFONO="ngModel" [(ngModel)]="empleado.ETELEFONO" maxlength="10" name="ETELEFONO" placeholder="Número de teléfono/celular" required autocomplete="off">
-                <!--<md-hint align="end">{{ETELEFONO.value.length}}/10</md-hint>-->
+            <td>
+              <md-input-container dividerColor="accent">
+                <input mdInput #password #EPASSWORD="ngModel" [(ngModel)]="empleado.EPASSWORD" maxlength="45" name="EPASSWORD" placeholder="Contraseña" required autocomplete="off">
+                <md-hint align="end">{{password.value.length}}/45</md-hint>
                 </md-input-container></td>
              </tr>
          </table>
 
-        <md-input-container dividerColor="accent">
-        <input mdInput #EPASSWORD="ngModel" [(ngModel)]="empleado.EPASSWORD" maxlength="45" name="EPASSWORD" placeholder="Contraseña" required autocomplete="off">
-        <!--<md-hint align="end">{{EPASSWORD.value.length}}/45</md-hint>-->
-        </md-input-container>
+        <!--<md-input-container class="example-full-width form-space"  dividerColor="accent">
+            <input mdInput #privilegio #EPRIVILEGIO="ngModel" [(ngModel)]="empleado.EPRIVILEGIO" maxlength="150" name="EPRIVILEGIO" placeholder="Privilegio" autocomplete="off">
+            <md-hint align="end">{{privilegio.value.length}}/150</md-hint>
+        </md-input-container>-->
 
-            <md-input-container dividerColor="accent">
-                <input mdInput #EREFERENCIA1="ngModel" [(ngModel)]="empleado.EREFERENCIA1" maxlength="150" name="EREFERENCIA1" placeholder="Referencia laboral 1 (Nombre de empresa, teléfono, gerente, tiempo trabajando)" required autocomplete="off">
-                <!--<md-hint align="end">{{EREFERENCIA1.value.length}}/150</md-hint>-->
-                </md-input-container>
-            <md-input-container class="example-full-width form-space"  dividerColor="accent">
-                <input mdInput #EREFERENCIA2="ngModel" [(ngModel)]="empleado.EREFERENCIA2" maxlength="150" name="EREFERENCIA2" placeholder="Referencia laboral 2 (Nombre de empresa, teléfono, gerente, tiempo trabajando)" autocomplete="off">
-                <!--<md-hint align="end">{{EREFERENCIA2.value.length}}/150</md-hint>-->
-                </md-input-container>
-
-            <md-input-container class="example-full-width form-space"  dividerColor="accent">
-                <input mdInput #EPRIVILEGIO="ngModel" [(ngModel)]="empleado.EPRIVILEGIO" maxlength="150" name="EPRIVILEGIO" placeholder="Privilegio" autocomplete="off">
-                <!--<md-hint align="end">{{EPRIVILEGIO.value.length}}/150</md-hint>-->
-                </md-input-container>
-
-        <!--<div style="margin:0 auto; text-align: center;">
+      <div style="margin:0 auto; text-align: center;">
             <md-radio-group dividerColor="accent" #EPRIVILEGIO="ngModel" [(ngModel)]="empleado.EPRIVILEGIO" name="EPRIVILEGIO">
               <md-radio-button class="form-radiobutton" checked="checked" value="empleado">Empleado</md-radio-button>
               <md-radio-button class="form-radiobutton" value="rutero">Rutero</md-radio-button>
               <md-radio-button class="form-radiobutton" value="admin">Administrador</md-radio-button>
               <md-radio-button class="form-radiobutton" value="desempleado">Desempleado</md-radio-button>
             </md-radio-group>
-        </div>-->
+        </div>
+
+        <table class="example-full-width" cellspacing="0">
+           <tr>
+            <td><md-input-container class="example-full-width"  dividerColor="accent">
+              <input mdInput #nombre #ENOMBRE="ngModel" [(ngModel)]="empleado.ENOMBRE" maxlength="45" name="ENOMBRE" autofocus="autofocus" placeholder="Nombre de empleado" required autocomplete="off">
+                  <md-hint align="end">{{nombre.value.length}}/45</md-hint>
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width"  dividerColor="accent">
+              <input mdInput #apellidos #EAPELLIDOS="ngModel" [(ngModel)]="empleado.EAPELLIDOS" maxlength="45" name="EAPELLIDOS" placeholder="Apellidos de empleado" required autocomplete="off">
+                  <md-hint align="end">{{apellidos.value.length}}/65</md-hint>
+            </md-input-container></td>
+          </tr>
+         </table>
+
+            <md-input-container class="example-full-width form-space"  dividerColor="accent">
+              <input mdInput #telefono #ETELEFONO="ngModel" [(ngModel)]="empleado.ETELEFONO" maxlength="10" name="ETELEFONO" placeholder="Número de teléfono/celular" required autocomplete="off">
+              <md-hint align="end">{{telefono.value.length}}/10</md-hint>
+            </md-input-container>
+
+
+            <md-input-container dividerColor="accent">
+                <input mdInput #referencia1 #EREFERENCIA1="ngModel" [(ngModel)]="empleado.EREFERENCIA1" maxlength="150" name="EREFERENCIA1" placeholder="Referencia laboral 1 (Nombre de empresa, teléfono, gerente, tiempo trabajando)" required autocomplete="off">
+                <md-hint align="end">{{referencia1.value.length}}/150</md-hint>
+                </md-input-container>
+            <md-input-container class="example-full-width form-space"  dividerColor="accent">
+                <input mdInput #referencia2 #EREFERENCIA2="ngModel" [(ngModel)]="empleado.EREFERENCIA2" maxlength="150" name="EREFERENCIA2" placeholder="Referencia laboral 2 (Nombre de empresa, teléfono, gerente, tiempo trabajando)" autocomplete="off">
+                <md-hint align="end">{{referencia2.value.length}}/150</md-hint>
+                </md-input-container>
+
+
+
+
 
         <!--<div >
            <p class="resumenbocado">Resumen de pedido</p>
@@ -79,21 +86,22 @@
                       [max]="maxDate"
                       [mode]="mode"
                       [container]="container"
-                      ></md2-datepicker>-->
+                      ></md2-datepicker>
+                      -->
 
         <md-input-container dividerColor="accent">
-        <input mdInput #EFECHACONTRATO="ngModel" [(ngModel)]="empleado.EFECHACONTRATO" maxlength="45" name="EFECHACONTRATO" placeholder="Fecha de contrato" required autocomplete="off" value="2017-04-11">
-        <!--<md-hint align="end">{{EFECHACONTRATO.value.length}}/45</md-hint>-->
+        <input mdInput #fechacontrato #EFECHACONTRATO="ngModel" [(ngModel)]="empleado.EFECHACONTRATO" maxlength="45" name="EFECHACONTRATO" placeholder="Fecha de contrato" required autocomplete="off" value="2017-04-11">
+        <md-hint align="end">{{fechacontrato.value.length}}/45</md-hint>
         </md-input-container>
 
         <md-input-container dividerColor="accent">
-        <input mdInput #EUBICACION="ngModel" [(ngModel)]="empleado.EUBICACION" maxlength="45" name="EUBICACION" placeholder="Ubucación" required autocomplete="off">
-        <!--<md-hint align="end">{{EUBICACION.value.length}}/45</md-hint>-->
+        <input mdInput #ubicacion #EUBICACION="ngModel" [(ngModel)]="empleado.EUBICACION" maxlength="45" name="EUBICACION" placeholder="Ubucación" required autocomplete="off">
+        <md-hint align="end">{{ubicacion.value.length}}/45</md-hint>
         </md-input-container>
 
         <md-input-container dividerColor="accent">
-        <input mdInput #IDSUCURSAL="ngModel" [(ngModel)]="empleado.IDSUCURSAL" maxlength="45" name="IDSUCURSAL" placeholder="Ubucación" required autocomplete="off">
-        <!--<md-hint align="end">{{EUBICACION.value.length}}/45</md-hint>-->
+        <input mdInput #sucursal #IDSUCURSAL="ngModel" [(ngModel)]="empleado.IDSUCURSAL" maxlength="45" name="IDSUCURSAL" placeholder="Sucursal" required autocomplete="off">
+        <md-hint align="end">{{sucursal.value.length}}/45</md-hint>
         </md-input-container>
         <!--<md2-select #IDSUCURSAL="ngModel" [(ngModel)]="empleado.IDSUCURSAL" name="IDSUCURSAL" class="form-select"
                     placeholder="Sucursal"

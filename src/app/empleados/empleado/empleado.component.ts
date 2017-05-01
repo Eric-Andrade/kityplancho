@@ -32,46 +32,30 @@ export class EmpleadoComponent implements OnInit {
     this.itemMultiple = null;
     this.sucursales = [{id:1, name:"Sucursal 1"},
                       {id:2, name:"sucursal 2"}];
-    // this.empleado = new Empleados('ok@ok.com','ok','admin','ok','ok','ok','ok','ok','ok','ok',1);
-  this.empleado = {
-  IDEMPLEADO:9,
-  EEMAIL:'ok@ok.com',
-  EPASSWORD:'ok',
-  EPRIVILEGIO:'admin',
-  ENOMBRE:'ok',
-  EAPELLIDOS:'ok',
-  ETELEFONO:'123',
-  EREFERENCIA1:'ok',
-  EREFERENCIA2:'ok',
-  EFECHACONTRATO:'2017-04-11',
-  EUBICACION:'ok',
-  IDSUCURSAL:1};
-// ENUM('admin', 'empleado', 'rutero', 'desempleado')
               }
 
    ngOnInit( ) {
-    // alert(this._empleadosService.postEmployee());
+      // this.empleado = new Empleados('ok@ok.com','ok','admin','ok','ok','ok','ok','ok','ok','ok',1);
+  this.empleado = {IDEMPLEADO:0,EEMAIL:'empleado@hotmail.com',EPASSWORD:'1234567890',EPRIVILEGIO:'empleado',ENOMBRE:'Don ñeñe empleado',EAPELLIDOS:'Ñuñez',ETELEFONO:'1234567890',EREFERENCIA1:'Referencia1',EREFERENCIA2:'Referencia2',EFECHACONTRATO:'2017-04-11',
+                  EUBICACION:'ok',IDSUCURSAL:null};
+// ENUM('admin', 'empleado', 'rutero', 'desempleado')
   }
 
   public postEmpleado(){
-    console.log(this.empleado);
     this._empleadosService.postEmpleado(this.empleado).subscribe(
-      response=> {
-            if(!response.empleado){
-                alert(`Error al guardar nuevo empleado `);
-            }else{
-            this.empleado = response.EMPLEADO;
-            }
-      },
-       error => {
-            this.errorMessage = <any>error;
-            if(this.errorMessage != null){
+          data => {
+               console.log(`El empleado ${this.empleado.IDEMPLEADO} | ${this.empleado.ENOMBRE} fue creado exitosamente!`);
+               this._router.navigate(['empleados']);
+          },
+
+          error =>  {
+              console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+               this.errorMessage = <any>error;
+                if(this.errorMessage != null){
                 console.log(`Error al guardar nuevo empleado: ${this.errorMessage}`);
                 alert(`Error al guardar nuevo empleado: ${this.errorMessage}`);
             }
-        }
-
-    )
+          });
   }
 
 launchDialog(dialog: any) {

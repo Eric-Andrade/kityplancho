@@ -32,8 +32,23 @@ export class ClienteComponent implements OnInit {
 
 ngOnInit( ) {
     // this.cliente = new Clientes("","","","","");
-    this.cliente = {IDCLIENTE: 0, CCORREO:'eric@hotmail.com',CCONTRASENA:'12345',CNOMBRE:'Eric',CAPELLIDOS:'Torres',CTELEFONO:'1234567890'};
+    this.cliente = { IDCLIENTE:0, CCORREO:'',CCONTRASENA:'',CNOMBRE:'',CAPELLIDOS:'',CTELEFONO:''};
     console.log(this.cliente);
+  }
+
+  public postCliente(){
+    this._clientesService.postCliente(this.cliente).subscribe(
+          data => {
+               console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue creado exitosamente!`);
+               this._router.navigate(['clientes']);
+          }, error => {
+              console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+               this.errorMessage = <any>error;
+                if(this.errorMessage != null){
+                console.log(`Error al guardar nuevo empleado: ${this.errorMessage}`);
+                alert(`Error al guardar nuevo empleado: ${this.errorMessage}`);
+            }
+          });
   }
 
 launchDialog(dialog: any) {
@@ -58,25 +73,5 @@ launchDialog(dialog: any) {
 
   openTabDialog(event: Event) { }
 
-  public postCliente(model:Clientes){
-    console.log(model);
-    this._clientesService.postCliente(this.cliente).subscribe(
-      response=> {
-            if(!response.cliente){
-                alert(`Error al guardar nuevo cliente `)
-            }else{
-                this.cliente = response.cliente;
-            }
-      },
-       error => {
-            this.errorMessage = <any>error;
-            if(this.errorMessage != null){
-                console.log(`Error al guardar nuevo cliente: ${this.errorMessage}`);
-                alert(`Error al guardar nuevo cliente: ${this.errorMessage}`);
-            }
-        }
-
-    )
-  }
 
 }

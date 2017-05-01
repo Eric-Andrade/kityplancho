@@ -1,2 +1,7 @@
 Crear componentes personalizados sin carpeta extra
   ./node_modules/@angular/cli/bin/ng g c nombreCarpeta/nombreComponent --flat true
+
+Ayuda[
+  http://stackoverflow.com/questions/35212341/angular2-http-post-request-parameters
+  https://www.youtube.com/watch?v=gaH889B6R40
+]
