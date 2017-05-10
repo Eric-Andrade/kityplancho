@@ -1,18 +1,25 @@
 <div class="container-fluid">
  <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="inputfilter">
-           <md-input-container dividerColor="accent">
-            <input mdInput placeholder="Busca un empleado por rol dentro de la empresa...">
-          </md-input-container>
-      </div>
-        <kp-empleado></kp-empleado>
-        <button md-icon-button (click)="empleadosCard = true">
-            <md-icon >view_comfy</md-icon>
-        </button>
-        <button md-icon-button (click)="empleadosCard = false">
-            <md-icon >list</md-icon>
-        </button><br>
+      <br>
+         <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+            <kp-empleado></kp-empleado>
+              <button md-icon-button (click)="empleadosCard = true">
+                  <md-icon >view_comfy</md-icon>
+              </button>
+              <button md-icon-button (click)="empleadosCard = false">
+                  <md-icon >list</md-icon>
+              </button>
+          </div>
+          <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+            <div class="inputfilter">
+            <md-input-container dividerColor="accent">
+              <input mdInput placeholder="Busca un empleado por su nombre..." name="search">
+            </md-input-container>
+            </div>
+          </div>
+        </div>
             <div *ngIf="empleadosCard; then thenTemplate; else elseTemplate"></div>
             <ng-template #thenTemplate>
                    <div class="datacontainer" *ngIf="empleados">
@@ -20,16 +27,26 @@
                        <a [routerLink]="['.',empleado.IDEMPLEADO]">
                          <md-card>
                           <md-card-header>
-                            <div md-card-avatar class="example-header-image"></div>
-                            <md-card-title> {{empleado.IDEMPLEADO}} | {{empleado.ENOMBRE}}</md-card-title>
-                            <md-card-subtitle>{{empleado.ETELEFONO}}</md-card-subtitle>
+                            <div *ngIf="empleado.EPRIVILEGIO == 'desempleado'; then thenTemplate; else elseTemplate"></div>
+                            <div md-card-avatar class="example-header-image">
+                            <ng-template #thenTemplate>
+                              <span class="status-cardoff"></span>
+                            </ng-template>
+                            <ng-template #elseTemplate>
+                              <span class="status-cardactive"></span>
+                            </ng-template>
+                            </div>
+                            <md-card-title><strong>{{empleado.IDEMPLEADO}}</strong> | {{empleado.ENOMBRE | truncate: 10}}</md-card-title>
+                            <md-card-subtitle>
+                              <md-chip-list>
+                                  <md-chip color="accent" selected="true">{{empleado.EPRIVILEGIO}}</md-chip>
+                              </md-chip-list>
+                            </md-card-subtitle>
                           </md-card-header>
                           <md-card-content>
-                            <md-chip-list>
-                                <md-chip color="accent" selected="true">{{empleado.EPRIVILEGIO}}</md-chip>
-                            </md-chip-list>
-                            {{empleado.EEMAIL}}
-                            {{empleado.EPASSWORD}}
+                           <span>
+                           <md-icon color="accent">phone_iphone</md-icon> <strong>{{empleado.ETELEFONO}}</strong>
+                             </span>  | {{empleado.EEMAIL | truncate: 10}}
                             <br>
                             <small>Fecha de contrato: {{empleado.EFECHACONTRATO | date: 'dd MMMM yyyy'}}</small>
                           </md-card-content>
@@ -43,26 +60,36 @@
                     <table class="table table-hover">
                         <thead class="thead">
                           <tr>
-                            <th>ID</th>
-                            <th >Nombre</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Teléfono</th>
-                            <th>Rol en la empresa</th>
-                            <th></th>
+                            <th style="width: 5%"></th>
+                            <th style="width: 5%">ID</th>
+                            <th style="width: 25%">Nombre</th>
+                            <th style="width: 25%">Email</th>
+                            <th style="width: 15%">Password</th>
+                            <th style="width: 10%">Teléfono</th>
+                            <th style="width: 10%">Puesto</th>
+                            <th style="width: 5%"></th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr *ngFor="let empleado of empleados">
-                            <td>{{empleado.IDEMPLEADO}}</td>
-                            <td>{{empleado.ENOMBRE}}</td>
-                            <td class="enfasis-td">{{empleado.EEMAIL}}</td>
+                            <td>
+                            <div *ngIf="empleado.EPRIVILEGIO == 'desempleado'; then thenTemplate; else elseTemplate"></div>
+                            <ng-template #thenTemplate>
+                              <span class="status-listoff"></span>
+                            </ng-template>
+                            <ng-template #elseTemplate>
+                              <span class="status-listactive"></span>
+                            </ng-template>
+                            </td>
+                            <td><strong>{{empleado.IDEMPLEADO}}</strong></td>
+                            <td>{{empleado.ENOMBRE | capitalize}} {{empleado.EAPELLIDOS}}</td>
+                            <td class="enfasis-td">{{empleado.EEMAIL | lowercase}}</td>
                             <td>{{empleado.EPASSWORD}}</td>
                             <td>{{empleado.ETELEFONO}}</td>
                             <td><md-chip-list>
                                 <md-chip color="accent" selected="true">{{empleado.EPRIVILEGIO}}</md-chip>
                             </md-chip-list></td>
-                            <td><a [routerLink]="['.',empleado.IDEMPLEADO]">Ver</a></td>
+                            <td><a [routerLink]="['.',empleado.IDEMPLEADO]"><md-icon color="accent">keyboard_arrow_right</md-icon></a></td>
                           </tr>
                         </tbody>
                       </table>

@@ -1,0 +1,16 @@
+[0504/095801.747:ERROR:process_info.cc(625)] range at 0xdeec61be00000000, size 0x1c4 fully unreadable
+[0504/095801.834:ERROR:process_info.cc(625)] range at 0xdeec622600000000, size 0x1c4 fully unreadable
+[0504/095801.834:ERROR:process_info.cc(625)] range at 0x0, size 0x1c4 fully unreadable
+[0504/095937.547:ERROR:process_info.cc(625)] range at 0x6bf261be00000000, size 0x1ac fully unreadable
+[0504/095937.547:ERROR:process_info.cc(625)] range at 0x6bf2622600000000, size 0x1ac fully unreadable
+[0504/095937.547:ERROR:process_info.cc(625)] range at 0x0, size 0x1ac fully unreadable
+[0504/100320.868:ERROR:process_info.cc(625)] range at 0xcef261be00000000, size 0x2bf fully unreadable
+[0504/100320.868:ERROR:process_info.cc(625)] range at 0xcef2622600000000, size 0x2bf fully unreadable
+[0504/100320.868:ERROR:process_info.cc(625)] range at 0x0, size 0x2bf fully unreadable
+[0504/154135.931:ERROR:process_info.cc(625)] range at 0xb0c05a5000000000, size 0x1ce fully unreadable
+[0504/154135.931:ERROR:process_info.cc(625)] range at 0xb0c05a7000000000, size 0x1ce fully unreadable
+[0504/154135.931:ERROR:process_info.cc(625)] range at 0x0, size 0x1ce fully unreadable
+[0504/154150.629:ERROR:http_transport_win.cc(214)] WinHttpSendRequest: No se pudo resolver el nombre de servidor o su dirección  (0x2ee7)
+[0508/132050.213:ERROR:process_info.cc(625)] range at 0x8c6c622e00000000, size 0x1e0 fully unreadable
+[0508/132050.271:ERROR:process_info.cc(625)] range at 0x8c6c629400000000, size 0x1e0 fully unreadable
+[0508/132050.271:ERROR:process_info.cc(625)] range at 0x0, size 0x1e0 fully unreadable

@@ -8,9 +8,8 @@ import { MaterialModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { Md2Module } from 'md2';
 import { HttpModule } from '@angular/http';
+import { SharedModule } from '../shared/shared.module';
 import { ClienteDetalleComponent } from "./clientedetalle.component";
-import { TruncatePipe } from '../pipes/truncate.pipe';
-
 
 const routes: Routes = [
   { path: '', component: ClientesComponent },
@@ -25,8 +24,9 @@ const routes: Routes = [
       Md2Module.forRoot(),
       FormsModule,
       HttpModule,
+      SharedModule
   ],
-  declarations: [ ClientesComponent, ClienteComponent, TruncatePipe, ClienteDetalleComponent],
+  declarations: [ ClientesComponent, ClienteComponent, ClienteDetalleComponent],
   providers: [ ClientesService ]
 })
 export class ClientesModule { }

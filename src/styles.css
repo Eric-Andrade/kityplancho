@@ -133,7 +133,6 @@ md-spinner{
     text-align: center;
 }
 
-
 .loading{
   margin: 0 auto;
   width: 69px;
@@ -141,7 +140,78 @@ md-spinner{
 
 .mat-chip-list-wrapper{
     margin: 0 auto;
+    display: inline !important;
     width: 90px;
+}
+
+.circle {
+    margin: 0 auto;
+    width: 2px;
+    height: 2px;
+    border: 4.5px solid #47da54;
+    border-radius: 50%;
+    position: absolute;
+    top: 85%;
+    left: 90%;
+}
+
+.divcenter{
+    margin:0 auto;
+    width:200px
+}
+
+.status-cardactive{
+    margin: 0 auto;
+    width: 2px;
+    height: 2px;
+    border: 4.5px solid #47da54;
+    border-radius: 50%;
+    position: absolute;
+    top: 85%;
+    left: 90%;
+}
+
+.status-cardoff{
+    margin: 0 auto;
+    width: 2px;
+    height: 2px;
+    border: 4.5px solid #b5b5b5;
+    border-radius: 50%;
+    position: absolute;
+    top: 85%;
+    left: 90%;
+}
+
+.status-listactive{
+    margin: 0 auto;
+    width: 2px;
+    height: 2px;
+    border: 4.5px solid #47da54;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 5px;
+}
+
+.status-listoff{
+    margin: 0 auto;
+    width: 2px;
+    height: 2px;
+    border: 4.5px solid #b5b5b5;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 5px;
+}
+
+.card-avataroff{
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+
+.kp-text{
+  font-family: "Source Sans Pro",sans-serif;
+  color: #f54d90;
+  font-weight: 100;
 }
 /*Media's*/
 
@@ -261,7 +331,7 @@ md-spinner{
     }
 
     .inputfilter{
-        width: 45%;
+        width: 100%;
         margin: 0 auto;
     }
 
@@ -293,7 +363,7 @@ md-spinner{
     }
 
     .inputfilter{
-        width: 45%;
+        width: 100%;
         margin: 0 auto;
     }
 

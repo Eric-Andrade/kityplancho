@@ -1,20 +1,25 @@
 <div class="container-fluid">
  <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="inputfilter">
-           <md-input-container dividerColor="accent">
-            <input mdInput placeholder="Busca un cliente por nombre de cliente..." name="search">
-          </md-input-container>
-      </div>
-
-        <kp-cliente></kp-cliente>
-        <button md-icon-button (click)="clientesCard = true">
-            <md-icon >view_comfy</md-icon>
-        </button>
-        <button md-icon-button (click)="clientesCard = false">
-            <md-icon >list</md-icon>
-        </button>
            <br>
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+            <kp-cliente></kp-cliente>
+              <button md-icon-button (click)="clientesCard = true">
+                  <md-icon >view_comfy</md-icon>
+              </button>
+              <button md-icon-button (click)="clientesCard = false">
+                  <md-icon >list</md-icon>
+              </button>
+          </div>
+          <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+            <div class="inputfilter">
+            <md-input-container dividerColor="accent">
+              <input mdInput placeholder="Busca un cliente por nombre de cliente..." name="search" >
+            </md-input-container>
+            </div>
+          </div>
+        </div>
             <div *ngIf="clientesCard; then thenTemplate; else elseTemplate"></div>
             <ng-template #thenTemplate>
                   <div class="datacontainer" *ngIf="clientes">
@@ -22,16 +27,25 @@
                      <a [routerLink]="['.',cliente.IDCLIENTE]">
                        <md-card>
                           <md-card-header>
-                            <div md-card-avatar class="example-header-image"><span *ngIf="cliente.ACTIVO" class="circle"></span></div>
-                            <md-card-title> {{cliente.IDCLIENTE}} | {{cliente.CNOMBRE | truncate: 10}} </md-card-title>
-                            <md-card-subtitle> {{cliente.CEMAIL | truncate: 10}}</md-card-subtitle>
+                            <div *ngIf="cliente.ACTIVO == 1; then thenTemplate; else elseTemplate"></div>
+                              <div md-card-avatar class="example-header-image">
+                              <ng-template #thenTemplate>
+                                <span class="status-cardactive"></span>
+                              </ng-template>
+                              <ng-template #elseTemplate>
+                                <span class="status-cardoff"></span>
+                              </ng-template>
+                              </div>
+                            <md-card-title> <strong>{{cliente.IDCLIENTE}}</strong> | <p>{{cliente.CNOMBRE | truncate: 7 | capitalize }} {{cliente.CAPELLIDOS | truncate: 7 | capitalize }}</p></md-card-title>
+                            <md-card-subtitle>
+                              <md-chip-list>
+                                  <md-chip color="accent" selected="true">{{cliente.CEMAIL | truncate: 15  | lowercase}}</md-chip>
+                              </md-chip-list></md-card-subtitle>
                           </md-card-header>
                           <md-card-content>
-                            {{cliente.CPASSWORD | truncate: 5}}
-                            <strong>{{cliente.CTELEFONO}}</strong>
-                            <!--<md-chip-list>
-                                <md-chip color="accent" selected="true" *ngIf="cliente.ACTIVO"><span>o</span></md-chip>
-                            </md-chip-list>-->
+                              <span>
+                           <md-icon color="accent">phone_iphone</md-icon> <strong>{{cliente.CTELEFONO}}</strong>
+                             </span>
                           </md-card-content>
                        </md-card>
                        </a>
@@ -43,22 +57,30 @@
                         <table class="table table-hover" >
                         <thead class="thead">
                           <tr>
-                            <th style="width: 10%" >ID</th>
-                            <th style="width: 25%" >Nombre</th>
+                            <th style="width: 5%"></th>
+                            <th style="width: 5%">ID</th>
+                            <th style="width: 30%">Nombre</th>
                             <th style="width: 30%">Email</th>
-                            <th style="width: 18%" >Password</th>
-                            <th style="width: 10%" >Teléfono</th>
-                            <th style="width: 7%" >Status</th>
+                            <th style="width: 15%">Password</th>
+                            <th style="width: 15%">Teléfono</th>
                           </tr>
                         </thead>
                         <tbody>
                          <tr *ngFor="let cliente of clientes">
-                            <td>{{cliente.IDCLIENTE}}</td>
-                            <td>{{cliente.CNOMBRE}} {{cliente.CAPELLIDOS}}</td>
-                            <td class="enfasis-td">{{cliente.CEMAIL}}</td>
-                            <td>{{cliente.CPASSWORD}}</td>
+                           <td>
+                            <div *ngIf="cliente.ACTIVO == 1; then thenTemplate; else elseTemplate"></div>
+                            <ng-template #thenTemplate>
+                              <span class="status-listactive"></span>
+                            </ng-template>
+                            <ng-template #elseTemplate>
+                              <span class="status-listoff"></span>
+                            </ng-template>
+                            </td>
+                            <td><strong>{{cliente.IDCLIENTE}}</strong> </td>
+                            <td>{{cliente.CNOMBRE | capitalize}} {{cliente.CAPELLIDOS | capitalize}}</td>
+                            <td class="enfasis-td">{{cliente.CEMAIL | lowercase}}</td>
+                            <td>{{cliente.CPASSWORD | truncate: 10}}</td>
                             <td>{{cliente.CTELEFONO}}</td>
-                            <td *ngIf="cliente.ACTIVO"><p>Activo</p></td>
                          </tr>
                         </tbody>
                       </table>

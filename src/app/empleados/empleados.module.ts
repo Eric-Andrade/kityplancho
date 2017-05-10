@@ -1,3 +1,4 @@
+import { SharedModule } from '../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
@@ -23,7 +24,7 @@ const routes: Routes = [
       Md2Module.forRoot(),
       FormsModule,
       HttpModule,
-
+      SharedModule
   ],
   declarations: [ EmpleadosComponent, EmpleadoComponent, EmpleadoDetalleComponent ],
   providers: [ EmpleadosService ],

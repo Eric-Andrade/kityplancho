@@ -6,8 +6,9 @@ import { HttpModule } from '@angular/http';
 import { CoreModule } from './core/core.module';
 import { ShellComponent } from './core/shell/shell.component';
 
+
 @NgModule({
-  declarations: [],
+  declarations: [ ],
   imports: [
     CoreModule,
     BrowserModule,

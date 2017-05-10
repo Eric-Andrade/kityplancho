@@ -4,4 +4,11 @@ Crear componentes personalizados sin carpeta extra
 Ayuda[
   http://stackoverflow.com/questions/35212341/angular2-http-post-request-parameters
   https://www.youtube.com/watch?v=gaH889B6R40
+  Pipes globales multiples modulos
+  http://stackoverflow.com/questions/42576420/how-to-declare-pipe-globally-to-use-in-different-modules
 ]
+
+Correo:
+kityplancho@gmail.com
+Password:
+Adminkity2017

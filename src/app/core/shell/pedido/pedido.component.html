@@ -1,6 +1,7 @@
     <md2-dialog #pedidodialog>
         <h5>{{opcionpedido | uppercase}}</h5>
-        <form action="">
+        <form #formPedido="ngForm" (ngSubmit)="postPedido()">
+
         <md-input-container dividerColor="accent">
         <input mdInput #nameClient maxlength="45" name="nameClient" autofocus="autofocus" placeholder="Nombre de cliente" required autocomplete="off">
         <md-hint align="end">{{nameClient.value.length}}/45</md-hint>
@@ -11,12 +12,13 @@
                           multiple
                           placeholder="Servicio"
                           [required]="isRequired"
-                          [disabled]="isDisabled">
+                          [disabled]="isDisabled"
+                           #servicioControl="ngModel">
                 <!--<md2-select-header>
                 <input name="search" type="text" placeholder="Buscar..." />
                 </md2-select-header>
                 -->
-                <md2-option *ngFor="let i of items" [value]="i.name">{{i.name}}
+                <md2-option *ngFor="let i of items" [value]="i.IDSP">{{i.SERVNOMBRE}} {{i.PNOMBREUNIDAD}} | <strong class="kp-text bold">{{i.SPCOSTO | currency:'USD':true}}</strong>
                 </md2-option>
               </md2-select>
 
@@ -32,21 +34,13 @@
             </md-radio-group>
         </div>
 
-        <div *ngIf="currentServicios">
-           <p class="resumenbocado">Resumen de pedido</p>
-        <md2-dialog-footer>
-            <md-chip-list>
-                <md-chip *ngFor="let cs of currentServicios" color="accent" selected="true">{{cs}}</md-chip>
-            </md-chip-list>
-            <span>Total: $200</span>
-        </md2-dialog-footer>
-        </div>
-        <button class="button-form" color="accent" md-button style="width:100%" type="submit" value="Submit">Crear {{opcionpedido}}</button>
+        <button class="button-form" color="accent" md-button style="width:100%" type="submit" value="Submit" [disabled]="!formPedido.form.valid">Crear {{opcionpedido}}</button>
           </form>
+
+
         <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
     </md2-dialog>
 
     <button class="new-request" color="accent" md-icon-button (click)="pedidodialog.open()">
-      <!--<button class="new-request" color="accent" md-icon-button>-->
         <md-icon >add</md-icon>
     </button>

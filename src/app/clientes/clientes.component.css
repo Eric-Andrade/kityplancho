@@ -24,13 +24,4 @@ md-card{
     margin: 3px 3px 3px 3px;
 }
 
-.circle {
-  margin: 0 auto;
-  width: 2px;
-  height: 2px;
-  border: 4.5px solid #47da54;
-  border-radius: 50%;
-  position: absolute;
-      top: 85%;
-    left: 90%;
-}
+

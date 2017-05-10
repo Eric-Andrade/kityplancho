@@ -1,11 +1,26 @@
 <div class="container-fluid">
  <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="inputfilter">
-           <md-input-container dividerColor="accent">
-            <input mdInput placeholder="Busca un servicio por su nombre...">
-          </md-input-container>
-      </div>
+           <br>
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+            <button md-raised-button color="accent">Añadir servicio</button>
+            <!--<kp-cliente></kp-cliente>
+              <button md-icon-button (click)="clientesCard = true">
+                  <md-icon >view_comfy</md-icon>
+              </button>
+              <button md-icon-button (click)="clientesCard = false">
+                  <md-icon >list</md-icon>
+              </button>-->
+          </div>
+          <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+            <div class="inputfilter">
+            <md-input-container dividerColor="accent">
+              <input mdInput placeholder="Busca un servicio por su nombre..." name="search">
+            </md-input-container>
+            </div>
+          </div>
+        </div>
        <!--<app-servicio></app-servicio>-->
         <div class="table-responsive">
             <table class="table table-hover">
@@ -22,11 +37,19 @@
                 <tbody>
                   <tr *ngFor="let servicio of servicios">
                     <td>{{servicio.IDSP}}</td>
-                    <td>{{servicio.IDPRENDAS}}</td>
+                    <td>{{servicio.SERVNOMBRE}} - <strong>{{servicio.PNOMBREUNIDAD}}</strong></td>
                     <!--<td>Planchado a base de...</td>-->
-                    <td class="enfasis-td">{{servicio.IDSERVICIO}}</td>
-                    <td>{{servicio.SPCOSTO}}</td>
-                    <td class="enfasis-td">{{servicio.SPDESCUENTO}}</td>
+                    <td class="enfasis-td">{{servicio.SPCOSTO | currency:'USD':true}}</td>
+                    <td>{{servicio.SPDESCUENTO}}%</td>
+                    <td class="enfasis-td" >
+                        <div *ngIf="servicio.SPDESCUENTO == 0; then thenTemplate; else elseTemplate"></div>
+                        <ng-template #thenTemplate>
+                          {{servicio.SPCOSTO | currency:'USD':true }}
+                        </ng-template>
+                        <ng-template #elseTemplate>
+                          <strong>{{servicio.SPCOSTO - (servicio.SPCOSTO * servicio.SPDESCUENTO / 100) | currency:'USD':true}}</strong>
+                        </ng-template>
+                    </td>
                   </tr>
                 </tbody>
               </table>

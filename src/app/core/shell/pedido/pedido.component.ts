@@ -1,9 +1,15 @@
+import { ServiciosService } from '../../../servicios/servicios.service';
+import { Servicios } from '../../../servicios/servicios';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { PedidoService } from "./pedido.service";
+import { Pedido } from "./pedido";
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'kp-pedido',
   templateUrl: './pedido.component.html',
-  styleUrls: ['./pedido.component.css']
+  styleUrls: ['./pedido.component.css'],
+  providers: [PedidoService, ServiciosService ]
 })
 export class PedidoComponent implements OnInit {
     opcionpedido: string;
@@ -11,26 +17,44 @@ export class PedidoComponent implements OnInit {
     isDisabled: boolean;
     isDisabledMultiple: boolean;
     itemMultiple: any;
-    item: any;
-    items: Array<any>;
     currentServicios: string[];
-    
-    constructor() {
+    public items: Servicios[];
+    public errorMessage;
+    _search: string = '';
+
+    constructor(private _pedidoService: PedidoService, private _serviciosService: ServiciosService) {
         this.opcionpedido = 'nuevo pedido';
         this.isRequired = true;
         this.isDisabled = false;
         this.isDisabledMultiple = false;
         this.itemMultiple = null;
-        this.item = null;
-     /*   this.items =
-          [
-            { name: 'Lavado', value: '1' },
-            { name: 'Planchado', value: '2' },
-            { name: 'Tintado', value: '3' },
-          ];*/
+
   }
 
   ngOnInit() {
+      this._serviciosService.getallsp().subscribe(
+        result => {
+            console.log(result);
+            this.items = result.SP;
+            if (!this.items) {
+                console.log('Error en el servidor...');
+            }else{
+                console.log('Servicios cargados para nuevo pedido');
+            }
+        },
+        error => {
+            this.errorMessage = <any>error;
+            if (this.errorMessage != null ) {
+                console.log(this.errorMessage);
+                alert('Error al conseguir los servicios');
+            }
+        }
+
+      );
+  }
+
+  postPedido(){
+
   }
 
   launchDialog(dialog: any) {

@@ -11,10 +11,11 @@
 
 
 export interface Clientes {
-    IDCLIENTE: number,
-    CCORREO: string;
-    CCONTRASENA: string;
+    IDCLIENTE: number;
+    CEMAIL: string;
+    CPASSWORD: string;
     CNOMBRE: string;
     CAPELLIDOS: string;
     CTELEFONO: string;
+    ACTIVO?: number;
 }

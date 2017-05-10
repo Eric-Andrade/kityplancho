@@ -17,11 +17,11 @@ export class ServiciosComponent implements OnInit {
   }
 
   ngOnInit() {
-      this._serviciosService.getServicios().subscribe(
+      this._serviciosService.getallsp().subscribe(
         result => {
             console.log(result);
-            this.servicios = result.DETALLESSERVICIOS;
-            if (!this.servicios ) {
+            this.servicios = result.SP;
+            if (!this.servicios) {
                 console.log('Error en el servidor...');
             }else{
                 this.loading = false;

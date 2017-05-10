@@ -16,8 +16,24 @@ export class ServiciosService {
 
     }
 
+
     getServicios() {
-        return this._http.get(this.url + 'getserviciosprendas')
+        return this._http.get(this.url + 'getservicios')
+            .map(res => res.json());
+    }
+
+    getServiciosActivos() {
+        return this._http.get(this.url + 'getallServiciosNombres')
+            .map(res => res.json());
+    }
+
+    getallsp() {
+        return this._http.get(this.url + 'getallsp')
+            .map(res => res.json());
+    }
+
+    getPrendas() {
+        return this._http.get(this.url + 'getprendas')
             .map(res => res.json());
     }
 

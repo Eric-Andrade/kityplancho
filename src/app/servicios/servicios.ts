@@ -1,6 +1,7 @@
 export interface Servicios {
-  idprendas: number,
-  idservicio: number,
-  spcosto: number,
-  spdescuento: number
+  IDSP: number;
+  IDPRENDAS: number;
+  IDSERVICIO: number;
+  SPCOSTO: number;
+  SPDESCUENTO: number;
 }

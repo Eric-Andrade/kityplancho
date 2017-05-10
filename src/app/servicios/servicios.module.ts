@@ -4,6 +4,7 @@ import { ServiciosComponent } from './servicios.component';
 import { RouterModule, Routes } from '@angular/router/';
 import { ServiciosService } from './servicios.service';
 import { MaterialModule } from '@angular/material';
+import { ServicioComponent } from './servicio/servicio.component';
 
 const routes: Routes = [
   { path: '', component: ServiciosComponent }
@@ -15,7 +16,7 @@ const routes: Routes = [
   RouterModule.forChild(routes),
       MaterialModule.forRoot(),
   ],
-  declarations: [ServiciosComponent],
+  declarations: [ServiciosComponent, ServicioComponent],
   providers: [ ServiciosService],
 })
 export class ServiciosModule { }

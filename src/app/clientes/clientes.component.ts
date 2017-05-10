@@ -1,3 +1,4 @@
+import { ClienteComponent } from './cliente/cliente.component';
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from './clientes.service';
 import { Clientes } from './clientes';
@@ -7,19 +8,21 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   selector: 'kp-clientes',
   templateUrl: './clientes.component.html',
   styleUrls: ['./clientes.component.css'],
-  providers:[ClientesService]
+  providers:[ClientesService, ClienteComponent]
 })
 export class ClientesComponent implements OnInit {
     public loading: boolean;
     public errorMessage;
     public clientes: Clientes[];
     public clientesCard = true;
-
-  constructor(private _clienteService: ClientesService) {
+  constructor(private _clienteService: ClientesService, private _clienteComponent : ClienteComponent) {
       this.loading = true;
+
   }
 
   ngOnInit() {
+    this.clienteEdit();
+
       this._clienteService.getClientes().subscribe(
         result =>{
             console.log(result);
@@ -39,6 +42,10 @@ export class ClientesComponent implements OnInit {
         }
 
       );
+  }
+
+  clienteEdit(){
+
   }
 
 }

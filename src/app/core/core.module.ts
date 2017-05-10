@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { ShellComponent } from './shell/shell.component';
-import { IndexComponent } from './shell/index/index.component';
+import { IndexComponent} from './shell/index/index.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { PedidosComponent } from './shell/pedidos/pedidos.component';
 import { MapaComponent } from './shell/mapa/mapa.component';
@@ -19,6 +19,8 @@ import { PedidoComponent } from './shell/pedido/pedido.component';
 import { PedidosService } from './shell/pedidos/pedidos.service';
 import { ClientesService } from '../clientes/clientes.service';
 import { EmpleadosService } from '../empleados/empleados.service';
+import { PerfilService } from "app/perfil/perfil.service";
+import { PedidoService } from "app/core/shell/pedido/pedido.service";
 
 const routes: Routes = [
   { path: '', loadChildren: './../home/home.module#HomeModule' },
@@ -26,6 +28,7 @@ const routes: Routes = [
   { path: 'clientes', loadChildren: './../clientes/clientes.module#ClientesModule' },
   { path: 'empleados', loadChildren: './../empleados/empleados.module#EmpleadosModule' },
   { path: 'servicios', loadChildren: './../servicios/servicios.module#ServiciosModule' },
+  { path: 'perfil', loadChildren: './../perfil/perfil.module#PerfilModule' },
   { path: 'pedidos', component: PedidosComponent }
 ];
 
@@ -42,9 +45,10 @@ const routes: Routes = [
       Md2Module.forRoot(),
       BrowserAnimationsModule,
       HttpModule,
+
   ],
-  declarations: [ShellComponent, IndexComponent, PedidosComponent, MapaComponent, PedidoComponent],
-  exports: [ShellComponent,],
-  providers: [ PedidosService, ClientesService, EmpleadosService ]
+  declarations: [ShellComponent, IndexComponent, PedidosComponent, MapaComponent, PedidoComponent ],
+  exports: [ShellComponent, SharedModule],
+  providers: [ PedidosService, ClientesService, EmpleadosService, PerfilService, PedidoService ]
 })
 export class CoreModule { }

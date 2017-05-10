@@ -32,7 +32,7 @@ export class ClienteComponent implements OnInit {
 
 ngOnInit( ) {
     // this.cliente = new Clientes("","","","","");
-    this.cliente = { IDCLIENTE:0, CCORREO:'',CCONTRASENA:'',CNOMBRE:'',CAPELLIDOS:'',CTELEFONO:''};
+    this.cliente = { IDCLIENTE:null, CEMAIL:'',CPASSWORD:'',CNOMBRE:'',CAPELLIDOS:'',CTELEFONO:''};
     console.log(this.cliente);
   }
 
@@ -40,7 +40,7 @@ ngOnInit( ) {
     this._clientesService.postCliente(this.cliente).subscribe(
           data => {
                console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue creado exitosamente!`);
-               this._router.navigate(['clientes']);
+               location.reload();
           }, error => {
               console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
                this.errorMessage = <any>error;

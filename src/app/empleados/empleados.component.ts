@@ -7,7 +7,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'kp-empleados',
   templateUrl: './empleados.component.html',
-  styleUrls: ['./empleados.component.css']
+  styleUrls: ['./empleados.component.css'],
+   providers:[EmpleadosService]
 })
 export class EmpleadosComponent implements OnInit {
     public loading: boolean;

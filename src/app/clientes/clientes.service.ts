@@ -19,11 +19,11 @@ export class ClientesService {
 
     postCliente(cliente: Clientes){
     let body = new URLSearchParams();
-    body.set('CCORREO',cliente.CCORREO);
-    body.set('CCONTRASENA',cliente.CCONTRASENA);
-    body.set('CNOMBRE',cliente.CNOMBRE);
-    body.set('CAPELLIDOS',cliente.CAPELLIDOS);
-    body.set('CTELEFONO',cliente.CTELEFONO);
+        body.set('CEMAIL', cliente.CEMAIL);
+        body.set('CPASSWORD', cliente.CPASSWORD);
+        body.set('CNOMBRE', cliente.CNOMBRE);
+        body.set('CAPELLIDOS', cliente.CAPELLIDOS);
+        body.set('CTELEFONO', cliente.CTELEFONO);
 
       return this._http.post(this.url + 'clientes', body, {headers : this.getHeaders()})
       .map((response:Response)=>{
@@ -32,24 +32,22 @@ export class ClientesService {
       });
     }
 
-   /* postCliente(cliente: Clientes) {
-      console.log('Saving cliente ' + JSON.stringify(cliente));
-      return this._http.post(this.url + 'clientes', cliente, {headers : this.getHeaders()})
-        .map(res => res.json());
-        // .map((response: Response) => {
-        //     JSON.stringify(response);
-        // });
-    }
-    */
+    putCliente(cliente: Clientes){
+    let body = new URLSearchParams();
+        body.set('IDCLIENTE', cliente.IDCLIENTE.toString());
+        body.set('CEMAIL', cliente.CEMAIL);
+        body.set('CPASSWORD', cliente.CPASSWORD);
+        body.set('CNOMBRE', cliente.CNOMBRE);
+        body.set('CAPELLIDOS', cliente.CAPELLIDOS);
+        body.set('CTELEFONO', cliente.CTELEFONO);
+        body.set('ACTIVO', cliente.ACTIVO.toString());
 
-   private getHeaders() {
-    let headers = new Headers();
-    headers.append('Content-Type','application/x-www-form-urlencoded');
-    headers.append('X-Requested-With','XMLHttpRequest');
-    headers.append('cache-control','no-cache');
-    headers.append('status','OK');
-    return headers;
-  }
+       return this._http.post(this.url + 'updateClienteCuenta', body, {headers : this.getHeaders()})
+      .map((response:Response)=>{
+        console.log('Client updated');
+        JSON.stringify(response);
+      });
+    }
 
     getClientes() {
         return this._http.get(this.url + 'getclientes')
@@ -61,21 +59,22 @@ export class ClientesService {
           .map(res => res.json());
     }
 
-postJSON() {
-var url = 'http://kityplanchoapi.mybluemix.net/api/v1/clientes';
-var json = JSON.stringify({
-CNOMBRE: 'Augusto',
-CAPELLIDOS: 'Sotelo',
-CCORREO: 'alguncorreo@correo.cl',
-CCONTRASENA: 12345,
-CTELEFONO:123456789
-});
-var headers = new Headers();
-headers.append('Content-type','application/x-www-form-urlencoded');
-return this._http.post(this.url+('clientes'), json, {
-headers: headers
-})
-.map(res => res.json());
-}
+    private getHeaders() {
+        let headers = new Headers();
+        headers.append('Content-Type','application/x-www-form-urlencoded');
+        headers.append('X-Requested-With','XMLHttpRequest');
+        headers.append('cache-control','no-cache');
+        headers.append('status','OK');
+        return headers;
+      }
+
+    // private handleError(error: Response | any){
+    //     let erroMessage: string;
+    //     if(error instanceof Response){
+    //         let body = error.json || '';
+    //         //let err = body.error || JSON.stringify(body);
+    //         erroMessage = `${error.status} - ${error.statusText || ''} ${err}`;
+    //     }
+    // }
 
 }
