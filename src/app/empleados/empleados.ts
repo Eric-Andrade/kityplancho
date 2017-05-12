@@ -18,13 +18,13 @@ export interface Empleados {
   IDEMPLEADO: number;
   EEMAIL: string;
   EPASSWORD: string;
-  EPRIVILEGIO?: string;
+  EPRIVILEGIO: string;
   ENOMBRE: string;
   EAPELLIDOS: string;
   ETELEFONO: string;
   EREFERENCIA1: string;
-  EREFERENCIA2: string;
+  EREFERENCIA2?: string;
   EFECHACONTRATO: string;
-  EUBICACION: string;
+  EUBICACION?: string;
   IDSUCURSAL: number
 }

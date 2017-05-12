@@ -1,14 +1,111 @@
+
+ng serve --host 192.168.1.16
+Correo:
+kityplancho@gmail.com
+Password:
+Adminkity2017
+
+Map:
+http://playcode.org/angular-2-typescript-google-maps/
+https://mapstyle.withgoogle.com/
+https://github.com/SebastianM/angular2-google-maps/commit/c340ffd8443d85c4b674e8b834cfed5a917a0f60
+MapStyle!: http://stackoverflow.com/questions/42249051/adding-style-to-angular2-google-maps
+https://snazzymaps.com/editor/customize/14889
+
+ng serve --aot
+ng build --prod
+ng serve -prod
 Crear componentes personalizados sin carpeta extra
   ./node_modules/@angular/cli/bin/ng g c nombreCarpeta/nombreComponent --flat true
 
-Ayuda[
+Links
+
+    competencias:[
+    {http://www.aquamatic.com.mx/},
+    {http://www.ecoclean.mx/},
+    {http://www.lavadero.mx/},
+    {},]
+
+    Ayuda:[
+    How to program Database Connection to RESTFUL Webservice using MySQL Database:
+        https://www.youtube.com/watch?v=2N2ld-YhTnk&t=29s
+    Creacion de Webservices RESTful con Java
+        https://www.youtube.com/watch?v=Z7fUDeiCPBo
+    RESTful en minutos. Servicio web con Java, Tomcat 8 y Jersey 2
+        https://www.youtube.com/watch?v=_PKQOywwZXU&t=3s
+    Part 2 - Java RESTful Web Service going to the database with MySQL and Hibernate
+        https://www.youtube.com/watch?v=Du_-ge7OO3s
+    Angular Material Icons https://klarsys.github.io/angular-material-icons/
+    CORS Bluemix: http://stackoverflow.com/questions/24277953/how-to-define-cors-in-websphere-application-server-liberty-profile-v8-5
+	https://www.genuitec.com/connecting-angular-2-app-java-ee-backend/
+
   http://stackoverflow.com/questions/35212341/angular2-http-post-request-parameters
   https://www.youtube.com/watch?v=gaH889B6R40
   Pipes globales multiples modulos
   http://stackoverflow.com/questions/42576420/how-to-declare-pipe-globally-to-use-in-different-modules
 ]
 
-Correo:
-kityplancho@gmail.com
-Password:
-Adminkity2017
+itecor\e.torres
+Dif0lT.Pa55
+
+itecor2016@hotmail.com
+Itecor2017
+
+URI's[
+/prendas/getprendas
+/prendas/getprenda
+/prendas/createprenda
+/prendas/updateprenda
+/prendas/deleteprenda
+
+www.api.kityplancho.com/servicios/getservicios
+www.api.kityplancho.com/servicios/getservicio:id=
+www.api.kityplancho.com/servicios/createservicio
+www.api.kityplancho.com/servicios/updateservicio:id=
+www.api.kityplancho.com/servicios/deleteservicio:id=
+
+
+/usuarios/getusuario
+/usuarios/getOneusuario
+/usuarios/createusuario
+/usuarios/updateusuario
+/usuarios/deleteusuario
+
+/rutas/getrutas
+/rutas/getOneruta
+/rutas/createruta
+/rutas/updateruta
+/rutas/deleteruta
+
+/sucursales/getsucursales
+/sucursales/getsucursal
+/sucursales/createsucursal
+/sucursales/updatesucursal
+/sucursales/deletesucursal
+
+/pedidos/getpedidos
+/pedidos/getpedido
+/pedidos/createpedido
+/pedidos/updatepedido
+/pedidos/deletepedido
+]
+
+
+
+Links 25-02
+
+http://www.0daydown.com/01/688509.html curso de descarga RN
+http://codecondo.com/learn-how-to-build-mobile-apps-with-react-native/
+http://www.reactnativeexpress.com/networking
+https://www.linio.com.mx/p/flash-drive-otg-para-iphone-ipad-ipod-pc-con-pantalla-ta-ctil-de-la-pluma-s0rgfj
+https://www.youtube.com/watch?v=tfIowt4qafY&t=3s
+https://www.youtube.com/watch?v=XX9Kmg3qLRk
+https://egghead.io/courses/angular-material-introduction
+https://codigofacilito.com/videos/2016
+https://material.angular.io/components/component/grid-list
+https://www.youtube.com/watch?v=F5yVUOY5t5o&t=211s
+https://www.youtube.com/results?sp=CAI%253D&q=Geolocation+API
+
+
+
+

@@ -99,23 +99,20 @@
         <md-hint align="end">{{ubicacion.value.length}}/45</md-hint>
         </md-input-container>
 
-        <md-input-container dividerColor="accent">
-        <input mdInput #sucursal #IDSUCURSAL="ngModel" [(ngModel)]="empleado.IDSUCURSAL" maxlength="45" name="IDSUCURSAL" placeholder="Sucursal" required autocomplete="off">
-        <md-hint align="end">{{sucursal.value.length}}/45</md-hint>
-        </md-input-container>
-        <!--<md2-select #IDSUCURSAL="ngModel" [(ngModel)]="empleado.IDSUCURSAL" name="IDSUCURSAL" class="form-select"
-                    placeholder="Sucursal"
-                    [required]="isRequired"
-                    [disabled]="isDisabled">
+       <md2-select name="sucursales" class="form-select"
+                  [(ngModel)]="currentSucursales"
+                  placeholder="Sucursales"
+                  [required]="isRequired"
+                  [disabled]="isDisabled"
+                  #sucursalesControl="ngModel"
+                  autofocus="autofocus">
+        <!--<md2-select-header>
+        <input name="search" type="text" placeholder="Buscar..." />
+        </md2-select-header>-->
 
-          <md2-select-header>
-          <input name="search" type="text" placeholder="Buscar..." />
-          </md2-select-header>
-
-
-          <md2-option *ngFor="let sucursal of sucursales" [value]="sucursal.id">{{sucursal.name}}
-          </md2-option>
-        </md2-select>-->
+        <md2-option *ngFor="let s of sucursales" [value]="s.IDSUCURSAL"><strong>{{s.IDSUCURSAL}}</strong> | {{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
+        </md2-option>
+      </md2-select>
 
         <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formEmpleado.form.valid">Crear {{opcionempleado}}</button>
           </form>

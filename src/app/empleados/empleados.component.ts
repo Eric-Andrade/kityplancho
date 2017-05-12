@@ -16,7 +16,9 @@ export class EmpleadosComponent implements OnInit {
     public errorMessage;
     public empleados: Empleados[];
     public empleadosCard = true;
-  constructor(private _empleadoService: EmpleadosService) {
+  constructor(private _empleadoService: EmpleadosService,
+              private _route: ActivatedRoute,
+              private _router: Router,) {
     this.loading = true;
     this.message = false; }
 
@@ -38,5 +40,9 @@ export class EmpleadosComponent implements OnInit {
                 this.message = true;
             }
         });
+  }
+
+getempleado(idempleado){
+      this._router.navigate(['empleados',idempleado]);
   }
 }

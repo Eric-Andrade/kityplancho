@@ -20,11 +20,11 @@ const routes: Routes = [
   imports: [
   CommonModule,
   RouterModule.forChild(routes),
-      MaterialModule.forRoot(),
-      Md2Module.forRoot(),
-      FormsModule,
-      HttpModule,
-      SharedModule
+  MaterialModule.forRoot(),
+  Md2Module.forRoot(),
+  FormsModule,
+  HttpModule,
+  SharedModule
   ],
   declarations: [ EmpleadosComponent, EmpleadoComponent, EmpleadoDetalleComponent ],
   providers: [ EmpleadosService ],

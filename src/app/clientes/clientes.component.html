@@ -23,8 +23,7 @@
             <div *ngIf="clientesCard; then thenTemplate; else elseTemplate"></div>
             <ng-template #thenTemplate>
                   <div class="datacontainer" *ngIf="clientes">
-                   <div class="datarepite" *ngFor="let cliente of clientes">
-                     <a [routerLink]="['.',cliente.IDCLIENTE]">
+                   <div class="datarepite" *ngFor="let cliente of clientes" (dblclick)="getcliente(cliente.IDCLIENTE)">
                        <md-card>
                           <md-card-header>
                             <div *ngIf="cliente.ACTIVO == 1; then thenTemplate; else elseTemplate"></div>
@@ -36,11 +35,12 @@
                                 <span class="status-cardoff"></span>
                               </ng-template>
                               </div>
-                            <md-card-title> <strong>{{cliente.IDCLIENTE}}</strong> | <p>{{cliente.CNOMBRE | truncate: 7 | capitalize }} {{cliente.CAPELLIDOS | truncate: 7 | capitalize }}</p></md-card-title>
+                            <md-card-title><strong>{{cliente.IDCLIENTE}} | {{cliente.CNOMBRE | truncate: 10 }} </strong> <p>{{cliente.CAPELLIDOS | truncate: 10 }}</p></md-card-title>
                             <md-card-subtitle>
                               <md-chip-list>
                                   <md-chip color="accent" selected="true">{{cliente.CEMAIL | truncate: 15  | lowercase}}</md-chip>
-                              </md-chip-list></md-card-subtitle>
+                              </md-chip-list>
+                            </md-card-subtitle>
                           </md-card-header>
                           <md-card-content>
                               <span>
@@ -48,7 +48,6 @@
                              </span>
                           </md-card-content>
                        </md-card>
-                       </a>
                   </div>
                    </div>
             </ng-template>
@@ -66,7 +65,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                         <tr *ngFor="let cliente of clientes">
+                         <tr *ngFor="let cliente of clientes" (dblclick)="getcliente(cliente.IDCLIENTE)">
                            <td>
                             <div *ngIf="cliente.ACTIVO == 1; then thenTemplate; else elseTemplate"></div>
                             <ng-template #thenTemplate>

@@ -5,11 +5,11 @@
         <table class="example-full-width" cellspacing="0">
            <tr>
             <td><md-input-container dividerColor="accent">
-                  <input type="email" mdInput name="CEMAIL" [(ngModel)]="cliente.CEMAIL" #correo #CEMAIL="ngModel" maxlength="45" autofocus="autofocus" placeholder="Correo eléctronico" autocomplete="off" required>
+                  <input type="email" mdInput name="CEMAIL" [(ngModel)]="cliente.CEMAIL" #correo #CEMAIL="ngModel" minlength="10" maxlength="45" autofocus="autofocus" placeholder="Correo eléctronico" autocomplete="off" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
                   <md-hint align="end">{{correo.value.length}}/45</md-hint>
                   </md-input-container></td>
             <td><md-input-container dividerColor="accent">
-                  <input type="text" name="CPASSWORD" #contrasena #CPASSWORD="ngModel" [(ngModel)]="cliente.CPASSWORD" mdInput maxlength="45" placeholder="Contraseña" required autocomplete="off">
+                  <input type="text" name="CPASSWORD" #contrasena #CPASSWORD="ngModel" [(ngModel)]="cliente.CPASSWORD" mdInput minlength="5" maxlength="45" placeholder="Contraseña" required autocomplete="off">
                   <!--<span *ngIf="contrasena.touched && !contrasena.valid">Ingrese un nombre de cliente por favor</span>-->
                   <md-hint align="end">{{contrasena.value.length}}/45</md-hint>
                 </md-input-container></td>
@@ -19,12 +19,12 @@
          <table class="example-full-width" cellspacing="0">
            <tr>
             <td><md-input-container class="example-full-width"  dividerColor="accent">
-                <input type="text" name="CNOMBRE" #nombre #CNOMBRE="ngModel" [(ngModel)]="cliente.CNOMBRE" mdInput maxlength="45" placeholder="Nombre de cliente" required autocomplete="off">
+                <input type="text" name="CNOMBRE" #nombre #CNOMBRE="ngModel" [(ngModel)]="cliente.CNOMBRE" mdInput minlength="3" maxlength="45" placeholder="Nombre de cliente" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,45}">
                   <!--<span *ngIf="nombre.touched && !nombre.valid">Ingrese un nombre de cliente valido por favor</span>-->
                   <md-hint align="end">{{nombre.value.length}}/45</md-hint>
             </md-input-container></td>
             <td><md-input-container class="example-full-width"  dividerColor="accent">
-              <input type="text" name="CAPELLIDOS" #apellidos #CAPELLIDOS="ngModel" [(ngModel)]="cliente.CAPELLIDOS" mdInput maxlength="45" placeholder="Apellidos de cliente" required autocomplete="off">
+              <input type="text" name="CAPELLIDOS" #apellidos #CAPELLIDOS="ngModel" [(ngModel)]="cliente.CAPELLIDOS" mdInput minlength="5" maxlength="45" placeholder="Apellidos de cliente" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,65}">
                  <!--<span *ngIf="apellidos.touched && !apellidos.valid">Ingrese un nombre de cliente valido por favor</span>-->
                   <md-hint align="end">{{apellidos.value.length}}/65</md-hint>
             </md-input-container></td>
@@ -32,7 +32,7 @@
          </table>
 
         <md-input-container class="example-full-width form-space"  dividerColor="accent">
-          <input type="tel" name="CTELEFONO" #telefono #CTELEFONO="ngModel" [(ngModel)]="cliente.CTELEFONO" mdInput maxlength="10" placeholder="Número de teléfono/celular" required autocomplete="off">
+          <input type="tel" name="CTELEFONO" #telefono #CTELEFONO="ngModel" [(ngModel)]="cliente.CTELEFONO" mdInput minlength="10" maxlength="10" placeholder="Número de teléfono/celular" required autocomplete="off" pattern="[0-9]{10}">
           <md-hint align="end">{{telefono.value.length}}/10</md-hint>
           <!--<span *ngIf="telefono.touched && !telefono.valid">Ingrese un nombre de cliente valido por favor</span>-->
         </md-input-container>

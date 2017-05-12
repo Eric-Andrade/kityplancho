@@ -3,15 +3,18 @@ import { Clientes } from '../clientes';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ClientesService } from '../clientes.service';
+import { Md2Toast } from 'md2';
+import { ClientesComponent } from '../clientes.component';
 
 @Component({
   selector: 'kp-cliente',
   templateUrl: './cliente.component.html',
   styleUrls: ['./cliente.component.css'],
-  providers:[ClientesService]
+  providers:[ClientesService, ClientesComponent]
 })
 export class ClienteComponent implements OnInit {
-    public opcioncliente: string;
+  diag: any;
+  public opcioncliente: string;
     public isRequired: boolean;
     public isDisabled: boolean;
     public isDisabledMultiple: boolean;
@@ -19,10 +22,11 @@ export class ClienteComponent implements OnInit {
     public Client: string;
     public cliente: Clientes;
     public errorMessage;
-
-  constructor(private _clientesService:ClientesService,
-              private _route:ActivatedRoute,
-              private _router:Router) {
+  constructor(private _clientesService: ClientesService,
+              private _route: ActivatedRoute,
+              private _router: Router,
+              private toast: Md2Toast,
+              public _clientesComponent: ClientesComponent) {
         this.opcioncliente = 'nuevo cliente';
         this.isRequired = true;
         this.isDisabled = false;
@@ -39,20 +43,19 @@ ngOnInit( ) {
   public postCliente(){
     this._clientesService.postCliente(this.cliente).subscribe(
           data => {
-               console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue creado exitosamente!`);
-               location.reload();
+            this.toastMe();
+               //this._clientesComponent.ngOnInit();
+               //this.close(this.diag);
+               //this._router.navigate(['/clientes', this.cliente.IDCLIENTE[]]);
+
           }, error => {
-              console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+              console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
                this.errorMessage = <any>error;
                 if(this.errorMessage != null){
                 console.log(`Error al guardar nuevo empleado: ${this.errorMessage}`);
                 alert(`Error al guardar nuevo empleado: ${this.errorMessage}`);
             }
           });
-  }
-
-launchDialog(dialog: any) {
-    dialog.open();
   }
 
   open(dialog: any) {
@@ -63,15 +66,11 @@ launchDialog(dialog: any) {
     dialog.close();
   }
 
-  openAlert(event: Event) { }
 
-  openConfirm(event: Event) { }
-
-  openPrompt(event: Event) { }
-
-  openAdvanced(event: Event) { }
-
-  openTabDialog(event: Event) { }
-
+  toastMe() {
+      this.toast.toast(`El cliente
+      ${this.cliente.CNOMBRE}
+      ${this.cliente.CAPELLIDOS} fue guardado exitosamente`);
+    }
 
 }

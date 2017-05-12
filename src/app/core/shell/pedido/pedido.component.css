@@ -35,21 +35,10 @@ md2-dialog-footer{
     color:#fe8686
 }
 
-.form-space, .form-select{
-    margin-bottom: 2px;
-    margin: .5em 0 !important;
-    width: 100%;
-}
-
 .form-radiobutton{
     margin-bottom: 20px;
     margin-left: 5px;
     margin-right: 5px;
-}
-
-.button-form{
-    color: #ff4081;
-    background: #ffe8e8;
 }
 
 .md2-select-header {
@@ -78,3 +67,4 @@ md2-dialog-footer{
 .bold{
   font-weight: 400
 }
+

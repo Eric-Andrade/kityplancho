@@ -8,18 +8,18 @@
 ::-webkit-scrollbar{width:5.5px;height:4px;background-color:transparent;cursor: pointer}
 
 ::selection {
-background:#ffeaea;/* Color de fondo*/
-color:#90022a; /*Color de la fuente*/
+    background:#ffeaea;/* Color de fondo*/
+    color:#90022a; /*Color de la fuente*/
 }
 
 ::-moz-selection {
-background:#ffe1eb;
-color:#90022a;
+    background:#ffe1eb;
+    color:#90022a;
 }
 
 ::-webkit-selection {
-background:#ffeaea;
-color:#90022a;
+    background:#ffeaea;
+    color:#90022a;
 }
 
 html, body{
@@ -30,6 +30,10 @@ html, body{
     background: #fff;
 }
 
+table{
+  width: 100%
+}
+
 body {
   margin: 0;
   font-family: Roboto, sans-serif;
@@ -38,6 +42,17 @@ body {
 a:focus, a:hover {
     color: none;
     text-decoration: none;
+}
+
+.button-form{
+    color: #ff4081;
+    background: #ffe8e8;
+}
+
+.form-space, .form-select{
+    margin-bottom: 2px;
+    margin: .5em 0 !important;
+    width: 100%;
 }
 
 .mat-sidenav-backdrop.mat-sidenav-shown {
@@ -129,8 +144,19 @@ md-spinner{
     display: inline-block !important;
 }
 
+.datarepite :hover{
+    cursor: pointer;
+    color: #8a8a8a;
+    -webkit-transition: .25s;
+    transition: .25s;
+}
+
 .datacontainer{
     text-align: center;
+}
+
+.mat-card-subtitle{
+  margin-bottom: 2px !important;
 }
 
 .loading{
@@ -212,6 +238,13 @@ md-spinner{
   font-family: "Source Sans Pro",sans-serif;
   color: #f54d90;
   font-weight: 100;
+}
+
+.md2-select-panel {
+    transform-origin: 50% bottom 0px !important;
+    opacity: 1 !important;
+    min-width: calc(100% + 150px) !important;
+    transform: scaleY(1) !important;
 }
 /*Media's*/
 
@@ -350,6 +383,8 @@ md-spinner{
     md-sidenav-container{
         height: 91vh !important;
     }
+
+
 }
 
 /*Escritorios muy anchos*/
@@ -382,5 +417,7 @@ md-spinner{
     md-sidenav-container{
         height: 91vh !important;
     }
+
+
 
 }/* You can add global styles to this file, and also import other style files */

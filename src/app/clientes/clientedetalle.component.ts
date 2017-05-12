@@ -36,8 +36,8 @@ export class ClienteDetalleComponent implements OnInit {
         this._clientesService.getCliente(id).subscribe(
           response => {
             this.cliente = response.CLIENTE;
-              this.loading = false;
-                this.cliente = { IDCLIENTE:this.cliente[0].IDCLIENTE,
+            this.loading = false;
+            this.cliente = {    IDCLIENTE:this.cliente[0].IDCLIENTE,
                                 CEMAIL:`${this.cliente[0].CEMAIL}`,
                                 CPASSWORD:`${this.cliente[0].CPASSWORD}`,
                                 CNOMBRE:`${this.cliente[0].CNOMBRE}`,
@@ -47,13 +47,12 @@ export class ClienteDetalleComponent implements OnInit {
                               };
 
               if(this.cliente.ACTIVO === 1){
-                this.checked = false;
-              } else if (this.cliente.ACTIVO === 0){
                 this.checked = true;
+              } else if (this.cliente.ACTIVO === 0){
+                this.checked = false;
               }
-
-                console.log('Interfaz de cliente llenada...');
-                console.log(this.cliente);
+                //console.log('Interfaz de cliente llenada...');
+                //console.log(this.cliente);
                 if(!this.cliente){
                     this._router.navigate(['/clientes']);
                 }
@@ -73,8 +72,10 @@ export class ClienteDetalleComponent implements OnInit {
         if(!this.cliente) return;
           this._clientesService.putCliente(this.cliente).subscribe(
           data => {
-               console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
+               this.toastMe();
+               //console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
                this._router.navigate(['/clientes', this.cliente.IDCLIENTE]);
+
           }, error => {
               console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
                this.errorMessage = <any>error;
@@ -85,8 +86,14 @@ export class ClienteDetalleComponent implements OnInit {
           })
     }
 
-  toastMe() {
-    this.toast.toast(`Datos de ${this.cliente.CNOMBRE} actualizados exitosamente`);
+    toastMe() {
+      this.toast.toast(`Datos de
+      ${this.cliente.CNOMBRE}
+      ${this.cliente.CAPELLIDOS} actualizados exitosamente`);
+    }
+
+    regresar(){
+      this._router.navigate(['clientes']);
   }
 
 }

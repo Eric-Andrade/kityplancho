@@ -3,24 +3,9 @@
         <form #formPedido="ngForm" (ngSubmit)="postPedido()">
 
         <md-input-container dividerColor="accent">
-        <input mdInput #nameClient maxlength="45" name="nameClient" autofocus="autofocus" placeholder="Nombre de cliente" required autocomplete="off">
+        <input mdInput #nameClient minlength="5" maxlength="45" name="nameClient" autofocus="autofocus" placeholder="Nombre de cliente" required autocomplete="off">
         <md-hint align="end">{{nameClient.value.length}}/45</md-hint>
         </md-input-container>
-
-            <md2-select name="service" class="form-select"
-                          [(ngModel)]="currentServicios"
-                          multiple
-                          placeholder="Servicio"
-                          [required]="isRequired"
-                          [disabled]="isDisabled"
-                           #servicioControl="ngModel">
-                <!--<md2-select-header>
-                <input name="search" type="text" placeholder="Buscar..." />
-                </md2-select-header>
-                -->
-                <md2-option *ngFor="let i of items" [value]="i.IDSP">{{i.SERVNOMBRE}} {{i.PNOMBREUNIDAD}} | <strong class="kp-text bold">{{i.SPCOSTO | currency:'USD':true}}</strong>
-                </md2-option>
-              </md2-select>
 
         <md-input-container class="example-full-width form-space"  dividerColor="accent">
         <input mdInput #directionE maxlength="100" placeholder="Dirección a entregar" required autocomplete="off">
@@ -34,7 +19,9 @@
             </md-radio-group>
         </div>
 
-        <button class="button-form" color="accent" md-button style="width:100%" type="submit" value="Submit" [disabled]="!formPedido.form.valid">Crear {{opcionpedido}}</button>
+        <button md-raised-button color="accent" style="width:100%; margin:10px 0;" (click)="serviciodialog.open()">Servicios</button>
+
+        <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formPedido.form.valid">Crear {{opcionpedido}}</button>
           </form>
 
 
@@ -44,3 +31,39 @@
     <button class="new-request" color="accent" md-icon-button (click)="pedidodialog.open()">
         <md-icon >add</md-icon>
     </button>
+
+
+<md2-dialog #serviciodialog>
+  <h2 class="kp-text">Servicios</h2>
+<form #formServicio="ngForm" (ngSubmit)="postServicio()">
+
+      <md2-select name="service" class="form-select"
+                  [(ngModel)]="currentServicios"
+                  placeholder="Servicio"
+                  [required]="isRequired"
+                  [disabled]="isDisabled"
+                  #servicioControl="ngModel"
+                  autofocus="autofocus">
+        <!--<md2-select-header>
+        <input name="search" type="text" placeholder="Buscar..." />
+        </md2-select-header>-->
+
+        <md2-option *ngFor="let i of items" [value]="i.IDSP">{{i.SERVNOMBRE}} <strong>{{i.PNOMBREUNIDAD}}</strong> | <strong class="kp-text bold">{{i.SPCOSTO | currency:'USD':true}}</strong>
+        </md2-option>
+      </md2-select>
+
+      <md-slider
+        [disabled]="disabled"
+        [invert]="invert"
+        [max]="max"
+        [min]="min"
+        [step]="step"
+        [thumb-label]="thumbLabel"
+        [tick-interval]="tickInterval"
+        [value]="value"
+        [vertical]="vertical"
+        style="width:100%;">
+    </md-slider>
+<button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid">Añadir servicio</button>
+</form>
+</md2-dialog>

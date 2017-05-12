@@ -23,8 +23,7 @@
             <div *ngIf="empleadosCard; then thenTemplate; else elseTemplate"></div>
             <ng-template #thenTemplate>
                    <div class="datacontainer" *ngIf="empleados">
-                    <div class="datarepite" *ngFor="let empleado of empleados">
-                       <a [routerLink]="['.',empleado.IDEMPLEADO]">
+                    <div class="datarepite" *ngFor="let empleado of empleados" (dblclick)="getempleado(empleado.IDEMPLEADO)">
                          <md-card>
                           <md-card-header>
                             <div *ngIf="empleado.EPRIVILEGIO == 'desempleado'; then thenTemplate; else elseTemplate"></div>
@@ -36,7 +35,7 @@
                               <span class="status-cardactive"></span>
                             </ng-template>
                             </div>
-                            <md-card-title><strong>{{empleado.IDEMPLEADO}}</strong> | {{empleado.ENOMBRE | truncate: 10}}</md-card-title>
+                            <md-card-title><strong>{{empleado.IDEMPLEADO}} | {{empleado.ENOMBRE | truncate: 10}} </strong> <p>{{empleado.EAPELLIDOS | truncate: 10}}</p></md-card-title>
                             <md-card-subtitle>
                               <md-chip-list>
                                   <md-chip color="accent" selected="true">{{empleado.EPRIVILEGIO}}</md-chip>
@@ -46,12 +45,12 @@
                           <md-card-content>
                            <span>
                            <md-icon color="accent">phone_iphone</md-icon> <strong>{{empleado.ETELEFONO}}</strong>
-                             </span>  | {{empleado.EEMAIL | truncate: 10}}
+                             </span>
+                            <!--| {{empleado.EEMAIL | truncate: 10}}-->
                             <br>
                             <small>Fecha de contrato: {{empleado.EFECHACONTRATO | date: 'dd MMMM yyyy'}}</small>
                           </md-card-content>
                        </md-card>
-                       </a>
                       </div>
                    </div>
             </ng-template>
@@ -64,14 +63,13 @@
                             <th style="width: 5%">ID</th>
                             <th style="width: 25%">Nombre</th>
                             <th style="width: 25%">Email</th>
-                            <th style="width: 15%">Password</th>
+                            <th style="width: 20%">Password</th>
                             <th style="width: 10%">Teléfono</th>
                             <th style="width: 10%">Puesto</th>
-                            <th style="width: 5%"></th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let empleado of empleados">
+                          <tr *ngFor="let empleado of empleados" (dblclick)="getempleado(empleado.IDEMPLEADO)">
                             <td>
                             <div *ngIf="empleado.EPRIVILEGIO == 'desempleado'; then thenTemplate; else elseTemplate"></div>
                             <ng-template #thenTemplate>
@@ -89,7 +87,6 @@
                             <td><md-chip-list>
                                 <md-chip color="accent" selected="true">{{empleado.EPRIVILEGIO}}</md-chip>
                             </md-chip-list></td>
-                            <td><a [routerLink]="['.',empleado.IDEMPLEADO]"><md-icon color="accent">keyboard_arrow_right</md-icon></a></td>
                           </tr>
                         </tbody>
                       </table>

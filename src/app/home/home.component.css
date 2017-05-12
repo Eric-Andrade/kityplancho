@@ -149,7 +149,7 @@ h1 {
 
 
 .watch {
-background:
+    background:
         linear-gradient( rgba(255, 2, 112, 0.25), rgba(255, 2, 119, 0.32), rgba(251, 91, 194, 0.44)),
          url('../../assets/White-Clothes.jpg');
     font-style: italic;
@@ -170,7 +170,6 @@ background:
     font-size: 21px;
     color: #fff;
 }
-
 
 .footer {
     background-color: #f8f8f8;

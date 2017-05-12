@@ -1,23 +1,45 @@
-<a [routerLink]="['/clientes']">Clientes...</a>
-  <div class="loading" *ngIf="loading">
-    <img src="assets/kity.gif" width="68" height="50" alt="Buscando información...">
-      <!--<md-spinner color="accent"></md-spinner>-->
-      <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
-  </div>
+<div class="loading" *ngIf="loading">
+  <img src="assets/kity.gif" width="68" height="50" alt="Buscando información...">
+    <!--<md-spinner color="accent"></md-spinner>-->
+    <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+</div>
 <div *ngIf="cliente">
   <div class="container" >
     <div class="row">
+      <h2 class="kp-text text-center">Información e historial de {{cliente.CNOMBRE}} {{cliente.CAPELLIDOS}}</h2>
+      <br>
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-          <div >
+          <button md-button color="accent" (click)="regresar()"><md-icon >keyboard_arrow_left</md-icon>Regresar a clientes</button>
+         <md-card>
        <form #formCliente="ngForm" (ngSubmit)="putCliente()">
+         <md-card-header>
+           <div md-card-avatar class="example-header-image mat-card-avatar text-center"></div>
+            <br>
+            </md-card-header>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td><md-input-container dividerColor="accent" class="form-space">
+                  <input type="number" mdInput #id name="IDCLIENTE" #IDCLIENTE="ngModel" [(ngModel)]="cliente.IDCLIENTE" placeholder="ID de cliente" [disabled]="true">
+          </md-input-container></td>
+                <td><md-slide-toggle
+            class="example-margin form-space"
+              [color]="color"
+              [checked]="checked"
+              [disabled]="false"
+              [required]="true"
+              align="end">Status de cuenta
+          </md-slide-toggle></td>
+              </tr>
+            </table>
+
         <table class="example-full-width" cellspacing="0">
            <tr>
-            <td><md-input-container dividerColor="accent">
-                  <input type="email" mdInput #email name="CEMAIL" #CEMAIL="ngModel" [(ngModel)]="cliente.CEMAIL" maxlength="45" autofocus="autofocus" placeholder="Correo eléctronico" autocomplete="off" required>
+            <td><md-input-container dividerColor="accent" class="form-space">
+                  <input type="email" mdInput #email name="CEMAIL" #CEMAIL="ngModel" [(ngModel)]="cliente.CEMAIL" minlength="10" maxlength="45" autofocus="autofocus" placeholder="Correo eléctronico" autocomplete="off" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
                     <md-hint align="end">{{email.value.length}}/45</md-hint>
                   </md-input-container></td>
-            <td><md-input-container dividerColor="accent">
-                  <input type="text" mdInput #contrasena name="CPASSWORD" #CPASSWORD="ngModel" [(ngModel)]="cliente.CPASSWORD" maxlength="45" placeholder="Contraseña" autocomplete="off" required>
+            <td><md-input-container dividerColor="accent" class="form-space">
+                  <input type="text" mdInput #contrasena name="CPASSWORD" #CPASSWORD="ngModel" [(ngModel)]="cliente.CPASSWORD" minlength="5" maxlength="45" placeholder="Contraseña" autocomplete="off" required>
                   <md-hint align="end">{{contrasena.value.length}}/45</md-hint>
                   <!--<span *ngIf="contrasena.touched && !contrasena.valid">Ingrese un nombre de cliente por favor</span>-->
                 </md-input-container></td>
@@ -26,13 +48,13 @@
 
          <table class="example-full-width" cellspacing="0">
            <tr>
-            <td><md-input-container class="example-full-width"  dividerColor="accent">
-                <input type="text" #nombre mdInput name="CNOMBRE" #CNOMBRE="ngModel" [(ngModel)]="cliente.CNOMBRE" maxlength="45" placeholder="Nombre de cliente" autocomplete="off" required>
+            <td><md-input-container class="example-full-width form-space"  dividerColor="accent">
+                <input type="text" #nombre mdInput name="CNOMBRE" #CNOMBRE="ngModel" [(ngModel)]="cliente.CNOMBRE" minlength="3" maxlength="45" placeholder="Nombre de cliente" autocomplete="off" required pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,45}">
                    <md-hint align="end">{{nombre.value.length}}/45</md-hint>
                   <!--<span *ngIf="nombre.touched && !nombre.valid">Ingrese un nombre de cliente valido por favor</span>-->
             </md-input-container></td>
-            <td><md-input-container class="example-full-width"  dividerColor="accent">
-              <input type="text" mdInput #apellidos name="CAPELLIDOS" #CAPELLIDOS="ngModel" [(ngModel)]="cliente.CAPELLIDOS" maxlength="45" placeholder="Apellidos de cliente" autocomplete="off" required>
+            <td><md-input-container class="example-full-width form-space"  dividerColor="accent">
+              <input type="text" mdInput #apellidos name="CAPELLIDOS" #CAPELLIDOS="ngModel" [(ngModel)]="cliente.CAPELLIDOS" minlength="5" maxlength="45" placeholder="Apellidos de cliente" autocomplete="off" required pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,65}">
             <md-hint align="end">{{apellidos.value.length}}/65</md-hint>
             <!--<span *ngIf="apellidos.touched && !apellidos.valid">Ingrese un nombre de cliente valido por favor</span>-->
             </md-input-container>
@@ -41,39 +63,16 @@
          </table>
 
         <md-input-container class="example-full-width form-space"  dividerColor="accent">
-          <input type="tel" mdInput #telefono name="CTELEFONO" #CTELEFONO="ngModel" [(ngModel)]="cliente.CTELEFONO" maxlength="10" placeholder="Número de teléfono/celular" autocomplete="off" required>
+          <input type="tel" mdInput #telefono name="CTELEFONO" #CTELEFONO="ngModel" [(ngModel)]="cliente.CTELEFONO" minlength="10" maxlength="10" placeholder="Número de teléfono/celular" autocomplete="off" required pattern="[0-9]{10}">
           <md-hint align="end">{{telefono.value.length}}/10</md-hint>
           <!--<span *ngIf="telefono.touched && !telefono.valid">Ingrese un nombre de cliente valido por favor</span>-->
         </md-input-container>
-          <md-slide-toggle
-            class="example-margin"
-              [color]="color"
-              [checked]="checked"
-              [disabled]="false"
-              [required]="true">
-          Status de cuenta</md-slide-toggle>
-        <button class="button-form" color="accent" md-button style="width:100%" type="submit" (click)="toastMe()" [disabled]="!formCliente.form.valid">Actualizar cliente</button>
-          </form>
-          </div>
+
+        <button class="button-form" color="accent" md-button style="width:100%" type="submit" [disabled]="!formCliente.form.valid">Actualizar de {{cliente.CNOMBRE}}</button>
+          </form></md-card>
         </div>
         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-          <!--<div *ngFor="let c of cliente">
-          <md-card>
-              <md-card-header>
-                <div md-card-avatar class="avatar"></div>
-              </md-card-header>
-          <br>
-            <md-card-title> {{c.IDCLIENTE}} | {{c.CNOMBRE}} {{c.CAPELLIDOS}}</md-card-title>
-            <md-chip-list>
-                <md-chip color="accent" selected="true" align="end">{{c.CTELEFONO}}</md-chip>
-            </md-chip-list>
-          <md-card-content>
-            <md-card-subtitle>{{c.ETELEFONO}}</md-card-subtitle>
-            {{c.CEMAIL}}
-            {{c.CPASSWORD}}
-          </md-card-content>
-          </md-card>
-          </div>-->
+          <h5 class="kp-text text-center">Mis pedidos</h5>
         </div>
     </div>
   </div>

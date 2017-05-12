@@ -1,0 +1,12 @@
+<p>
+  sucursales works!
+</p>
+
+<div class="loading" *ngIf="loading">
+  <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
+    <!--<md-spinner color="accent"></md-spinner>-->
+    <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+</div>
+<div class="message" *ngIf="message">
+    <h5>Fallo de internet, por favor vuelve a recargar la página.</h5>
+</div>

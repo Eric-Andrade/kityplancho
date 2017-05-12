@@ -14,8 +14,8 @@ export class PedidosService {
         this.local = 'http://localhost:8080/kityplancho_api/api/procesos/';
         this.url = 'http://kityplanchoapi.mybluemix.net/api/v1/';
     }
-    getPedidos() {
-        return this._http.get(this.url + 'getpedidos')
+    getpdp() {
+        return this._http.get(this.url + 'getpdp')
             .map(res => res.json());
     }
 }

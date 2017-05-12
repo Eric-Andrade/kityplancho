@@ -3,12 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { EmpleadosService } from '../empleados.service';
 import { Empleados } from '../empleados';
+import { SucursalesService } from '../../sucursales/sucursales.service';
+import { Sucursales } from '../../sucursales/sucursales';
 
 @Component({
   selector: 'kp-empleado',
   templateUrl: './empleado.component.html',
   styleUrls: ['./empleado.component.css'],
-  providers:[EmpleadosService]
+  providers:[ EmpleadosService, SucursalesService ]
 })
 export class EmpleadoComponent implements OnInit {
     public opcionempleado: string;
@@ -18,27 +20,28 @@ export class EmpleadoComponent implements OnInit {
     public itemMultiple: any;
     public empleado: Empleados;
     public errorMessage;
-    public currentSucursals:string;
-    public sucursales: Array<any>;
+    public currentSucursals: string;
+    public currentSucursales: string;
+    public sucursales: Sucursales[];
+    public loading: boolean;
+    public message: boolean;
 
   constructor(private _empleadosService: EmpleadosService,
               private _route:ActivatedRoute,
-              private _router:Router) {
+              private _router:Router,
+              private _sucursalesService: SucursalesService) {
 
     this.opcionempleado = 'nuevo empleado';
     this.isRequired = true;
     this.isDisabled = false;
     this.isDisabledMultiple = false;
     this.itemMultiple = null;
-    this.sucursales = [{id:1, name:"Sucursal 1"},
-                      {id:2, name:"sucursal 2"}];
-              }
+    }
 
    ngOnInit( ) {
-      // this.empleado = new Empleados('ok@ok.com','ok','admin','ok','ok','ok','ok','ok','ok','ok',1);
-  this.empleado = {IDEMPLEADO:0,EEMAIL:'empleado@hotmail.com',EPASSWORD:'1234567890',EPRIVILEGIO:'empleado',ENOMBRE:'Don ñeñe empleado',EAPELLIDOS:'Ñuñez',ETELEFONO:'1234567890',EREFERENCIA1:'Referencia1',EREFERENCIA2:'Referencia2',EFECHACONTRATO:'2017-04-11',
-                  EUBICACION:'ok',IDSUCURSAL:null};
-// ENUM('admin', 'empleado', 'rutero', 'desempleado')
+     this.getSucursales();
+    this.empleado = {IDEMPLEADO:0,EEMAIL:'',EPASSWORD:'',EPRIVILEGIO:'',ENOMBRE:'',EAPELLIDOS:'',ETELEFONO:'',EREFERENCIA1:'',EREFERENCIA2:'',EFECHACONTRATO:'',
+                  EUBICACION:'',IDSUCURSAL:null};
   }
 
   public postEmpleado(){
@@ -58,8 +61,24 @@ export class EmpleadoComponent implements OnInit {
           });
   }
 
-launchDialog(dialog: any) {
-    dialog.open();
+    public getSucursales(){
+      this._sucursalesService.getSucursales().subscribe(
+        response => {
+            console.log(response);
+            this.sucursales = response.SUCURSALES;
+            if (!this.sucursales) {
+                console.log('Error en el servidor...');
+            }else{
+                console.log('Sucursales cargadas correctamente');
+            }
+        },
+        error => {
+            this.errorMessage = <any>error;
+            if (this.errorMessage != null) {
+                console.log(this.errorMessage);
+                this.message = true;
+            }
+        });
   }
 
   open(dialog: any) {
@@ -70,15 +89,6 @@ launchDialog(dialog: any) {
     dialog.close();
   }
 
-  openAlert(event: Event) { }
-
-  openConfirm(event: Event) { }
-
-  openPrompt(event: Event) { }
-
-  openAdvanced(event: Event) { }
-
-  openTabDialog(event: Event) { }
 
 
 

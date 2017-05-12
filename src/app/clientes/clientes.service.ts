@@ -27,7 +27,6 @@ export class ClientesService {
 
       return this._http.post(this.url + 'clientes', body, {headers : this.getHeaders()})
       .map((response:Response)=>{
-        console.log('Client saved');
         JSON.stringify(response);
       });
     }
@@ -44,7 +43,6 @@ export class ClientesService {
 
        return this._http.post(this.url + 'updateClienteCuenta', body, {headers : this.getHeaders()})
       .map((response:Response)=>{
-        console.log('Client updated');
         JSON.stringify(response);
       });
     }

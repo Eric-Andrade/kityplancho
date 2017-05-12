@@ -1,21 +1,20 @@
 .mat-card-avatar {
-    height: 150px;
-    width: 150px;
+    height: 110px;
+    width: 110px;
     border-radius: 50%;
     flex-shrink: 0;
 }
 
-.avatar{
+.mat-card-avatar{
     background-image: url('http://sm.ign.com/ign_es/screenshot/default/0007775435_67fw.jpg');
     background-size:cover
-}
-
-md-card{
-    margin: 18px 10px 18px 10px;
-    text-align: center;
 }
 
 md-card-header{
     margin: 0 auto;
     width: 152px;
+}
+
+.example-margin {
+  margin: 10px;
 }

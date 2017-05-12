@@ -29,7 +29,9 @@ const routes: Routes = [
   { path: 'empleados', loadChildren: './../empleados/empleados.module#EmpleadosModule' },
   { path: 'servicios', loadChildren: './../servicios/servicios.module#ServiciosModule' },
   { path: 'perfil', loadChildren: './../perfil/perfil.module#PerfilModule' },
-  { path: 'pedidos', component: PedidosComponent }
+  { path: 'sucursales', loadChildren: './../sucursales/sucursales.module#SucursalesModule' },
+  { path: 'pedidos', component: PedidosComponent },
+  { path: '**', loadChildren: './../home/home.module#HomeModule' }
 ];
 
 @NgModule({

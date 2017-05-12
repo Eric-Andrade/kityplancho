@@ -11,16 +11,16 @@ export class PedidosComponent implements OnInit {
     public errorMessage;
     public pedidos: Pedidos[];
     public loading: boolean;
-    
+
   constructor(private _pedidosService: PedidosService) {
     this.loading = true;
   }
 
   ngOnInit() {
-      this._pedidosService.getPedidos().subscribe(
+      this._pedidosService.getpdp().subscribe(
         result => {
             console.log(result);
-            this.pedidos = result.PEDIDOS;
+            this.pedidos = result.GETPDP;
             if (!this.pedidos ) {
                 console.log('Error en el servidor...');
             }else{

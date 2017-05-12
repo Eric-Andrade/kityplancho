@@ -11,7 +11,7 @@
 
 
 export interface Clientes {
-    IDCLIENTE: number;
+    IDCLIENTE: string;
     CEMAIL: string;
     CPASSWORD: string;
     CNOMBRE: string;

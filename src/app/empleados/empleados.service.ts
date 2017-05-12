@@ -9,6 +9,7 @@ import { Empleados } from './empleados';
 export class EmpleadosService {
     public url: string;
     public local: string;
+
     constructor(private _http: Http) {
         this.local = 'http://localhost:8080/kityplancho_api/api/procesos/';
         this.url = 'http://kityplanchoapi.mybluemix.net/api/v1/';
@@ -25,18 +26,18 @@ export class EmpleadosService {
     }
 
     postEmpleado(empleado: Empleados){
-    let body = new URLSearchParams();
-    body.set('EEMAIL',empleado.EEMAIL);
-    body.set('EPASSWORD',empleado.EPASSWORD);
-    body.set('EPRIVILEGIO',empleado.EPRIVILEGIO);
-    body.set('ENOMBRE',empleado.ENOMBRE);
-    body.set('EAPELLIDOS',empleado.EAPELLIDOS);
-    body.set('ETELEFONO',empleado.ETELEFONO);
-    body.set('EREFERENCIA1',empleado.EREFERENCIA1);
-    body.set('EREFERENCIA2',empleado.EREFERENCIA2);
-    body.set('EFECHACONTRATO',empleado.EFECHACONTRATO);
-    body.set('EUBICACION',empleado.EUBICACION);
-    body.set('IDSUCURSAL',empleado.IDSUCURSAL.toString());
+      let body = new URLSearchParams();
+      body.set('EEMAIL',empleado.EEMAIL);
+      body.set('EPASSWORD',empleado.EPASSWORD);
+      body.set('EPRIVILEGIO',empleado.EPRIVILEGIO);
+      body.set('ENOMBRE',empleado.ENOMBRE);
+      body.set('EAPELLIDOS',empleado.EAPELLIDOS);
+      body.set('ETELEFONO',empleado.ETELEFONO);
+      body.set('EREFERENCIA1',empleado.EREFERENCIA1);
+      body.set('EREFERENCIA2',empleado.EREFERENCIA2);
+      body.set('EFECHACONTRATO',empleado.EFECHACONTRATO);
+      body.set('EUBICACION',empleado.EUBICACION);
+      body.set('IDSUCURSAL',empleado.IDSUCURSAL.toString());
 
       return this._http.post(this.url + 'postempleado', body, {headers : this.getHeaders()})
       .map((response:Response)=>{
@@ -44,6 +45,28 @@ export class EmpleadosService {
         JSON.stringify(response);
       });
     }
+
+    putEmpleado(empleado: Empleados){
+        let body = new URLSearchParams();
+            body.set('IDEMPLEADO',empleado.IDEMPLEADO.toString());
+            body.set('EEMAIL',empleado.EEMAIL);
+            body.set('EPASSWORD',empleado.EPASSWORD);
+            body.set('EPRIVILEGIO',empleado.EPRIVILEGIO);
+            body.set('ENOMBRE',empleado.ENOMBRE);
+            body.set('EAPELLIDOS',empleado.EAPELLIDOS);
+            body.set('ETELEFONO',empleado.ETELEFONO);
+            body.set('EREFERENCIA1',empleado.EREFERENCIA1);
+            body.set('EREFERENCIA2',empleado.EREFERENCIA2);
+            body.set('EFECHACONTRATO',empleado.EFECHACONTRATO);
+            body.set('EUBICACION',empleado.EUBICACION);
+            body.set('IDSUCURSAL',empleado.IDSUCURSAL.toString());
+
+           return this._http.post(this.url + 'updateempleado', body, {headers : this.getHeaders()})
+          .map((response:Response)=>{
+            console.log('Employee updated');
+            JSON.stringify(response);
+          });
+        }
 
     private getHeaders() {
     let headers = new Headers();

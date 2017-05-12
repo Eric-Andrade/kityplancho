@@ -9,12 +9,83 @@ import { Mapa } from "app/core/shell/mapa/mapa";
 })
 export class MapaComponent implements OnInit {
 /*Map*/
+    public customStyle = [
+        {
+            "featureType": "all",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "saturation": "-30"
+                }
+            ]
+        },
+        {
+            "featureType": "all",
+            "elementType": "geometry",
+            "stylers": [
+                {
+                    "visibility": "simplified"
+                },
+                {
+                    "hue": "#ff004d"
+                },
+                {
+                    "saturation": "73"
+                }
+            ]
+        },
+        {
+            "featureType": "administrative",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "visibility": "simplified"
+                }
+            ]
+        },
+        {
+            "featureType": "poi",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "road",
+            "elementType": "labels.icon",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "transit.station",
+            "elementType": "labels.icon",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "water",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        }
+    ];
     /*Start position */
-    lat: number;
-    lng: number;
-    zoom: number;
-    imageEC: string;
-    kityplancho: string;
+    public lat: number;
+    public lng: number;
+    public zoom: number;
+    public imageEC: string;
+    public kityplancho: string;
 
 /*Markers*/
     markers: Mapa[];

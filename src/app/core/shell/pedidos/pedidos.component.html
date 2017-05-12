@@ -30,11 +30,11 @@
         <tbody *ngIf="pedidos">
          <tr *ngFor="let pedido of pedidos">
             <td>{{pedido.IDPEDIDO}}</td>
-            <td>{{pedido.PDIRECCION_E }}</td>
-            <td>{{pedido.PDIRECCION_R}}</td>
-            <td class="enfasis-td">{{pedido.IDCLIENTE}}</td>
+            <td>{{pedido.CNOMBRE }} {{pedido.CAPELLIDOS}}</td>
             <td>{{pedido.PPRECIOTOTAL}}</td>
-            <td>{{pedido.PFECHA}}</td>
+            <td class="enfasis-td">{{pedido.PFECHA}}</td>
+            <td>{{pedido.PPRECIOTOTAL}}</td>
+            <td>{{pedido.PSTATUS}}</td>
             <td><p class="label label-info">{{pedido.PPAGADO}}</p></td>
          </tr>
         </tbody>
