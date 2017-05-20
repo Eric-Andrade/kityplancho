@@ -38,6 +38,12 @@ export class EmpleadosService {
       body.set('EFECHACONTRATO',empleado.EFECHACONTRATO);
       body.set('EUBICACION',empleado.EUBICACION);
       body.set('IDSUCURSAL',empleado.IDSUCURSAL.toString());
+        // body.set('IDEA',empleado.IDEA.toString());
+        // body.set('EAINE',empleado.EAINE);
+        // body.set('EACURP',empleado.EACURP);
+        // body.set('EAACTANACIMIEN',empleado.EAACTANACIMIENTO);
+        // body.set('EACOMPROBANTEDOM',empleado.EACOMPROBANTEDOM);
+        // body.set('IDEMPLEADOEA',empleado.IDEMPLEADOEA.toString());
 
       return this._http.post(this.url + 'postempleado', body, {headers : this.getHeaders()})
       .map((response:Response)=>{
@@ -60,6 +66,12 @@ export class EmpleadosService {
             body.set('EFECHACONTRATO',empleado.EFECHACONTRATO);
             body.set('EUBICACION',empleado.EUBICACION);
             body.set('IDSUCURSAL',empleado.IDSUCURSAL.toString());
+              // body.set('IDEA',empleado.IDEA.toString());
+              // body.set('EAINE',empleado.EAINE);
+              // body.set('EACURP',empleado.EACURP);
+              // body.set('EAACTANACIMIEN',empleado.EAACTANACIMIENTO);
+              // body.set('EACOMPROBANTEDOM',empleado.EACOMPROBANTEDOM);
+              // body.set('IDEMPLEADOEA',empleado.IDEMPLEADOEA.toString());
 
            return this._http.post(this.url + 'updateempleado', body, {headers : this.getHeaders()})
           .map((response:Response)=>{

@@ -68,11 +68,84 @@
           <!--<span *ngIf="telefono.touched && !telefono.valid">Ingrese un nombre de cliente valido por favor</span>-->
         </md-input-container>
 
-        <button class="button-form" color="accent" md-button style="width:100%" type="submit" [disabled]="!formCliente.form.valid">Actualizar de {{cliente.CNOMBRE}}</button>
+        <button class="button-form" color="accent" md-button style="width:100%" type="submit" [disabled]="!formCliente.form.valid">Actualizar datos de {{cliente.CNOMBRE}}</button>
           </form></md-card>
         </div>
         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
           <h5 class="kp-text text-center">Mis pedidos</h5>
+          <md-card>
+            <md-card-content>
+               <div class="table-responsive content" >
+                        <table class="table table-hover" >
+                        <thead class="thead">
+                          <tr>
+                            <th style="width: 5%"
+                            tooltip="Identificador de pedido"
+                            tooltip-position="above"
+                            tooltip-delay="0 * 1000">ID</th>
+                            <th style="width: 30%"
+                            tooltip="Fecha de creación del pedido"
+                            tooltip-position="above"
+                            tooltip-delay="0 * 1000">Fecha</th>
+                            <th style="width: 30%"
+                            tooltip="Precio total del pedido"
+                            tooltip-position="above"
+                            tooltip-delay="0 * 1000">Precio</th>
+                            <th style="width: 25%"
+                            tooltip="Forma de pago"
+                            tooltip-position="above"
+                            tooltip-delay="0 * 1000">Forma de pago</th>
+                            <th style="width: 10%"
+                            tooltip="Status del pedido"
+                            tooltip-position="above"
+                            tooltip-delay="0 * 1000">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         <tr *ngFor="let pedido of pedidos">
+                            <td><strong>{{pedido.IDPEDIDO}}</strong> </td>
+                            <td>{{pedido.FECHA}}</td>
+                            <!--<td>{{pedido.FECHA | date: 'dd MMMM yyyy'}}</td>-->
+                            <td class="enfasis-td">{{pedido.PRECIO | currency:'USD':true}}</td>
+                            <td>{{pedido.PAGADO}}</td>
+                            <td>
+                              <div class="" [ngSwitch]="pedido.STATUS">
+                                  <div class="" *ngSwitchCase="'cotizando'"><span class="map-marker Cot"
+                                  tooltip="Cotizando"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000"></span></div>
+                                  <div class="" *ngSwitchCase="'en_cola'"><span class="map-marker EnCola"
+                                  tooltip="Pedido en espera a ser aprobado"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000"></span></div>
+                                  <div class="" *ngSwitchCase="'en_camino'"><span class="map-marker Encamino"
+                                  tooltip="Pedido aprobado"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000"></span></div>
+                                  <div class="" *ngSwitchCase="'en_proceso'"><span class="map-marker Process"
+                                  tooltip="Pedido en tratamiento"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000"></span></div>
+                                  <div class="" *ngSwitchCase="'para_entregar'"><span class="map-marker Deliver"
+                                  tooltip="Pedido listo para entregar"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000"></span></div>
+                                  <div class="" *ngSwitchCase="'entregado'"><span class="map-marker Complete"
+                                  tooltip="Pedido entregado a cliente"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000"></span></div>
+                                  <div class="" *ngSwitchCase="'no_atendido'"><span class="map-marker Deneged"
+                                  tooltip="Pedido denegado"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000"></span></div>
+                              </div>
+                            </td>
+                         </tr>
+                        </tbody>
+                      </table>
+                    </div>
+            </md-card-content>
+          </md-card>
         </div>
     </div>
   </div>

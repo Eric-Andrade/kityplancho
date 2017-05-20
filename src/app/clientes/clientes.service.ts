@@ -66,6 +66,11 @@ export class ClientesService {
         return headers;
       }
 
+     getMisPedidos(idcliente: string){
+        return this._http.get(this.url + 'getMisPedidos?id='+idcliente)
+          .map(res => res.json());
+    }
+
     // private handleError(error: Response | any){
     //     let erroMessage: string;
     //     if(error instanceof Response){
@@ -74,5 +79,6 @@ export class ClientesService {
     //         erroMessage = `${error.status} - ${error.statusText || ''} ${err}`;
     //     }
     // }
+
 
 }

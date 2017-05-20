@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Sucursales } from './sucursales';
+import { IPedidos, Sucursales } from './sucursales';
 import { SucursalesService } from './sucursales.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class SucursalesComponent implements OnInit {
     public message: boolean;
     public errorMessage;
     public sucursales: Sucursales[];
+    public pedidos: IPedidos[];
   constructor(private _sucursalesService: SucursalesService,
               private _route: ActivatedRoute,
               private _router: Router,) {
@@ -40,10 +41,32 @@ export class SucursalesComponent implements OnInit {
                 this.message = true;
             }
         });
+        this.getMisPedidos();
   }
 
   getSucursal(idsucursal){
       this._router.navigate(['sucursales',idsucursal]);
   }
 
+  getMisPedidos(){
+    this._sucursalesService.getpdp().subscribe(
+        response => {
+
+            this.pedidos = response.GETPDP;
+            console.log(this.pedidos);
+            if (!this.pedidos) {
+                console.log('Error en el servidor...');
+            }else{
+                this.loading = false;
+            }
+        },
+        error => {
+            this.errorMessage = <any>error;
+            if (this.errorMessage != null) {
+                console.log(this.errorMessage);
+                this.message = true;
+            }
+        });
+
+  }
 }

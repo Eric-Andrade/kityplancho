@@ -1,6 +1,6 @@
 // import { FormsModule } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Clientes  } from './clientes';
+import { Clientes, MisPedidos  } from './clientes';
 import { ClientesService } from './clientes.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Md2Toast } from 'md2';
@@ -16,6 +16,7 @@ export class ClienteDetalleComponent implements OnInit {
   public errorMessage;
   public message: boolean;
   public cliente: Clientes;
+  public pedidos: MisPedidos;
   public loading: boolean;
   public color = 'accent';
   public checked;
@@ -28,6 +29,7 @@ export class ClienteDetalleComponent implements OnInit {
 
   ngOnInit() {
     this.getCliente();
+     this.getMisPedidos();
   }
 
   getCliente() {
@@ -51,6 +53,8 @@ export class ClienteDetalleComponent implements OnInit {
               } else if (this.cliente.ACTIVO === 0){
                 this.checked = false;
               }
+
+              // this.getMisPedidos();
                 //console.log('Interfaz de cliente llenada...');
                 //console.log(this.cliente);
                 if(!this.cliente){
@@ -84,6 +88,26 @@ export class ClienteDetalleComponent implements OnInit {
                 alert(`Error al guardar nuevo empleado: ${this.errorMessage}`);
             }
           })
+    }
+
+    getMisPedidos() {
+    this._route.params.forEach((params: Params) => {
+        const id = params['id'];
+        this._clientesService.getMisPedidos(id).subscribe(
+          response => {
+            this.pedidos = response.MISPEDIDOS;
+            this.loading = false;
+          console.log(this.pedidos);
+          },
+          error => {
+                this.errorMessage = <any>error;
+                if (this.errorMessage != null) {
+                    console.log(this.errorMessage);
+                    this.message = true;
+                }
+          }
+        );
+      });
     }
 
     toastMe() {

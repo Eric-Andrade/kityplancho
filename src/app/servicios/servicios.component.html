@@ -3,8 +3,8 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
            <br>
         <div class="row">
-          <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-            <button md-raised-button color="accent">Añadir servicio</button>
+          <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <kp-servicio></kp-servicio>
             <!--<kp-cliente></kp-cliente>
               <button md-icon-button (click)="clientesCard = true">
                   <md-icon >view_comfy</md-icon>
@@ -13,7 +13,7 @@
                   <md-icon >list</md-icon>
               </button>-->
           </div>
-          <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+          <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
             <div class="inputfilter">
             <md-input-container dividerColor="accent">
               <input mdInput placeholder="Busca un servicio por su nombre..." name="search">
@@ -26,12 +26,25 @@
             <table class="table table-hover">
                 <thead class="thead">
                   <tr>
-                    <th>ID Servicio</th>
-                    <th>Servicio</th>
+                    <th
+                        tooltip="Identificador de servicio"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">ID Servicio</th>
+                    <th
+                        tooltip="Nombre de servicio y prenda correspondiente"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">Servicio</th>
                     <!--<th>Descripción</th>-->
-                    <th>Precio</th>
-                    <th>-%</th>
-                    <th>Precio -%</th>
+                    <th
+                        tooltip="Precio por unidad"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">Precio</th>
+                    <th tooltip="Descuento por servicio"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">-%</th>
+                    <th tooltip="Precio con descuento aplicado"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">Precio -%</th>
                   </tr>
                 </thead>
                 <tbody>

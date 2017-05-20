@@ -5,10 +5,16 @@
          <div class="row">
           <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
             <kp-empleado></kp-empleado>
-              <button md-icon-button (click)="empleadosCard = true">
+              <button md-icon-button (click)="empleadosCard = true"
+                              tooltip="Vista de empleados por tarjetas"
+                              tooltip-position="below"
+                              tooltip-delay="0 * 1000">
                   <md-icon >view_comfy</md-icon>
               </button>
-              <button md-icon-button (click)="empleadosCard = false">
+              <button md-icon-button (click)="empleadosCard = false"
+                              tooltip="Vista de empleados por lista"
+                              tooltip-position="below"
+                              tooltip-delay="0 * 1000">
                   <md-icon >list</md-icon>
               </button>
           </div>
@@ -23,16 +29,22 @@
             <div *ngIf="empleadosCard; then thenTemplate; else elseTemplate"></div>
             <ng-template #thenTemplate>
                    <div class="datacontainer" *ngIf="empleados">
-                    <div class="datarepite" *ngFor="let empleado of empleados" (dblclick)="getempleado(empleado.IDEMPLEADO)">
+                    <div class="datarepite" *ngFor="let empleado of empleados" (click)="getempleado(empleado.IDEMPLEADO)">
                          <md-card>
                           <md-card-header>
                             <div *ngIf="empleado.EPRIVILEGIO == 'desempleado'; then thenTemplate; else elseTemplate"></div>
                             <div md-card-avatar class="example-header-image">
                             <ng-template #thenTemplate>
-                              <span class="status-cardoff"></span>
+                              <span class="status-cardoff"
+                              tooltip="Cuenta de activa"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"></span>
                             </ng-template>
                             <ng-template #elseTemplate>
-                              <span class="status-cardactive"></span>
+                              <span class="status-cardactive"
+                              tooltip="Cuenta de desactivada"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"></span>
                             </ng-template>
                             </div>
                             <md-card-title><strong>{{empleado.IDEMPLEADO}} | {{empleado.ENOMBRE | truncate: 10}} </strong> <p>{{empleado.EAPELLIDOS | truncate: 10}}</p></md-card-title>
@@ -59,13 +71,34 @@
                     <table class="table table-hover">
                         <thead class="thead">
                           <tr>
-                            <th style="width: 5%"></th>
-                            <th style="width: 5%">ID</th>
-                            <th style="width: 25%">Nombre</th>
-                            <th style="width: 25%">Email</th>
-                            <th style="width: 20%">Password</th>
-                            <th style="width: 10%">Teléfono</th>
-                            <th style="width: 10%">Puesto</th>
+                            <th style="width: 5%"
+                              tooltip="Status de cuenta"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"></th>
+                            <th style="width: 10%"
+                              tooltip="Identificador de empleado"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000">ID Empleado</th>
+                            <th style="width: 25%"
+                              tooltip="Nombre de empleado"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000">Nombre</th>
+                            <th style="width: 25%"
+                              tooltip="Correo eléctronico de empleado"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000">Email</th>
+                            <th style="width: 15%"
+                              tooltip="Contraseña de cuenta"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000">Password</th>
+                            <th style="width: 10%"
+                              tooltip="Teléfono de empleado"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000">Teléfono</th>
+                            <th style="width: 10%"
+                              tooltip="Rol dentro de KityPlancho"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000">Puesto</th>
                           </tr>
                         </thead>
                         <tbody>

@@ -37,7 +37,6 @@ export class ClienteComponent implements OnInit {
 ngOnInit( ) {
     // this.cliente = new Clientes("","","","","");
     this.cliente = { IDCLIENTE:null, CEMAIL:'',CPASSWORD:'',CNOMBRE:'',CAPELLIDOS:'',CTELEFONO:''};
-    console.log(this.cliente);
   }
 
   public postCliente(){
@@ -56,6 +55,15 @@ ngOnInit( ) {
                 alert(`Error al guardar nuevo empleado: ${this.errorMessage}`);
             }
           });
+  }
+
+  public getPedidos(){
+     this._route.params.forEach((params: Params) => {
+            let id = params['id'];
+    // this._clientesService.getPedidos(id).subscribe(
+
+    // )
+     });
   }
 
   open(dialog: any) {

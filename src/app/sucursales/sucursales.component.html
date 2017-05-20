@@ -1,6 +1,13 @@
-<p>
-  sucursales works!
-</p>
+<div *ngIf="pedidos">
+    <ul *ngFor="let pedido of pedidos">
+      <li>{{pedido.IDPEDIDO}}</li>
+      <li>{{pedido.CNOMBRE}}</li>
+      <li>{{pedido.CAPELLIDOS}}</li>
+      <li>{{pedido.PPRECIOTAL | currency:'USD':true}}</li>
+      <li>{{pedido.PFECHA}}</li>
+    </ul>
+
+</div>
 
 <div class="loading" *ngIf="loading">
   <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">

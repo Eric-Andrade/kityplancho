@@ -1,0 +1,48 @@
+.datarepite {
+    display: inline-block !important;
+    width: 100% !important;
+    margin: 2px !important;
+}
+
+md-tab-group{
+  max-height: 350px;
+  min-height: 350px
+}
+
+p,h1,.kp-helph2,h3,span{
+    cursor: pointer;
+    color: #8a8a8a;
+    transition: .25s;
+}
+
+p{
+    text-align: justify;
+    padding: 0 12px
+}
+
+@media (min-width: 768px) {
+  .datarepite {
+    display: inline-block !important;
+    width: 90% !important;
+    margin: 2px !important;
+  }
+}
+
+/*Tablets en horizonal y escritorios normales*/
+@media (min-width: 1024px) {
+  .datarepite {
+      display: inline-block !important;
+      width: 70% !important;
+      margin: 2px !important;
+  }
+}
+
+/*Escritorios muy anchos*/
+@media (min-width: 1200px) {
+  .datarepite {
+      display: inline-block !important;
+      width: 70% !important;
+      margin: 2px !important;
+  }
+}
+

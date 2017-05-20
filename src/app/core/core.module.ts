@@ -8,6 +8,7 @@ import { MaterialModule} from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { Ng2UploaderModule } from 'ng2-uploader';
 
 import { ShellComponent } from './shell/shell.component';
 import { IndexComponent} from './shell/index/index.component';
@@ -47,6 +48,7 @@ const routes: Routes = [
       Md2Module.forRoot(),
       BrowserAnimationsModule,
       HttpModule,
+      Ng2UploaderModule
 
   ],
   declarations: [ShellComponent, IndexComponent, PedidosComponent, MapaComponent, PedidoComponent ],

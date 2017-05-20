@@ -21,7 +21,10 @@
             <md-hint align="end">{{privilegio.value.length}}/150</md-hint>
         </md-input-container>-->
 
-      <div style="margin:0 auto; text-align: center;">
+      <div style="margin:0 auto; text-align: center;"
+              tooltip="Puesto dentro de KityPlancho"
+              tooltip-position="above"
+              tooltip-delay="0 * 1000">
             <md-radio-group dividerColor="accent" #EPRIVILEGIO="ngModel" [(ngModel)]="empleado.EPRIVILEGIO" name="EPRIVILEGIO">
               <md-radio-button class="form-radiobutton" checked="checked" value="empleado">Empleado</md-radio-button>
               <md-radio-button class="form-radiobutton" value="rutero">Rutero</md-radio-button>
@@ -59,49 +62,23 @@
                 </md-input-container>
 
 
-
-
-
-        <!--<div >
-           <p class="resumenbocado">Resumen de pedido</p>
-        <md2-dialog-footer>
-            <md-chip-list>
-                <md-chip *ngFor="let cs of currentServicios" color="accent" selected="true">{{cs}}</md-chip>
-            </md-chip-list>
-            <span>Total: $200</span>
-        </md2-dialog-footer>
-        </div>-->
-<!--<md2-datepicker name="birthdate"
-                      placeholder="Select Date"
-
-                      [required]="isRequired"
-                      [disabled]="isDisabled"
-                      [openOnFocus]="isOpenOnFocus"
-                      [isOpen]="isOpen"
-                      [type]="type"
-                      [enableDates]="enableDates"
-                      [disableDates]="disableDates"
-                      [disableWeekDays]="disableWeekDays"
-                      [min]="minDate"
-                      [max]="maxDate"
-                      [mode]="mode"
-                      [container]="container"
-                      ></md2-datepicker>
-                      -->
-
         <md-input-container dividerColor="accent">
-        <input mdInput #fechacontrato #EFECHACONTRATO="ngModel" [(ngModel)]="empleado.EFECHACONTRATO" maxlength="45" name="EFECHACONTRATO" placeholder="Fecha de contrato" required autocomplete="off" value="2017-04-11">
-        <md-hint align="end">{{fechacontrato.value.length}}/45</md-hint>
+        <input mdInput #fechacontrato #EFECHACONTRATO="ngModel" [(ngModel)]="empleado.EFECHACONTRATO" maxlength="45" name="EFECHACONTRATO" placeholder="Fecha de contrato. Ej: 2017-04-11" required autocomplete="off">
         </md-input-container>
+
+<!--Valor: {{empleado.EFECHACONTRATO}}-->
 
         <md-input-container dividerColor="accent">
         <input mdInput #ubicacion #EUBICACION="ngModel" [(ngModel)]="empleado.EUBICACION" maxlength="45" name="EUBICACION" placeholder="Ubucación" required autocomplete="off">
         <md-hint align="end">{{ubicacion.value.length}}/45</md-hint>
         </md-input-container>
 
-       <md2-select name="sucursales" class="form-select"
-                  [(ngModel)]="currentSucursales"
-                  placeholder="Sucursales"
+       <md2-select name="IDSUCURSAL"
+                  class="form-select"
+                  [(ngModel)]="empleado.IDSUCURSAL"
+                  #IDSUCURSAL="ngModel"
+                  #sucursal
+                  placeholder="Sucursal a la que pertenece el empleado"
                   [required]="isRequired"
                   [disabled]="isDisabled"
                   #sucursalesControl="ngModel"
@@ -113,6 +90,31 @@
         <md2-option *ngFor="let s of sucursales" [value]="s.IDSUCURSAL"><strong>{{s.IDSUCURSAL}}</strong> | {{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
         </md2-option>
       </md2-select>
+
+      <!--<md-input-container dividerColor="accent">
+        <input mdInput #sucursal #IDSUCURSAL="ngModel" [(ngModel)]="empleado.IDSUCURSAL" maxlength="45" name="IDSUCURSAL" placeholder="Sucursal" required autocomplete="off">
+        <md-hint align="end">{{sucursal.value.length}}/45</md-hint>
+      </md-input-container>-->
+
+          <!--<md-input-container dividerColor="accent">
+            <input type="text" mdInput #ine #EAINE="ngModel" [(ngModel)]="empleado.EAINE" name="EAINE" placeholder="INE de empleado" autocomplete="off">
+            <md-hint align="end">INE</md-hint>
+          </md-input-container>
+
+          <md-input-container dividerColor="accent">
+            <input type="text" mdInput #ine #EACURP="ngModel" [(ngModel)]="empleado.EACURP" name="EACURP" placeholder="CURP de empleado" autocomplete="off">
+            <md-hint align="end">CURP</md-hint>
+          </md-input-container>
+
+          <md-input-container dividerColor="accent">
+            <input type="text" mdInput #ine #EAACTANACIMIENTO="ngModel" [(ngModel)]="empleado.EAACTANACIMIENTO" name="EAACTANACIMIENTO" placeholder="Acta de nacimiento de empleado" autocomplete="off">
+            <md-hint align="end">Acta de nacimiento</md-hint>
+          </md-input-container>
+
+          <md-input-container dividerColor="accent">
+            <input type="text" mdInput #ine #EACOMPROBANTEDOM="ngModel" [(ngModel)]="empleado.EACOMPROBANTEDOM" name="EACOMPROBANTEDOM" placeholder="Comprobante de domicilio de empleado" autocomplete="off">
+            <md-hint align="end">Comprobante de domicilio</md-hint>
+          </md-input-container>-->
 
         <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formEmpleado.form.valid">Crear {{opcionempleado}}</button>
           </form>

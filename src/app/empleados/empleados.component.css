@@ -35,3 +35,8 @@ md-card{
     font-family: Roboto;
     font-weight: 400;
 }
+
+
+md-chip{
+  min-width: 89px;
+  }

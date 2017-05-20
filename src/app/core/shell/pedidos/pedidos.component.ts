@@ -22,7 +22,7 @@ export class PedidosComponent implements OnInit {
             console.log(result);
             this.pedidos = result.GETPDP;
             if (!this.pedidos ) {
-                console.log('Error en el servidor...');
+                console.warn('Error en el servidor...');
             }else{
                 this.loading = false;
             }

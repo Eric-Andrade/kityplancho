@@ -11,3 +11,12 @@ export interface Sucursales {
   ACTIVO: string;
 }
 
+export interface IPedidos {
+  IDPEDIDO: number,
+  CNOMBRE: string,
+  CAPELLIDOS: string,
+  PPRECIOTAL: number,
+  PFECHA: string,
+  PPAGADO: string,
+  PSTATUS: string
+}

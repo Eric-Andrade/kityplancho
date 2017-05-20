@@ -2,17 +2,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from './servicios.service';
 import { Servicios } from './servicios';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'kp-servicios',
   templateUrl: './servicios.component.html',
-  styleUrls: ['./servicios.component.css']
+  styleUrls: ['./servicios.component.css'],
+  providers:[ServiciosService]
 })
 export class ServiciosComponent implements OnInit {
     public loading: boolean;
     public errorMessage;
     public servicios: Servicios[];
-  constructor(private _serviciosService: ServiciosService) {
+    tooltip: string = 'Tooltip!';
+    position: string = 'below';
+    delay: number = 0;
+
+  constructor(private _serviciosService: ServiciosService,
+              private _route: ActivatedRoute,
+              private _router: Router) {
     this.loading = true;
   }
 

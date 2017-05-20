@@ -5,6 +5,15 @@ kityplancho@gmail.com
 Password:
 Adminkity2017
 
+itecor\e.torres
+Dif0lT.Pa55
+
+itecor2016@hotmail.com
+Itecor2017
+
+git remote add origin https://itecor2016.visualstudio.com/_git/Kityplancho_web
+git push -u origin --all
+
 Map:
 http://playcode.org/angular-2-typescript-google-maps/
 https://mapstyle.withgoogle.com/
@@ -43,13 +52,14 @@ Links
   https://www.youtube.com/watch?v=gaH889B6R40
   Pipes globales multiples modulos
   http://stackoverflow.com/questions/42576420/how-to-declare-pipe-globally-to-use-in-different-modules
+  MySQL
+    Transactions:
+      http://stackoverflow.com/questions/18817148/how-can-i-use-transactions-in-my-mysql-stored-procedure
+    Trigger:
+      https://www.youtube.com/watch?v=U2fwTQF5ohg
 ]
 
-itecor\e.torres
-Dif0lT.Pa55
 
-itecor2016@hotmail.com
-Itecor2017
 
 URI's[
 /prendas/getprendas

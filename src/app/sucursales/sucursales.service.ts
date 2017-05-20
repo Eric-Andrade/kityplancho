@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import { Sucursales } from './sucursales';
+import { Sucursales, IPedidos } from './sucursales';
 
 @Injectable()
 @Injectable()
@@ -63,6 +63,11 @@ export class SucursalesService {
             JSON.stringify(response);
           });
         }
+
+    getpdp() {
+        return this._http.get(this.url + 'getpdp')
+            .map(res => res.json());
+    }
 
     private getHeaders() {
     let headers = new Headers();

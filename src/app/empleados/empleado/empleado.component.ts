@@ -12,6 +12,7 @@ import { Sucursales } from '../../sucursales/sucursales';
   styleUrls: ['./empleado.component.css'],
   providers:[ EmpleadosService, SucursalesService ]
 })
+
 export class EmpleadoComponent implements OnInit {
     public opcionempleado: string;
     public isRequired: boolean;
@@ -25,6 +26,13 @@ export class EmpleadoComponent implements OnInit {
     public sucursales: Sucursales[];
     public loading: boolean;
     public message: boolean;
+
+  uploadFile: any;
+  hasBaseDropZoneOver: boolean = false;
+  options: Object = {
+    url: 'http://localhost:10050/upload'
+  };
+  sizeLimit = 2000000;
 
   constructor(private _empleadosService: EmpleadosService,
               private _route:ActivatedRoute,
@@ -40,8 +48,25 @@ export class EmpleadoComponent implements OnInit {
 
    ngOnInit( ) {
      this.getSucursales();
-    this.empleado = {IDEMPLEADO:0,EEMAIL:'',EPASSWORD:'',EPRIVILEGIO:'',ENOMBRE:'',EAPELLIDOS:'',ETELEFONO:'',EREFERENCIA1:'',EREFERENCIA2:'',EFECHACONTRATO:'',
-                  EUBICACION:'',IDSUCURSAL:null};
+    this.empleado = {IDEMPLEADO:0,
+                      EEMAIL:'vero@hotmail.com',
+                      EPASSWORD:'123213',
+                      EPRIVILEGIO:'admin',
+                      ENOMBRE:'vero',
+                      EAPELLIDOS:'nica',
+                      ETELEFONO:'1234567890',
+                      EREFERENCIA1:'ref1',
+                      EREFERENCIA2:'ref2',
+                      EFECHACONTRATO:'2017-04-13',
+                      EUBICACION:'Dgo',
+                      IDSUCURSAL:0,
+                        // IDEA: 0,
+                        // EAINE: 'EMPLEADOIFE.jpg',
+                        // EACURP: 'EMPLEADOCURP.jpg',
+                        // EAACTANACIMIENTO: 'EMPLEADOACTANACIMIENTO.jpg',
+                        // EACOMPROBANTEDOM: 'EMPLEADOCOMPROBANTEDOM.jpg',
+                        // IDEMPLEADOEA: 0
+                      };
   }
 
   public postEmpleado(){
@@ -85,69 +110,7 @@ export class EmpleadoComponent implements OnInit {
     dialog.open();
   }
 
-  close(dialog: any) {
-    dialog.close();
-  }
 
 
-
-
-  //Datepicker
-
-  isOpenOnFocus = false;
-  isOpen = false;
-  today: Date = new Date();
-  type: string = 'date';
-  types: Array<any> = [
-    { text: 'Date', value: 'date' },
-    { text: 'Time', value: 'time' },
-    { text: 'Date Time', value: 'datetime' }];
-
-  mode: string = 'auto';
-  modes: Array<any> = [
-    { text: 'Auto', value: 'auto' },
-    { text: 'Portrait', value: 'portrait' },
-    { text: 'Landscape', value: 'landscape' }];
-
-  container: string = 'inline';
-  containers: Array<any> = [
-    { text: 'Inline', value: 'inline' },
-    { text: 'Dialog', value: 'dialog' }];
-
-  date: Date = null;
-  minDate: Date = null;
-  maxDate: Date = null;
-  enableDates: Array<Date> = [
-    new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() - 7),
-    new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() - 1),
-    new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() + 5),
-    new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() + 7),
-    new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() + 8)
-  ];
-  disableDates: Array<Date> = [
-    new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() - 2),
-    new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() - 1),
-    new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() + 2),
-    new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() + 5),
-    new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() + 9)
-  ];
-  disableWeekDays: Array<number> = [0, 6];
-
-  openDatepicker() {
-    this.isOpen = true;
-    setTimeout(() => {
-      this.isOpen = false;
-    }, 1000);
-  }
-
-  setDate() {
-    this.date = new Date(this.today);
-  }
-
-  setDateRange() {
-    this.minDate = new Date(this.today);
-    this.minDate.setMonth(this.minDate.getMonth() - 3);
-    this.maxDate = new Date(this.today);
-    this.maxDate.setMonth(this.maxDate.getMonth() + 3);
-  }
 }
+

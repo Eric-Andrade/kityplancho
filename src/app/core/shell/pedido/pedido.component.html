@@ -14,8 +14,14 @@
 
         <div style="margin:0 auto; text-align: center;">
             <md-radio-group dividerColor="accent">
-              <md-radio-button class="form-radiobutton" checked="checked" value="contraentrega">Pagado a contraentrega</md-radio-button>
-              <md-radio-button class="form-radiobutton" value="pagado">Pagado al entregar</md-radio-button>
+              <md-radio-button class="form-radiobutton" checked="checked" value="contraentrega"
+                        tooltip="¿El pedido se pagará después de la entrega?"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">Pagado a contraentrega</md-radio-button>
+              <md-radio-button class="form-radiobutton" value="pagado"
+                        tooltip="[-10%] Por pagar el pedido al entregar la ropa"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">Pagado al entregar</md-radio-button>
             </md-radio-group>
         </div>
 

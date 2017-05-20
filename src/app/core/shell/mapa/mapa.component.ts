@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MapaService } from './mapa.service';
 import { Mapa } from "app/core/shell/mapa/mapa";
+import { IPedidos } from '../pedidos/pedidos';
+import { PedidosService } from '../pedidos/pedidos.service';
 
 @Component({
   selector: 'kp-mapa',
@@ -86,7 +88,7 @@ export class MapaComponent implements OnInit {
     public zoom: number;
     public imageEC: string;
     public kityplancho: string;
-
+    public opcionpedido:string = 'Registrar nuevo pedido';
 /*Markers*/
     markers: Mapa[];
     constructor() {
@@ -109,6 +111,10 @@ export class MapaComponent implements OnInit {
   ngOnInit() {
   }
 
+  postPedido(){
+
+  }
+
 /*Marcadores*/
     mapClicked($event: any) {
         const newMarker = {
@@ -116,13 +122,12 @@ export class MapaComponent implements OnInit {
             lat: $event.coords.lat,
             lng: $event.coords.lng,
             draggable: false
-        };
+      };
 
         this.markers.push(newMarker);
     }
-    open(dialog: any) {
-    dialog.open();
-  }
+
+
 
     markerClicked(marker: Mapa, index: number) {
         console.log(`Marcador clickeado ${marker.name} en index ${index}`);

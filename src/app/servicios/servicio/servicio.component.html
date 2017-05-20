@@ -1,3 +1,43 @@
-<p>
-  servicio works!
-</p>
+<md2-dialog #serviciodialog>
+        <h5>{{opcionservicio | uppercase}}</h5>
+        <form #formServicio="ngForm" (ngSubmit)="postServicio()">
+
+                <md-input-container dividerColor="accent">
+                  <input type="text" mdInput name="SERVNOMBRE" [(ngModel)]="servicio.SERVNOMBRE" #nombre #SERVNOMBRE="ngModel" minlength="10" maxlength="45" autofocus="autofocus" placeholder="Nombre de servicio" autocomplete="off" required>
+                  <md-hint align="end">{{nombre.value.length}}/45</md-hint>
+                </md-input-container>
+                <md-input-container dividerColor="accent">
+                  <input type="text" name="SERVACTIVO" #activo #SERVACTIVO="ngModel" [(ngModel)]="servicio.SERVACTIVO" mdInput minlength="5" maxlength="45" placeholder="Estado del servicio" required autocomplete="off">
+                  <!--<span *ngIf="activo.touched && !activo.valid">Ingrese un nombre de cliente por favor</span>-->
+                  <md-hint align="end">{{activo.value.length}}/45</md-hint>
+                </md-input-container>
+
+         <button md-raised-button color="accent" style="width:100%; margin:10px 0;"  (click)="prendasdialog.open()">Prendas</button>
+
+        <button class="button-form" color="accent" md-button style="width:100%" type="submit" [disabled]="!formServicio.form.valid">Crear {{opcionservicio}}</button>
+          </form>
+        <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
+    </md2-dialog>
+
+<md2-dialog #prendasdialog>
+        <h5>{{opcionprenda | uppercase}}</h5>
+        <form #formPrenda="ngForm" (ngSubmit)="postServicio()">
+
+            <md-input-container dividerColor="accent">
+              <input type="text" mdInput name="SERVNOMBRE" [(ngModel)]="servicio.SERVNOMBRE" #nombre #SERVNOMBRE="ngModel" minlength="10" maxlength="45" autofocus="autofocus" placeholder="Nombre de prenda" autocomplete="off" required>
+              <md-hint align="end">{{nombre.value.length}}/45</md-hint>
+            </md-input-container>
+
+            <md-input-container dividerColor="accent">
+              <input type="text" name="SERVACTIVO" #activo #SERVACTIVO="ngModel" [(ngModel)]="servicio.SERVACTIVO" mdInput minlength="5" maxlength="45" placeholder="Descripción" autocomplete="off">
+              <!--<span *ngIf="activo.touched && !activo.valid">Ingrese un nombre de cliente por favor</span>-->
+              <md-hint align="end">{{activo.value.length}}/45</md-hint>
+            </md-input-container>
+
+        <button class="button-form" color="accent" md-button style="width:100%" type="submit" [disabled]="!formPrenda.form.valid">Crear {{opcionservicio}}</button>
+          </form>
+        <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
+    </md2-dialog>
+
+    <button md-raised-button color="accent" (click)="serviciodialog.open()">Añadir servicio</button>
+

@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@agm/core@^1.0.0-beta.0":
+  version "1.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@agm/core/-/core-1.0.0-beta.0.tgz#5ca53f0efa321e1e24c7ba3a6be72f96bccf82a4"
+
 "@angular/animations@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-4.0.2.tgz#79f6a77d8b6e19b2d1fd9fa175f78143cd689727"
@@ -215,10 +219,6 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
 amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
-
-angular2-google-maps@^0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/angular2-google-maps/-/angular2-google-maps-0.17.0.tgz#ad8366fa4e5c56de0b8b20f003b5f7a1da06ffe3"
 
 ansi-align@^1.1.0:
   version "1.1.0"
@@ -2887,9 +2887,9 @@ math-expression-evaluator@^1.2.14:
   version "1.2.16"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.16.tgz#b357fa1ca9faefb8e48d10c14ef2bcb2d9f0a7c9"
 
-md2@0.0.17-2:
-  version "0.0.17-2"
-  resolved "https://registry.yarnpkg.com/md2/-/md2-0.0.17-2.tgz#550fb40b727eb12b6650ee1653708b9d46110a5a"
+md2@0.0.18:
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/md2/-/md2-0.0.18.tgz#f4b65ea1cdcc8c5ee5218c0b49346bf32c1a8c53"
 
 media-typer@0.3.0:
   version "0.3.0"
@@ -3021,6 +3021,10 @@ ncname@1.0.x:
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+
+ng2-uploader@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ng2-uploader/-/ng2-uploader-2.0.0.tgz#5b81140cd813552d57bf4578da57edc5261e93e7"
 
 no-case@^2.2.0:
   version "2.3.1"

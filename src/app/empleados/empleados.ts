@@ -26,5 +26,11 @@ export interface Empleados {
   EREFERENCIA2?: string;
   EFECHACONTRATO: string;
   EUBICACION?: string;
-  IDSUCURSAL: number
+  IDSUCURSAL: number;
+    // IDEA: number;
+    // EAINE: string;
+    // EACURP: string;
+    // EAACTANACIMIENTO: string;
+    // EACOMPROBANTEDOM: string;
+    // IDEMPLEADOEA?:number;
 }

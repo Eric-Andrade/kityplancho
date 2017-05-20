@@ -5,3 +5,16 @@ export interface Servicios {
   SPCOSTO: number;
   SPDESCUENTO: number;
 }
+
+export interface IServicios {
+  IDSERVICIO: number;
+  SERVNOMBRE: string;
+  SERVACTIVO: string;
+  IDSUCURSAL: number;
+}
+
+export interface IPrendas{
+  IDPRENDA: number;
+  PNOMBREUNIDAD: string;
+  PDESCRIPCION?: string;
+}

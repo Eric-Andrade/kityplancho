@@ -19,3 +19,12 @@ export interface Clientes {
     CTELEFONO: string;
     ACTIVO?: number;
 }
+
+
+export interface MisPedidos {
+    IDPEDIDO:number;
+    PRECIO:number;
+    FECHA:string;
+    PAGADO:string;
+    STATUS:string;
+}

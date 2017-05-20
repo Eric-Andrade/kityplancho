@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PedidoService } from "./pedido.service";
-import { Pedido } from "./pedido";
+// import { Pedido } from "./pedido";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ServiciosService } from '../../../servicios/servicios.service';
 import { Servicios } from '../../../servicios/servicios';
@@ -118,16 +118,6 @@ export class PedidoComponent implements OnInit {
   close(dialog: any) {
     dialog.close();
   }
-
-  openAlert(event: Event) { }
-
-  openConfirm(event: Event) { }
-
-  openPrompt(event: Event) { }
-
-  openAdvanced(event: Event) { }
-
-  openTabDialog(event: Event) { }
 
    get tickInterval(): number | 'auto' {
     return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : null;

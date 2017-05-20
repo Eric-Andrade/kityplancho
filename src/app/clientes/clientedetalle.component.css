@@ -23,3 +23,40 @@ md-card-header{
 .example-margin {
   margin: 10px;
 }
+
+.map-marker{
+    margin: 0 auto;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 5px;
+}
+
+.Deliver {
+    border: 4.5px solid #41eaea;
+}
+
+.Complete{
+    border: 4.5px solid #41ea65;
+}
+
+.Denenged{
+    border: 4.5px solid #ea4141;
+}
+
+.Encamino{
+    border: 4.5px solid #eadd41;
+}
+
+.EnCola{
+    border: 4.5px solid #f7ad27;
+}
+
+.Process{
+    border: 4.5px solid #278df7;
+}
+
+.Cot{
+    border: 4.5px solid #cccccc;
+}
