@@ -93,6 +93,10 @@ h1 {
     font-style: italic;
     font-family: 'Lora', serif;
 }
+
+.imgsticky{
+      position: sticky;
+}
 /*Phone*/
 #contant-1 {
     background:
@@ -103,7 +107,9 @@ h1 {
 .contant-1-head h1 {
     font-family: "Source Sans Pro",sans-serif;
     font-size: 42px;
-    color: #8e8e8e;
+    color: #ffffff;
+    font-weight: 300;
+    text-shadow: 1px 1px 0px rgba(173, 173, 173, 0.81);
 }
 
 .contant-1-text-area {
@@ -123,10 +129,11 @@ h1 {
 }
 
 .contant-1-text p {
-    color: #4d4e4e;
+    color: #446969;
     font-size: 18px;
     font-family: "Source Sans Pro",sans-serif;
     margin: 0px;
+    font-weight: 300;
 }
 
 #contant-1 .block-right {
@@ -138,6 +145,7 @@ h1 {
     padding-top: 45px;
   }
 }
+
 /*/Phone*/
 
 

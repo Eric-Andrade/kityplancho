@@ -87,6 +87,7 @@ export class MapaComponent implements OnInit {
     public lng: number;
     public zoom: number;
     public imageEC: string;
+    public imageECola: string;
     public kityplancho: string;
     public opcionpedido:string = 'Registrar nuevo pedido';
 /*Markers*/
@@ -99,6 +100,7 @@ export class MapaComponent implements OnInit {
         this.lat = 24.02780775285771;
         this.lng = -104.65332895517349;
         this.zoom = 13;
+        this.imageECola = '/assets/map-markerEnCola.png';
         this.imageEC = '/assets/map-markerEncamino.png';
         this.kityplancho = '/assets/kityplancho-marker.png';
         this.markers = [

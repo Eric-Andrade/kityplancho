@@ -258,8 +258,6 @@ md-spinner{
   filter: grayscale(100%);
 }
 
-
-
 .kp-text{
   font-family: "Source Sans Pro",sans-serif;
   color: #f54d90;
@@ -271,6 +269,18 @@ md-spinner{
     opacity: 1 !important;
     min-width: calc(100% + 150px) !important;
     transform: scaleY(1) !important;
+}
+
+.message {
+    margin: 0 auto;
+    width: 400px;
+    padding-top: 12px;
+}
+
+.message h5{
+    color: #ff375c;
+    font-family: Roboto;
+    font-weight: 400;
 }
 /*Media's*/
 

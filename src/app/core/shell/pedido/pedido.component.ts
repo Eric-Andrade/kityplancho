@@ -6,6 +6,7 @@ import { ServiciosService } from '../../../servicios/servicios.service';
 import { Servicios } from '../../../servicios/servicios';
 import { SucursalesService } from '../../../sucursales/sucursales.service';
 import { Sucursales } from '../../../sucursales/sucursales';
+import { Md2Toast } from 'md2';
 
 @Component({
   selector: 'kp-pedido',
@@ -41,7 +42,8 @@ export class PedidoComponent implements OnInit {
 
     constructor(private _pedidoService: PedidoService,
                 private _serviciosService: ServiciosService,
-                private _sucursalesService: SucursalesService) {
+                private _sucursalesService: SucursalesService,
+                private toast: Md2Toast) {
 
         this.opcionpedido = 'nuevo pedido';
         this.isRequired = true;
@@ -72,7 +74,7 @@ export class PedidoComponent implements OnInit {
             this.errorMessage = <any>error;
             if (this.errorMessage != null ) {
                 console.log(this.errorMessage);
-                alert('Error al conseguir los servicios');
+
             }
         }
 
@@ -101,6 +103,7 @@ export class PedidoComponent implements OnInit {
 
   postPedido(){
 
+    this.toastMe();
   }
 
   postServicio(){
@@ -126,4 +129,8 @@ export class PedidoComponent implements OnInit {
     this._tickInterval = Number(v);
   }
   private _tickInterval = 5;
+
+  toastMe() {
+      this.toast.toast(`Ocurrió un problema, al intentar crear un nuevo pedido recarga la página, por favor`);
+    }
 }

@@ -5,16 +5,10 @@
         <div class="row">
           <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
             <kp-cliente></kp-cliente>
-              <button md-icon-button (click)="clientesCard = true"
-                              tooltip="Vista de clientes por tarjetas"
-                              tooltip-position="below"
-                              tooltip-delay="0 * 1000">
+              <button md-icon-button (click)="clientesCard = true">
                   <md-icon >view_comfy</md-icon>
               </button>
-              <button md-icon-button (click)="clientesCard = false"
-                              tooltip="Vista de clientes por lista"
-                              tooltip-position="below"
-                              tooltip-delay="0 * 1000">
+              <button md-icon-button (click)="clientesCard = false">
                   <md-icon >list</md-icon>
               </button>
           </div>
@@ -119,6 +113,9 @@
               <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
                 <!--<md-spinner color="accent"></md-spinner>-->
                 <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+            </div>
+            <div class="message" *ngIf="message">
+                <h5>Fallo de internet, por favor vuelve a recargar la página.</h5>
             </div>
     </div>
   </div>

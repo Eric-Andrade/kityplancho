@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientesService } from './clientes.service';
 import { Clientes } from './clientes';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
+import { Md2Toast } from 'md2';
 
 @Component({
   selector: 'kp-clientes',
@@ -13,14 +13,16 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class ClientesComponent implements OnInit {
     public loading: boolean;
     public errorMessage;
+    public message: boolean;
     public clientes: Clientes[];
     public clientesCard = true;
   constructor(private _clienteService: ClientesService,
               private _route: ActivatedRoute,
               private _router: Router,
+              private toast: Md2Toast
               ) {
       this.loading = true;
-
+      this.message = false;
   }
 
   ngOnInit() {
@@ -42,7 +44,8 @@ export class ClientesComponent implements OnInit {
               this.errorMessage = <any>error;
               if(this.errorMessage != null){
                   console.log(this.errorMessage);
-                  alert(`Error al conseguir los clientes ${this.errorMessage}`);
+                  this.message = true;
+                  this.toastMe();
               }
           }
 
@@ -56,4 +59,8 @@ export class ClientesComponent implements OnInit {
   // editcliente(dialog: any){
   //     this._clienteComponent.open(dialog);
   // }
+
+  toastMe() {
+      this.toast.toast(`Algo falló al tratar de obtener la lista de clientes, intenta nuevamente por favor`);
+    }
 }

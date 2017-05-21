@@ -66,6 +66,7 @@ export class ClienteDetalleComponent implements OnInit {
                 if (this.errorMessage != null) {
                     console.log(this.errorMessage);
                     this.message = true;
+                    this.failinfogetCliente();
                 }
           }
         );
@@ -81,11 +82,10 @@ export class ClienteDetalleComponent implements OnInit {
                this._router.navigate(['/clientes', this.cliente.IDCLIENTE]);
 
           }, error => {
-              console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+              console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
                this.errorMessage = <any>error;
                 if(this.errorMessage != null){
-                console.log(`Error al actualizar empleado: ${this.errorMessage}`);
-                alert(`Error al guardar nuevo empleado: ${this.errorMessage}`);
+                this.failinfoputCliente();
             }
           })
     }
@@ -104,6 +104,7 @@ export class ClienteDetalleComponent implements OnInit {
                 if (this.errorMessage != null) {
                     console.log(this.errorMessage);
                     this.message = true;
+                    this.failinfogetCliente();
                 }
           }
         );
@@ -116,6 +117,14 @@ export class ClienteDetalleComponent implements OnInit {
       ${this.cliente.CAPELLIDOS} actualizados exitosamente`);
     }
 
+    failinfogetCliente() {
+      this.toast.toast(`Error al encontrar la información de este cliente, intenta nuevamente por favor`);
+    }
+
+    failinfoputCliente() {
+      this.toast.toast(`Error al actualizar la información de ${this.cliente.CNOMBRE}
+      ${this.cliente.CAPELLIDOS}, intenta nuevamente por favor`);
+    }
     regresar(){
       this._router.navigate(['clientes']);
   }

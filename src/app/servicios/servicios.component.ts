@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from './servicios.service';
 import { Servicios } from './servicios';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Md2Toast } from 'md2';
 
 @Component({
   selector: 'kp-servicios',
@@ -13,6 +14,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class ServiciosComponent implements OnInit {
     public loading: boolean;
     public errorMessage;
+    public message: boolean;
     public servicios: Servicios[];
     tooltip: string = 'Tooltip!';
     position: string = 'below';
@@ -20,8 +22,10 @@ export class ServiciosComponent implements OnInit {
 
   constructor(private _serviciosService: ServiciosService,
               private _route: ActivatedRoute,
-              private _router: Router) {
+              private _router: Router,
+              private toast: Md2Toast,) {
     this.loading = true;
+    this.message = false;
   }
 
   ngOnInit() {
@@ -39,12 +43,16 @@ export class ServiciosComponent implements OnInit {
             this.errorMessage = <any>error;
             if (this.errorMessage != null ) {
                 console.log(this.errorMessage);
-                alert('Error al conseguir los servicios');
+                this.message = true;
+                this.failgetServicios();
             }
         }
 
       );
   }
 
+failgetServicios() {
+      this.toast.toast(`Error al intentar obtener la lista de servicios, intenta recargar la página por favor`);
+    }
 }
 

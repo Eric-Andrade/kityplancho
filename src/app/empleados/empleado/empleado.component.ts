@@ -5,6 +5,7 @@ import { EmpleadosService } from '../empleados.service';
 import { Empleados } from '../empleados';
 import { SucursalesService } from '../../sucursales/sucursales.service';
 import { Sucursales } from '../../sucursales/sucursales';
+import { Md2Toast } from 'md2';
 
 @Component({
   selector: 'kp-empleado',
@@ -37,7 +38,8 @@ export class EmpleadoComponent implements OnInit {
   constructor(private _empleadosService: EmpleadosService,
               private _route:ActivatedRoute,
               private _router:Router,
-              private _sucursalesService: SucursalesService) {
+              private _sucursalesService: SucursalesService,
+              private toast: Md2Toast) {
 
     this.opcionempleado = 'nuevo empleado';
     this.isRequired = true;
@@ -51,7 +53,7 @@ export class EmpleadoComponent implements OnInit {
     this.empleado = {IDEMPLEADO:0,
                       EEMAIL:'vero@hotmail.com',
                       EPASSWORD:'123213',
-                      EPRIVILEGIO:'admin',
+                      EPRIVILEGIO:'rutero',
                       ENOMBRE:'vero',
                       EAPELLIDOS:'nica',
                       ETELEFONO:'1234567890',
@@ -72,7 +74,7 @@ export class EmpleadoComponent implements OnInit {
   public postEmpleado(){
     this._empleadosService.postEmpleado(this.empleado).subscribe(
           data => {
-               console.log(`El empleado ${this.empleado.IDEMPLEADO} | ${this.empleado.ENOMBRE} fue creado exitosamente!`);
+               this.toastMe();
                this._router.navigate(['empleados']);
           },
 
@@ -80,8 +82,7 @@ export class EmpleadoComponent implements OnInit {
               console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
                this.errorMessage = <any>error;
                 if(this.errorMessage != null){
-                console.log(`Error al guardar nuevo empleado: ${this.errorMessage}`);
-                alert(`Error al guardar nuevo empleado: ${this.errorMessage}`);
+                this.failpostEmpleado();
             }
           });
   }
@@ -110,7 +111,17 @@ export class EmpleadoComponent implements OnInit {
     dialog.open();
   }
 
+ toastMe() {
+      this.toast.toast(`El empleado
+      ${this.empleado.ENOMBRE}
+      ${this.empleado.EAPELLIDOS} fue guardado exitosamente`);
+    }
 
+  failpostEmpleado() {
+      this.toast.toast(`Algo falló al intentar guardar al empleado
+      ${this.empleado.ENOMBRE}
+      ${this.empleado.EAPELLIDOS}, intenta de nuevo por favor`);
+    }
 
 }
 

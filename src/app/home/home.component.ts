@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
             this.errorMessage = <any>error;
             if(this.errorMessage != null){
                 console.log(this.errorMessage);
-                alert(`Error al conseguir los servicios ${this.errorMessage}`);
+                // alert(`Error al conseguir los servicios ${this.errorMessage}`);
             }
         }
 

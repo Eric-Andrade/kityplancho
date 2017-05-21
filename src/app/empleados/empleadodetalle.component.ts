@@ -65,6 +65,7 @@ ngOnInit() {
                 if (this.errorMessage != null) {
                     console.log(this.errorMessage);
                     this.message = true;
+                    this.failgetEmpleado();
                 }
               }
             );
@@ -83,8 +84,7 @@ ngOnInit() {
               console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
                this.errorMessage = <any>error;
                 if(this.errorMessage != null){
-                console.log(`Error al actualizar empleado: ${this.errorMessage}`);
-                alert(`Error al guardar nuevo empleado: ${this.errorMessage}`);
+                this.failputEmpleado();
             }
           })
     }
@@ -94,6 +94,15 @@ ngOnInit() {
           ${this.empleado.ENOMBRE} ${this.empleado.EAPELLIDOS}
           actualizados exitosamente`);
         }
+
+     failputEmpleado() {
+          this.toast.toast(`Error al actualizar la información de
+          ${this.empleado.ENOMBRE} ${this.empleado.EAPELLIDOS}, intenta nuevamente por favor`);
+        }
+
+     failgetEmpleado() {
+            this.toast.toast('Error al encontrar la información de este empleado, intenta nuevamente por favor');
+          }
 
     regresar(){
       this._router.navigate(['empleados']);

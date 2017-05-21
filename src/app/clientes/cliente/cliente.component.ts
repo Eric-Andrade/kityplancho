@@ -51,19 +51,9 @@ ngOnInit( ) {
               console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
                this.errorMessage = <any>error;
                 if(this.errorMessage != null){
-                console.log(`Error al guardar nuevo empleado: ${this.errorMessage}`);
-                alert(`Error al guardar nuevo empleado: ${this.errorMessage}`);
+                this.failpostCliente();
             }
           });
-  }
-
-  public getPedidos(){
-     this._route.params.forEach((params: Params) => {
-            let id = params['id'];
-    // this._clientesService.getPedidos(id).subscribe(
-
-    // )
-     });
   }
 
   open(dialog: any) {
@@ -79,6 +69,12 @@ ngOnInit( ) {
       this.toast.toast(`El cliente
       ${this.cliente.CNOMBRE}
       ${this.cliente.CAPELLIDOS} fue guardado exitosamente`);
+    }
+
+  failpostCliente() {
+      this.toast.toast(`Algo falló al intentar guardar al cliente
+      ${this.cliente.CNOMBRE}
+      ${this.cliente.CAPELLIDOS}, intenta de nuevo por favor`);
     }
 
 }

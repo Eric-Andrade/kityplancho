@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmpleadosService } from './empleados.service';
 import { Empleados } from './empleados';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Md2Toast } from 'md2';
 
 @Component({
   selector: 'kp-empleados',
@@ -18,7 +19,8 @@ export class EmpleadosComponent implements OnInit {
     public empleadosCard = true;
   constructor(private _empleadoService: EmpleadosService,
               private _route: ActivatedRoute,
-              private _router: Router,) {
+              private _router: Router,
+              private toast: Md2Toast,) {
     this.loading = true;
     this.message = false; }
 
@@ -29,6 +31,7 @@ export class EmpleadosComponent implements OnInit {
             this.empleados = response.EMPLEADOS;
             if (!this.empleados) {
                 console.log('Error en el servidor...');
+                this.toastMe();
             }else{
                 this.loading = false;
             }
@@ -38,11 +41,16 @@ export class EmpleadosComponent implements OnInit {
             if (this.errorMessage != null) {
                 console.log(this.errorMessage);
                 this.message = true;
+                this.toastMe();
             }
         });
   }
 
-getempleado(idempleado){
+  getempleado(idempleado){
       this._router.navigate(['empleados',idempleado]);
   }
+
+  toastMe() {
+      this.toast.toast(`Algo falló al tratar de obtener la lista de empleados, intenta nuevamente por favor`);
+    }
 }

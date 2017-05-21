@@ -24,19 +24,6 @@ md-card{
     margin: 3px 3px 3px 3px;
 }
 
-.message {
-    margin: 0 auto;
-    width: 400px;
-    padding-top: 12px;
-}
-
-.message h5{
-    color: #ff375c;
-    font-family: Roboto;
-    font-weight: 400;
-}
-
-
 md-chip{
   min-width: 89px;
   }
