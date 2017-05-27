@@ -41,10 +41,17 @@
                               tooltip-delay="0 * 1000"></span>
                               </ng-template>
                               </div>
-                            <md-card-title><strong>{{cliente.IDCLIENTE}} | {{cliente.CNOMBRE | truncate: 10 }} </strong> <p>{{cliente.CAPELLIDOS | truncate: 10 }}</p></md-card-title>
+                            <md-card-title
+                            tooltip="{{cliente.CNOMBRE}} {{cliente.CAPELLIDOS}}"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000"><strong>{{cliente.IDCLIENTE}} | {{cliente.CNOMBRE | truncate: 10 }} </strong> <p>{{cliente.CAPELLIDOS | truncate: 10 }}</p></md-card-title>
                             <md-card-subtitle>
                               <md-chip-list>
-                                  <md-chip color="accent" selected="true">{{cliente.CEMAIL | truncate: 15  | lowercase}}</md-chip>
+                                  <md-chip color="accent" selected="true"
+                                  tooltip="{{cliente.CEMAIL}}"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000"
+                                  >{{cliente.CEMAIL | truncate: 15  | lowercase}}</md-chip>
                               </md-chip-list>
                             </md-card-subtitle>
                           </md-card-header>
@@ -89,18 +96,25 @@
                           </tr>
                         </thead>
                         <tbody>
-                         <tr *ngFor="let cliente of clientes" (dblclick)="getcliente(cliente.IDCLIENTE)">
+                         <tr *ngFor="let cliente of clientes" (click)="getcliente(cliente.IDCLIENTE)"
+                          >
                            <td>
                             <div *ngIf="cliente.ACTIVO == 1; then thenTemplate; else elseTemplate"></div>
                             <ng-template #thenTemplate>
-                              <span class="status-listactive"></span>
+                              <span class="status-listactive"
+                              tooltip="Cuenta de activa"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"></span>
                             </ng-template>
                             <ng-template #elseTemplate>
-                              <span class="status-listoff"></span>
+                              <span class="status-listoff"
+                              tooltip="Cuenta de desactivada"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"></span>
                             </ng-template>
                             </td>
                             <td><strong>{{cliente.IDCLIENTE}}</strong> </td>
-                            <td>{{cliente.CNOMBRE | capitalize}} {{cliente.CAPELLIDOS | capitalize}}</td>
+                            <td>{{cliente.CNOMBRE}} {{cliente.CAPELLIDOS}}</td>
                             <td class="enfasis-td">{{cliente.CEMAIL | lowercase}}</td>
                             <td>{{cliente.CPASSWORD | truncate: 10}}</td>
                             <td>{{cliente.CTELEFONO}}</td>

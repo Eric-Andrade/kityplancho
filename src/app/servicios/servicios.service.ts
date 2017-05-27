@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import { Servicios } from './servicios';
+import { IServicios, IPrendas } from './servicios';
+import { global } from '../global';
 
 @Injectable()
 
@@ -11,8 +12,8 @@ export class ServiciosService {
     public url: string;
 
     constructor(private _http: Http) {
-        this.local = 'http://localhost:8080/kityplancho_api/api/procesos/';
-        this.url = 'http://kityplanchoapi.mybluemix.net/api/v1/';
+        this.local = global.local;
+        this.url = global.url;
 
     }
 
@@ -36,5 +37,54 @@ export class ServiciosService {
         return this._http.get(this.url + 'getprendas')
             .map(res => res.json());
     }
+
+    postServicio(servicio: IServicios){
+       let body = new URLSearchParams();
+            body.set('IDSERVICIO',servicio.IDSERVICIO.toString());
+            body.set('SERVNOMBRE',servicio.SERVNOMBRE);
+            body.set('SERVACTIVO',servicio.SERVACTIVO);
+            body.set('IDSUCURSAL',servicio.IDSUCURSAL.toString());
+    }
+
+    putServicio(servicio: IServicios){
+       let body = new URLSearchParams();
+            body.set('IDSERVICIO',servicio.IDSERVICIO.toString());
+            body.set('SERVNOMBRE',servicio.SERVNOMBRE);
+            body.set('SERVACTIVO',servicio.SERVACTIVO);
+            body.set('IDSUCURSAL',servicio.IDSUCURSAL.toString());
+
+       return this._http.post(this.url + 'ConfirmarPedido', body, {headers : this.getHeaders()})
+        .map((response:Response)=>{
+        JSON.stringify(response);
+      });
+    }
+
+    postPrenda(prenda: IPrendas){
+       let body = new URLSearchParams();
+            body.set('IDPRENDA',prenda.IDPRENDA.toString());
+            body.set('PNOMBREUNIDAD',prenda.PNOMBREUNIDAD);
+            body.set('PDESCRIPCION',prenda.PDESCRIPCION);
+    }
+
+    putPrenda(prenda: IPrendas){
+       let body = new URLSearchParams();
+            body.set('IDPRENDA',prenda.IDPRENDA.toString());
+            body.set('PNOMBREUNIDAD',prenda.PNOMBREUNIDAD);
+            body.set('PDESCRIPCION',prenda.PDESCRIPCION);
+
+      return this._http.post(this.url + 'ConfirmarPedido', body, {headers : this.getHeaders()})
+        .map((response:Response)=>{
+        JSON.stringify(response);
+      });
+    }
+
+    private getHeaders() {
+        let headers = new Headers();
+        headers.append('Content-Type','application/x-www-form-urlencoded');
+        headers.append('X-Requested-With','XMLHttpRequest');
+        headers.append('cache-control','no-cache');
+        headers.append('status','OK');
+        return headers;
+      }
 
 }

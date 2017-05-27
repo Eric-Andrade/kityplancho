@@ -46,7 +46,7 @@
         </thead>
 
         <tbody *ngIf="pedidos">
-         <tr *ngFor="let pedido of pedidos">
+         <tr *ngFor="let pedido of pedidos" (click)="getpedido(pedido.IDPEDIDO)">
             <td>{{pedido.IDPEDIDO}}</td>
             <td>{{pedido.CNOMBRE}} {{pedido.CAPELLIDOS}}</td>
             <td class="enfasis-td">{{pedido.PPAGADO}}</td>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidosService } from './pedidos.service';
 import { Pedidos } from './pedidos';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Md2Toast } from 'md2';
 
 @Component({
@@ -15,7 +16,10 @@ export class PedidosComponent implements OnInit {
     public message: boolean;
 
   constructor(private _pedidosService: PedidosService,
-              private toast: Md2Toast) {
+              private _route: ActivatedRoute,
+              private _router: Router,
+              private toast: Md2Toast,
+              ) {
     this.loading = true;
     this.message = false;
   }
@@ -43,7 +47,11 @@ export class PedidosComponent implements OnInit {
       );
   }
 
-failgetPedidos() {
+  getpedido(idpedido){
+      this._router.navigate(['pedidos',idpedido]);
+  }
+
+  failgetPedidos() {
       this.toast.toast(`Algo falló al intentar obtener la lista de pedidos, intenta de nuevo por favor`);
     }
 }

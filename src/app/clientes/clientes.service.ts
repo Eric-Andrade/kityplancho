@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Clientes } from './clientes';
+import { global } from '../global';
+
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -12,8 +14,8 @@ export class ClientesService {
     public url: string;
     public prueba: string;
     constructor(private _http: Http) {
-        this.local = 'http://localhost:8080/kityplancho_api/api/v1/';
-        this.url = 'http://kityplanchoapi.mybluemix.net/api/v1/';
+        this.local = global.local;
+        this.url = global.url;
         this.prueba = 'http://pruebakityplancho.mybluemix.net/api/procesos/';
     }
 

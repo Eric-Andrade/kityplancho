@@ -1,13 +1,25 @@
-export interface Pedido {
+export interface IPedido{
+  IDPEDIDO: number;
   PSTATUS: string;
-  PDIRECCION_R?: string;
-  PPRECIOTOTAL: number;
-  PDIRECCION_E: string;
+  PDIRECCIONR: string;
+  PDIRECCIONE?: string;
+  PPRECIOTOTAL?: number;
   PPAGADO: string;
+  COORDENADASR?: string;
+  COORDENADASE?:string;
+  IDCLIENTE: number
+}
 
-  DP_CANTIDADPRENDAS:number;
+export interface IDetallePedido{
+  IDDP:number;
+  CANTIDAD:number;
   IDSP:number;
-  IDRUTA:number;
   IDPEDIDO:number;
-  DP_COSTOPEDIDO:number;
+  COSTO?:number;
+}
+
+export interface ISP {
+  IDSP: number;
+  SPCOSTO: number;
+  SPDESCUENTO: number;
 }

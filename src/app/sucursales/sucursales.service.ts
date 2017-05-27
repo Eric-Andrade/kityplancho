@@ -3,6 +3,7 @@ import { Http, Response, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { Sucursales, IPedidos } from './sucursales';
+import { global } from '../global';
 
 @Injectable()
 @Injectable()
@@ -11,8 +12,8 @@ export class SucursalesService {
     public local: string;
 
     constructor(private _http: Http) {
-        this.local = 'http://localhost:8080/kityplancho_api/api/procesos/';
-        this.url = 'http://kityplanchoapi.mybluemix.net/api/v1/';
+        this.local = global.local;
+        this.url = global.url;
     }
 
     getSucursales() {

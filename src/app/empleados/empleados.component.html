@@ -30,18 +30,21 @@
                             <div md-card-avatar class="example-header-image">
                             <ng-template #thenTemplate>
                               <span class="status-cardoff"
-                              tooltip="Cuenta de activa"
+                              tooltip="Cuenta de desactivada"
                               tooltip-position="above"
                               tooltip-delay="0 * 1000"></span>
                             </ng-template>
                             <ng-template #elseTemplate>
                               <span class="status-cardactive"
-                              tooltip="Cuenta de desactivada"
+                              tooltip="Cuenta de activa"
                               tooltip-position="above"
                               tooltip-delay="0 * 1000"></span>
                             </ng-template>
                             </div>
-                            <md-card-title><strong>{{empleado.IDEMPLEADO}} | {{empleado.ENOMBRE | truncate: 10}} </strong> <p>{{empleado.EAPELLIDOS | truncate: 10}}</p></md-card-title>
+                            <md-card-title
+                              tooltip="{{empleado.ENOMBRE}} {{empleado.EAPELLIDOS}} | email: {{empleado.EEMAIL}}"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"><strong>{{empleado.IDEMPLEADO}} | {{empleado.ENOMBRE | truncate: 10}} </strong> <p>{{empleado.EAPELLIDOS | truncate: 10}}</p></md-card-title>
                             <md-card-subtitle>
                               <md-chip-list>
                                   <md-chip color="accent" selected="true">{{empleado.EPRIVILEGIO}}</md-chip>
@@ -96,18 +99,24 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let empleado of empleados" (dblclick)="getempleado(empleado.IDEMPLEADO)">
+                          <tr *ngFor="let empleado of empleados" (click)="getempleado(empleado.IDEMPLEADO)">
                             <td>
                             <div *ngIf="empleado.EPRIVILEGIO == 'desempleado'; then thenTemplate; else elseTemplate"></div>
                             <ng-template #thenTemplate>
-                              <span class="status-listoff"></span>
+                              <span class="status-listoff"
+                              tooltip="Cuenta de desactivada"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"></span>
                             </ng-template>
                             <ng-template #elseTemplate>
-                              <span class="status-listactive"></span>
+                              <span class="status-listactive"
+                              tooltip="Cuenta de activa"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"></span>
                             </ng-template>
                             </td>
                             <td><strong>{{empleado.IDEMPLEADO}}</strong></td>
-                            <td>{{empleado.ENOMBRE | capitalize}} {{empleado.EAPELLIDOS}}</td>
+                            <td>{{empleado.ENOMBRE}} {{empleado.EAPELLIDOS}}</td>
                             <td class="enfasis-td">{{empleado.EEMAIL | lowercase}}</td>
                             <td>{{empleado.EPASSWORD}}</td>
                             <td>{{empleado.ETELEFONO}}</td>

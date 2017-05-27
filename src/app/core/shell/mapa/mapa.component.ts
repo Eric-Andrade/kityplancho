@@ -3,6 +3,7 @@ import { MapaService } from './mapa.service';
 import { Mapa } from "app/core/shell/mapa/mapa";
 import { IPedidos } from '../pedidos/pedidos';
 import { PedidosService } from '../pedidos/pedidos.service';
+import { Md2Toast } from 'md2';
 
 @Component({
   selector: 'kp-mapa',
@@ -90,9 +91,15 @@ export class MapaComponent implements OnInit {
     public imageECola: string;
     public kityplancho: string;
     public opcionpedido:string = 'Registrar nuevo pedido';
+    public pedidos: IPedidos[];
+    public errorMessage;
+    public loading: boolean;
+    public message: boolean;
+
 /*Markers*/
     markers: Mapa[];
-    constructor() {
+    constructor(private _pedidosService: PedidosService,
+                private toast: Md2Toast,) {
       /* navigator.geolocation.watchPosition((position) => {
             this.lat = position.coords.latitude;
             this.lng = position.coords.longitude;
@@ -108,15 +115,41 @@ export class MapaComponent implements OnInit {
                         { name: 'Pedido 2', lat: 24.0094675, lng: -104.6594958, draggable: true },
                         { name: 'Pedido 3', lat: 24.0207523, lng: -104.6194784, draggable: true }
                     ];
+        this.loading = true;
+        this.message = false;
     }
 
   ngOnInit() {
+    this.getpedidos();
   }
 
   postPedido(){
 
   }
 
+  getpedidos(){
+     this._pedidosService.getPedidos().subscribe(
+        result => {
+            this.pedidos = result.PEDIDOS;
+            console.log('Pedidos para el mapa');
+            console.log(this.pedidos);
+            if (!this.pedidos ) {
+                console.warn('Error en el servidor...');
+            }else{
+                this.loading = false;
+            }
+        },
+        error => {
+            this.errorMessage = <any>error;
+            if (this.errorMessage != null ) {
+                console.log(`This is the error: ${this.errorMessage}`);
+                this.message = true;
+                this.failgetPedidos();
+            }
+        }
+
+      );
+  }
 /*Marcadores*/
     mapClicked($event: any) {
         const newMarker = {
@@ -164,5 +197,9 @@ export class MapaComponent implements OnInit {
         }else {
             this.markers = [];
         }
+    }
+
+    failgetPedidos() {
+      this.toast.toast(`Algo falló al intentar obtener la lista de pedidos, intenta de nuevo por favor`);
     }
 }

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { PasswordPipe } from "../pipes/password.pipe";
 import { FilterPipe } from "../pipes/filter.pipe";
 
+
 @NgModule({
   imports: [
     CommonModule

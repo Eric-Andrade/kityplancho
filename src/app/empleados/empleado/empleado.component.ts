@@ -27,6 +27,9 @@ export class EmpleadoComponent implements OnInit {
     public sucursales: Sucursales[];
     public loading: boolean;
     public message: boolean;
+    tab1disabled: boolean;
+    tab2disabled: boolean;
+    selectedIndex: number;
 
   uploadFile: any;
   hasBaseDropZoneOver: boolean = false;
@@ -46,6 +49,8 @@ export class EmpleadoComponent implements OnInit {
     this.isDisabled = false;
     this.isDisabledMultiple = false;
     this.itemMultiple = null;
+    this.tab1disabled = false
+    this.tab2disabled = true;
     }
 
    ngOnInit( ) {
@@ -55,13 +60,13 @@ export class EmpleadoComponent implements OnInit {
                       EPASSWORD:'123213',
                       EPRIVILEGIO:'rutero',
                       ENOMBRE:'vero',
-                      EAPELLIDOS:'nica',
+                      EAPELLIDOS:'nicads',
                       ETELEFONO:'1234567890',
-                      EREFERENCIA1:'ref1',
-                      EREFERENCIA2:'ref2',
+                      EREFERENCIA1:'ref1dasdsadasdsadsadsad',
+                      EREFERENCIA2:'ref2sadasdasdsadsadsaddsa',
                       EFECHACONTRATO:'2017-04-13',
                       EUBICACION:'Dgo',
-                      IDSUCURSAL:0,
+                      IDSUCURSAL:null,
                         // IDEA: 0,
                         // EAINE: 'EMPLEADOIFE.jpg',
                         // EACURP: 'EMPLEADOCURP.jpg',
@@ -74,8 +79,10 @@ export class EmpleadoComponent implements OnInit {
   public postEmpleado(){
     this._empleadosService.postEmpleado(this.empleado).subscribe(
           data => {
-               this.toastMe();
-               this._router.navigate(['empleados']);
+                this.toastMe();
+               this.tab1disabled = true
+               this.tab2disabled = false;
+               this.selectedIndex = 1;
           },
 
           error =>  {
@@ -85,6 +92,10 @@ export class EmpleadoComponent implements OnInit {
                 this.failpostEmpleado();
             }
           });
+  }
+
+  public postEmpleadoAdjuntos(){
+
   }
 
     public getSucursales(){

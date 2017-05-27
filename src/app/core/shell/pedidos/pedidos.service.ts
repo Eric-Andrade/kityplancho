@@ -3,6 +3,7 @@ import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { Pedidos } from './pedidos';
+import { global } from '../../../global';
 
 @Injectable()
 
@@ -11,13 +12,29 @@ export class PedidosService {
     public url: string;
 
     constructor(private _http: Http) {
-        this.local = 'http://localhost:8080/kityplancho_api/api/procesos/';
-        this.url = 'http://kityplanchoapi.mybluemix.net/api/v1/';
+        this.local = global.local;
+        this.url = global.url;
     }
 
     getpdp() {
         return this._http.get(this.url + 'getpdp')
             .map(res => res.json());
     }
+
+    getPedidos( ) {
+        return this._http.get(this.url + 'getpedidos')
+          .map(res => res.json());
+    }
+
+    getPedido(id: string) {
+        return this._http.get(this.url + 'getpedido?id='+id)
+          .map(res => res.json());
+    }
+
+    getDetallePedido(id: string) {
+        return this._http.get(this.url + 'getdetallepedidos?id='+id)
+          .map(res => res.json());
+    }
+
 
 }

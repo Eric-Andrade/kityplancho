@@ -4,12 +4,14 @@ import { Empleados } from './empleados';
 import { EmpleadosService } from './empleados.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Md2Toast } from 'md2';
+import { SucursalesService } from '../sucursales/sucursales.service';
+import { Sucursales } from '../sucursales/sucursales';
 
 @Component({
   selector: 'kp-empleadodetalle',
   templateUrl: 'empleadodetalle.component.html',
   styleUrls: ['empleadodetalle.component.css'],
-  providers: [ EmpleadosService ]
+  providers: [ EmpleadosService, SucursalesService ]
 })
 
 export class EmpleadoDetalleComponent implements OnInit {
@@ -17,17 +19,22 @@ export class EmpleadoDetalleComponent implements OnInit {
   public message: boolean;
   public empleado: Empleados;
   public loading: boolean;
+  public isRequired: boolean;
+  public isDisabled: boolean;
+  public sucursales: Sucursales[];
 
   constructor(private _empleadosService: EmpleadosService,
             private _route: ActivatedRoute,
             private _router: Router,
-            private toast: Md2Toast) {
+            private toast: Md2Toast,
+            private _sucursalesService: SucursalesService,) {
               this.loading = true;
   }
 
 ngOnInit() {
     this.getEmpleado();
-}
+    this.getSucursales();
+  }
 
     getEmpleado() {
         this._route.params.forEach((params: Params) => {
@@ -88,6 +95,26 @@ ngOnInit() {
             }
           })
     }
+
+     public getSucursales(){
+      this._sucursalesService.getSucursales().subscribe(
+        response => {
+            console.log(response);
+            this.sucursales = response.SUCURSALES;
+            if (!this.sucursales) {
+                console.log('Error en el servidor...');
+            }else{
+                console.log('Sucursales cargadas correctamente');
+            }
+        },
+        error => {
+            this.errorMessage = <any>error;
+            if (this.errorMessage != null) {
+                console.log(this.errorMessage);
+                this.message = true;
+            }
+        });
+  }
 
     toastMe() {
           this.toast.toast(`Datos de

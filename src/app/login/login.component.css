@@ -1,0 +1,18 @@
+.loginbtn{
+    color: #e6e6e6;
+    border: 1px solid #e6e6e6;
+    font-weight: 300;
+    width: 150px;
+}
+
+.loginbtn:hover{
+    color: #fff;
+    border: 1px solid #ffffff;
+    font-weight: 300;
+    width: 150px;
+}
+
+md2-dialog{
+    min-width: 150px !important;
+    width: 150px !important
+}
