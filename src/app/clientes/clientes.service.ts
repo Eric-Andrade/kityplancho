@@ -10,9 +10,9 @@ import 'rxjs/add/operator/map';
 
 
 export class ClientesService {
-    public local: string;
-    public url: string;
-    public prueba: string;
+      public local: string;
+      public url: string;
+      public prueba: string;
     constructor(private _http: Http) {
         this.local = global.local;
         this.url = global.url;

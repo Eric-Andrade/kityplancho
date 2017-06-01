@@ -1,19 +1,60 @@
-<div *ngIf="pedidos">
-    <ul *ngFor="let pedido of pedidos">
-      <li>{{pedido.IDPEDIDO}}</li>
-      <li>{{pedido.CNOMBRE}}</li>
-      <li>{{pedido.CAPELLIDOS}}</li>
-      <li>{{pedido.PPRECIOTAL | currency:'USD':true}}</li>
-      <li>{{pedido.PFECHA}}</li>
-    </ul>
+<div class="container-fluid">
+  <div class="row">
+    <h2 class="kp-text text-center">KityPlancho Sucursales</h2><br>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="datacontainer" *ngIf="sucursales">
+            <div class="datarepite" *ngFor="let sucursal of sucursales">
+                <md-card>
+                  <img md-card-image class="img-sucursal">
+                  <div >
+                      <md-card-header>
+                      <div *ngIf="sucursal.ACTIVO == 'activo'; then thenTemplate; else elseTemplate"></div>
+                          <ng-template #thenTemplate>
+                            <span class="status-cardactive"
+                          tooltip="Sucursal activa"
+                          tooltip-position="above"
+                          tooltip-delay="0 * 1000"></span>
+                          </ng-template>
+                          <ng-template #elseTemplate>
+                            <span class="status-cardoff"
+                          tooltip="Sucursal desactivada"
+                          tooltip-position="above"
+                          tooltip-delay="0 * 1000"></span>
+                          </ng-template>
+                        </md-card-header>
+                      <md-card-title>
+                              <strong
+                                tooltip="ID de sucursal"
+                                tooltip-position="above"
+                                tooltip-delay="0 * 1000">{{sucursal.IDSUCURSAL}}</strong> | <span class="kp-text"> {{sucursal.SNOMBRE}}</span>
+                      </md-card-title>
+                      <md-card-subtitle>
+                        <span
+                          tooltip="Localidad de sucursal"
+                          tooltip-position="above"
+                          tooltip-delay="0 * 1000">Localidad: {{sucursal.SLOCALIDAD}}</span>
+                      </md-card-subtitle>
+                    <md-card-content>
+                      <md-chip-list>
+                            <md-chip color="accent" selected="true"
+                            >Horario: {{sucursal.SHORARIO}}</md-chip>
+                        </md-chip-list><br>
+                        <span class="kp-text">Email: {{sucursal.SEMAIL}}</span><br>
+                        <span><md-icon color="accent">phone_iphone</md-icon> <strong>{{sucursal.STELEFONO}}</strong></span>
+                    </md-card-content>
+                  </div>
+                </md-card>
+          </div>
+        </div>
 
-</div>
-
-<div class="loading" *ngIf="loading">
-  <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
-    <!--<md-spinner color="accent"></md-spinner>-->
-    <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
-</div>
-<div class="message" *ngIf="message">
-    <h5>Fallo de internet, por favor vuelve a recargar la página.</h5>
+        <div class="loading" *ngIf="loading">
+          <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
+            <!--<md-spinner color="accent"></md-spinner>-->
+            <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+        </div>
+        <div class="message" *ngIf="message">
+            <h5>Fallo de internet, por favor vuelve a recargar la página.</h5>
+        </div>
+    </div>
+  </div>
 </div>

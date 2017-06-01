@@ -1,4 +1,4 @@
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../core/shell/login/login.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { Md2Module } from 'md2';
 import { HttpModule } from '@angular/http';
 import { SharedModule } from '../shared/shared.module';
-
+import { LoginModule } from '../core/shell/login/login.module';
 const routes: Routes = [
   { path: '', component: HomeComponent }
 ];
@@ -21,7 +21,8 @@ const routes: Routes = [
       Md2Module.forRoot(),
       FormsModule,
       HttpModule,
-      SharedModule
+      SharedModule,
+      LoginModule
 
   ],
   declarations: [HomeComponent, LoginComponent]

@@ -2,3 +2,7 @@
   max-width: 300px !important
 }
 
+md-card{
+  padding: 13px;
+  margin: 5px;
+}

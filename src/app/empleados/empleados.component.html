@@ -30,13 +30,13 @@
                             <div md-card-avatar class="example-header-image">
                             <ng-template #thenTemplate>
                               <span class="status-cardoff"
-                              tooltip="Cuenta de desactivada"
+                              tooltip="Cuenta desactivada"
                               tooltip-position="above"
                               tooltip-delay="0 * 1000"></span>
                             </ng-template>
                             <ng-template #elseTemplate>
                               <span class="status-cardactive"
-                              tooltip="Cuenta de activa"
+                              tooltip="Cuenta activa"
                               tooltip-position="above"
                               tooltip-delay="0 * 1000"></span>
                             </ng-template>
@@ -104,13 +104,13 @@
                             <div *ngIf="empleado.EPRIVILEGIO == 'desempleado'; then thenTemplate; else elseTemplate"></div>
                             <ng-template #thenTemplate>
                               <span class="status-listoff"
-                              tooltip="Cuenta de desactivada"
+                              tooltip="Cuenta desactivada"
                               tooltip-position="above"
                               tooltip-delay="0 * 1000"></span>
                             </ng-template>
                             <ng-template #elseTemplate>
                               <span class="status-listactive"
-                              tooltip="Cuenta de activa"
+                              tooltip="Cuenta activa"
                               tooltip-position="above"
                               tooltip-delay="0 * 1000"></span>
                             </ng-template>

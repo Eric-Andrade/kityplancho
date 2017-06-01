@@ -87,6 +87,7 @@ export class MapaComponent implements OnInit {
     public lat: number;
     public lng: number;
     public zoom: number;
+    public draggable:boolean = false;
     public imageEC: string;
     public imageECola: string;
     public kityplancho: string;
@@ -95,7 +96,11 @@ export class MapaComponent implements OnInit {
     public errorMessage;
     public loading: boolean;
     public message: boolean;
-
+    public coord: Array<any>;
+    public coords: Array<any>;
+    public plat:any;
+    public plng:any;
+    public pIcon: string;
 /*Markers*/
     markers: Mapa[];
     constructor(private _pedidosService: PedidosService,
@@ -120,19 +125,75 @@ export class MapaComponent implements OnInit {
     }
 
   ngOnInit() {
+
     this.getpedidos();
   }
 
   postPedido(){
 
   }
-
+  //pendiente poner array de punteros
   getpedidos(){
      this._pedidosService.getPedidos().subscribe(
         result => {
             this.pedidos = result.PEDIDOS;
-            console.log('Pedidos para el mapa');
-            console.log(this.pedidos);
+            var cont = 0;
+            for(let entry of this.pedidos){
+              var i = cont++;
+              this.coord = this.pedidos[i].COORDENADAS_R.split(',',2);
+              // console.log(' IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' latitud: ' + this.coord[0] + ' longitud: ' + this.coord[1]);
+              this.plat = parseFloat(this.coord[0]);
+              this.plng = parseFloat(this.coord[1]);
+              this.coords = [this.plat, this.plng]
+              this.pedidos[i].LAT = this.plat;
+              this.pedidos[i].LNG = this.plng;
+              // console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' plat: ' + this.plat + ' plng: ' + this.plng );
+              console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' '+ this.coords  + ' '+ this.pedidos[i].PSTATUS)
+              if(this.pedidos[i].PSTATUS == 'en_cola'){
+                  this.pIcon = '/assets/map-markerEnCola.png';
+                    if(this.pedidos[i].PSTATUS == 'en_camino'){
+                      this.pIcon = '/assets/map-markerEncamino.png';
+                    }
+                      if(this.pedidos[i].PSTATUS == 'en_proceso'){
+                        this.pIcon = '/assets/map-markerProcess.png';
+                      }
+                        if(this.pedidos[i].PSTATUS == 'para_entregar'){
+                          this.pIcon = '/assets/map-markerDeliver.png';
+                        }
+              }
+
+              //   switch(this.pedidos[i].PSTATUS) {
+              //    case "en_cola": {
+              //       this.pIcon = '/assets/map-markerEnCola.png';
+              //       break;
+              //    }
+              //    case "en_camino": {
+              //       this.pIcon = '/assets/map-markerEncamino.png';
+              //       break;
+              //    }
+              //    case "en_proceso": {
+              //       this.pIcon = '/assets/map-markerProcess.png';
+              //       break;
+              //    }
+              //    case "para_entregar": {
+              //       this.pIcon = '/assets/map-markerDeliver.png';
+              //       break;
+              //    }
+              //   case "entregado": {
+              //       this.pIcon = '/assets/map-markerComplete.png';
+              //       break;
+              //    }
+              //    case "no_atendido": {
+              //       this.pIcon = '/assets/map-markerDenenged.png';
+              //       break;
+              //    }
+              //    default: {
+              //       console.log('Status invalido');
+              //       break;
+              //    }
+              // }
+            }
+
             if (!this.pedidos ) {
                 console.warn('Error en el servidor...');
             }else{
@@ -162,10 +223,8 @@ export class MapaComponent implements OnInit {
         this.markers.push(newMarker);
     }
 
-
-
-    markerClicked(marker: Mapa, index: number) {
-        console.log(`Marcador clickeado ${marker.name} en index ${index}`);
+    markerClicked(pedido: IPedidos, index: number) {
+        console.log(`Marcador clickeado ${pedido.IDPEDIDO} en index ${index}`);
     }
 
     markerDragEnd(marker: any, $event: any) {

@@ -1,9 +1,9 @@
-import { SharedModule } from '../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { EmpleadosComponent } from './empleados.component';
+import { SharedModule } from '../shared/shared.module';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { RouterModule, Routes } from '@angular/router/';
 import { EmpleadosService } from './empleados.service';

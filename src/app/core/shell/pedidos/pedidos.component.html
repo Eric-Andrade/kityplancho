@@ -18,6 +18,10 @@
           </tr>-->
           <tr>
             <th style="width: 10%"
+                        tooltip="Status del pedido"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000"></th>
+            <th style="width: 10%"
                         tooltip="Identificador de pedido"
                         tooltip-position="above"
                         tooltip-delay="0 * 1000">ID Pedido</th>
@@ -38,60 +42,57 @@
                         tooltip="Fecha de creación del pedido"
                         tooltip-position="above"
                         tooltip-delay="0 * 1000">Fecha</th>
-            <th style="width: 10%"
-                        tooltip="Status del pedido"
-                        tooltip-position="above"
-                        tooltip-delay="0 * 1000">Status</th>
+
           </tr>
         </thead>
 
         <tbody *ngIf="pedidos">
          <tr *ngFor="let pedido of pedidos" (click)="getpedido(pedido.IDPEDIDO)">
-            <td>{{pedido.IDPEDIDO}}</td>
-            <td>{{pedido.CNOMBRE}} {{pedido.CAPELLIDOS}}</td>
-            <td class="enfasis-td">{{pedido.PPAGADO}}</td>
-            <td>{{pedido.PPRECIOTAL | currency:'USD':true}}</td>
-            <!--<td>{{pedido.PFECHA | date: 'short'}}</td>-->
-            <td>{{pedido.PFECHA}}</td>
-            <td>
+           <td>
               <div [ngSwitch]="pedido.PSTATUS">
-                  <div *ngSwitchCase="'cotizando'"><span class="map-marker Cot"
+                  <div *ngSwitchCase="'cotizando'"><span class="statuspedido Cot"
                     tooltip="Cotizando"
                     tooltip-position="above"
                     tooltip-delay="0 * 1000"
                   ></span></div>
-                  <div *ngSwitchCase="'en_cola'"><span class="map-marker EnCola"
+                  <div *ngSwitchCase="'en_cola'"><span class="statuspedido EnCola"
                     tooltip="Pedido en espera a ser aprobado"
                     tooltip-position="above"
                     tooltip-delay="0 * 1000"
                   ></span></div>
-                  <div *ngSwitchCase="'en_camino'"><span class="map-marker Encamino"
+                  <div *ngSwitchCase="'en_camino'"><span class="statuspedido Encamino"
                     tooltip="Pedido aprobado"
                     tooltip-position="above"
                     tooltip-delay="0 * 1000"
                   ></span></div>
-                  <div *ngSwitchCase="'en_proceso'"><span class="map-marker Process"
+                  <div *ngSwitchCase="'en_proceso'"><span class="statuspedido Process"
                     tooltip="Pedido en tratamiento"
                     tooltip-position="above"
                     tooltip-delay="0 * 1000"
                   ></span></div>
-                  <div *ngSwitchCase="'para_entregar'"><span class="map-marker Deliver"
+                  <div *ngSwitchCase="'para_entregar'"><span class="statuspedido Deliver"
                     tooltip="Pedido listo para entregar"
                     tooltip-position="above"
                     tooltip-delay="0 * 1000"
                   ></span></div>
-                  <div *ngSwitchCase="'entregado'"><span class="map-marker Complete"
+                  <div *ngSwitchCase="'entregado'"><span class="statuspedido Complete"
                     tooltip="Pedido entregado a cliente"
                     tooltip-position="above"
                     tooltip-delay="0 * 1000"
                   ></span></div>
-                  <div *ngSwitchCase="'no_atendido'"><span class="map-marker Deneged"
+                  <div *ngSwitchCase="'no_atendido'"><span class="statuspedido Deneged"
                     tooltip="Pedido denegado"
                     tooltip-position="above"
                     tooltip-delay="0 * 1000"
                   ></span></div>
               </div>
             </td>
+            <td>{{pedido.IDPEDIDO}}</td>
+            <td>{{pedido.CNOMBRE}} {{pedido.CAPELLIDOS}}</td>
+            <td class="enfasis-td">{{pedido.PPAGADO}}</td>
+            <td>{{pedido.PPRECIOTAL | currency:'USD':true}}</td>
+            <td>{{pedido.PFECHA | date: 'medium'}}</td>
+            <!--<td>{{pedido.PFECHA }}</td>-->
          </tr>
         </tbody>
         <tfoot>

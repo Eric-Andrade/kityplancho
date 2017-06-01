@@ -17,6 +17,8 @@ export interface IPedidos{
   PDIRECCION_R: string;
   PDIRECCION_E: string;
   COORDENADAS_R: string;
+  LAT?: string;
+  LNG?: string;
   COORDENADAS_E: string;
   IDCLIENTE: number;
 }

@@ -58,17 +58,6 @@ export class ServicioComponent implements OnInit {
     this.getPrendas();
   }
 
-  postServicio(){
-        this.tab1disabled = true
-        this.tab2disabled = false;
-        this.selectedIndex = 1;
-  }
-
-  postPrenda(){
-
-    this.postPrendatoast();
-  }
-
   getPrendas(){
     this._serviciosService.getPrendas().subscribe(
         response => {
@@ -108,8 +97,69 @@ export class ServicioComponent implements OnInit {
                   this.message = true;
               }
           });
+  }
+
+  postServicio(){
+        this._serviciosService.postServicio(this.servicio).subscribe(
+          data =>{
+            this.tab1disabled = true
+            this.tab2disabled = false;
+            this.selectedIndex = 1;
+            this.toastMe();
+          },
+            error =>  {
+                console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+                 this.errorMessage = <any>error;
+                  if(this.errorMessage != null){
+                  this.failpostServicio();
+              }
+            });
+  }
+
+  getlastpedido(){
+        setTimeout(()=>{
+          this._serviciosService.getlastservicio().subscribe(
+          result => {
+              console.log('Último servicio');
+              console.log(result);
+              this.servicio = result.SERVICIO;
+
+              if (!this.servicio.IDSERVICIO) {
+                  console.warn('Error en el servidor...');
+              }else{
+              }
+          },
+          error => {
+              this.errorMessage = <any>error;
+              if (this.errorMessage != null ) {
+                  console.log(`This is the error: ${this.errorMessage}`);
+                  this.message = true;
+                  this.failgetLastServicio();
+              }
+          }
+
+        );
+        },1000);
     }
-   open(dialog: any) {
+
+  postPrenda(){
+    this._serviciosService.postServicio(this.servicio).subscribe(
+          data =>{
+            this.postPrendatoast();
+          },
+            error =>  {
+                console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+                 this.errorMessage = <any>error;
+                  if(this.errorMessage != null){
+                  this.failpostPrenda();
+              }
+            });
+
+  }
+
+
+
+  open(dialog: any) {
     dialog.open();
   }
 
@@ -124,6 +174,18 @@ export class ServicioComponent implements OnInit {
     }
 
   postPrendatoast() {
-      this.toast.toast(`La prenda añadida a ${this.servicio.SERVNOMBRE}`);
+      this.toast.toast(`Prenda añadida a ${this.servicio.SERVNOMBRE}`);
+    }
+
+  failpostServicio(){
+    this.toast.toast(`Ocurrió un problema al intentar crear un nuevo servicio. Asegurate de tener una buena conexión a internet.`);
+  }
+
+  failpostPrenda(){
+    this.toast.toast(`Ocurrió un problema al intentar añadir prendas al servicio ${this.servicio.SERVNOMBRE}.`);
+  }
+
+  failgetLastServicio() {
+      this.toast.toast(`Temporalmente no se puede añadir prendas al servicio.`);
     }
 }

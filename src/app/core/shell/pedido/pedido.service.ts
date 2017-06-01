@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { IPedido, IDetallePedido } from './pedido';
+import { IPedido, IDetallePedidos } from './pedido';
 import { global } from '../../../global';
 
 import 'rxjs/add/operator/map';
@@ -29,6 +29,7 @@ export class PedidoService {
             body.set('IDCLIENTE',pedido.IDCLIENTE.toString());
             console.log('El pedido');
             console.log(pedido);
+
             return this._http.post(this.url + 'postpedido', body, {headers : this.getHeaders()})
                   .map((response:Response)=>{
                     JSON.stringify(response);
@@ -47,13 +48,13 @@ export class PedidoService {
             body.set('COORDENADASE',pedido.COORDENADASE);
             body.set('IDCLIENTE',pedido.IDCLIENTE.toString());
 
-      return this._http.post(this.url + 'postDetallePedido', body, {headers : this.getHeaders()})
-        .map((response:Response)=>{
-        JSON.stringify(response);
-      });
+          return this._http.post(this.url + 'postDetallePedido', body, {headers : this.getHeaders()})
+            .map((response:Response)=>{
+            JSON.stringify(response);
+          });
     }
 
-  postDetallePedido(detallepedido: IDetallePedido){
+  postDetallePedido(detallepedido: IDetallePedidos){
 
        let body = new URLSearchParams();
             body.set('IDSP',detallepedido.IDSP.toString());
@@ -68,7 +69,7 @@ export class PedidoService {
                   });
     }
 
-     putDetallePedido(detallepedido: IDetallePedido){
+     putDetallePedido(detallepedido: IDetallePedidos){
        let body = new URLSearchParams();
             body.set('IDDP',detallepedido.IDDP.toString());
             body.set('CANTIDAD',detallepedido.CANTIDAD.toString());

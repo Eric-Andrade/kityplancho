@@ -44,6 +44,12 @@ export class ServiciosService {
             body.set('SERVNOMBRE',servicio.SERVNOMBRE);
             body.set('SERVACTIVO',servicio.SERVACTIVO);
             body.set('IDSUCURSAL',servicio.IDSUCURSAL.toString());
+
+//****** */
+            return this._http.post(this.url + 'postservicio', body, {headers : this.getHeaders()})
+                  .map((response:Response)=>{
+                    JSON.stringify(response);
+                  });
     }
 
     putServicio(servicio: IServicios){
@@ -53,10 +59,15 @@ export class ServiciosService {
             body.set('SERVACTIVO',servicio.SERVACTIVO);
             body.set('IDSUCURSAL',servicio.IDSUCURSAL.toString());
 
-       return this._http.post(this.url + 'ConfirmarPedido', body, {headers : this.getHeaders()})
-        .map((response:Response)=>{
-        JSON.stringify(response);
-      });
+           return this._http.post(this.url + 'updateservicio', body, {headers : this.getHeaders()})
+                .map((response:Response)=>{
+                JSON.stringify(response);
+              });
+    }
+
+    getlastservicio(){
+      return this._http.get(this.url + 'getlastservicio')
+            .map(res => res.json());
     }
 
     postPrenda(prenda: IPrendas){
@@ -64,6 +75,11 @@ export class ServiciosService {
             body.set('IDPRENDA',prenda.IDPRENDA.toString());
             body.set('PNOMBREUNIDAD',prenda.PNOMBREUNIDAD);
             body.set('PDESCRIPCION',prenda.PDESCRIPCION);
+
+             return this._http.post(this.url + 'postprenda', body, {headers : this.getHeaders()})
+                  .map((response:Response)=>{
+                    JSON.stringify(response);
+                  });
     }
 
     putPrenda(prenda: IPrendas){
@@ -72,10 +88,10 @@ export class ServiciosService {
             body.set('PNOMBREUNIDAD',prenda.PNOMBREUNIDAD);
             body.set('PDESCRIPCION',prenda.PDESCRIPCION);
 
-      return this._http.post(this.url + 'ConfirmarPedido', body, {headers : this.getHeaders()})
-        .map((response:Response)=>{
-        JSON.stringify(response);
-      });
+            return this._http.post(this.url + 'updateprenda', body, {headers : this.getHeaders()})
+              .map((response:Response)=>{
+              JSON.stringify(response);
+            });
     }
 
     private getHeaders() {

@@ -14,16 +14,19 @@ import { DataTablePipe } from '../pipes/data-table-pipe.pipe';
 import { ShellComponent } from './shell/shell.component';
 import { IndexComponent} from './shell/index/index.component';
 import { SharedModule } from 'app/shared/shared.module';
-import { PedidosComponent } from './shell/pedidos/pedidos.component';
 import { MapaComponent } from './shell/mapa/mapa.component';
+import { PedidosComponent } from './shell/pedidos/pedidos.component';
+import { LoginModule } from './shell/login/login.module';
 import { PedidoComponent } from './shell/pedido/pedido.component';
 import { PedidodetalleComponent } from './shell/pedidos/pedidodetalle.component';
+import { AcercaComponent } from './shell/acerca.component';
 
 import { PedidosService } from './shell/pedidos/pedidos.service';
 import { ClientesService } from '../clientes/clientes.service';
 import { EmpleadosService } from '../empleados/empleados.service';
-import { PerfilService } from "app/perfil/perfil.service";
-import { PedidoService } from "app/core/shell/pedido/pedido.service";
+import { PerfilService } from "../perfil/perfil.service";
+import { PedidoService } from "../core/shell/pedido/pedido.service";
+import { LoginService } from '../core/shell/login/login.service';
 
 const routes: Routes = [
   { path: '', loadChildren: './../home/home.module#HomeModule' },
@@ -33,8 +36,10 @@ const routes: Routes = [
   { path: 'servicios', loadChildren: './../servicios/servicios.module#ServiciosModule' },
   { path: 'perfil', loadChildren: './../perfil/perfil.module#PerfilModule' },
   { path: 'sucursales', loadChildren: './../sucursales/sucursales.module#SucursalesModule' },
+  { path: 'sucursales', loadChildren: './../sucursales/sucursales.module#SucursalesModule' },
   { path: 'pedidos', component: PedidosComponent },
   { path: 'pedidos/:id', component: PedidodetalleComponent },
+  { path: 'acerca', component: AcercaComponent },
   { path: '**', loadChildren: './../home/home.module#HomeModule' }
 ];
 
@@ -44,6 +49,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     SharedModule,
+    LoginModule,
     MaterialModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA75BNrlsfPZykHOb0UcQuMcc2fJFR0bxI'
@@ -54,8 +60,8 @@ const routes: Routes = [
       Ng2UploaderModule
 
   ],
-  declarations: [ShellComponent, IndexComponent, PedidosComponent, MapaComponent, PedidoComponent, PedidodetalleComponent, DataTablePipe ],
-  exports: [ShellComponent, SharedModule],
-  providers: [ PedidosService, ClientesService, EmpleadosService, PerfilService, PedidoService ]
+  declarations: [ShellComponent, IndexComponent, PedidosComponent, MapaComponent, PedidoComponent, PedidodetalleComponent, AcercaComponent, DataTablePipe ],
+  exports: [ShellComponent, SharedModule, LoginModule, AgmCoreModule],
+  providers: [ PedidosService, ClientesService, EmpleadosService, PerfilService, PedidoService, LoginService ]
 })
 export class CoreModule { }

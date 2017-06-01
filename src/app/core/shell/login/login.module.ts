@@ -5,9 +5,8 @@ import { MaterialModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { Md2Module } from 'md2';
 import { HttpModule } from '@angular/http';
-import { SharedModule } from '../shared/shared.module';
+import { LoginService } from './login.service';
 
-import { LoginComponent } from './login.component';
 
 const routes: Routes = [
   // { path: '', component: ClientesComponent },
@@ -21,8 +20,8 @@ const routes: Routes = [
       Md2Module.forRoot(),
       FormsModule,
       HttpModule,
-      SharedModule
   ],
-  declarations: [LoginComponent]
+  declarations: [],
+  providers:[ LoginService ]
 })
 export class LoginModule { }

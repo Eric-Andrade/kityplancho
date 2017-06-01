@@ -61,22 +61,24 @@
         >
         </agm-marker>
 
-        <agm-marker *ngFor="let marker of markers; let i = index"
-            (markerClick)="markerClicked(marker, i)"
-            (dragEnd)="markerDragEnd(marker, $event)"
-            [latitude]="marker.lat"
-            [longitude]="marker.lng"
+        <agm-marker *ngFor="let pedido of pedidos; let i = index"
+            (markerClick)="markerClicked(pedido, i)"
+            (dragEnd)="markerDragEnd(pedido, $event)"
+            [latitude]="pedido.LAT"
+            [longitude]="pedido.LNG"
 
-            [markerDraggable]="marker.draggable"
-            [iconUrl]="imageECola"
+            [markerDraggable]="pedido.draggable"
+            [iconUrl]="pIcon"
             [opacity]="1"
               >
 
               <agm-info-window>
-                <p>{{marker.PDIRECCION_E}}</p>
+                <p><span class="kp-text bold">{{pedido.IDPEDIDO}} | {{pedido.PFECHA }}</span></p>
                 <h5>Dirección</h5>
-                <span>{{marker.lat}}</span>
-                <span>{{marker.lng}}</span>
+                <span class="bold">{{pedido.PDIRECCION_E}}</span>
+                <span>{{pedido.PSTATUS}}</span>
+                <span>{{pedido.LAT}}</span>
+                <span>{{pedido.LNG}}</span>
               </agm-info-window>
         </agm-marker>
 

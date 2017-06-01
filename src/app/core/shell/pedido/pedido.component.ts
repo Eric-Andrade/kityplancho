@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PedidoService } from "./pedido.service";
-import { IPedido, IDetallePedido, ISP } from "./pedido";
+import { IPedido, IDetallePedidos, ISP } from "./pedido";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ServiciosService } from '../../../servicios/servicios.service';
 import { Servicios } from '../../../servicios/servicios';
@@ -29,7 +29,7 @@ export class PedidoComponent implements OnInit {
     public clientes: Clientes[];
     public errorMessage;
     public pedido: IPedido;
-    public detallepedido: IDetallePedido;
+    public detallepedido: IDetallePedidos;
     public sp: ISP;
     public _search: string = '';
     public tab1disabled: boolean;
@@ -283,11 +283,11 @@ export class PedidoComponent implements OnInit {
     }
 
   failpostPedido() {
-      this.toast.toast(`Ocurrió un problema, al intentar crear un nuevo pedido. Recarga la página por favor`);
+      this.toast.toast(`Ocurrió un problema al intentar crear un nuevo pedido. Recarga la página por favor`);
     }
 
   failpostServicio() {
-      this.toast.toast(`Ocurrió un problema, al intentar añadir el servicio al pedido. Por favor ve a detalles del pedido`);
+      this.toast.toast(`Ocurrió un problemaal intentar añadir el servicio al pedido. Por favor ve a detalles del pedido`);
     }
 
   failgetLastPedido() {

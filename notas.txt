@@ -10,7 +10,7 @@ Dif0lT.Pa55
 
 itecor2016@hotmail.com
 Itecor2017
-
+git push origin master
 git remote add origin https://itecor2016.visualstudio.com/_git/Kityplancho_web
 git push -u origin --all
 

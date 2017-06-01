@@ -41,12 +41,13 @@
                         <p>A través del mapa se puede tanto localizar nuevos pedidos como crearlos ya sea en la aplicación web ó móvil, además de ello
                           también permite visualizar en si la última ubicación registrada por los empleados encargados de recolectar y entregar la ropa.
                         </p>
-                        <h2 class="kp-helph2">Uso de aplicación móvil</h2>
-                        <p>Visualmente se puede observar la representación de los pedidos y su status actual dentro el mapa, así como su ubicación e información propia
 
-                        </p>
                         <h2 class="kp-helph2">Uso de aplicación web</h2>
                         <p></p>
+
+                        <h2 class="kp-helph2">Uso de aplicación móvil</h2>
+                        <p>Visualmente se puede observar la representación de los pedidos y su status actual dentro el mapa, así como su ubicación e información propia</p>
+
                       </md-tab>
                     </md-tab-group>
                 </md-card-content>
@@ -154,7 +155,7 @@
                         </ng-template>
                         <h2 class="kp-helph2">Registrar nuevos servicios</h2>
                             <p>El registro de nuevos servicios es una función posible unicamente desde la aplicación web. Para entrar a ella
-                              basta con buscar en la barra lateral <em class="kp-text">Servicios</em> > <em class="kp-text">Nuevo servicio</em> y aquí
+                              basta con buscar en la barra lateral <em class="kp-text">Servicios</em> » <em class="kp-text">Nuevo servicio</em> y aquí
                               llenar el formulario pertinente.
                               <br>
                             </p>
@@ -173,60 +174,16 @@
                         <ng-template md-tab-label>
                           Dar de baja un servicio
                         </ng-template>
-                        <h2 class="kp-helph2">Terrible sushi restaurants</h2>
-                        <p>Angular Material tabs organize content into separate views where only one view can be visible at a time. Each tab's label is shown in the tab header and the active tab's label is designated with the animated ink bar. When the list of tab labels exceeds the width of the header, pagination controls appear to let the user scroll left and right across the labels.
-                        The active tab may be set using the selectedIndex input or when the user selects one of the tab labels in the header.</p>
+                        <h2 class="kp-helph2">Suspensión de servicios</h2>
+                        <p>En caso de que la sucursal decida suspender un servicio ofrecido por la misma, se podrá realizar la suspensión a través
+                          de la sección destinada a los servicios ubicada en la ñeñe. Realizar este hecho únicamente es posible con los servicios
+                          anteriormente registrados. Para acceder a la función que determina la baja del servicio se tendrá que ir a detalles del servicio deseado y será a través de aquí donde se podrá determinar suspender o reactivar un servicio</p>
                       </md-tab>
 
                     </md-tab-group>
                 </md-card-content>
             </md-card>
           </div>
-
-         <div class="datarepite"> <!--Administración de empleados-->
-            <md-card>
-                <!--<md-card-header>
-                    <p></p>
-                </md-card-header>-->
-            <br>
-                <md-card-title>Administración de empleados</md-card-title>
-                <!--<md-chip-list>
-                  <md-chip color="accent" selected="true" align="end">Pedidos</md-chip>
-                </md-chip-list>-->
-                <md-card-content>
-                  <md-tab-group color="accent">
-                      <md-tab>
-                        <ng-template md-tab-label>
-                          Nuevos empleados
-                        </ng-template>
-                        <h2 class="kp-helph2">Registrar nuevos empleados</h2>
-                            <p>
-                            Angular Material tabs organize content into separate views where only one view can be visible at a time. Each tab's label is shown in the tab header and the active tab's label is designated with the animated ink bar. When the list of tab labels exceeds the width of the header, pagination controls appear to let the user scroll left and right across the labels.
-                            The active tab may be set using the selectedIndex input or when the user selects one of the tab labels in the header.
-                            </p>
-                            <p>Angular Material tabs organize content into separate views where only one view can be visible at a time. Each tab's label is shown in the tab header and the active tab's label is designated with the animated ink bar. When the list of tab labels exceeds the width of the header, pagination controls appear to let the user scroll left and right across the labels.
-                            The active tab may be set using the selectedIndex input or when the user selects one of the tab labels in the header.</p>
-                      </md-tab>
-                      <md-tab>
-                        <ng-template md-tab-label>
-                          Modificar datos de empleados
-                        </ng-template>
-                        <h2 class="kp-helph2">Modificar información de empleados</h2>
-                        <p>Angular Material tabs organize content into separate views where only one view can be visible at a time. Each tab's label is shown in the tab header and the active tab's label is designated with the animated ink bar. When the list of tab labels exceeds the width of the header, pagination controls appear to let the user scroll left and right across the labels.
-                        The active tab may be set using the selectedIndex input or when the user selects one of the tab labels in the header.</p>
-                      </md-tab>
-                      <md-tab>
-                        <ng-template md-tab-label>
-                          Dar de baja cuenta de empleado
-                        </ng-template>
-                        <h2 class="kp-helph2">Terrible sushi restaurants</h2>
-                        <p>Angular Material tabs organize content into separate views where only one view can be visible at a time. Each tab's label is shown in the tab header and the active tab's label is designated with the animated ink bar. When the list of tab labels exceeds the width of the header, pagination controls appear to let the user scroll left and right across the labels.
-                        The active tab may be set using the selectedIndex input or when the user selects one of the tab labels in the header.</p>
-                      </md-tab>
-                    </md-tab-group>
-                </md-card-content>
-            </md-card>
-         </div>
 
          <div class="datarepite"> <!--Administración de clientes-->
             <md-card>
@@ -254,14 +211,62 @@
                         </ng-template>
                         <h2 class="kp-helph2">Modificar información de clientes</h2>
                         <p>En caso de requerir algún cambio de la información otorgada a través de la aplicación móvil, el cliente puede comunicarse a los teléfonos otorgados por KityPlancho de este modo y con un empleado de privilegio de administrador podrá manipular esta información.</p>
+                        <p>Para modificar la información respectiva de cada cliente es necesario ingresar a la sección donde se encuentra el listado de clientes, misma que se encuentra en el desplegable izquierdo.
+                          Una vez estando en esta sección ya sea dando clic en la tarjeta del cliente a modificar o en dando clic en la lista eligiendo al cliente deseado, se dirigirá a la sección que adquiere toda
+                          la información del cliente y es aquí donde se podrán alterar los datos del cliente elegido. </p>
                       </md-tab>
                        <md-tab>
                         <ng-template md-tab-label>
                           Dar de baja cuenta de cliente
                         </ng-template>
-                        <h2 class="kp-helph2">Terrible sushi restaurants</h2>
-                        <p>Angular Material tabs organize content into separate views where only one view can be visible at a time. Each tab's label is shown in the tab header and the active tab's label is designated with the animated ink bar. When the list of tab labels exceeds the width of the header, pagination controls appear to let the user scroll left and right across the labels.
-                        The active tab may be set using the selectedIndex input or when the user selects one of the tab labels in the header.</p>
+                        <h2 class="kp-helph2">Suspender cuenta de cliente</h2>
+                        <p>Cuando un cliente hace la petición de dar de baja la cuenta con la que se ingresa a la aplicación móvil ya sea por extravío, siniestro total o parcial del teléfono o simplemente desea ya no continuar
+                          como cliente de KityPlancho, puede esta darse de baja comunicándose a la sucursal para realizar esta alteración de la cuenta. La forma de realizarla es accediendo a los datos del cliente desde la sección
+                          clientes, una vez dentro del cliente electo se puede apreciar un botón capaz de dar de baja la cuenta. Una vez hecho esto inmediatamente el cliente ya no podrá acceder a la aplicación movil, los datos como
+                          información de la cuenta, historial de pedidos etc. seguirán guardados y por tanto podrá realizar la petición de una reactivación en el momento que lo desee.</p>
+                      </md-tab>
+                    </md-tab-group>
+                </md-card-content>
+            </md-card>
+         </div>
+
+         <div class="datarepite"> <!--Administración de empleados-->
+            <md-card>
+                <!--<md-card-header>
+                    <p></p>
+                </md-card-header>-->
+            <br>
+                <md-card-title>Administración de empleados</md-card-title>
+                <!--<md-chip-list>
+                  <md-chip color="accent" selected="true" align="end">Pedidos</md-chip>
+                </md-chip-list>-->
+                <md-card-content>
+                  <md-tab-group color="accent">
+                      <md-tab>
+                        <ng-template md-tab-label>
+                          Nuevos empleados
+                        </ng-template>
+                        <h2 class="kp-helph2">Registrar nuevos empleados</h2>
+                            <p>El registro de empleados es importante para mantener un control del personal que forma o ha formado parte de KityPlancho así como referencias en el momento o futuras. Es indispone mantener los datos completos debido a que la necesidad de ellos es de suma importancia. Para registrar un nuevo empleado es necesario ir a la ñeñe izquierda en la sección de
+                              clientes y una vez estando ahí basta con imprimir el botón de añadir empleado para desplegar el globo que contiene el formulario. El formulario precisa la información que se requiere y la misma que puede ser omitida. Una vez llenando el formulario es importante también adjuntar los archivos adjuntos necesarios, será imposible acceder a esta última sección
+                              de adjuntos hasta que el primer formulario sea llenado. La fecha de contratación inicial es el día del registro, esta puede ser modificada una vez terminado el registro.</p>
+                      </md-tab>
+                      <md-tab>
+                        <ng-template md-tab-label>
+                          Modificar datos de empleados
+                        </ng-template>
+                        <h2 class="kp-helph2">Modificar información de empleados</h2>
+                        <p>En el listado de empleados dando clic en alguna de las tarjetas de empleado o ya sea en la tabla que contiene misma información, se podrá acceder a los detalles del empleado y su modificación será posible siempre y cuando se cumplan con los datos marcados como obligatorios y que el mínimo de información sea obtenida.</p>
+                      </md-tab>
+                      <md-tab>
+                        <ng-template md-tab-label>
+                          Dar de baja cuenta de empleado
+                        </ng-template>
+                        <h2 class="kp-helph2">Suspender cuenta de empleado</h2>
+                        <p>El dar de baja un empleado es similar al de dar de baja un cliente, dicho esto, es posible dar de baja un cliente
+                          accediendo desde la barra lateral en la opción de empleados y seleccionando el empleado deseado a dar de baja se aprecia el botón
+                          que realiza la alteración de la cuenta del empleado. Del mismo modo los datos de este seguirán dentro del sistema por tanto tampoco
+                          hay riesgo de pérdida de información y en el momento que se desee se podrá acceder a esta de manera normal.</p>
                       </md-tab>
                     </md-tab-group>
                 </md-card-content>

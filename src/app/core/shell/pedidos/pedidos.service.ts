@@ -31,8 +31,13 @@ export class PedidosService {
           .map(res => res.json());
     }
 
-    getDetallePedido(id: string) {
+    getDetallePedidos(id: string) {
         return this._http.get(this.url + 'getdetallepedidos?id='+id)
+          .map(res => res.json());
+    }
+
+    getDetallePedido(id: string) {
+        return this._http.get(this.url + 'getdetallepedido?id='+id)
           .map(res => res.json());
     }
 

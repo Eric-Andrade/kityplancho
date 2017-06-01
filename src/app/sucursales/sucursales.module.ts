@@ -1,3 +1,5 @@
+import { SucursaldetalleComponent } from './sucursaldetalle.component';
+import { AgmCoreModule } from '@agm/core';
 import { SharedModule } from '../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,6 +10,8 @@ import { SucursalesService } from "./sucursales.service";
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { Md2Module } from 'md2';
+import { SucursalComponent } from './sucursal/sucursal.component';
+
 
 const routes: Routes = [
   { path: '', component: SucursalesComponent }
@@ -21,9 +25,10 @@ const routes: Routes = [
   Md2Module.forRoot(),
   FormsModule,
   HttpModule,
-  SharedModule
+  SharedModule,
+  AgmCoreModule
   ],
-  declarations: [SucursalesComponent],
+  declarations: [SucursalesComponent, SucursalComponent, SucursaldetalleComponent],
   providers: [ SucursalesService],
 })
 export class SucursalesModule { }
