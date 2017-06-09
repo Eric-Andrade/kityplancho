@@ -19,7 +19,7 @@ export class ServiciosComponent implements OnInit {
     tooltip: string = 'Tooltip!';
     position: string = 'below';
     delay: number = 0;
-
+    userFilter: any = { SERVNOMBRE: '', PNOMBREUNIDAD: ''};
   constructor(private _serviciosService: ServiciosService,
               private _route: ActivatedRoute,
               private _router: Router,
@@ -54,5 +54,17 @@ export class ServiciosComponent implements OnInit {
 failgetServicios() {
       this.toast.toast(`Error al intentar obtener la lista de servicios, intenta recargar la página por favor`);
     }
+
+  getsp(idsp){
+      this._router.navigate(['servicios',idsp]);
+  }
+
+  getprendas(idprenda){
+      this._router.navigate(['servicios/prenda',idprenda]);
+  }
+
+  getservicio(idservicio){
+    this._router.navigate(['servicios/servicio',idservicio]);
+  }
 }
 

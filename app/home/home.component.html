@@ -1,0 +1,117 @@
+<div class="welcomedesign">
+    <div class="welcome">
+        <h1>KityPlancho</h1>
+        <p class="slogan">Consentimos a tu ropa para que ella te consienta a ti</p>
+        <div class="divcenter">
+         <kp-login></kp-login>
+          <!--<a href="https://play.google.com/" class="textwelcome">
+            <img src="assets/googleplay.png" class="img-responsive img-kpplaystore" alt="Descarga KityPlancho en Google Play" border="0">
+          </a>-->
+        </div>
+    </div>
+    <!--<h1 class="textwelcome">Bienvenido</h1>-->
+</div>
+
+<!--<div class="">
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+  <div class="bottom"></div>
+</div>-->
+
+<section id="about" class="about section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="kpinfo text-center">
+                    <h2 class="kp-text kp-text-h2 welcome">Lavandería, planchaduría y más a las puertas de tu casa...</h2>
+                    <h4 class="kp-text kp-text-h4">Vamos por tu ropa hasta donde te encuentres.</h4>
+                </div>
+                <span>KityPlancho Durango</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="kpservicios">
+    <!--start services-->
+	<div class="services" id="services">
+		<div class="container-fluid">
+			<div class="row">
+				<div *ngIf="servicios">
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center" *ngFor="let servicio of servicios">
+                <img src="assets/kitypink.png" class="img-resposive img-kitypink" alt="KityPlancho Servicio">
+            <h5 class="kp-text">{{servicio.NOMBRE}}</h5>
+          </div>
+         </div>
+			</div>
+		</div>
+	 </div>
+	 <!--end services-->
+</section>
+
+<section id="contant-1">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="block-left">
+                    <div class="contant-1-text-area">
+                        <div class="contant-1-head">
+                            <h1 class="h1shadow">KityPlancho App</h1>
+                        </div>
+                        <div class="contant-1-text">
+                            <p>Encuentra y disfruta la App gratuita de KityPlancho, descargala ya y permitenos ofrecerte nuestros servicios rápido, seguro y fácil.<br></p>
+                            <br>
+                            <div class="divcenter" style="width: 140px;">
+                              <a href="https://play.google.com/" class="textwelcome">
+                                <img src="assets/googleplay.png" class="img-responsive imgsticky" alt="Descarga KityPlancho en Google Play" border="0">
+                              </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- .col-md-6 close -->
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="block-right">
+                    <div class="block-right-img">
+                        <img src="assets/mobile-phon-1.png" class="img-responsive divcenter" alt="KityPlancho Samsung s7">
+                    </div>
+                </div>
+            </div><!-- .col-md-6 close -->
+        </div><!-- .row close -->
+    </div><!-- .container close -->
+</section><!-- #contant-1 close -->
+
+<section class="watch bg-img">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>¿Cómo </span>
+                <!--<a class="popup-youtube btn" href="https://www.youtube.com/watch?v=4KRHIbsl8BE">
+                <span class="fa fa-play"></span></a>-->
+                <span>funcionamos?</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <p> ©KityPlancho Durango <span class="fa fa-heart"></span> | <a href="http://itecordurango.com/itecordurango/WebPages/WelcomeItecor-es.aspx" target="_blank"><span class="kp-text">©Itecor Durango Mx.</span></a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+

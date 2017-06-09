@@ -1,0 +1,86 @@
+    <md2-dialog #pedidoDialog>
+        <h5>Nuevo pedido :)</h5>
+        <form #formPedido="ngForm" (ngSubmit)="postPedido()">
+
+        <md-input-container dividerColor="accent">
+        <input mdInput #nameClient minlength="5" maxlength="45" name="nameClient" autofocus="autofocus" placeholder="Nombre de cliente" required autocomplete="off">
+        <md-hint align="end">{{nameClient.value.length}}/45</md-hint>
+        </md-input-container>
+
+        <md-input-container class="example-full-width form-space"  dividerColor="accent">
+        <input mdInput #directionE maxlength="100" placeholder="Dirección a entregar" required autocomplete="off">
+        <md-hint align="end">{{directionE.value.length}}/100</md-hint>
+        </md-input-container>
+
+        <div style="margin:0 auto; text-align: center;">
+            <md-radio-group dividerColor="accent">
+              <md-radio-button class="form-radiobutton" checked="checked" value="contraentrega"
+                        tooltip="¿El pedido se pagará después de la entrega?"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">Pagado a contraentrega</md-radio-button>
+              <md-radio-button class="form-radiobutton" value="pagado"
+                        tooltip="[-10%] Por pagar el pedido al entregar la ropa"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">Pagado al entregar</md-radio-button>
+            </md-radio-group>
+        </div>
+
+        <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formPedido.form.valid">{{opcionpedido}}</button>
+          </form>
+
+
+        <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
+    </md2-dialog>
+<!--
+    <button class="new-request" color="accent" md-icon-button (click)="pedidodialog.open()">
+        <md-icon >add</md-icon>
+    </button>-->
+
+
+
+
+
+   <div class="kpgoogle-maps">
+    <agm-map
+        (mapClick)="pedidoDialog.open(); mapClicked($event)"
+        [latitude]="lat"
+        [longitude]="lng"
+        [zoom]="zoom"
+        [mapDraggable]="true"
+        [disableDoubleClickZoom]="false"
+        [disableDefaultUI]="false"
+        [zoomControl]="true"
+        [streetViewControl]="false"
+        [styles]="customStyle"
+        >
+
+        <agm-marker
+        *ngIf="lat != null && lng != null"
+        [latitude]="lat" [longitude]="lng"
+        [iconUrl]="kityplancho"
+        >
+        </agm-marker>
+
+        <agm-marker *ngFor="let pedido of pedidos; let i = index"
+            (markerClick)="markerClicked(pedido, i)"
+            (dragEnd)="markerDragEnd(pedido, $event)"
+            [latitude]="pedido.LAT"
+            [longitude]="pedido.LNG"
+
+            [markerDraggable]="pedido.draggable"
+            [iconUrl]="pIcon"
+            [opacity]="1"
+              >
+
+              <agm-info-window>
+                <p><span class="kp-text bold">{{pedido.IDPEDIDO}} | {{pedido.PFECHA }}</span></p>
+                <h5>Dirección</h5>
+                <span class="bold">{{pedido.PDIRECCION_E}}</span>
+                <span>{{pedido.PSTATUS}}</span>
+                <span>{{pedido.LAT}}</span>
+                <span>{{pedido.LNG}}</span>
+              </agm-info-window>
+        </agm-marker>
+
+    </agm-map>
+</div>

@@ -56,6 +56,7 @@ export class PedidodetalleComponent implements OnInit {
     this.getPedido();
     this.getDetallePedido();
     this.getClientes();
+    this.getServicios();
   }
 
   getPedido(){
@@ -64,20 +65,23 @@ export class PedidodetalleComponent implements OnInit {
         this._pedidosService.getPedido(id).subscribe(
           response => {
             this.pedido = response.PEDIDO;
+             console.log('Pedido b');
+            console.log(this.pedido)
             this.loading = false;
-
             this.pedido = {
                   IDPEDIDO:this.pedido[0].IDPEDIDO,
+                  PPRECIOTOTAL:this.pedido[0].PPRECIOTOTAL,
                   PSTATUS:`${this.pedido[0].PSTATUS}`,
-                  PDIRECCIONR:`${this.pedido[0].PDIRECCION_R}`,
-                  PDIRECCIONE:`${this.pedido[0].PDIRECCION_E}`,
-                  PPRECIOTOTAL:this.pedido[0].PPRECIOTOTAL.valueOf(),
                   PPAGADO:`${this.pedido[0].PPAGADO}`,
+                  PFECHA:`${this.pedido[0].PFECHA}`,
+                  PDIRECCIONR:`${this.pedido[0].PDIRECCION_R}`,
                   COORDENADASR: this.pedido[0].COORDENADAS_R,
+                  PDIRECCIONE:`${this.pedido[0].PDIRECCION_E}`,
                   COORDENADASE: this.pedido[0].COORDENADAS_E,
                   IDCLIENTE: this.pedido[0].IDCLIENTE,
                       };
-
+            console.log('Pedido');
+            console.log(this.pedido)
             if(!this.pedido){
                     this._router.navigate(['/pedidos']);
                 }
@@ -100,7 +104,6 @@ export class PedidodetalleComponent implements OnInit {
         this._pedidosService.getDetallePedidos(id).subscribe(
           response => {
             this.detallepedidos = response.DPS;
-            console.log(this.detallepedidos)
             this.loading = false;
                 if(!this.detallepedidos){
                     this._router.navigate(['/pedidos']);
@@ -167,14 +170,15 @@ export class PedidodetalleComponent implements OnInit {
     getdp(id){
        this._pedidosService.getDetallePedido(id).subscribe(
           response => {
-            this.detallepedido = response.DP;
-            console.log(this.detallepedido)
+              this.detallepedido = response.DP;
+              console.log('Datalles pedido');
+              console.log(this.detallepedido)
             this.detallepedido = {
               IDDP:this.detallepedido[0].IDDP,
-              DP_CANTIDADPRENDAS:this.detallepedido[0].DP_CANTIDADPRENDAS,
+              DPCANTIDADPRENDAS:this.detallepedido[0].DPCANTIDADPRENDAS,
               IDSP:this.detallepedido[0].IDSP,
               IDPEDIDO:this.detallepedido[0].IDPEDIDO,
-              DP_COSTOPEDIDO:this.detallepedido[0].DP_COSTOPEDIDO,
+              DPCOSTOPEDIDO:this.detallepedido[0].DPCOSTOPEDIDO,
             }
             this.loading = false;
                 if(!this.detallepedido){
@@ -192,11 +196,37 @@ export class PedidodetalleComponent implements OnInit {
   }
 
   public putPedido(){
+        if(!this.pedido) return;
+        console.log('Put pedido');
+        console.log(this.pedido);
+              this._pedidosService.putPedido(this.pedido).subscribe(
+              data => {
+                    this.toastMe();
+                    //console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
 
+              }, error => {
+                  console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
+                    this.errorMessage = <any>error;
+                    if(this.errorMessage != null){
+                    this.failinfoputPedido();
+                }
+              })
   }
 
   public putServicio(){
+        if(!this.detallepedido) return;
+        this._pedidosService.putDetallePedido(this.detallepedido).subscribe(
+        data => {
+            this.toastMe();
+            //console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
 
+        }, error => {
+          console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
+            this.errorMessage = <any>error;
+            if(this.errorMessage != null){
+            this.failinfoputDetallePedido();
+        }
+        })
   }
 
   public regresar(){
@@ -217,6 +247,14 @@ export class PedidodetalleComponent implements OnInit {
 
     failinfogetCliente() {
       this.toast.toast(`Error al encontrar la información de este pedido, intenta nuevamente por favor`);
+    }
+
+    failinfoputPedido(){
+      this.toast.toast(`Ocurrió un error al intentar actualizar los datos del pedido ${this.pedido.IDPEDIDO}`);
+    }
+
+    failinfoputDetallePedido(){
+      this.toast.toast(`Ocurrió un error al intentar actualizar los servicios del pedido ${this.pedido.IDPEDIDO}`);
     }
 
 }

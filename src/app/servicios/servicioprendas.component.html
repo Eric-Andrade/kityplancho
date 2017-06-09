@@ -1,0 +1,86 @@
+<div class="loading" *ngIf="loading">
+  <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
+    <!--<md-spinner color="accent"></md-spinner>-->
+    <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+</div>
+
+<div *ngIf="servicio">
+  <div class="container-fluid">
+    <div class="row">
+      <br>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h2 class="kp-text text-center">Detalles de {{servicio.SERVNOMBRE}}</h2>
+               <div style="width:130px; margin:0 auto;"><button md-button color="accent" (click)="regresar()"><md-icon >keyboard_arrow_left</md-icon>Servicios</button></div>
+          <div class="datacontainer">
+            <div class="datarepite">
+            <md-card style="width:500px;">
+                  <form #formservicio="ngForm" (ngSubmit)="putServicio()">
+                      <md-card-header>
+                      <div md-card-avatar class="example-header-image mat-card-avatar text-center"></div>
+                      <br>
+                      </md-card-header>
+
+                        <md-input-container dividerColor="accent" class="example-full-width form-space">
+                        <input type="number" mdInput #id name="IDSERVICIO" #IDSERVICIO="ngModel" [(ngModel)]="servicio.IDSERVICIO" placeholder="ID de servicio" [disabled]="true">
+                        </md-input-container>
+
+                        <md-input-container dividerColor="accent">
+                          <input mdInput #serviciosnombre #SERVNOMBRE="ngModel" [(ngModel)]="servicio.SERVNOMBRE" minlenght="5" maxlength="45" name="SERVNOMBRE" placeholder="Nombre de servicio" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
+                          <md-hint align="end">{{serviciosnombre.value.length}}/45</md-hint>
+                        </md-input-container>
+
+                        <!--<md-input-container dividerColor="accent" class="example-full-width form-space">
+                          <input mdInput #descripcion #SERVACTIVO="ngModel" [(ngModel)]="servicio.SERVACTIVO" maxlength="45" name="SERVACTIVO" placeholder="Status de servicio" autocomplete="off">
+                          <md-hint align="end">{{descripcion.value.length}}/45</md-hint>
+                        </md-input-container>-->
+
+                        <div style="margin:0 auto; text-align: center;">
+                          <md-radio-group dividerColor="accent" #SERVACTIVO="ngModel" [(ngModel)]="servicio.SERVACTIVO" name="SERVACTIVO">
+                          <md-radio-button class="form-radiobutton" value="activo"
+                                  tooltip="Activar {{servicio.SERVNOMBRE}}"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000">Activar</md-radio-button>
+                          <md-radio-button class="form-radiobutton" value="desactivado"
+                                  tooltip="Desactivar {{servicio.SERVNOMBRE}}"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000">Desactivar</md-radio-button>
+                          </md-radio-group>
+                        </div>
+
+
+                        <md2-select name="IDSUCURSAL"
+                                  class="form-select"
+                                  [(ngModel)]="servicio.IDSUCURSAL"
+                                  #IDSUCURSAL="ngModel"
+                                  placeholder="Sucursal a la cual está disponible el servicio"
+                                  [required]="isRequired"
+                                  [disabled]="isDisabled"
+                                  autofocus="autofocus">
+                          <!--<md2-select-header>
+                          <input name="search" type="text" placeholder="Buscar..." />
+                          </md2-select-header>-->
+
+                        <md2-option *ngFor="let s of sucursales" [value]="s.IDSUCURSAL"><strong>{{s.IDSUCURSAL}}</strong> | {{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
+                        </md2-option>
+                      </md2-select>
+
+                        <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formservicio.form.valid">Actualizar datos de {{servicio.SERVNOMBRE}}</button>
+                  </form>
+                  <br>
+                  <p class="kp-text bold">Prendas pertenecientes a {{servicio.SERVNOMBRE}}</p>
+
+                    <!--<md-chip-list class="mat-chip-list-stacked">
+                       <md-chip *ngFor="let dp of servicioprendas"
+                          selected="true"
+                          color="primary"
+                          >
+                       IDDP: {{dp.IDDP}} -- IDSP: {{dp.IDSP}} prendas {{dp.DP_CANTIDADPRENDAS}} | total {{dp.DP_COSTOPEDIDO | currency:'USD':true}}
+                      </md-chip>
+                    </md-chip-list> -->
+            </md-card>
+           </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

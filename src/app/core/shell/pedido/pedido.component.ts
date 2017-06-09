@@ -8,8 +8,8 @@ import { SucursalesService } from '../../../sucursales/sucursales.service';
 import { Sucursales } from '../../../sucursales/sucursales';
 import { ClientesService } from '../../../clientes/clientes.service';
 import { Clientes } from '../../../clientes/clientes';
-
 import { Md2Toast } from 'md2';
+
 
 @Component({
   selector: 'kp-pedido',
@@ -43,13 +43,17 @@ export class PedidoComponent implements OnInit {
     public autoTicks = true;
     public disabled = false;
     public invert = false;
-    public max = 20;
+    public max = 50;
     public min = 0;
     public showTicks = true;
     public step = 1;
     public thumbLabel = true;
     public value = 0;
     public vertical = false;
+    public lat: number;
+    public lng: number;
+    public zoom: number = 11;
+    public kityplancho:string;
 
     constructor(private _pedidoService: PedidoService,
                 private _serviciosService: ServiciosService,
@@ -71,6 +75,9 @@ export class PedidoComponent implements OnInit {
         this.tab2disabled = true;
         this.tab3disabled = true;
         this.next = true;
+        this.kityplancho = '/assets/kityplancho-marker.png';
+         this.lat = 24.02780775285771;
+         this.lng = -104.65332895517349;
   }
 
   ngOnInit() {
@@ -178,13 +185,13 @@ export class PedidoComponent implements OnInit {
               console.log('Último pedido');
               console.log(result);
               this.detallepedido = result.PEDIDO;
-              this.detallepedido = {
-                IDPEDIDO:this.detallepedido[0].IDPEDIDO,
-                IDDP:this.detallepedido[0].IDDP,
-                CANTIDAD:this.detallepedido[0].CANTIDAD,
-                IDSP:this.detallepedido[0].IDSP,
-                COSTO:this.detallepedido[0].COSTO
-              }
+                this.detallepedido = {
+                  IDPEDIDO:this.detallepedido[0].IDPEDIDO,
+                  IDDP:this.detallepedido[0].IDDP,
+                  CANTIDAD:this.detallepedido[0].CANTIDAD,
+                  IDSP:this.detallepedido[0].IDSP,
+                  COSTO:this.detallepedido[0].COSTO
+                }
               if (!this.detallepedido.IDPEDIDO) {
                   console.warn('Error en el servidor...');
               }else{
@@ -207,50 +214,56 @@ export class PedidoComponent implements OnInit {
     postPedido(){
                 this.getlastpedido();
 
-                // this.tab1disabled = true;
-                // this.tab2disabled = false;
-                // this.tab3disabled = true;
-                // this.selectedIndex = 1;
-
-                // console.log(`Detalle pedido before:`)
-                // console.log(this.detallepedido);
-        this._pedidoService.postPedido(this.pedido).subscribe(
-            data => {
-                this.toastMe();
-                this.tab1disabled = true
+                this.tab1disabled = true;
                 this.tab2disabled = false;
                 this.tab3disabled = true;
                 this.selectedIndex = 1;
-            },
+                console.log(`Detalle pedido before:`)
+                console.log(this.detallepedido);
+        // this._pedidoService.postPedido(this.pedido).subscribe(
+        //     data => {
+        //         this.toastMe();
+        //         this.tab1disabled = true
+        //         this.tab2disabled = false;
+        //         this.tab3disabled = true;
+        //         this.selectedIndex = 1;
+        //     },
 
-            error =>  {
-                console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
-                 this.errorMessage = <any>error;
-                  if(this.errorMessage != null){
-                  this.failpostPedido();
-              }
-            });
+        //     error =>  {
+        //         console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+        //          this.errorMessage = <any>error;
+        //           if(this.errorMessage != null){
+        //           this.failpostPedido();
+        //       }
+        //     });
     }
 
     postServicio(){
       this.detallepedido.COSTO = this.items[this.detallepedido.IDSP - 1].SPCOSTO * this.detallepedido.CANTIDAD;
-        this._pedidoService.postDetallePedido(this.detallepedido).subscribe(
-            data => {
-                this.tab1disabled = true;
-                this.tab2disabled = false;
-                this.tab3disabled = false;
-                this.next = false;
-                this.postServiciotoast();
 
-            },
+        this.tab1disabled = true;
+        this.tab2disabled = false;
+        this.tab3disabled = false;
+        this.next = false;
+        this.postServiciotoast();
 
-            error =>  {
-                console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
-                 this.errorMessage = <any>error;
-                  if(this.errorMessage != null){
-                  this.failpostServicio();
-              }
-            });
+        // this._pedidoService.postDetallePedido(this.detallepedido).subscribe(
+        //     data => {
+        //         this.tab1disabled = true;
+        //         this.tab2disabled = false;
+        //         this.tab3disabled = false;
+        //         this.next = false;
+        //         this.postServiciotoast();
+
+        //     },
+
+        //     error =>  {
+        //         console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+        //          this.errorMessage = <any>error;
+        //           if(this.errorMessage != null){
+        //           this.failpostServicio();
+        //       }
+        //     });
     }
 
   nuevoclientes(dialog){
@@ -280,7 +293,7 @@ export class PedidoComponent implements OnInit {
 
   toastMe() {
       this.toast.toast(`Añade ahora los servicios para el pedido`);
-    }
+  }
 
   failpostPedido() {
       this.toast.toast(`Ocurrió un problema al intentar crear un nuevo pedido. Recarga la página por favor`);
@@ -291,7 +304,7 @@ export class PedidoComponent implements OnInit {
     }
 
   failgetLastPedido() {
-      this.toast.toast(`Temporalmente no se puede continuar con el pedido.`);
+      this.toast.toast(`Temporalmente no se puede continuar con el pedido`);
     }
 
   postServiciotoast() {

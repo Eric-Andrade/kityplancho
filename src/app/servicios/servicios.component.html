@@ -1,15 +1,16 @@
-<div class="container-fluid">
+<div class="container">
  <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
            <br>
         <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="align-items: center; margin: 0 auto; width: 285px;">
             <kp-servicio></kp-servicio>
+            <kp-prenda></kp-prenda>
           </div>
           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <div class="inputfilter">
             <md-input-container dividerColor="accent">
-              <input mdInput placeholder="Buscar servicio..." name="search">
+              <input mdInput placeholder="Buscar servicio..." [(ngModel)]="userFilter.PNOMBREUNIDAD" name="search">
             </md-input-container>
             </div>
           </div>
@@ -41,10 +42,17 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let servicio of servicios">
+                  <tr *ngFor="let servicio of servicios | filterBy: userFilter" (click)="getservicio(servicio.IDSP)">
                     <td>{{servicio.IDSP}}</td>
-                    <td>{{servicio.SERVNOMBRE}} - <strong>{{servicio.PNOMBREUNIDAD}}</strong></td>
-                    <!--<td>Planchado a base de...</td>-->
+                    <td><span (click)="getsp(servicio.IDSERVICIO)" class="getid"
+                        tooltip="Ver detalles de {{servicio.SERVNOMBRE}}"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">{{servicio.SERVNOMBRE}} </span> -
+
+                        <strong (click)="getprendas(servicio.IDPRENDAS)" class="getid"
+                        tooltip="Ver detalles de {{servicio.PNOMBREUNIDAD}}"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">{{servicio.PNOMBREUNIDAD | truncate: 20}}</strong></td>
                     <td class="enfasis-td">{{servicio.SPCOSTO | currency:'USD':true}}</td>
                     <td>{{servicio.SPDESCUENTO}}%</td>
                     <td class="enfasis-td" >

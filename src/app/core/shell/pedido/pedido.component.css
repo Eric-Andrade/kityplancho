@@ -65,3 +65,15 @@ md2-dialog-footer{
 form{
   margin-top:10px;
 }
+
+.sebm-google-map-container {
+    height: 300px;
+}
+
+agm-marker{
+    background: #c64545
+}
+
+.kpgoogle-maps{
+    height: 100%;
+}

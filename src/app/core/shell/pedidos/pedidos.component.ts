@@ -14,7 +14,7 @@ export class PedidosComponent implements OnInit {
     public pedidos: Pedidos[];
     public loading: boolean;
     public message: boolean;
-
+    userFilter: any = { CNOMBRE: ''};
   constructor(private _pedidosService: PedidosService,
               private _route: ActivatedRoute,
               private _router: Router,
@@ -49,6 +49,10 @@ export class PedidosComponent implements OnInit {
 
   getpedido(idpedido){
       this._router.navigate(['pedidos',idpedido]);
+  }
+
+  getcliente(idcliente){
+      this._router.navigate(['clientes',idcliente]);
   }
 
   failgetPedidos() {

@@ -1,0 +1,62 @@
+.mat-card-avatar {
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.example-header-image {
+  background-image: url('../../assets/logokity.png');
+  background-size: cover;
+}
+
+md-card{
+    margin: 18px 10px 18px 10px;
+    text-align: center;
+}
+
+md-card-header{
+    margin: 0 auto;
+    width: 100px;
+}
+
+.example-margin {
+  margin: 10px;
+}
+
+.map-marker{
+    margin: 0 auto;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 5px;
+}
+
+.Deliver {
+    border: 4.5px solid #41eaea;
+}
+
+.Complete{
+    border: 4.5px solid #41ea65;
+}
+
+.Denenged{
+    border: 4.5px solid #ea4141;
+}
+
+.Encamino{
+    border: 4.5px solid #eadd41;
+}
+
+.EnCola{
+    border: 4.5px solid #f7ad27;
+}
+
+.Process{
+    border: 4.5px solid #278df7;
+}
+
+.Cot{
+    border: 4.5px solid #cccccc;
+}

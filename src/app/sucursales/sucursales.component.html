@@ -1,9 +1,10 @@
 <div class="container-fluid">
   <div class="row">
     <h2 class="kp-text text-center">KityPlancho Sucursales</h2><br>
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+        <kp-sucursal></kp-sucursal><br>
         <div class="datacontainer" *ngIf="sucursales">
-            <div class="datarepite" *ngFor="let sucursal of sucursales">
+            <div class="datarepite" *ngFor="let sucursal of sucursales" (click)="getSucursal(sucursal.IDSUCURSAL)">
                 <md-card>
                   <img md-card-image class="img-sucursal">
                   <div >

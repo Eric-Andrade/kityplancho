@@ -15,7 +15,7 @@
         <button md-icon-button>
             <md-icon >notifications_none</md-icon>
         </button>
-        <button md-icon-button (click)="map.toggle()">
+        <button md-icon-button (click)="map.toggle();getpedidosmap()" >
             <md-icon>satellite</md-icon>
         </button>
         <span>|</span>
@@ -27,19 +27,19 @@
         <md-menu #help="mdMenu">
           <button md-menu-item disabled>
             <md-icon>account_circle</md-icon>
-            <a class="" routerLink="/perfil">Perfil</a>
+            <a class="" routerLink="/perfil" (click)="sidenav.close()" (click)="map.close()">Perfil</a>
           </button>
           <button md-menu-item disabled>
             <md-icon>favorite</md-icon>
-            <a class="" routerLink="/sucursales">KityPlancho</a>
+            <a class="" routerLink="/sucursales" (click)="sidenav.close()" (click)="map.close()">KityPlancho</a>
           </button>
           <button md-menu-item disabled>
             <md-icon>live_help</md-icon>
-            <a class="" routerLink="/acerca">Acerca de</a>
+            <a class="" routerLink="/acerca" (click)="sidenav.close()" (click)="map.close()">Acerca de</a>
           </button>
           <button md-menu-item disabled>
             <md-icon>exit_to_app</md-icon>
-            <a class="" routerLink="/" class="align-center">Cerrar sesión</a>
+            <a class="" routerLink="/" class="align-center" (click)="sidenav.close()" (click)="map.close()">Cerrar sesión</a>
           </button>
         </md-menu>
 

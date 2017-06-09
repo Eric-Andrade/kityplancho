@@ -8,7 +8,8 @@ import { FilterPipe } from "../pipes/filter.pipe";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+
   ],
   declarations: [
     TruncatePipe, CapitalizePipe, FilterPipe, PasswordPipe

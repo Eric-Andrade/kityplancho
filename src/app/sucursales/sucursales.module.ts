@@ -1,5 +1,4 @@
 import { SucursaldetalleComponent } from './sucursaldetalle.component';
-import { AgmCoreModule } from '@agm/core';
 import { SharedModule } from '../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +13,8 @@ import { SucursalComponent } from './sucursal/sucursal.component';
 
 
 const routes: Routes = [
-  { path: '', component: SucursalesComponent }
+  { path: '', component: SucursalesComponent },
+  { path: ':id', component: SucursaldetalleComponent }
 ];
 
 @NgModule({
@@ -25,8 +25,7 @@ const routes: Routes = [
   Md2Module.forRoot(),
   FormsModule,
   HttpModule,
-  SharedModule,
-  AgmCoreModule
+  SharedModule
   ],
   declarations: [SucursalesComponent, SucursalComponent, SucursaldetalleComponent],
   providers: [ SucursalesService],

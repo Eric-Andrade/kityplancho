@@ -43,7 +43,7 @@ export class ClientesService {
         body.set('CTELEFONO', cliente.CTELEFONO);
         body.set('ACTIVO', cliente.ACTIVO.toString());
 
-       return this._http.post(this.url + 'updateClienteCuenta', body, {headers : this.getHeaders()})
+       return this._http.post(this.url + 'updatecliente', body, {headers : this.getHeaders()})
       .map((response:Response)=>{
         JSON.stringify(response);
       });

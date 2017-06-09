@@ -1,3 +1,80 @@
-<p>
-  perfil works!
-</p>
+<div class="loading" *ngIf="loading">
+  <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
+    <!--<md-spinner color="accent"></md-spinner>-->
+    <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+</div>
+
+<div *ngIf="perfil">
+  <div class="container-fluid">
+    <div class="row">
+      <br>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="datacontainer">
+            <div class="datarepite">
+            <md-card>
+               <h2 class="kp-text text-center">Mi perfil</h2>
+              <form #formPerfil="ngForm" (ngSubmit)="putPerfil()">
+                  <md-card-header>
+                  <div md-card-avatar class="example-header-image mat-card-avatar text-center"></div>
+                  <br>
+                  </md-card-header>
+                  <table class="example-full-width" cellspacing="0">
+                    <tr>
+                      <td width="20%"><md-input-container dividerColor="accent" class="example-full-width form-space">
+                        <input type="number" mdInput #id name="IDEMPLEADO" #IDEMPLEADO="ngModel" [(ngModel)]="perfil.IDEMPLEADO" placeholder="Mi ID" [disabled]="true">
+                         </md-input-container></td>
+                      <td width="25%"><md-input-container class="example-full-width form-space" dividerColor="accent">
+                        <input mdInput #telefono #ETELEFONO="ngModel" [(ngModel)]="perfil.ETELEFONO" minlength="10" maxlength="10" name="ETELEFONO" placeholder="Número de teléfono/celular" autocomplete="off" required pattern="[0-9]{10}">
+                          <md-hint align="end">{{telefono.value.length}}/10</md-hint>
+                        </md-input-container></td>
+                        <td>
+                        <md-input-container dividerColor="accent" class="example-full-width form-space">
+                          <input mdInput #fechacontrato #EFECHACONTRATO="ngModel" [(ngModel)]="perfil.EFECHACONTRATO" maxlength="45" name="EFECHACONTRATO" placeholder="Fecha desde que soy administrador de KityPlacho" required autocomplete="off" value="2017-04-11">
+                          <md-hint align="end">{{fechacontrato.value.length}}/45</md-hint>
+                        </md-input-container></td>
+                    </tr>
+                  </table>
+                <table class="example-full-width" cellspacing="0">
+                  <tr>
+                    <td><md-input-container dividerColor="accent">
+                        <input mdInput #email #EEMAIL="ngModel" [(ngModel)]="perfil.EEMAIL" minlength="12" maxlength="45" name="EEMAIL" placeholder="Correo eléctronico" required autocomplete="off" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+                        <md-hint align="end">{{email.value.length}}/45</md-hint>
+                        </md-input-container></td>
+                    <td><md-input-container dividerColor="accent">
+                        <input mdInput #password #EPASSWORD="ngModel" [(ngModel)]="perfil.EPASSWORD" minlength="5" maxlength="45" name="EPASSWORD" placeholder="Contraseña" required autocomplete="off">
+                        <md-hint align="end">{{password.value.length}}/45</md-hint>
+                        </md-input-container></td>
+                    </tr>
+                </table>
+
+                <table class="example-full-width" cellspacing="0">
+                  <tr>
+                    <td><md-input-container class="example-full-width form-space" dividerColor="accent">
+                      <input mdInput #nombre #ENOMBRE="ngModel" [(ngModel)]="perfil.ENOMBRE" minlength="3" maxlength="45" name="ENOMBRE" autofocus="autofocus" placeholder="Nombre de empleado" required pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,45}">
+                          <md-hint align="end">{{nombre.value.length}}/45</md-hint>
+                    </md-input-container></td>
+                    <td><md-input-container class="example-full-width form-space" dividerColor="accent">
+                      <input mdInput #apellidos #EAPELLIDOS="ngModel" [(ngModel)]="perfil.EAPELLIDOS" minlength="5" maxlength="45" name="EAPELLIDOS" placeholder="Apellidos de empleado" autocomplete="off" required pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,65}">
+                          <md-hint align="end">{{apellidos.value.length}}/65</md-hint>
+                    </md-input-container></td>
+                  </tr>
+                </table>
+
+                <md-input-container dividerColor="accent" class="example-full-width form-space">
+                  <input mdInput #referencia1 #EREFERENCIA1="ngModel" [(ngModel)]="perfil.EREFERENCIA1" minlength="5" maxlength="150" name="EREFERENCIA1" placeholder="Lugar donde he trabajado 1 (Nombre de empresa, teléfono, gerente, tiempo trabajando)" autocomplete="off" required>
+                  <md-hint align="end">{{referencia1.value.length}}/150</md-hint>
+                </md-input-container>
+                <md-input-container class="example-full-width form-space"  dividerColor="accent">
+                  <input mdInput #referencia2 #EREFERENCIA2="ngModel" [(ngModel)]="perfil.EREFERENCIA2" minlength="5" maxlength="150" name="EREFERENCIA2" placeholder="Lugar donde he <trabajado></trabajado> 2 (Nombre de empresa, teléfono, gerente, tiempo trabajando)">
+                  <md-hint align="end">{{referencia2.value.length}}/150</md-hint>
+                </md-input-container>
+
+                <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formPerfil.form.valid">Actualizar mi perfil</button>
+              </form>
+            </md-card>
+           </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

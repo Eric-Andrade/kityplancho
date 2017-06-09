@@ -10,6 +10,7 @@ import { EmpleadosService } from './empleados.service';
 import { MaterialModule } from '@angular/material';
 import { Md2Module } from 'md2';
 import { EmpleadoDetalleComponent } from './empleadodetalle.component';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 const routes: Routes = [
   { path: '', component: EmpleadosComponent },
@@ -24,7 +25,8 @@ const routes: Routes = [
   Md2Module.forRoot(),
   FormsModule,
   HttpModule,
-  SharedModule
+  SharedModule,
+  Ng2FilterPipeModule
   ],
   declarations: [ EmpleadosComponent, EmpleadoComponent, EmpleadoDetalleComponent ],
   providers: [ EmpleadosService ],

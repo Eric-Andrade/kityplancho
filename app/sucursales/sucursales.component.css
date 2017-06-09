@@ -1,0 +1,57 @@
+.datarepite {
+    display: inline-block !important;
+    width: 100% !important;
+    margin: 4px !important;
+}
+
+.sebm-google-map-container {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+}
+
+agm-marker{
+    background: #c64545
+}
+
+.kpgoogle-maps{
+    height: 100%;
+}
+
+.img-sucursal{
+        height: 255px;
+    /* min-height: 100px; */
+    position: sticky;
+        background: linear-gradient( rgba(255, 39, 133, 0.88), rgba(139, 93, 255, 0.32))
+        ,url(../../assets/durango.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+@media (min-width: 768px) {
+  .datarepite {
+    display: inline-block !important;
+    width: 90% !important;
+    margin: 2px !important;
+  }
+}
+
+/*Tablets en horizonal y escritorios normales*/
+@media (min-width: 1024px) {
+  .datarepite {
+      display: inline-block !important;
+      width: 60% !important;
+      margin: 4px !important;
+  }
+}
+
+/*Escritorios muy anchos*/
+@media (min-width: 1200px) {
+  .datarepite {
+      display: inline-block !important;
+      width: 50% !important;
+      margin: 4px !important;
+  }
+}

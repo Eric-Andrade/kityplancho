@@ -133,5 +133,5 @@ ngOnInit() {
 
     regresar(){
       this._router.navigate(['empleados']);
-  }
+    }
 }

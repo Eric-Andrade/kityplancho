@@ -28,6 +28,7 @@ export class ClienteDetalleComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.checked = this.cliente[0].ACTIVO;
     this.getCliente();
      this.getMisPedidos();
   }
@@ -48,11 +49,11 @@ export class ClienteDetalleComponent implements OnInit {
                                 ACTIVO: this.cliente[0].ACTIVO
                               };
 
-              if(this.cliente.ACTIVO === 1){
-                this.checked = true;
-              } else if (this.cliente.ACTIVO === 0){
-                this.checked = false;
-              }
+              // if(this.cliente.ACTIVO === 1){
+              //   this.checked = true;
+              // } else if (this.cliente.ACTIVO === 0){
+              //   this.checked = false;
+              // }
 
               // this.getMisPedidos();
                 //console.log('Interfaz de cliente llenada...');
@@ -75,6 +76,7 @@ export class ClienteDetalleComponent implements OnInit {
 
     putCliente(){
         if(!this.cliente) return;
+
           this._clientesService.putCliente(this.cliente).subscribe(
           data => {
                this.toastMe();
@@ -87,7 +89,10 @@ export class ClienteDetalleComponent implements OnInit {
                 if(this.errorMessage != null){
                 this.failinfoputCliente();
             }
-          })
+          });
+
+        console.log('putcliente');
+        console.log(this.cliente);
     }
 
     getMisPedidos() {

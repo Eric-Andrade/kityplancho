@@ -1,3 +1,89 @@
-<p>
-  sucursaldetalle works!
-</p>
+<div class="loading" *ngIf="loading">
+  <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
+    <!--<md-spinner color="accent"></md-spinner>-->
+    <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+</div>
+
+<div *ngIf="sucursal">
+  <div class="container-fluid">
+    <div class="row">
+      <h2 class="kp-text text-center">Información de {{sucursal.SNOMBRE}}</h2>
+      <br>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="datacontainer">
+            <div class="datarepite">
+              <button md-button color="accent" (click)="regresar()"><md-icon >keyboard_arrow_left</md-icon>Regresar a sucursales</button>
+            <md-card>
+              <form #formSucursal="ngForm" (ngSubmit)="putSucursal()">
+              <md-input-container dividerColor="accent" class="example-full-width form-space">
+                <input type="number" mdInput #id name="IDSUCURSAL" #IDSUCURSAL="ngModel" [(ngModel)]="sucursal.IDSUCURSAL" placeholder="ID de sucursal" [disabled]="true">
+              </md-input-container>
+
+              <md-input-container dividerColor="accent">
+              <input mdInput #nombre #SNOMBRE="ngModel" [(ngModel)]="sucursal.SNOMBRE" maxlength="45" name="SNOMBRE" placeholder="Nombre de la sucursal" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
+              <md-hint align="end">{{nombre.value.length}}/45</md-hint>
+              </md-input-container>
+
+              <md-input-container dividerColor="accent">
+              <input mdInput #email #SEMAIL="ngModel" [(ngModel)]="sucursal.SEMAIL" maxlength="45" name="SEMAIL" placeholder="Correo eléctronico" required autocomplete="off" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+              <md-hint align="end">{{email.value.length}}/45</md-hint>
+              </md-input-container>
+
+              <md-input-container class="example-full-width"  dividerColor="accent">
+              <input mdInput #direccion #SDIRECCION="ngModel" [(ngModel)]="sucursal.SDIRECCION" minlength="5" maxlength="45" name="SDIRECCION" placeholder="Dirección de sucursal" required autocomplete="off" >
+                  <md-hint align="end">{{direccion.value.length}}/45</md-hint>
+              </md-input-container>
+
+              <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <md-input-container dividerColor="accent">
+                    <input mdInput #estado #SESTADO="ngModel" [(ngModel)]="sucursal.SESTADO" minlength="5" maxlength="45" name="SESTADO" placeholder="Estado" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
+                    <md-hint align="end">{{estado.value.length}}/45</md-hint>
+                  </md-input-container>
+                </td>
+                <td>
+                  <md-input-container dividerColor="accent">
+                    <input mdInput #municipio #SMUNICIPIO="ngModel" [(ngModel)]="sucursal.SMUNICIPIO" minlength="5" maxlength="45" name="SMUNICIPIO" placeholder="Municipio" required pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
+                    <md-hint align="end">{{municipio.value.length}}/45</md-hint>
+                  </md-input-container></td>
+                </tr>
+              </table>
+
+              <md-input-container class="example-full-width form-space"  dividerColor="accent">
+                <input mdInput #localidad #SLOCALIDAD="ngModel" [(ngModel)]="sucursal.SLOCALIDAD" minlength="5" maxlength="150" name="SLOCALIDAD" placeholder="Localidad" autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
+                <md-hint align="end">{{localidad.value.length}}/150</md-hint>
+              </md-input-container>
+
+              <div style="margin:0 auto; text-align: center;"
+                  tooltip="Status de sucursal"
+                  tooltip-position="above"
+                  tooltip-delay="0 * 1000">
+                <md-radio-group dividerColor="accent" #ACTIVO="ngModel" [(ngModel)]="sucursal.ACTIVO" name="ACTIVO">
+                  <md-radio-button class="form-radiobutton" checked="checked" value="activo">Sucursal en servicio</md-radio-button>
+                  <md-radio-button class="form-radiobutton" value="desactivado">Fuera de servicio</md-radio-button>
+                </md-radio-group>
+              </div>
+
+                <md-input-container class="example-full-width form-space"  dividerColor="accent">
+                  <input mdInput #telefono #STELEFONO="ngModel" [(ngModel)]="sucursal.STELEFONO" minlength="10" maxlength="10" name="STELEFONO" placeholder="Número de teléfono/celular" required autocomplete="off" pattern="[0-9]{10}">
+                  <md-hint align="end">{{telefono.value.length}}/10</md-hint>
+                </md-input-container>
+
+
+              <!--Valor: {{sucursal.EFECHACONTRATO}}-->
+
+              <md-input-container dividerColor="accent">
+              <input mdInput #ubicacion #SHORARIO="ngModel" [(ngModel)]="sucursal.SHORARIO" minlength="5" maxlength="45" name="SHORARIO" placeholder="Horario" required autocomplete="off">
+              <md-hint align="end">{{ubicacion.value.length}}/45</md-hint>
+              </md-input-container>
+
+              <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formSucursal.form.valid">Actualizar datos de {{sucursal.SNOMBRE}}</button>
+              </form>
+            </md-card>
+           </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

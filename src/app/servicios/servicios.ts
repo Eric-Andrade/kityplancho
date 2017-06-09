@@ -13,6 +13,12 @@ export interface IServicios {
   IDSUCURSAL: number;
 }
 
+export interface IPrenda{
+  IDPRENDA: number;
+  PNOMBREUNIDAD: string;
+  PDESCRIPCION?: string;
+}
+
 export interface IPrendas{
   IDPRENDA: number;
   PNOMBREUNIDAD: string;

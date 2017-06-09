@@ -1,0 +1,117 @@
+
+<div class="container-fluid">
+ <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="inputfilter">
+           <md-input-container dividerColor="accent">
+            <input mdInput placeholder="Busca un pedido por nombre de cliente...">
+          </md-input-container>
+      </div>
+
+    <div class="table-responsive content">
+      <table class="table table-hover">
+        <thead class="thead">
+          <!--<tr>
+            <td colspan="4">
+              <input placeholder="Filter By Name" class="md2-input" [(ngModel)]="search" />
+            </td>
+          </tr>-->
+          <tr>
+            <th style="width: 10%"
+                        tooltip="Status del pedido"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000"></th>
+            <th style="width: 10%"
+                        tooltip="Identificador de pedido"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">ID Pedido</th>
+            <th style="width: 25%"
+                        tooltip="Nombre de cliente"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">Cliente</th>
+            <!--<th style="width: 30%">Servicio</th>-->
+            <th style="width: 5%"
+                        tooltip="Cantidad total de prendas"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">#</th>
+            <th style="width: 5%"
+                        tooltip="Precio total por pedido"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">$</th>
+            <th style="width: 15%"
+                        tooltip="Fecha de creación del pedido"
+                        tooltip-position="above"
+                        tooltip-delay="0 * 1000">Fecha</th>
+
+          </tr>
+        </thead>
+
+        <tbody *ngIf="pedidos">
+         <tr *ngFor="let pedido of pedidos" (click)="getpedido(pedido.IDPEDIDO)">
+           <td>
+              <div [ngSwitch]="pedido.PSTATUS">
+                  <div *ngSwitchCase="'cotizando'"><span class="statuspedido Cot"
+                    tooltip="Cotizando"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span></div>
+                  <div *ngSwitchCase="'en_cola'"><span class="statuspedido EnCola"
+                    tooltip="Pedido en espera a ser aprobado"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span></div>
+                  <div *ngSwitchCase="'en_camino'"><span class="statuspedido Encamino"
+                    tooltip="Pedido aprobado"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span></div>
+                  <div *ngSwitchCase="'en_proceso'"><span class="statuspedido Process"
+                    tooltip="Pedido en tratamiento"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span></div>
+                  <div *ngSwitchCase="'para_entregar'"><span class="statuspedido Deliver"
+                    tooltip="Pedido listo para entregar"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span></div>
+                  <div *ngSwitchCase="'entregado'"><span class="statuspedido Complete"
+                    tooltip="Pedido entregado a cliente"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span></div>
+                  <div *ngSwitchCase="'no_atendido'"><span class="statuspedido Deneged"
+                    tooltip="Pedido denegado"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span></div>
+              </div>
+            </td>
+            <td>{{pedido.IDPEDIDO}}</td>
+            <td>{{pedido.CNOMBRE}} {{pedido.CAPELLIDOS}}</td>
+            <td class="enfasis-td">{{pedido.PPAGADO}}</td>
+            <td>{{pedido.PPRECIOTAL | currency:'USD':true}}</td>
+            <td>{{pedido.PFECHA |  date: 'dd MMMM yyyy'}}</td>
+            <!--<td>{{pedido.PFECHA }}</td>-->
+         </tr>
+        </tbody>
+        <tfoot>
+          <!--<tr>
+            <td colspan="4">
+              <md2-pagination [rowsPerPageSet]="[5,10,15]"></md2-pagination>
+            </td>
+          </tr>-->
+        </tfoot>
+      </table>
+        <div class="loading" *ngIf="loading">
+          <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
+          <!--<md-spinner color="accent"></md-spinner>-->
+        <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+        </div>
+        <div class="message" *ngIf="message">
+                <h5>Fallo de internet, por favor vuelve a recargar la página.</h5>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

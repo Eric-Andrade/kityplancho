@@ -16,16 +16,16 @@ export class LoginService {
     }
 
     public login(user, gethash = null){
-      // let body = new URLSearchParams();
-      // body.set('EEMAIL',empleado.EEMAIL);
-      // body.set('EPASSWORD',empleado.EPASSWORD);
+      let body = new URLSearchParams();
+      body.set('EEMAIL',user.EEMAIL);
+      body.set('EPASSWORD',user.EPASSWORD);
 
       if(gethash != null){
         user.gethash = gethash;
       }
 
-      let json = JSON.stringify(user);
-      let body = json;
+      // let json = JSON.stringify(user);
+      // let body = json;
        return this._http.post(this.url + 'ingresoadmin', body, {headers : this.getHeaders()})
           .map(res => res.json());
     }

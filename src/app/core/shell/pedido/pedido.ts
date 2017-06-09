@@ -1,13 +1,14 @@
 export interface IPedido{
-  IDPEDIDO: number;
-  PSTATUS: string;
-  PDIRECCIONR: string;
-  PDIRECCIONE?: string;
-  PPRECIOTOTAL?: number;
-  PPAGADO: string;
-  COORDENADASR?: string;
-  COORDENADASE?:string;
-  IDCLIENTE: number
+    IDPEDIDO:number;
+    PPRECIOTOTAL:number;
+    PSTATUS:string;
+    PPAGADO:string;
+    PFECHA?:string;
+    PDIRECCIONR:string;
+    COORDENADASR?:string;
+    PDIRECCIONE?:string;
+    COORDENADASE?:string;
+    IDCLIENTE:number;
 }
 
 export interface IDetallePedidos{
@@ -20,10 +21,10 @@ export interface IDetallePedidos{
 
 export interface IDetallePedido{
   IDDP:number;
-  DP_CANTIDADPRENDAS:number;
+  DPCANTIDADPRENDAS:number;
   IDSP:number;
   IDPEDIDO:number;
-  DP_COSTOPEDIDO?:number;
+  DPCOSTOPEDIDO?:number;
 }
 
 export interface ISP {

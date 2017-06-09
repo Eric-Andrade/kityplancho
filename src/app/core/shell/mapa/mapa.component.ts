@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapaService } from './mapa.service';
-import { Mapa } from "app/core/shell/mapa/mapa";
+import { Mapa } from "./mapa";
 import { IPedidos } from '../pedidos/pedidos';
 import { PedidosService } from '../pedidos/pedidos.service';
 import { Md2Toast } from 'md2';
@@ -8,82 +8,83 @@ import { Md2Toast } from 'md2';
 @Component({
   selector: 'kp-mapa',
   templateUrl: './mapa.component.html',
-  styleUrls: ['./mapa.component.css']
+  styleUrls: ['./mapa.component.css'],
+  providers:[ PedidosService ]
 })
 export class MapaComponent implements OnInit {
-/*Map*/
-    public customStyle = [
-        {
-            "featureType": "all",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "saturation": "-30"
-                }
-            ]
-        },
-        {
-            "featureType": "all",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "visibility": "simplified"
-                },
-                {
-                    "hue": "#ff004d"
-                },
-                {
-                    "saturation": "73"
-                }
-            ]
-        },
-        {
-            "featureType": "administrative",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "visibility": "simplified"
-                }
-            ]
-        },
-        {
-            "featureType": "poi",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "road",
-            "elementType": "labels.icon",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "transit.station",
-            "elementType": "labels.icon",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "water",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        }
-    ];
-    /*Start position */
+    /*Map*/
+        public customStyle = [
+            {
+                "featureType": "all",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "saturation": "-30"
+                    }
+                ]
+            },
+            {
+                "featureType": "all",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "visibility": "simplified"
+                    },
+                    {
+                        "hue": "#ff004d"
+                    },
+                    {
+                        "saturation": "73"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit.station",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            }
+        ];
+        /*Start position */
     public lat: number;
     public lng: number;
     public zoom: number;

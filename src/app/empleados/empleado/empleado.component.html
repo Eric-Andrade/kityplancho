@@ -10,7 +10,7 @@
             <table class="example-full-width" cellspacing="0">
               <tr>
                 <td><md-input-container dividerColor="accent">
-                    <input mdInput #email #EEMAIL="ngModel" [(ngModel)]="empleado.EEMAIL" maxlength="45" name="EEMAIL" placeholder="Correo eléctronico" required autocomplete="off" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+                    <input mdInput #email #EEMAIL="ngModel" [(ngModel)]="empleado.EEMAIL" minlenght="5" maxlength="45" name="EEMAIL" placeholder="Correo eléctronico" required autocomplete="off" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
                     <md-hint align="end">{{email.value.length}}/45</md-hint>
                     </md-input-container></td>
                 <td>

@@ -1,0 +1,137 @@
+<div class="container-fluid">
+ <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+           <br>
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+            <kp-cliente></kp-cliente>
+              <button md-icon-button (click)="clientesCard = true">
+                  <md-icon >view_comfy</md-icon>
+              </button>
+              <button md-icon-button (click)="clientesCard = false">
+                  <md-icon >list</md-icon>
+              </button>
+          </div>
+          <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+            <div class="inputfilter">
+            <md-input-container dividerColor="accent">
+              <input mdInput placeholder="Busca un cliente por nombre de cliente..." name="search" >
+            </md-input-container>
+            </div>
+          </div>
+        </div>
+            <div *ngIf="clientesCard; then thenTemplate; else elseTemplate"></div>
+            <ng-template #thenTemplate>
+                  <div class="datacontainer" *ngIf="clientes">
+                   <div class="datarepite" *ngFor="let cliente of clientes" (click)="getcliente(cliente.IDCLIENTE)">
+                       <md-card>
+                          <md-card-header>
+                            <div *ngIf="cliente.ACTIVO == 1; then thenTemplate; else elseTemplate"></div>
+                              <div md-card-avatar class="example-header-image">
+                              <ng-template #thenTemplate>
+                                <span class="status-cardactive"
+                              tooltip="Cuenta activa"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"></span>
+                              </ng-template>
+                              <ng-template #elseTemplate>
+                                <span class="status-cardoff"
+                              tooltip="Cuenta desactivada"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"></span>
+                              </ng-template>
+                              </div>
+                            <md-card-title
+                            tooltip="{{cliente.CNOMBRE}} {{cliente.CAPELLIDOS}}"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000"><strong>{{cliente.IDCLIENTE}} | {{cliente.CNOMBRE | truncate: 10 }} </strong> <p>{{cliente.CAPELLIDOS | truncate: 10 }}</p></md-card-title>
+                            <md-card-subtitle>
+                              <md-chip-list>
+                                  <md-chip color="accent" selected="true"
+                                  tooltip="{{cliente.CEMAIL}}"
+                                  tooltip-position="above"
+                                  tooltip-delay="0 * 1000"
+                                  >{{cliente.CEMAIL | truncate: 15  | lowercase}}</md-chip>
+                              </md-chip-list>
+                            </md-card-subtitle>
+                          </md-card-header>
+                          <md-card-content>
+                              <span>
+                                <md-icon color="accent">phone_iphone</md-icon> <strong>{{cliente.CTELEFONO}}</strong>
+                             </span>
+                          </md-card-content>
+                       </md-card>
+                  </div>
+                   </div>
+            </ng-template>
+            <ng-template #elseTemplate>
+                    <div class="table-responsive content" >
+                        <table class="table table-hover" >
+                        <thead class="thead">
+                          <tr>
+                            <th style="width: 5%"
+                              tooltip="Status de cuenta"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"></th>
+                            <th style="width: 10%"
+                              tooltip="Identificador cuenta"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000">ID Cliente</th>
+                            <th style="width: 30%"
+                              tooltip="Nombre de cliente"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000">Nombre</th>
+                            <th style="width: 30%"
+                              tooltip="Correo eléctronico de cliente"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000">Email</th>
+                            <th style="width: 15%"
+                              tooltip="Contraseña de cuenta"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000">Password</th>
+                            <th style="width: 10%"
+                              tooltip="Teléfono de cliente"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000">Teléfono</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         <tr *ngFor="let cliente of clientes" (click)="getcliente(cliente.IDCLIENTE)"
+                          >
+                           <td>
+                            <div *ngIf="cliente.ACTIVO == 1; then thenTemplate; else elseTemplate"></div>
+                            <ng-template #thenTemplate>
+                              <span class="status-listactive"
+                              tooltip="Cuenta activa"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"></span>
+                            </ng-template>
+                            <ng-template #elseTemplate>
+                              <span class="status-listoff"
+                              tooltip="Cuenta desactivada"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000"></span>
+                            </ng-template>
+                            </td>
+                            <td><strong>{{cliente.IDCLIENTE}}</strong> </td>
+                            <td>{{cliente.CNOMBRE}} {{cliente.CAPELLIDOS}}</td>
+                            <td class="enfasis-td">{{cliente.CEMAIL | lowercase}}</td>
+                            <td>{{cliente.CPASSWORD | truncate: 10}}</td>
+                            <td>{{cliente.CTELEFONO}}</td>
+                         </tr>
+                        </tbody>
+                      </table>
+                    </div>
+            </ng-template>
+            <div class="loading" *ngIf="loading">
+              <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
+                <!--<md-spinner color="accent"></md-spinner>-->
+                <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+            </div>
+            <div class="message" *ngIf="message">
+                <h5>Fallo de internet, por favor vuelve a recargar la página.</h5>
+            </div>
+    </div>
+  </div>
+</div>
+

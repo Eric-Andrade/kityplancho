@@ -10,10 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Ng2UploaderModule } from 'ng2-uploader';
 import { DataTablePipe } from '../pipes/data-table-pipe.pipe';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 import { ShellComponent } from './shell/shell.component';
 import { IndexComponent} from './shell/index/index.component';
-import { SharedModule } from 'app/shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { MapaComponent } from './shell/mapa/mapa.component';
 import { PedidosComponent } from './shell/pedidos/pedidos.component';
 import { LoginModule } from './shell/login/login.module';
@@ -57,7 +58,8 @@ const routes: Routes = [
       Md2Module.forRoot(),
       BrowserAnimationsModule,
       HttpModule,
-      Ng2UploaderModule
+      Ng2UploaderModule,
+      Ng2FilterPipeModule
 
   ],
   declarations: [ShellComponent, IndexComponent, PedidosComponent, MapaComponent, PedidoComponent, PedidodetalleComponent, AcercaComponent, DataTablePipe ],

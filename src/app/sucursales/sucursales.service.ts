@@ -6,7 +6,7 @@ import { Sucursales } from './sucursales';
 import { global } from '../global';
 
 @Injectable()
-@Injectable()
+
 export class SucursalesService {
     public url: string;
     public local: string;
@@ -36,11 +36,10 @@ export class SucursalesService {
       body.set('SMUNICIPIO',sucursal.SMUNICIPIO);
       body.set('SLOCALIDAD',sucursal.SLOCALIDAD);
       body.set('SHORARIO',sucursal.SHORARIO);
-
+      body.set('ACTIVO',sucursal.ACTIVO);
 
       return this._http.post(this.url + 'postsucursales', body, {headers : this.getHeaders()})
       .map((response:Response)=>{
-        console.log('Employee saved');
         JSON.stringify(response);
       });
     }

@@ -1,0 +1,22 @@
+<md2-dialog #logindialog>
+    <h5>Autenticación</h5>
+    <form #formLogin="ngForm" (ngSubmit)="login()">
+
+      <md-input-container dividerColor="accent">
+          <input mdInput #email #EEMAIL="ngModel" [(ngModel)]="empleado.EEMAIL" maxlength="45" name="EEMAIL" placeholder="Correo eléctronico" required autocomplete="off" autofocus pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+          <md-hint align="end">{{email.value.length}}/45</md-hint>
+      </md-input-container>
+      <!--<span *ngIf="!EEMAIL.touched"> Por favor ingresa el correo eléctronico</span>-->
+
+      <md-input-container class="example-full-width"  dividerColor="accent">
+        <input type="password" name="EPASSWORD" #EPASSWORD="ngModel" [(ngModel)]="empleado.EPASSWORD" mdInput minlength="3" maxlength="45" placeholder="Contraseña" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,45}">
+          <!--<span *ngIf="nombre.touched && !nombre.valid">Ingrese un nombre de cliente valido por favor</span>-->
+          <!--<md-hint align="start"><em class="md-hint-enfasis">mínimo 3 caracteres</em></md-hint><md-hint align="end">{{nombre.value.length}}/45</md-hint>-->
+      </md-input-container>
+
+    <button class="button-form" color="accent" md-button style="width:100%" type="submit" [disabled]="!formLogin.form.valid">INGRESAR</button>
+
+      </form>
+</md2-dialog>
+
+<button  md-button class="loginbtn" color="accent" (click)="logindialog.open()">INGRESAR</button>

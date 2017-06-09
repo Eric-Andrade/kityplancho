@@ -1,10 +1,10 @@
 
-<div class="container-fluid">
+<div class="container">
  <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="inputfilter">
+      <div class="inputfilter filterpedidos">
            <md-input-container dividerColor="accent">
-            <input mdInput placeholder="Busca un pedido por nombre de cliente...">
+            <input mdInput placeholder="Busca los pedidos de un cliente buscando por su nombre..." [(ngModel)]="userFilter.CNOMBRE">
           </md-input-container>
       </div>
 
@@ -42,12 +42,11 @@
                         tooltip="Fecha de creación del pedido"
                         tooltip-position="above"
                         tooltip-delay="0 * 1000">Fecha</th>
-
           </tr>
         </thead>
 
         <tbody *ngIf="pedidos">
-         <tr *ngFor="let pedido of pedidos" (click)="getpedido(pedido.IDPEDIDO)">
+         <tr *ngFor="let pedido of pedidos | filterBy: userFilter" (click)="getpedido(pedido.IDPEDIDO)" >
            <td>
               <div [ngSwitch]="pedido.PSTATUS">
                   <div *ngSwitchCase="'cotizando'"><span class="statuspedido Cot"
@@ -76,7 +75,7 @@
                     tooltip-delay="0 * 1000"
                   ></span></div>
                   <div *ngSwitchCase="'entregado'"><span class="statuspedido Complete"
-                    tooltip="Pedido entregado a cliente"
+                    tooltip="Pedido entregado"
                     tooltip-position="above"
                     tooltip-delay="0 * 1000"
                   ></span></div>
@@ -88,11 +87,14 @@
               </div>
             </td>
             <td>{{pedido.IDPEDIDO}}</td>
-            <td>{{pedido.CNOMBRE}} {{pedido.CAPELLIDOS}}</td>
+            <td> <span (click)="getcliente(pedido.IDCLIENTE)" class="getid"
+                    tooltip="Ver más de {{pedido.CNOMBRE}} {{pedido.CAPELLIDOS}}"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"> {{pedido.CNOMBRE}} {{pedido.CAPELLIDOS}}</span></td>
             <td class="enfasis-td">{{pedido.PPAGADO}}</td>
             <td>{{pedido.PPRECIOTAL | currency:'USD':true}}</td>
-            <td>{{pedido.PFECHA | date: 'medium'}}</td>
-            <!--<td>{{pedido.PFECHA }}</td>-->
+            <!--<td>{{pedido.PFECHA | date: 'medium'}}</td>-->
+            <td>{{pedido.PFECHA }}</td>
          </tr>
         </tbody>
         <tfoot>

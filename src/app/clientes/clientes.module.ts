@@ -10,6 +10,7 @@ import { Md2Module } from 'md2';
 import { HttpModule } from '@angular/http';
 import { SharedModule } from '../shared/shared.module';
 import { ClienteDetalleComponent } from "./clientedetalle.component";
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 const routes: Routes = [
   { path: '', component: ClientesComponent },
@@ -24,7 +25,8 @@ const routes: Routes = [
       Md2Module.forRoot(),
       FormsModule,
       HttpModule,
-      SharedModule
+      SharedModule,
+      Ng2FilterPipeModule
   ],
   declarations: [ ClientesComponent, ClienteComponent, ClienteDetalleComponent],
   providers: [ ClientesService ]

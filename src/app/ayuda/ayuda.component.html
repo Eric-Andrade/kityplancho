@@ -38,12 +38,15 @@
                           Mapa
                         </ng-template>
                         <h2 class="kp-helph2">Uso de mapa</h2>
-                        <p>A través del mapa se puede tanto localizar nuevos pedidos como crearlos ya sea en la aplicación web ó móvil, además de ello
-                          también permite visualizar en si la última ubicación registrada por los empleados encargados de recolectar y entregar la ropa.
-                        </p>
+                        <p>En la barra lateral izquierda disponible en cualquier parte de la aplicación se puede apreciar el mapa el cual está designado a mostrar información
+                          previa de los pedidos realizados, con ello el status en el que se encuentran. Esto para tener una idea visual de los pedidos
+                          generados y realizar un diagnóstico de actividades a realizar por parte de KityPlancho. El mapa está habilitado para auto-actualizarse cada 2 minutos,
+                          esto para dar agilidad y mantener un control de la petición de servicios requeridos. Además de ello
+                          también permite visualizar en si la última ubicación registrada por los empleados encargados de recolectar y entregar la ropa.</p>
 
                         <h2 class="kp-helph2">Uso de aplicación web</h2>
-                        <p></p>
+                        <p>La aplicación web es de único uso para empleados de tipo administrador ya que las funciones otorgadas requieren de un criterio en beneficio a KityPlancho.
+                        Se recomienda mantener un cuidado de elección administrativa dado las situaciones presentadas</p>
 
                         <h2 class="kp-helph2">Uso de aplicación móvil</h2>
                         <p>Visualmente se puede observar la representación de los pedidos y su status actual dentro el mapa, así como su ubicación e información propia</p>
@@ -101,12 +104,41 @@
                         </ng-template>
                         <h2 class="kp-helph2">Los 6 status de pedido</h2>
                           <p>Existen seis estados de pedido, mismos que ayudan en la administración de los mismos. Estos son representados de manera visual a través de colores.</p>
-                            <p>Significa que el status del pedido inicio desde la aplicación móvil y requiere de una autorización para que el rutero pueda realizar su trabajo.</p>
-                            <p>Es el estatus que refleja que el pedido fue gestionado y autorizado por el administrador. También es el estatus inicial de los pedidos elaborados desde la aplicación web.</p>
-                            <p>Refleja que el pedido fue autorizado y recolectado por el rutero y en estos momentos se encuentra siendo atendido dentro de la sucursal.</p>
-                            <p>Una vez terminado el servicio el estatus de refleja de este color advirtiendo que ha sido atendido y está listo para ser entregado por el rutero o en la misma sucursal.</p>
-                            <p>Indica que el proceso ha concluido exitosamente y que la ropa fue entregada al cliente satisfactoriamente.</p>
-                            <p>En ocasiones se puede presentar situaciones en las que los pedidos deben ser marcados como no atendidos. Dentro de estas situaciones se pueden encontrar que el cliente canceló un pedido, el administrador encuentra poca seriedad en los pedidos de ese cliente o que la sucursal puede estar temporal o definitivamente cerrada. Para apreciarlo de forma visible se le otorga este color.</p>
+                            <span class="statuspedido EnCola"
+                    tooltip="Pedido en espera a ser aprobado"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span><p>Significa que el status del pedido inicio desde la aplicación móvil y requiere de una autorización para que el rutero pueda realizar su trabajo.</p>
+
+                            <span class="statuspedido Encamino"
+                    tooltip="Pedido aprobado"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span><p>Es el estatus que refleja que el pedido fue gestionado y autorizado por el administrador. También es el estatus inicial de los pedidos elaborados desde la aplicación web.</p>
+
+                            <span class="statuspedido Process"
+                    tooltip="Pedido en tratamiento"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span><p>Refleja que el pedido fue autorizado y recolectado por el rutero y en estos momentos se encuentra siendo atendido dentro de la sucursal.</p>
+
+                            <span class="statuspedido Deliver"
+                    tooltip="Pedido listo para entregar"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span><p>Una vez terminado el servicio el estatus de refleja de este color advirtiendo que ha sido atendido y está listo para ser entregado por el rutero o en la misma sucursal.</p>
+
+                            <span class="statuspedido Complete"
+                    tooltip="Pedido entregado a cliente"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span><p>Indica que el proceso ha concluido exitosamente y que la ropa fue entregada al cliente satisfactoriamente.</p>
+
+                            <span class="statuspedido Deneged"
+                    tooltip="Pedido denegado"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000"
+                  ></span><p>En ocasiones se puede presentar situaciones en las que los pedidos deben ser marcados como no atendidos. Dentro de estas situaciones se pueden encontrar que el cliente canceló un pedido, el administrador encuentra poca seriedad en los pedidos de ese cliente o que la sucursal puede estar temporal o definitivamente cerrada. Para apreciarlo de forma visible se le otorga este color.</p>
 
                             <span>Así mismo en cualquiera de los anteriores casos se apoya con un pequeño mensaje al colocar el puntero sobre estos colores. Mismo que funciona en navegadores de computadoras y en algunos teléfonos móviles, esto depende del navegador utilizado y su versión.</span>
 
@@ -129,8 +161,9 @@
                           Modificar datos de pedidos
                         </ng-template>
                         <h2 class="kp-helph2">Modificar información de pedidos</h2>
-                        <p>Angular Material tabs organize content into separate views where only one view can be visible at a time. Each tab's label is shown in the tab header and the active tab's label is designated with the animated ink bar. When the list of tab labels exceeds the width of the header, pagination controls appear to let the user scroll left and right across the labels.
-                        The active tab may be set using the selectedIndex input or when the user selects one of the tab labels in the header.</p>
+                        <p>Una vez realizados un pedido ya sea a través de la aplicación web y/o móvil será posible su modificación únicamente por medio de la aplicación web, es decir, si un cliente realizó su pedido y
+                          posterior a ello decide añadir o quitar prendas o servicios o incluso cancelar el pedido (validó únicamente antes de que el rutero acuda a la ubicación por el pedido) tendrá que comunicarse vía
+                          telefónica por medio de los teléfonos dispuestos hacia las sucursales y especificar los cambios deseados en donde un administrador podrá realizar estos estando en horario laboral.</p>
                       </md-tab>
                     </md-tab-group>
                 </md-card-content>
@@ -155,7 +188,7 @@
                         </ng-template>
                         <h2 class="kp-helph2">Registrar nuevos servicios</h2>
                             <p>El registro de nuevos servicios es una función posible unicamente desde la aplicación web. Para entrar a ella
-                              basta con buscar en la barra lateral <em class="kp-text">Servicios</em> » <em class="kp-text">Nuevo servicio</em> y aquí
+                              basta con buscar en la barra lateral izquierda <em class="kp-text">Servicios</em> » <em class="kp-text">Nuevo servicio</em> y aquí
                               llenar el formulario pertinente.
                               <br>
                             </p>
@@ -166,8 +199,12 @@
                           Modificar datos de servicios
                         </ng-template>
                         <h2 class="kp-helph2">Modificar información de servicios</h2>
-                        <p>La modificación de servicios, es posible para aquellos servicios creados anteriormente, dicha función también pertenece a
-                          las acciones de administrador. El
+                        <p>Los servicios que ofrece KityPlancho puedes ser modificados a consideración de los administradores, estos cambios se
+                          reflejan en las sucursales que presenten estos servicios, entre la información que se puede alterar está el costo y nombre
+                          del servicio entre otros detalles del mismo. Para acceder a la sección de detalles de servicio será necesario acceder desde
+                          la barra lateral izquierda en la opción denominada servicios en la cual se presenta la lista de servicios ligados a las
+                          prendas disponibles así como su información. Una vez aquí basta con seleccionar el servicio a modificar y realizar los
+                          cambios deseados en la vista que presenta los detalles del servicio.
                         </p>
                       </md-tab>
                        <md-tab>
@@ -202,8 +239,9 @@
                           Nuevos clientes
                         </ng-template>
                         <h2 class="kp-helph2">Registrar nuevos clientes</h2>
-                            <p>La creación de nuevos clientes es posible a través de la aplicación móvil, únicamente es necesario llenar el formulario indicado. Debido a que existan clientes que no estén familiarizados con las nuevas tecnologías y
-                              les es difícil ser usuarios de la aplicación móvil, existe también</p>
+                            <p>La creación de nuevos clientes es posible a través de la aplicación web, únicamente es necesario llenar el formulario indicado. Debido a que existan clientes que no estén familiarizados con las nuevas tecnologías y
+                              les es difícil ser usuarios de la aplicación móvil, para realizar el registro de un nuevo cliente es necesario ir a  la barra lateral izquierda <em class="kp-text">Clientes</em> » <em class="kp-text">Añadir cliente</em> y automáticamente
+                              al terminar de llenar el formulario, el cliente podrá realizar los pedidos que desee.</p>
                       </md-tab>
                       <md-tab>
                         <ng-template md-tab-label>
@@ -247,9 +285,9 @@
                           Nuevos empleados
                         </ng-template>
                         <h2 class="kp-helph2">Registrar nuevos empleados</h2>
-                            <p>El registro de empleados es importante para mantener un control del personal que forma o ha formado parte de KityPlancho así como referencias en el momento o futuras. Es indispone mantener los datos completos debido a que la necesidad de ellos es de suma importancia. Para registrar un nuevo empleado es necesario ir a la ñeñe izquierda en la sección de
-                              clientes y una vez estando ahí basta con imprimir el botón de añadir empleado para desplegar el globo que contiene el formulario. El formulario precisa la información que se requiere y la misma que puede ser omitida. Una vez llenando el formulario es importante también adjuntar los archivos adjuntos necesarios, será imposible acceder a esta última sección
-                              de adjuntos hasta que el primer formulario sea llenado. La fecha de contratación inicial es el día del registro, esta puede ser modificada una vez terminado el registro.</p>
+                            <p>El registro de empleados es importante para mantener un control del personal que forma o ha formado parte de KityPlancho así como referencias en el momento o futuras. Es indispone mantener los datos completos debido a que la necesidad de ellos es de suma importancia. Para registrar un nuevo empleado basta con
+                              buscar en la barra lateral izquierda <em class="kp-text">Empleados</em> » <em class="kp-text">Añadir empleado</em> luego de esto se desplegará el globo que contiene el formulario. El formulario precisa la información que se requiere y la misma que puede ser omitida. Una vez llenando el formulario es importante
+                              también adjuntar los archivos adjuntos necesarios, será imposible acceder a esta última sección de adjuntos hasta que el primer formulario sea llenado. La fecha de contratación inicial es el día del registro, esta puede ser modificada una vez terminado el registro.</p>
                       </md-tab>
                       <md-tab>
                         <ng-template md-tab-label>

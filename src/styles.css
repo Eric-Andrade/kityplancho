@@ -51,7 +51,7 @@ a:focus, a:hover {
 
 .form-space, .form-select{
     margin-bottom: 2px;
-    margin: .5em 0 !important;
+    margin: 1.5em 0 !important;
     width: 100%;
 }
 
@@ -319,6 +319,13 @@ input {
     width: 100%;
     padding: 0;
 }
+
+.getid:hover{
+    color:#ff8080;
+    padding: 1px;
+
+}
+
 /*Media's*/
 
 @media (min-width: 320px) {
@@ -381,7 +388,7 @@ input {
 
    .inputfilter{
         width: 90%;
-        margin: 0 auto;
+        /*margin: 0 auto;*/
     }
 
     md-input-container{
@@ -437,8 +444,8 @@ input {
     }
 
     .inputfilter{
-        width: 100%;
-        margin: 0 auto;
+        width: 80%;
+        /*margin: 0 auto;*/
     }
 
     md-input-container{
@@ -471,8 +478,8 @@ input {
     }
 
     .inputfilter{
-        width: 100%;
-        margin: 0 auto;
+        width: 90%;
+        /*margin: 0 auto;*/
     }
 
     md-input-container{

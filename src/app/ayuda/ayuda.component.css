@@ -20,6 +20,38 @@ p{
     padding: 0 12px
 }
 
+.Deliver {
+    border: 4.5px solid #41eaea;
+}
+
+.Complete{
+    border: 4.5px solid #41ea65;
+}
+
+.Denenged{
+    border: 4.5px solid #ea4141;
+}
+
+.Encamino{
+    border: 4.5px solid #eadd41;
+}
+
+.EnCola{
+    border: 4.5px solid #f7ad27;
+}
+
+.Process{
+    border: 4.5px solid #278df7;
+}
+
+.Cot{
+    border: 4.5px solid #cccccc;
+}
+
+.statuspedido{
+  left: 0px;
+}
+
 @media (min-width: 768px) {
   .datarepite {
     display: inline-block !important;

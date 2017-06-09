@@ -1,0 +1,8 @@
+.cdk-overlay-pane  .md2-select-content{
+  max-width: 300px !important
+}
+
+md-card{
+  padding: 13px;
+  margin: 5px;
+}

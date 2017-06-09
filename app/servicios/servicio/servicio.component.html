@@ -1,0 +1,92 @@
+<md2-dialog #serviciodialog>
+        <h5>{{opcionservicio | uppercase}}</h5>
+        <md-tab-group [selectedIndex]="selectedIndex">
+            <md-tab [disabled]="tab1disabled">
+                <ng-template md-tab-label>
+                  Servicio
+                </ng-template>
+                <form #formServicio="ngForm" (ngSubmit)="postServicio()">
+
+                        <md-input-container dividerColor="accent">
+                          <input type="text" mdInput name="SERVNOMBRE" [(ngModel)]="servicio.SERVNOMBRE" minlength="5" maxlength="45" #nombre #SERVNOMBRE="ngModel" autofocus="autofocus" placeholder="Nombre de servicio" autocomplete="off" required pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
+                          <md-hint align="end">{{nombre.value.length}}/45</md-hint>
+                        </md-input-container>
+
+                        <md2-select name="IDSUCURSAL"
+                                      class="form-select"
+                                      [(ngModel)]="servicio.IDSUCURSAL"
+                                      #IDSUCURSAL="ngModel"
+                                      placeholder="Sucursal a la que pertenece el servicio"
+                                      [required]="isRequired"
+                                      [disabled]="isDisabled"
+                                      #sucursalesControl="ngModel"
+                                      autofocus="autofocus">
+                            <!--<md2-select-header>
+                            <input name="search" type="text" placeholder="Buscar..." />
+                            </md2-select-header>-->
+
+                            <md2-option *ngFor="let s of sucursales" [value]="s.IDSUCURSAL"><strong>{{s.IDSUCURSAL}}</strong> | {{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
+                            </md2-option>
+                          </md2-select>
+
+                <!--<button md-raised-button color="accent" style="width:100%; margin:10px 0;"  (click)="prendadialog.open()">Prendas</button>-->
+
+                <button class="button-form" color="accent" md-button style="width:100%" type="submit" [disabled]="!formServicio.form.valid">Crear {{opcionservicio}}</button>
+                  </form>
+            </md-tab>
+            <md-tab [disabled]="tab2disabled">
+                <ng-template md-tab-label>
+                  Prendas
+                </ng-template>
+                <form #formPrenda="ngForm" (ngSubmit)="postPrenda()">
+
+                    <md2-select name="IDPRENDAS"
+                                      class="form-select"
+                                      [(ngModel)]="sp.IDPRENDAS"
+                                      #IDPRENDAS="ngModel"
+                                      placeholder="Prenda perteneciente al servicio"
+                                      [required]="isRequired"
+                                      [disabled]="isDisabled"
+                                      #prendasesControl="ngModel"
+                                      autofocus="autofocus">
+                            <!--<md2-select-header>
+                            <input name="search" type="text" placeholder="Buscar..." />
+                            </md2-select-header>-->
+
+                    <md2-option *ngFor="let p of prenda" [value]="p.IDPRENDAS"><strong>{{p.IDPRENDAS}}</strong> | <span class="kp-text">{{p.PNOMBREUNIDAD}}</span>
+                            </md2-option>
+                    </md2-select>
+
+                <button class="button-form" color="accent" md-button style="width:100%" type="submit" [disabled]="!formPrenda.form.valid">Añadir prenda al servicio</button>
+                  </form>
+            </md-tab>
+        </md-tab-group>
+                <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
+            </md2-dialog>
+
+<!--
+
+<md2-dialog #prendasdialog>
+        <h5>{{opcionprenda | uppercase}}</h5>
+        <form #formPrenda="ngForm" (ngSubmit)="postPrenda()">
+
+            <md-input-container dividerColor="accent">
+              <input type="text" mdInput name="PNOMBREUNIDAD" [(ngModel)]="prenda.PNOMBREUNIDAD" #nombre #PNOMBREUNIDAD="ngModel" minlength="10" maxlength="45" autofocus="autofocus" placeholder="Nombre de prenda" autocomplete="off" required>
+              <md-hint align="end">{{nombre.value.length}}/45</md-hint>
+            </md-input-container>
+
+            <md-input-container dividerColor="accent">
+              <input type="text" name="PDESCRIPCION" #descripcion #PDESCRIPCION="ngModel" [(ngModel)]="prenda.PDESCRIPCION" mdInput minlength="5" maxlength="45" placeholder="Descripción opcional de la prenda" autocomplete="off">
+
+              <md-hint align="end">{{descripcion.value.length}}/45</md-hint>
+            </md-input-container>
+
+        <button class="button-form" color="accent" md-button style="width:100%" type="submit" [disabled]="!formPrenda.form.valid">Crear {{opcionprenda}}</button>
+          </form>
+        <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
+  </md2-dialog>
+
+    <button md-raised-button color="accent" (click)="prendasdialog.open()">Añadir prenda</button>-->
+
+    <button md-raised-button color="accent" (click)="serviciodialog.open()">Añadir servicio</button>
+

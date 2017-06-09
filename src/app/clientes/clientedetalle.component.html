@@ -9,7 +9,7 @@
       <h2 class="kp-text text-center">Información e historial de {{cliente.CNOMBRE}} {{cliente.CAPELLIDOS}}</h2>
       <br>
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-          <button md-button color="accent" (click)="regresar()"><md-icon >keyboard_arrow_left</md-icon>Regresar a clientes</button>
+          <button md-button color="accent" (click)="regresar()"><md-icon >keyboard_arrow_left</md-icon>Clientes</button>
          <md-card>
        <form #formCliente="ngForm" (ngSubmit)="putCliente()">
          <md-card-header>
@@ -21,14 +21,21 @@
                 <td><md-input-container dividerColor="accent" class="form-space">
                   <input type="number" mdInput #id name="IDCLIENTE" #IDCLIENTE="ngModel" [(ngModel)]="cliente.IDCLIENTE" placeholder="ID de cliente" [disabled]="true">
           </md-input-container></td>
-                <td><md-slide-toggle
+                <!--<td>
+            <md-slide-toggle
             class="example-margin form-space"
               [color]="color"
               [checked]="checked"
               [disabled]="false"
               [required]="true"
               align="end">Status de cuenta
-          </md-slide-toggle></td>
+          </md-slide-toggle></td>-->
+          <td>
+            <md-radio-group dividerColor="accent" #ACTIVO="ngModel" [(ngModel)]="cliente.ACTIVO" name="ACTIVO">
+              <md-radio-button class="form-radiobutton" value="1">Activada</md-radio-button>
+              <md-radio-button class="form-radiobutton" value="0">Desactivada</md-radio-button>
+            </md-radio-group>
+                </td>
               </tr>
             </table>
 
@@ -79,6 +86,10 @@
                         <table class="table table-hover" >
                         <thead class="thead">
                           <tr>
+                            <th style="width: 10%"
+                            tooltip="Status del pedido"
+                            tooltip-position="above"
+                            tooltip-delay="0 * 1000"></th>
                             <th style="width: 5%"
                             tooltip="Identificador de pedido"
                             tooltip-position="above"
@@ -95,20 +106,11 @@
                             tooltip="Forma de pago"
                             tooltip-position="above"
                             tooltip-delay="0 * 1000">Forma de pago</th>
-                            <th style="width: 10%"
-                            tooltip="Status del pedido"
-                            tooltip-position="above"
-                            tooltip-delay="0 * 1000">Status</th>
                           </tr>
                         </thead>
                         <tbody>
                          <tr *ngFor="let pedido of pedidos">
-                            <td><strong>{{pedido.IDPEDIDO}}</strong> </td>
-                            <td>{{pedido.FECHA}}</td>
-                            <!--<td>{{pedido.FECHA | date: 'dd MMMM yyyy'}}</td>-->
-                            <td class="enfasis-td">{{pedido.PRECIO | currency:'USD':true}}</td>
-                            <td>{{pedido.PAGADO}}</td>
-                            <td>
+                           <td>
                               <div class="" [ngSwitch]="pedido.STATUS">
                                   <div class="" *ngSwitchCase="'cotizando'"><span class="map-marker Cot"
                                   tooltip="Cotizando"
@@ -140,6 +142,11 @@
                                   tooltip-delay="0 * 1000"></span></div>
                               </div>
                             </td>
+                            <td><strong>{{pedido.IDPEDIDO}}</strong> </td>
+                            <td>{{pedido.FECHA}}</td>
+                            <!--<td>{{pedido.FECHA | date: 'dd MMMM yyyy'}}</td>-->
+                            <td class="enfasis-td">{{pedido.PRECIO | currency:'USD':true}}</td>
+                            <td>{{pedido.PAGADO}}</td>
                          </tr>
                         </tbody>
                       </table>

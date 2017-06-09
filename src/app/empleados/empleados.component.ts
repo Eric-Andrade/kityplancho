@@ -17,6 +17,7 @@ export class EmpleadosComponent implements OnInit {
     public errorMessage;
     public empleados: Empleados[];
     public empleadosCard = true;
+    userFilter: any = { ENOMBRE: ''};
   constructor(private _empleadoService: EmpleadosService,
               private _route: ActivatedRoute,
               private _router: Router,

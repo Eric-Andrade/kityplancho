@@ -9,7 +9,7 @@
       <!--<span *ngIf="!EEMAIL.touched"> Por favor ingresa el correo eléctronico</span>-->
 
       <md-input-container class="example-full-width"  dividerColor="accent">
-        <input type="password" name="EPASSWORD" #EPASSWORD="ngModel" [(ngModel)]="empleado.EPASSWORD" mdInput minlength="3" maxlength="45" placeholder="Contraseña" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,45}">
+        <input type="password" name="EPASSWORD" #EPASSWORD="ngModel" [(ngModel)]="empleado.EPASSWORD" mdInput minlength="3" maxlength="45" placeholder="Contraseña" required autocomplete="off">
           <!--<span *ngIf="nombre.touched && !nombre.valid">Ingrese un nombre de cliente valido por favor</span>-->
           <!--<md-hint align="start"><em class="md-hint-enfasis">mínimo 3 caracteres</em></md-hint><md-hint align="end">{{nombre.value.length}}/45</md-hint>-->
       </md-input-container>

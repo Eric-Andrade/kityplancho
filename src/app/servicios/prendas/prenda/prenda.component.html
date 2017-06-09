@@ -1,0 +1,21 @@
+<md2-dialog #prendasdialog>
+        <h5>Nueva prenda</h5>
+         <form #formPrenda="ngForm" (ngSubmit)="postPrenda()">
+
+              <md-input-container dividerColor="accent">
+                <input mdInput #prendasnombre #PNOMBREUNIDAD="ngModel" [(ngModel)]="prenda.PNOMBREUNIDAD" minlenght="5" maxlength="45" name="PNOMBREUNIDAD" placeholder="Nombre de prenda" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
+                <md-hint align="end">{{prendasnombre.value.length}}/45</md-hint>
+              </md-input-container>
+
+              <md-input-container dividerColor="accent">
+                <input mdInput #descripcion #PDESCRIPCION="ngModel" [(ngModel)]="prenda.PDESCRIPCION" minlenght="5" maxlength="45" name="PDESCRIPCION" placeholder="Descripción" autocomplete="off">
+                <md-hint align="end">{{descripcion.value.length}}/45</md-hint>
+              </md-input-container>
+
+              <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formPrenda.form.valid">Crear nueva prenda</button>
+                <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
+         </form>
+
+</md2-dialog>
+
+    <button md-raised-button color="accent" (click)="prendasdialog.open()">Añadir Prenda</button>

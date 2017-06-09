@@ -1,0 +1,46 @@
+<div class="loading" *ngIf="loading">
+  <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
+    <!--<md-spinner color="accent"></md-spinner>-->
+    <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
+</div>
+
+<div *ngIf="prenda">
+  <div class="container-fluid">
+    <div class="row">
+      <br>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div style="width:200px; margin:0 auto;"><button md-button color="accent" (click)="regresar()"><md-icon >keyboard_arrow_left</md-icon>Servicios</button></div>
+          <div class="datacontainer">
+            <div class="datarepite">
+            <md-card>
+               <h2 class="kp-text text-center">Detalles de {{prenda.PNOMBREUNIDAD}}</h2>
+              <form #formPrenda="ngForm" (ngSubmit)="putPrenda()">
+                  <md-card-header>
+                  <div md-card-avatar class="example-header-image mat-card-avatar text-center"></div>
+                  <br>
+                  </md-card-header>
+
+                    <md-input-container dividerColor="accent" class="example-full-width form-space">
+                    <input type="number" mdInput #id name="IDPRENDA" #IDPRENDA="ngModel" [(ngModel)]="prenda.IDPRENDA" placeholder="ID de prenda" [disabled]="true">
+                    </md-input-container>
+
+                    <md-input-container dividerColor="accent">
+                      <input mdInput #prendasnombre #PNOMBREUNIDAD="ngModel" [(ngModel)]="prenda.PNOMBREUNIDAD" minlenght="5" maxlength="45" name="PNOMBREUNIDAD" placeholder="Nombre de prenda" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
+                      <md-hint align="end">{{prendasnombre.value.length}}/45</md-hint>
+                    </md-input-container>
+
+                    <md-input-container dividerColor="accent" class="example-full-width form-space">
+                      <input mdInput #descripcion #PDESCRIPCION="ngModel" [(ngModel)]="prenda.PDESCRIPCION" maxlength="45" name="PDESCRIPCION" placeholder="Descripción de prenda" autocomplete="off">
+                      <md-hint align="end">{{descripcion.value.length}}/45</md-hint>
+                    </md-input-container>
+
+                    <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formPrenda.form.valid">Actualizar datos de {{prenda.PNOMBREUNIDAD}}</button>
+              </form>
+            </md-card>
+           </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+

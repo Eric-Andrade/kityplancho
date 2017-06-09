@@ -1,0 +1,65 @@
+<div class="toolbar">
+    <md-toolbar>
+        <button md-icon-button (click)="sidenav.toggle()">
+           <md-icon class="demo-toolbar-icon">more_vert</md-icon>
+        </button>
+        <div class="company">
+            <a routerLink="/" class="namecompany" (click)="sidenav.close()" (click)="map.close()">
+            <img src="assets/logokity.png" width="5%" alt="Icono KityPlancho">
+            <span class="kp-text">KityPlancho</span></a>
+        </div>
+
+        <span class="fill-toolbar-space"></span>
+        <kp-pedido></kp-pedido>
+
+        <button md-icon-button>
+            <md-icon >notifications_none</md-icon>
+        </button>
+        <button md-icon-button (click)="map.toggle()">
+            <md-icon>satellite</md-icon>
+        </button>
+        <span>|</span>
+        <!--profil-->
+        <button md-icon-button [mdMenuTriggerFor]="help">
+          <md-icon>settings</md-icon>
+        </button>
+
+        <md-menu #help="mdMenu">
+          <button md-menu-item disabled>
+            <md-icon>account_circle</md-icon>
+            <a class="" routerLink="/perfil">Perfil</a>
+          </button>
+          <button md-menu-item disabled>
+            <md-icon>favorite</md-icon>
+            <a class="" routerLink="/sucursales">KityPlancho</a>
+          </button>
+          <button md-menu-item disabled>
+            <md-icon>live_help</md-icon>
+            <a class="" routerLink="/acerca">Acerca de</a>
+          </button>
+          <button md-menu-item disabled>
+            <md-icon>exit_to_app</md-icon>
+            <a class="" routerLink="/" class="align-center">Cerrar sesión</a>
+          </button>
+        </md-menu>
+
+    </md-toolbar>
+</div>
+
+<md-sidenav-container>
+    <md-sidenav class="sidesection" opened="false" #sidenav mode="over">
+        <div *ngIf="secciones">
+            <div *ngFor="let seccion of secciones" (click)="sidenav.close()" (click)="map.close()">
+              <a class="seccion" routerLink="/{{seccion}}">{{seccion}}</a>
+            </div>
+            <button md-button (click)="sidenav.close()">Cerrar</button>
+        </div>
+    </md-sidenav>
+
+    <div class="functions">
+        <router-outlet></router-outlet>
+    </div>
+    <md-sidenav class="sidemap" opened="false" #map mode="side" align="end">
+        <kp-mapa></kp-mapa>
+    </md-sidenav>
+</md-sidenav-container>

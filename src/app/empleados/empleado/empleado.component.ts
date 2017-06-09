@@ -55,7 +55,7 @@ export class EmpleadoComponent implements OnInit {
 
    ngOnInit( ) {
      this.getSucursales();
-    this.empleado = {IDEMPLEADO:0,
+    this.empleado = { IDEMPLEADO:0,
                       EEMAIL:'vero@hotmail.com',
                       EPASSWORD:'123213',
                       EPRIVILEGIO:'rutero',

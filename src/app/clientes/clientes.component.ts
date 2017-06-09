@@ -16,6 +16,7 @@ export class ClientesComponent implements OnInit {
     public message: boolean;
     public clientes: Clientes[];
     public clientesCard = true;
+    userFilter: any = { CNOMBRE: ''};
   constructor(private _clienteService: ClientesService,
               private _route: ActivatedRoute,
               private _router: Router,

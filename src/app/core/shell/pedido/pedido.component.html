@@ -117,7 +117,48 @@
                   tooltip-position="above"
                   tooltip-delay="0 * 1000">person_pin</md-icon>
               </ng-template>
-              <!--<kp-mapa></kp-mapa>-->
+                <agm-map
+
+
+                    [latitude]="lat"
+                    [longitude]="lng"
+                    [zoom]="zoom"
+                    [mapDraggable]="true"
+                    [disableDoubleClickZoom]="false"
+                    [disableDefaultUI]="false"
+                    [zoomControl]="true"
+                    [streetViewControl]="false"
+                    >
+
+                    <agm-marker
+                    *ngIf="lat != null && lng != null"
+                    [latitude]="lat" [longitude]="lng"
+                    [iconUrl]="kityplancho"
+                    >
+                    </agm-marker>
+
+                    <!--<agm-marker *ngFor="let pedido of pedidos; let i = index"
+                        (markerClick)="markerClicked(pedido, i)"
+                        (dragEnd)="markerDragEnd(pedido, $event)"
+                        [latitude]="pedido.LAT"
+                        [longitude]="pedido.LNG"
+
+                        [markerDraggable]="pedido.draggable"
+                        [iconUrl]="pIcon"
+                        [opacity]="1"
+                          >
+
+                          <agm-info-window>
+                            <p><span class="kp-text bold">{{pedido.IDPEDIDO}} | {{pedido.PFECHA }}</span></p>
+                            <h5>Dirección</h5>
+                            <span class="bold">{{pedido.PDIRECCION_E}}</span>
+                            <span>{{pedido.PSTATUS}}</span>
+                            <span>{{pedido.LAT}}</span>
+                            <span>{{pedido.LNG}}</span>
+                          </agm-info-window>
+                    </agm-marker>-->
+                </agm-map>
+
             </md-tab>
           </md-tab-group>
 

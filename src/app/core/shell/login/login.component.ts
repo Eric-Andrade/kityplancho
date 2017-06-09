@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.empleado = {
         IDEMPLEADO: null,
-        EEMAIL:'',
-        EPASSWORD:'',
+        EEMAIL:'johanson@hotmail.com',
+        EPASSWORD:'123213',
         EPRIVILEGIO:'administrador',
         ENOMBRE:'',
         EAPELLIDOS:'',

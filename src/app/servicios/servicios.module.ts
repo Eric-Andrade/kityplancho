@@ -1,19 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 import { ServiciosComponent } from './servicios.component';
+import { SharedModule } from '../shared/shared.module';
 import { ServicioComponent } from './servicio/servicio.component';
 import { RouterModule, Routes } from '@angular/router/';
 import { ServiciosService } from './servicios.service';
 import { MaterialModule } from '@angular/material';
-import { FormsModule } from '@angular/forms';
 import { Md2Module } from 'md2';
-import { HttpModule } from '@angular/http';
-import { SharedModule } from '../shared/shared.module';
 import { ServiciodetalleComponent } from './serviciodetalle.component';
-
+import { PrendasService } from './prendas/prendas.service';
+import { PrendasComponent } from './prendas/prendas.component';
+import { PrendadetalleComponent } from './prendas/prendadetalle.component';
+import { PrendaComponent } from './prendas/prenda/prenda.component';
+import { ServicioprendasComponent } from './servicioprendas.component';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 const routes: Routes = [
-  { path: '', component: ServiciosComponent }
+  { path: '', component: ServiciosComponent },
+  { path: ':id', component: ServicioprendasComponent },
+  { path: 'servicio/:id', component: ServiciodetalleComponent },
+  { path: 'prenda/:id', component: PrendadetalleComponent }
 
 ];
 
@@ -21,13 +29,14 @@ const routes: Routes = [
   imports: [
   CommonModule,
   RouterModule.forChild(routes),
-      MaterialModule.forRoot(),
-      Md2Module.forRoot(),
-      FormsModule,
-      HttpModule,
-      SharedModule
+  MaterialModule.forRoot(),
+  Md2Module.forRoot(),
+  FormsModule,
+  HttpModule,
+  SharedModule,
+  Ng2FilterPipeModule
   ],
-  declarations: [ServiciosComponent, ServicioComponent, ServiciodetalleComponent],
-  providers: [ ServiciosService]
+  declarations: [ServiciosComponent, ServicioComponent, ServiciodetalleComponent, PrendasComponent, PrendadetalleComponent, PrendaComponent, ServicioprendasComponent],
+  providers: [ ServiciosService, PrendasService ]
 })
 export class ServiciosModule { }
