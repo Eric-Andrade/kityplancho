@@ -19,8 +19,8 @@ import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 const routes: Routes = [
   { path: '', component: ServiciosComponent },
-  { path: ':id', component: ServicioprendasComponent },
-  { path: 'servicio/:id', component: ServiciodetalleComponent },
+  { path: ':id', component: ServiciodetalleComponent },
+  { path: 'servicio/:id', component: ServicioprendasComponent },
   { path: 'prenda/:id', component: PrendadetalleComponent }
 
 ];

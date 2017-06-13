@@ -62,6 +62,8 @@ export class ServicioComponent implements OnInit {
       IDSP:null,
       IDPRENDAS:null,
       IDSERVICIO:null,
+      SERVNOMBRE:'',
+      PNOMBREUNIDAD:'',
       SPCOSTO:null,
       SPDESCUENTO:null,
     }
@@ -120,6 +122,8 @@ export class ServicioComponent implements OnInit {
                     IDSERVICIO:this.servicio[0].IDSERVICIO,
                     IDSP:this.servicio[0].IDSP,
                     IDPRENDAS:this.servicio[0].IDPRENDAS,
+                    SERVNOMBRE:this.servicio[0].SERVNOMBRE,
+                    PNOMBREUNIDAD:this.servicio[0].PNOMBREUNIDAD,
                     SPCOSTO:this.servicio[0].SPCOSTO,
                     SPDESCUENTO:this.servicio[0].SPDESCUENTO
                   }

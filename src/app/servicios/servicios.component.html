@@ -10,7 +10,7 @@
           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <div class="inputfilter">
             <md-input-container dividerColor="accent">
-              <input mdInput placeholder="Buscar servicio..." [(ngModel)]="userFilter.PNOMBREUNIDAD" name="search">
+              <input mdInput placeholder="Buscar servicio..." [(ngModel)]="userFilter.PNOMBREUNIDAD" name="search" autocomplete="off">
             </md-input-container>
             </div>
           </div>
@@ -42,9 +42,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let servicio of servicios | filterBy: userFilter" (click)="getservicio(servicio.IDSP)">
+                  <tr *ngFor="let servicio of servicios | filterBy: userFilter" (click)="getsp(servicio.IDSP)">
                     <td>{{servicio.IDSP}}</td>
-                    <td><span (click)="getsp(servicio.IDSERVICIO)" class="getid"
+                    <td><span (click)="getservicio(servicio.IDSERVICIO)" class="getid"
                         tooltip="Ver detalles de {{servicio.SERVNOMBRE}}"
                         tooltip-position="above"
                         tooltip-delay="0 * 1000">{{servicio.SERVNOMBRE}} </span> -

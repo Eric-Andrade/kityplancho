@@ -18,6 +18,81 @@ import { Md2Toast } from 'md2';
   providers: [ PedidoService, ServiciosService, SucursalesService, ClientesService ]
 })
 export class PedidoComponent implements OnInit {
+    /*Map*/
+        public customStyle = [
+            {
+                "featureType": "all",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "saturation": "-30"
+                    }
+                ]
+            },
+            {
+                "featureType": "all",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "visibility": "simplified"
+                    },
+                    {
+                        "hue": "#ff004d"
+                    },
+                    {
+                        "saturation": "73"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit.station",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            }
+        ];
+        /*Start position */
+
+
     public opcionpedido: string;
     public isRequired: boolean;
     public isDisabled: boolean;
@@ -50,10 +125,6 @@ export class PedidoComponent implements OnInit {
     public thumbLabel = true;
     public value = 0;
     public vertical = false;
-    public lat: number;
-    public lng: number;
-    public zoom: number = 11;
-    public kityplancho:string;
 
     constructor(private _pedidoService: PedidoService,
                 private _serviciosService: ServiciosService,
@@ -63,32 +134,32 @@ export class PedidoComponent implements OnInit {
                 private _route: ActivatedRoute,
                 private _router: Router,) {
 
-        this.opcionpedido = 'nuevo pedido';
-        this.isRequired = true;
-        this.isDisabled = false;
-        this.isDisabledMultiple = false;
-        this.itemMultiple = null;
-        this.loading = true;
-        this.message = false;
-        this.selectedIndex = 0;
-        this.tab1disabled = false;
-        this.tab2disabled = true;
-        this.tab3disabled = true;
-        this.next = true;
-        this.kityplancho = '/assets/kityplancho-marker.png';
-         this.lat = 24.02780775285771;
-         this.lng = -104.65332895517349;
+                  this.opcionpedido = 'nuevo pedido';
+                  this.isRequired = true;
+                  this.isDisabled = false;
+                  this.isDisabledMultiple = false;
+                  this.itemMultiple = null;
+                  this.loading = true;
+                  this.message = false;
+                  this.selectedIndex = 0;
+                  this.tab1disabled = false;
+                  this.tab2disabled = true;
+                  this.tab3disabled = true;
+                  this.next = true;
+
   }
 
   ngOnInit() {
+
   this.pedido = {
-      IDPEDIDO:0,
-      PSTATUS:'en_camino',
-      PDIRECCIONR:'1Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico',
-      PDIRECCIONE:'2Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico',
+      IDPEDIDO:null,
       PPRECIOTOTAL:0,
-      PPAGADO:'contraentrega',
+      PSTATUS:'en_camino',
+      PPAGADO:'pagado',
+      PFECHA:'',
+      PDIRECCIONR:'1Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico',
       COORDENADASR:'',
+      PDIRECCIONE:'2Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico',
       COORDENADASE:'',
       IDCLIENTE:null,
   }

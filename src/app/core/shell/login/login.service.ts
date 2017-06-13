@@ -15,19 +15,19 @@ export class LoginService {
         this.url = global.url;
     }
 
-    public login(user, gethash = null){
+    public login(user:Empleados, gethash = null){
       let body = new URLSearchParams();
-      body.set('EEMAIL',user.EEMAIL);
-      body.set('EPASSWORD',user.EPASSWORD);
+      body.set('ECORREO',user.EEMAIL);
+      body.set('ECONTRASENA',user.EPASSWORD);
 
-      if(gethash != null){
-        user.gethash = gethash;
-      }
+      // if(gethash != null){
+      //   user.gethash = gethash;
+      // }
 
       // let json = JSON.stringify(user);
       // let body = json;
-       return this._http.post(this.url + 'ingresoadmin', body, {headers : this.getHeaders()})
-          .map(res => res.json());
+       return this._http.post(this.url + 'loginadmin', body, {headers : this.getHeaders()})
+       .map( res => res.json());
     }
 
     private getHeaders() {

@@ -81,6 +81,11 @@ export class ServiciosService {
           });
     }
 
+    getSP(id: string) {
+        return this._http.get(this.url + 'getservicioprendas?id='+id)
+          .map(res => res.json());
+    }
+
     private getHeaders() {
         let headers = new Headers();
         headers.append('Content-Type','application/x-www-form-urlencoded');

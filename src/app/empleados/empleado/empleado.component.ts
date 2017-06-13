@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { EmpleadosService } from '../empleados.service';
-import { Empleados } from '../empleados';
+import { Empleados, EmpleadoAdjuntos } from '../empleados';
 import { SucursalesService } from '../../sucursales/sucursales.service';
 import { Sucursales } from '../../sucursales/sucursales';
 import { Md2Toast } from 'md2';
@@ -21,6 +21,7 @@ export class EmpleadoComponent implements OnInit {
     public isDisabledMultiple: boolean;
     public itemMultiple: any;
     public empleado: Empleados;
+    public empleadoad: EmpleadoAdjuntos;
     public errorMessage;
     public currentSucursals: string;
     public currentSucursales: string;
@@ -67,35 +68,56 @@ export class EmpleadoComponent implements OnInit {
                       EFECHACONTRATO:'2017-04-13',
                       EUBICACION:'Dgo',
                       IDSUCURSAL:null,
-                        // IDEA: 0,
-                        // EAINE: 'EMPLEADOIFE.jpg',
-                        // EACURP: 'EMPLEADOCURP.jpg',
-                        // EAACTANACIMIENTO: 'EMPLEADOACTANACIMIENTO.jpg',
-                        // EACOMPROBANTEDOM: 'EMPLEADOCOMPROBANTEDOM.jpg',
-                        // IDEMPLEADOEA: 0
-                      };
+                    };
+
+    this.empleadoad = {
+        IDEA: 0,
+        EAINE:'',
+        EACURP:'',
+        EAACTANACIMIENTO:'',
+        EACOMPROBANTEDOM:'',
+        IDEMPLEADO: 1
+    }
   }
 
   public postEmpleado(){
+
+      this.toastMe();
+      this.tab1disabled = true
+      this.tab2disabled = false;
+      this.selectedIndex = 1;
+
+    // this._empleadosService.postEmpleado(this.empleado).subscribe(
+    //       data => {
+    //             this.toastMe();
+    //            this.tab1disabled = true
+    //            this.tab2disabled = false;
+    //            this.selectedIndex = 1;
+    //       },
+
+    //       error =>  {
+    //           console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+    //            this.errorMessage = <any>error;
+    //             if(this.errorMessage != null){
+    //             this.failpostEmpleado();
+    //         }
+    //       });
+  }
+
+  public postEmpleadoAdjuntos(){
+
     this._empleadosService.postEmpleado(this.empleado).subscribe(
           data => {
-                this.toastMe();
-               this.tab1disabled = true
-               this.tab2disabled = false;
-               this.selectedIndex = 1;
+                this.postempleadoad();
           },
 
           error =>  {
               console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
                this.errorMessage = <any>error;
                 if(this.errorMessage != null){
-                this.failpostEmpleado();
+                this.failpostempleadoad();
             }
           });
-  }
-
-  public postEmpleadoAdjuntos(){
-
   }
 
     public getSucursales(){
@@ -134,5 +156,14 @@ export class EmpleadoComponent implements OnInit {
       ${this.empleado.EAPELLIDOS}, intenta de nuevo por favor`);
     }
 
+  postempleadoad(){
+      this.toast.toast(`Archivos de ${this.empleado.ENOMBRE} ${this.empleado.EAPELLIDOS}, guardados exitosamente`);
+  }
+
+  failpostempleadoad() {
+      this.toast.toast(`Algo falló al intentar los guardar archivos del empleado
+      ${this.empleado.ENOMBRE}
+      ${this.empleado.EAPELLIDOS}, intenta de nuevo por favor`);
+    }
 }
 

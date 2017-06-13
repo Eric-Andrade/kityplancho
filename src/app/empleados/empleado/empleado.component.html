@@ -10,7 +10,7 @@
             <table class="example-full-width" cellspacing="0">
               <tr>
                 <td><md-input-container dividerColor="accent">
-                    <input mdInput #email #EEMAIL="ngModel" [(ngModel)]="empleado.EEMAIL" minlenght="5" maxlength="45" name="EEMAIL" placeholder="Correo eléctronico" required autocomplete="off" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+                    <input mdInput #email #EEMAIL="ngModel" [(ngModel)]="empleado.EEMAIL" name="EEMAIL" minlenght="5" maxlength="45" placeholder="Correo eléctronico" required autocomplete="off" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
                     <md-hint align="end">{{email.value.length}}/45</md-hint>
                     </md-input-container></td>
                 <td>
@@ -100,11 +100,44 @@
             <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
           </md-tab>
 
+
+
           <md-tab [disabled]="tab2disabled">
                 <ng-template md-tab-label>
-                  Adjuntos del empleado
+                  Adjuntos de {{empleado.ENOMBRE}}
                 </ng-template>
-                bla bla
+                <form #formEmpleadoAdjuntos="ngForm" (ngSubmit)="postEmpleadoAdjuntos()">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                          <div id="dropzone">
+                            <div>INE</div>
+                            <input type="file" accept="image/*" #EAINE="ngModel" [(ngModel)]="empleadoad.EAINE" name="EAINE"/>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                          <div id="dropzone">
+                            <div>CURP</div>
+                            <input type="file" accept="image/*" #EACURP="ngModel" [(ngModel)]="empleadoad.EACURP" name="EACURP"/>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                          <div id="dropzone">
+                          <div>Acta de Nac.</div>
+                            <input type="file" accept="image/*" #EAACTANACIMIENTO="ngModel" [(ngModel)]="empleadoad.EAACTANACIMIENTO" name="EAACTANACIMIENTO"/>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                          <div id="dropzone">
+                            <div>Comprobante</div>
+                            <input type="file" accept="image/*" #EACOMPROBANTEDOM="ngModel" [(ngModel)]="empleadoad.EACOMPROBANTEDOM" name="EACOMPROBANTEDOM"/>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formEmpleadoAdjuntos.form.valid">Añadir archivos de {{empleado.ENOMBRE}}</button>
+                </form>
+                <p class="nota">*Nota: Todos los archivos<span class="enfasis">*</span> son obligatorios</p>
           </md-tab>
       </md-tab-group>
     </md2-dialog>

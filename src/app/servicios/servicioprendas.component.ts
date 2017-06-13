@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IServicios } from './servicios'
+import { IServicios, SP } from './servicios'
 import { ServiciosService } from './servicios.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Md2Toast } from 'md2';
@@ -20,6 +20,7 @@ export class ServicioprendasComponent implements OnInit {
     public sucursales: Sucursales[];
     public isRequired: boolean;
     public isDisabled: boolean;
+    public servicioprendas:SP;
   constructor(private _serviciosService: ServiciosService,
               private _sucursalesService: SucursalesService,
               private _route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class ServicioprendasComponent implements OnInit {
 
   ngOnInit() {
     this.getServicio();
+    this.getSP();
 
     this._sucursalesService.getSucursales().subscribe(
         response => {
@@ -51,7 +53,7 @@ export class ServicioprendasComponent implements OnInit {
         });
   }
 
-getServicio() {
+  getServicio() {
     this._route.params.forEach((params: Params) => {
         const id = params['id'];
         this._serviciosService.getServicio(id).subscribe(
@@ -97,6 +99,27 @@ getServicio() {
         });
   }
 
+  getSP(){
+    this._route.params.forEach((params: Params) => {
+            let id = params['id'];
+      this._serviciosService.getSP(id).subscribe(
+        response =>{
+          this.servicioprendas = response.SERVICIOPRENDAS;
+          this.loading = false;
+          console.log('Este es SP');
+          console.log(this.servicioprendas);
+        },
+              error => {
+                this.errorMessage = <any>error;
+                if (this.errorMessage != null) {
+                    console.log(this.errorMessage);
+                    this.message = true;
+                    this.failgetServicio();
+                }
+              }
+            );
+        });
+    }
 
   failinfogetPrenda() {
       this.toast.toast(`Error al encontrar la información de esta prenda, intenta nuevamente por favor`);
@@ -105,10 +128,14 @@ getServicio() {
   toastMe() {
       this.toast.toast(`Datos de ${this.servicio.SERVNOMBRE} actualizados exitosamente`);
     }
- failinfoputCliente() {
+  failinfoputCliente() {
       this.toast.toast(`Error al actualizar la información de ${this.servicio.SERVNOMBRE}, intenta nuevamente por favor`);
     }
-    regresar(){
-      this._router.navigate(['servicios']);
+  regresar(){
+    this._router.navigate(['servicios']);
+  }
+
+  failgetServicio() {
+          this.toast.toast('Error al encontrar la información de este servicio, intenta nuevamente por favor');
   }
 }

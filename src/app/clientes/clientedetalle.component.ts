@@ -132,6 +132,10 @@ export class ClienteDetalleComponent implements OnInit {
     }
     regresar(){
       this._router.navigate(['clientes']);
-  }
+    }
+
+   getpedido(idpedido){
+      this._router.navigate(['pedidos',idpedido]);
+    }
 
 }

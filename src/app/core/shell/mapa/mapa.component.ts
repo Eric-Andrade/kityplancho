@@ -4,6 +4,7 @@ import { Mapa } from "./mapa";
 import { IPedidos } from '../pedidos/pedidos';
 import { PedidosService } from '../pedidos/pedidos.service';
 import { Md2Toast } from 'md2';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'kp-mapa',
@@ -105,7 +106,9 @@ export class MapaComponent implements OnInit {
 /*Markers*/
     markers: Mapa[];
     constructor(private _pedidosService: PedidosService,
-                private toast: Md2Toast,) {
+                private toast: Md2Toast,
+                private _route: ActivatedRoute,
+              private _router: Router) {
       /* navigator.geolocation.watchPosition((position) => {
             this.lat = position.coords.latitude;
             this.lng = position.coords.longitude;
@@ -150,49 +153,49 @@ export class MapaComponent implements OnInit {
               this.pedidos[i].LNG = this.plng;
               // console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' plat: ' + this.plat + ' plng: ' + this.plng );
               console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' '+ this.coords  + ' '+ this.pedidos[i].PSTATUS)
-              if(this.pedidos[i].PSTATUS == 'en_cola'){
-                  this.pIcon = '/assets/map-markerEnCola.png';
-                    if(this.pedidos[i].PSTATUS == 'en_camino'){
-                      this.pIcon = '/assets/map-markerEncamino.png';
-                    }
-                      if(this.pedidos[i].PSTATUS == 'en_proceso'){
-                        this.pIcon = '/assets/map-markerProcess.png';
-                      }
-                        if(this.pedidos[i].PSTATUS == 'para_entregar'){
-                          this.pIcon = '/assets/map-markerDeliver.png';
-                        }
-              }
+                // if(this.pedidos[i].PSTATUS == 'en_cola'){
+                  //     this.pIcon = '/assets/map-markerEnCola.png';
+                  //       if(this.pedidos[i].PSTATUS == 'en_camino'){
+                  //         this.pIcon = '/assets/map-markerEncamino.png';
+                  //       }
+                  //         if(this.pedidos[i].PSTATUS == 'en_proceso'){
+                  //           this.pIcon = '/assets/map-markerProcess.png';
+                  //         }
+                  //           if(this.pedidos[i].PSTATUS == 'para_entregar'){
+                  //             this.pIcon = '/assets/map-markerDeliver.png';
+                  //           }
+                  // }
 
-              //   switch(this.pedidos[i].PSTATUS) {
-              //    case "en_cola": {
-              //       this.pIcon = '/assets/map-markerEnCola.png';
-              //       break;
-              //    }
-              //    case "en_camino": {
-              //       this.pIcon = '/assets/map-markerEncamino.png';
-              //       break;
-              //    }
-              //    case "en_proceso": {
-              //       this.pIcon = '/assets/map-markerProcess.png';
-              //       break;
-              //    }
-              //    case "para_entregar": {
-              //       this.pIcon = '/assets/map-markerDeliver.png';
-              //       break;
-              //    }
-              //   case "entregado": {
-              //       this.pIcon = '/assets/map-markerComplete.png';
-              //       break;
-              //    }
-              //    case "no_atendido": {
-              //       this.pIcon = '/assets/map-markerDenenged.png';
-              //       break;
-              //    }
-              //    default: {
-              //       console.log('Status invalido');
-              //       break;
-              //    }
-              // }
+                switch(this.pedidos[i].PSTATUS) {
+                   case "en_cola": {
+                      this.pIcon = '/assets/map-markerEnCola.png';
+                      break;
+                   }
+                   case "en_camino": {
+                      this.pIcon = '/assets/map-markerEncamino.png';
+                      break;
+                   }
+                   case "en_proceso": {
+                      this.pIcon = '/assets/map-markerProcess.png';
+                      break;
+                   }
+                   case "para_entregar": {
+                      this.pIcon = '/assets/map-markerDeliver.png';
+                      break;
+                   }
+                  case "entregado": {
+                      this.pIcon = '/assets/map-markerComplete.png';
+                      break;
+                   }
+                   case "no_atendido": {
+                      this.pIcon = '/assets/map-markerDenenged.png';
+                      break;
+                   }
+                   default: {
+                      console.log('Status invalido');
+                      break;
+                   }
+              }
             }
 
             if (!this.pedidos ) {
@@ -257,6 +260,10 @@ export class MapaComponent implements OnInit {
         }else {
             this.markers = [];
         }
+    }
+
+    getpedido(idpedido){
+      this._router.navigate(['pedidos',idpedido]);
     }
 
     failgetPedidos() {

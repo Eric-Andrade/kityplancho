@@ -48,7 +48,6 @@ export class PedidosService {
         body.set('PPRECIOTOTAL', pedido.PPRECIOTOTAL.toString());
         body.set('PSTATUS', pedido.PSTATUS);
         body.set('PPAGADO', pedido.PPAGADO);
-        body.set('PFECHA', pedido.PFECHA);
         body.set('PDIRECCIONR', pedido.PDIRECCIONR);
         body.set('COORDENADASR', pedido.COORDENADASR);
         body.set('PDIRECCIONE', pedido.PDIRECCIONE);

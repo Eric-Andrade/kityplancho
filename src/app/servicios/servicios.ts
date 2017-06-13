@@ -2,6 +2,8 @@ export interface Servicios {
   IDSP: number;
   IDPRENDAS: number;
   IDSERVICIO: number;
+  SERVNOMBRE: string;
+  PNOMBREUNIDAD: string;
   SPCOSTO: number;
   SPDESCUENTO: number;
 }
@@ -23,4 +25,13 @@ export interface IPrendas{
   IDPRENDA: number;
   PNOMBREUNIDAD: string;
   PDESCRIPCION?: string;
+}
+
+export interface SP {
+    IDPRENDAS:number;
+    IDSERVICIO:number;
+    PNOMBREUNIDAD:string;
+    IDSP:number;
+    SPCOSTO:number;
+    SPDESCUENTO:number;
 }

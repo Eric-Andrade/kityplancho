@@ -12,12 +12,14 @@ import { Ng2UploaderModule } from 'ng2-uploader';
 import { DataTablePipe } from '../pipes/data-table-pipe.pipe';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
+import { SharedModule } from '../shared/shared.module';
+import { LoginModule } from './shell/login/login.module';
+import { PedidosModule } from './shell/pedidos/pedidos.module';
+
 import { ShellComponent } from './shell/shell.component';
 import { IndexComponent} from './shell/index/index.component';
-import { SharedModule } from '../shared/shared.module';
 import { MapaComponent } from './shell/mapa/mapa.component';
 import { PedidosComponent } from './shell/pedidos/pedidos.component';
-import { LoginModule } from './shell/login/login.module';
 import { PedidoComponent } from './shell/pedido/pedido.component';
 import { PedidodetalleComponent } from './shell/pedidos/pedidodetalle.component';
 import { AcercaComponent } from './shell/acerca.component';
@@ -59,7 +61,8 @@ const routes: Routes = [
       BrowserAnimationsModule,
       HttpModule,
       Ng2UploaderModule,
-      Ng2FilterPipeModule
+      Ng2FilterPipeModule,
+      PedidosModule
 
   ],
   declarations: [ShellComponent, IndexComponent, PedidosComponent, MapaComponent, PedidoComponent, PedidodetalleComponent, AcercaComponent, DataTablePipe ],

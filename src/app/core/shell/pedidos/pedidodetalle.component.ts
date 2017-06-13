@@ -1,3 +1,4 @@
+
 import { ServiciosService } from '../../../servicios/servicios.service';
 import { Servicios } from '../../../servicios/servicios';
 import { IDetallePedidos, IDetallePedido, IPedido, ISP } from '../pedido/pedido';
@@ -15,6 +16,80 @@ import { Clientes } from '../../../clientes/clientes';
   providers:[ PedidosService, ClientesService, ServiciosService ]
 })
 export class PedidodetalleComponent implements OnInit {
+   /*Map*/
+        public customStyle = [
+            {
+                "featureType": "all",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "saturation": "-30"
+                    }
+                ]
+            },
+            {
+                "featureType": "all",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "visibility": "simplified"
+                    },
+                    {
+                        "hue": "#ff004d"
+                    },
+                    {
+                        "saturation": "73"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit.station",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            }
+        ];
+        /*Start position */
+
   public pedido:IPedido;
   public detallepedidos:IDetallePedidos[];
   public detallepedido:IDetallePedido;
@@ -39,6 +114,26 @@ export class PedidodetalleComponent implements OnInit {
   public value = 0;
   public vertical = false;
   public sp: ISP;
+  public lat: number;
+  public lng: number;
+  public zoom: number = 14;
+  public kityplancho:string;
+  public draggable: boolean = true;
+  public coord: Array<any>;
+  public coords: Array<any>;
+  public plat: any;
+  public plng: any;
+  public coorde: Array<any>;
+  public coordse: Array<any>;
+  public plate: any;
+  public plnge: any;
+  public statusservicio: Array<any>;
+  public inputdisabled: boolean;
+  public opacityr:number = 1;
+  public opacitye:number = 1;
+  public pedidocoord: string;
+  public pedidocoorde: string;
+  public direccion:string;
 
   constructor(private _pedidosService: PedidosService,
               private _serviciosService: ServiciosService,
@@ -50,6 +145,18 @@ export class PedidodetalleComponent implements OnInit {
               this.loading = true;
               this.isRequired = true;
               this.isDisabled = false;
+              this.kityplancho = '/assets/kityplancho-marker.png';
+              // this.lat = 24.02780775285771;
+              // this.lng = -104.65332895517349;
+               this.statusservicio = [
+                        { status: 'en_cola', nombre: 'Pedido en espera'},
+                        { status: 'en_camino', nombre: 'Pedido aprobado'},
+                        { status: 'en_proceso', nombre: 'Procesando pedido'},
+                        { status: 'para_entregar', nombre: 'Listo para entregar'},
+                        { status: 'entregado', nombre: 'Pedido entregado'},
+                        { status: 'no_atendido', nombre: 'Rechazar pedido'}
+                    ];
+              this.inputdisabled = false;
              }
 
   ngOnInit() {
@@ -80,6 +187,32 @@ export class PedidodetalleComponent implements OnInit {
                   COORDENADASE: this.pedido[0].COORDENADAS_E,
                   IDCLIENTE: this.pedido[0].IDCLIENTE,
                       };
+
+              this.coord = this.pedido.COORDENADASR.split(',',2);
+              this.plat = parseFloat(this.coord[0]);
+              this.plng = parseFloat(this.coord[1]);
+              this.coords = [this.plat, this.plng]
+              this.pedido.LAT = this.plat;
+              this.pedido.LNG = this.plng;
+              console.log('IDPEDIDO: ' + this.pedido.IDPEDIDO + ' '+ this.coords  + ' '+ this.pedido.PSTATUS)
+              this.coorde = this.pedido.COORDENADASE.split(',',2);
+              this.plate = parseFloat(this.coorde[0]);
+              this.plnge = parseFloat(this.coorde[1]);
+              this.coordse = [this.plate, this.plnge]
+              this.pedido.LATE = this.plate;
+              this.pedido.LNGE = this.plnge;
+
+
+            // if(this.pedido.PSTATUS == 'entregado' || this.pedido.PSTATUS == 'no_atendido'){
+            //   this.inputdisabled = true;
+            //   this.draggable = false;
+            // }
+            if(this.pedido.COORDENADASR == this.pedido.COORDENADASE){
+                this.direccion = 'Dirección de recolección y entrega';
+            }else{
+              this.direccion = 'Dirección a recoger pedido';
+            }
+
             console.log('Pedido');
             console.log(this.pedido)
             if(!this.pedido){
@@ -138,7 +271,6 @@ export class PedidodetalleComponent implements OnInit {
                       // this.toastMe();
                   }
               }
-
             );
   }
 
@@ -195,9 +327,50 @@ export class PedidodetalleComponent implements OnInit {
         );
   }
 
+  public clickMarcador(marcador:IPedido, i:number){
+    console.log('clickMarcador');
+    console.log(marcador, i);
+    this.opacityr = 1;
+  }
+
+  public dragEndMarcador(marcador:IPedido, evento){
+    marcador.LAT = evento.coords.lat;
+    marcador.LNG = evento.coords.lng;
+    this.pedidocoord = `${marcador.LAT},${marcador.LNG}`;
+    console.log('dragEndMarcador');
+    console.log(this.pedidocoord, evento);
+    this.pedido.COORDENADASR = this.pedidocoord;
+    if(this.pedido.COORDENADASR == this.pedido.COORDENADASE){
+      this.pedidocoorde = this.pedidocoord;
+    }
+  }
+
+  public dragEndMarcadore(marcador:IPedido, evento){
+    if(this.pedido.COORDENADASR == this.pedido.COORDENADASE){
+      this.pedidocoorde = this.pedidocoord;
+    }else{
+      marcador.LATE = evento.coords.lat;
+      marcador.LNGE = evento.coords.lng;
+      this.pedidocoorde = `${marcador.LATE},${marcador.LNGE}`;
+      console.log('dragEndMarcadore');
+      console.log(this.pedidocoorde, evento);
+      this.pedido.COORDENADASE = this.pedidocoorde;
+    }
+  }
+
   public putPedido(){
         if(!this.pedido) return;
-        console.log('Put pedido');
+
+
+
+        // if(this.pedido.COORDENADASR == "null" && this.pedido.COORDENADASE == "null"){
+        //     this.pedido.COORDENADASR = `${this.pedido[0].LAT},${this.pedido[0].LNG}`;
+        //     this.pedido.COORDENADASE = `${this.pedido[0].LATE},${this.pedido[0].LNGE}`;
+        // }else{
+        //   this.pedido.COORDENADASR = this.pedidocoord;
+        //   this.pedido.COORDENADASE = this.pedidocoorde;
+        // }
+        console.log('PUT pedido');
         console.log(this.pedido);
               this._pedidosService.putPedido(this.pedido).subscribe(
               data => {

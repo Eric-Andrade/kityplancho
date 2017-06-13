@@ -56,12 +56,6 @@ ngOnInit() {
                         EFECHACONTRATO:this.empleado[0].EFECHACONTRATO,
                         EUBICACION:this.empleado[0].EUBICACION,
                         IDSUCURSAL:this.empleado[0].IDSUCURSAL,
-                              // IDEA: 0,
-                              // EAINE: 'EMPLEADOIFE.jpg',
-                              // EACURP: 'EMPLEADOCURP.jpg',
-                              // EAACTANACIMIENTO: 'EMPLEADOACTANACIMIENTO.jpg',
-                              // EACOMPROBANTEDOM: 'EMPLEADOCOMPROBANTEDOM.jpg',
-                              // IDEMPLEADOEA: 0
                     };
                     if(!this.empleado){
                     this._router.navigate(['/empleados']);

@@ -31,14 +31,6 @@
 
         <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
     </md2-dialog>
-<!--
-    <button class="new-request" color="accent" md-icon-button (click)="pedidodialog.open()">
-        <md-icon >add</md-icon>
-    </button>-->
-
-
-
-
 
    <div class="kpgoogle-maps">
     <agm-map
@@ -54,33 +46,35 @@
         [styles]="customStyle"
         >
 
-        <agm-marker
-        *ngIf="lat != null && lng != null"
-        [latitude]="lat" [longitude]="lng"
-        [iconUrl]="kityplancho"
-        >
-        </agm-marker>
+          <agm-marker
+          *ngIf="lat != null && lng != null"
+          [latitude]="lat" [longitude]="lng"
+          [iconUrl]="kityplancho"
+          >
+          </agm-marker>
 
-        <agm-marker *ngFor="let pedido of pedidos; let i = index"
-            (markerClick)="markerClicked(pedido, i)"
-            (dragEnd)="markerDragEnd(pedido, $event)"
-            [latitude]="pedido.LAT"
-            [longitude]="pedido.LNG"
+          <div>
+            <agm-marker *ngFor="let pedido of pedidos; let i = index"
+              (markerClick)="markerClicked(pedido, i)"
+              (dragEnd)="markerDragEnd(pedido, $event)"
+              [latitude]="pedido.LAT"
+              [longitude]="pedido.LNG"
+              [markerDraggable]="pedido.draggable"
+              [iconUrl]="pIcon"
+              [opacity]="1">
 
-            [markerDraggable]="pedido.draggable"
-            [iconUrl]="pIcon"
-            [opacity]="1"
-              >
-
-              <agm-info-window>
-                <p><span class="kp-text bold">{{pedido.IDPEDIDO}} | {{pedido.PFECHA }}</span></p>
-                <h5>Dirección</h5>
-                <span class="bold">{{pedido.PDIRECCION_E}}</span>
-                <span>{{pedido.PSTATUS}}</span>
-                <span>{{pedido.LAT}}</span>
-                <span>{{pedido.LNG}}</span>
-              </agm-info-window>
-        </agm-marker>
+                  <agm-info-window
+                  [maxWidth]="200">
+                    <p><span class="kp-text bold">{{pedido.IDPEDIDO}} | {{pedido.PFECHA }}</span></p>
+                    <h5>Dirección</h5>
+                    <span class="bold">{{pedido.PDIRECCION_E}}</span>
+                    <span>{{pedido.PSTATUS}}</span><br>
+                    <button class="btn btn-default btn-xs" type="button" aria-haspopup="true" aria-expanded="false" (click)="getpedido(pedido.IDPEDIDO)" >
+                      ver detalles
+                    </button>
+                  </agm-info-window>
+            </agm-marker>
+          </div>
 
     </agm-map>
 </div>

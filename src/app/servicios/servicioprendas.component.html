@@ -69,14 +69,14 @@
                   <br>
                   <p class="kp-text bold">Prendas pertenecientes a {{servicio.SERVNOMBRE}}</p>
 
-                    <!--<md-chip-list class="mat-chip-list-stacked">
-                       <md-chip *ngFor="let dp of servicioprendas"
+                    <md-chip-list class="mat-chip-list-stacked">
+                       <md-chip *ngFor="let sp of servicioprendas"
                           selected="true"
                           color="primary"
                           >
-                       IDDP: {{dp.IDDP}} -- IDSP: {{dp.IDSP}} prendas {{dp.DP_CANTIDADPRENDAS}} | total {{dp.DP_COSTOPEDIDO | currency:'USD':true}}
+                       IDDP: {{sp.IDSERVICIO}} -- IDSP: {{sp.IDSP}} prendas {{sp.DP_CANTIDADPRENDAS}} | total {{sp.DP_COSTOPEDIDO | currency:'USD':true}}
                       </md-chip>
-                    </md-chip-list> -->
+                    </md-chip-list>
             </md-card>
            </div>
           </div>

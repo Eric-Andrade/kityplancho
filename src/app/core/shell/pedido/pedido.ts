@@ -7,6 +7,10 @@ export interface IPedido{
     PDIRECCIONR:string;
     COORDENADASR?:string;
     PDIRECCIONE?:string;
+    LAT?: string;
+    LNG?: string;
+    LATE?: string;
+    LNGE?: string;
     COORDENADASE?:string;
     IDCLIENTE:number;
 }

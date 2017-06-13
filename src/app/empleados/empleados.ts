@@ -27,10 +27,15 @@ export interface Empleados {
   EFECHACONTRATO: string;
   EUBICACION?: string;
   IDSUCURSAL: number;
-    // IDEA: number;
-    // EAINE: string;
-    // EACURP: string;
-    // EAACTANACIMIENTO: string;
-    // EACOMPROBANTEDOM: string;
-    // IDEMPLEADOEA?:number;
+
+}
+
+
+export interface EmpleadoAdjuntos {
+  IDEA: number;
+  EAINE: string;
+  EACURP: string;
+  EAACTANACIMIENTO: string;
+  EACOMPROBANTEDOM: string;
+  IDEMPLEADO:number;
 }

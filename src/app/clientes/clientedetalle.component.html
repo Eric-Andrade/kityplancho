@@ -79,7 +79,7 @@
           </form></md-card>
         </div>
         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-          <h5 class="kp-text text-center">Mis pedidos</h5>
+          <h5 class="kp-text text-center">Historial de pedidos</h5>
           <md-card>
             <md-card-content>
                <div class="table-responsive content" >
@@ -109,7 +109,10 @@
                           </tr>
                         </thead>
                         <tbody>
-                         <tr *ngFor="let pedido of pedidos">
+                         <tr *ngFor="let pedido of pedidos" (click)="getpedido(pedido.IDPEDIDO)"
+                            tooltip="Ir a detalles del pedido {{pedido.IDPEDIDO}}"
+                            tooltip-position="above"
+                            tooltip-delay="0 * 1000">
                            <td>
                               <div class="" [ngSwitch]="pedido.STATUS">
                                   <div class="" *ngSwitchCase="'cotizando'"><span class="map-marker Cot"
@@ -142,7 +145,7 @@
                                   tooltip-delay="0 * 1000"></span></div>
                               </div>
                             </td>
-                            <td><strong>{{pedido.IDPEDIDO}}</strong> </td>
+                            <td><strong >{{pedido.IDPEDIDO}}</strong> </td>
                             <td>{{pedido.FECHA}}</td>
                             <!--<td>{{pedido.FECHA | date: 'dd MMMM yyyy'}}</td>-->
                             <td class="enfasis-td">{{pedido.PRECIO | currency:'USD':true}}</td>

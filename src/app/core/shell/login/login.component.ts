@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.empleado = {
         IDEMPLEADO: null,
-        EEMAIL:'johanson@hotmail.com',
+        EEMAIL:'jarnoleppala@hotmail.com',
         EPASSWORD:'123213',
         EPRIVILEGIO:'administrador',
         ENOMBRE:'',
@@ -39,13 +39,14 @@ export class LoginComponent implements OnInit {
   //pendiente login
   public login(){
     this._loginService.login(this.empleado).subscribe(
-          result =>{
-              console.log(result);
-              let identity = result.LOGINADMIN;
+          response =>{
+              console.log(response);
+              this.empleado = response.ADMIN;
               if(!this.empleado){
                   console.log('Error en el servidor...');
               }else{
                   this.toastMe();
+                  console.log(response);
               }
           },
           error =>{
