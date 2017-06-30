@@ -57,48 +57,30 @@ Links
       http://stackoverflow.com/questions/18817148/how-can-i-use-transactions-in-my-mysql-stored-procedure
     Trigger:
       https://www.youtube.com/watch?v=U2fwTQF5ohg
+
+  Validar CURP
+  https://es.stackoverflow.com/questions/31039/c%C3%B3mo-validar-una-curp-de-m%C3%A9xico/64290
+
+  Expresiones regulares
+  http://web.ontuts.com/snippets/10-expresiones-regulares-imprescindibles-en-desarrollo-web/
 ]
 
-
-
-URI's[
-/prendas/getprendas
-/prendas/getprenda
-/prendas/createprenda
-/prendas/updateprenda
-/prendas/deleteprenda
-
-www.api.kityplancho.com/servicios/getservicios
-www.api.kityplancho.com/servicios/getservicio:id=
-www.api.kityplancho.com/servicios/createservicio
-www.api.kityplancho.com/servicios/updateservicio:id=
-www.api.kityplancho.com/servicios/deleteservicio:id=
-
-
-/usuarios/getusuario
-/usuarios/getOneusuario
-/usuarios/createusuario
-/usuarios/updateusuario
-/usuarios/deleteusuario
-
-/rutas/getrutas
-/rutas/getOneruta
-/rutas/createruta
-/rutas/updateruta
-/rutas/deleteruta
-
-/sucursales/getsucursales
-/sucursales/getsucursal
-/sucursales/createsucursal
-/sucursales/updatesucursal
-/sucursales/deletesucursal
-
-/pedidos/getpedidos
-/pedidos/getpedido
-/pedidos/createpedido
-/pedidos/updatepedido
-/pedidos/deletepedido
-]
+Expresiones regulares pattern=""
+Solo letras: [a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,45}
+Solo números: [0-9]{1,6}
+Teléfono: [0-9]{10}
+Email: ^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,3}$
+RFC: ^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))([A-Z\d]{3})?$
+IMSS: [0-9]{11}
+Salario: ^([0-9]{1,4}\.[0-9]{2})$
+CURP: /^([a-z]{4})([0-9]{6})([a-z]{6})([0-9]{2})$/i
+      /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9][12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/
+URL: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/
+Contraseña: (?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$
+Tarjeta de crédito: ^((67\d{2})|(4\d{3})|(5[1-5]\d{2})|(6011))(-?\s?\d{4}){3}|(3[4,7])\ d{2}-?\s?\d{6}-?\s?\d{5}$
+ID de vídeo de Youtube: /http:\/\/(?:youtu\.be\/|(?:[a-z]{2,3}\.)?youtube\.com\/watch(?:\?|#\!)v=)([\w-]{11}).*/gi
+Dirección IP: /^(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/
+Código Postal: ^([1-9]{2}|[0-9][1-9]|[1-9][0-9])[0-9]{3}$
 
 
 

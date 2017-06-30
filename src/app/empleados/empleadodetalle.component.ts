@@ -22,6 +22,15 @@ export class EmpleadoDetalleComponent implements OnInit {
   public isRequired: boolean;
   public isDisabled: boolean;
   public sucursales: Sucursales[];
+  public tipodecontrato: Array<any>;
+
+  // uploadFile: any;
+  // hasBaseDropZoneOver: boolean = false;
+  // options: Object = {
+  //   url: 'http://localhost:10050/upload'
+  // };
+  // sizeLimit = 2000000;
+
 
   constructor(private _empleadosService: EmpleadosService,
             private _route: ActivatedRoute,
@@ -29,6 +38,12 @@ export class EmpleadoDetalleComponent implements OnInit {
             private toast: Md2Toast,
             private _sucursalesService: SucursalesService,) {
               this.loading = true;
+              this.tipodecontrato = [
+                          { tipo: 'asimilados', nombre: 'Asimilados a salarios'},
+                          { tipo: 'nomina', nombre: 'Nomina'},
+                          { tipo: 'honorarios', nombre: 'Honorarios'},
+                          { tipo: 'raya', nombre: 'Raya (efectivo)'},
+                      ];
   }
 
 ngOnInit() {
@@ -36,7 +51,7 @@ ngOnInit() {
     this.getSucursales();
   }
 
-    getEmpleado() {
+getEmpleado() {
         this._route.params.forEach((params: Params) => {
             let id = params['id'];
             this._empleadosService.getEmpleado(id).subscribe(
@@ -51,10 +66,17 @@ ngOnInit() {
                         ENOMBRE:this.empleado[0].ENOMBRE,
                         EAPELLIDOS:this.empleado[0].EAPELLIDOS,
                         ETELEFONO:this.empleado[0].ETELEFONO,
+                        EDIRECCION:this.empleado[0].EDIRECCION,
+                        EREFERENCIAFAM1:this.empleado[0].EREFERENCIAFAM1,
+                        EREFERENCIAFAM2:this.empleado[0].EREFERENCIAFAM2,
                         EREFERENCIA1:this.empleado[0].EREFERENCIA1,
                         EREFERENCIA2:this.empleado[0].EREFERENCIA2,
                         EFECHACONTRATO:this.empleado[0].EFECHACONTRATO,
                         EUBICACION:this.empleado[0].EUBICACION,
+                        ESUELDO:this.empleado[0].ESUELDO,
+                        ERFC:this.empleado[0].ERFC,
+                        EIMSS:this.empleado[0].EIMSS,
+                        ETIPOCONTRATO:this.empleado[0].ETIPOCONTRATO,
                         IDSUCURSAL:this.empleado[0].IDSUCURSAL,
                     };
                     if(!this.empleado){
@@ -73,7 +95,7 @@ ngOnInit() {
         });
     }
 
-    putEmpleado(){
+putEmpleado(){
         if(!this.empleado) return;
           this._empleadosService.putEmpleado(this.empleado).subscribe(
           data => {
@@ -90,7 +112,7 @@ ngOnInit() {
           })
     }
 
-     public getSucursales(){
+  public getSucursales(){
       this._sucursalesService.getSucursales().subscribe(
         response => {
             console.log(response);
@@ -110,22 +132,41 @@ ngOnInit() {
         });
   }
 
-    toastMe() {
+toastMe() {
           this.toast.toast(`Datos de
           ${this.empleado.ENOMBRE} ${this.empleado.EAPELLIDOS}
           actualizados exitosamente`);
         }
 
-     failputEmpleado() {
+failputEmpleado() {
           this.toast.toast(`Error al actualizar la información de
           ${this.empleado.ENOMBRE} ${this.empleado.EAPELLIDOS}, intenta nuevamente por favor`);
         }
 
-     failgetEmpleado() {
+failgetEmpleado() {
             this.toast.toast('Error al encontrar la información de este empleado, intenta nuevamente por favor');
           }
 
-    regresar(){
+regresar(){
       this._router.navigate(['empleados']);
     }
+
+// handleUpload(data): void {
+//     if (data && data.response) {
+//       data = JSON.parse(data.response);
+//       this.uploadFile = data;
+//       alert('Archivo subido')
+//     }
+//   }
+
+// fileOverBase(e:any):void {
+//   this.hasBaseDropZoneOver = e;
+// }
+
+// beforeUpload(uploadingFile): void {
+//   if (uploadingFile.size > this.sizeLimit) {
+//     uploadingFile.setAbort();
+//     alert('File is too large');
+//   }
+// }
 }

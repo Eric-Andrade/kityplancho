@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PedidoService } from "./pedido.service";
+import { PedidosService } from "../pedidos/pedidos.service";
 import { IPedido, IDetallePedidos, ISP } from "./pedido";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ServiciosService } from '../../../servicios/servicios.service';
@@ -15,9 +16,10 @@ import { Md2Toast } from 'md2';
   selector: 'kp-pedido',
   templateUrl: './pedido.component.html',
   styleUrls: ['./pedido.component.css'],
-  providers: [ PedidoService, ServiciosService, SucursalesService, ClientesService ]
+  providers: [ PedidoService, ServiciosService, SucursalesService, ClientesService, PedidosService]
 })
 export class PedidoComponent implements OnInit {
+    suma: number;
     /*Map*/
         public customStyle = [
             {
@@ -99,7 +101,7 @@ export class PedidoComponent implements OnInit {
     public isDisabledMultiple: boolean;
     public itemMultiple: any;
     public currentServicios: string[];
-    public items: Servicios;
+    public items: Servicios; //pedientes de cambiar en sp del bussines
     public sucursales: Sucursales[];
     public clientes: Clientes[];
     public errorMessage;
@@ -119,12 +121,21 @@ export class PedidoComponent implements OnInit {
     public disabled = false;
     public invert = false;
     public max = 50;
-    public min = 0;
+    public min = 1;
     public showTicks = true;
     public step = 1;
     public thumbLabel = true;
     public value = 0;
     public vertical = false;
+    public latmap: number;
+    public lngmap: number;
+    public latmape: number;
+    public lngmape: number;
+    public zoom: number;
+    public draggable:boolean = true;
+    public kityplancho: string;
+    public statusservicio: Array<any>;
+    public inputdisabled: boolean;
 
     constructor(private _pedidoService: PedidoService,
                 private _serviciosService: ServiciosService,
@@ -132,7 +143,8 @@ export class PedidoComponent implements OnInit {
                 private _clientesService: ClientesService,
                 private toast: Md2Toast,
                 private _route: ActivatedRoute,
-                private _router: Router,) {
+                private _router: Router,
+                private _pedidosService: PedidosService) {
 
                   this.opcionpedido = 'nuevo pedido';
                   this.isRequired = true;
@@ -146,6 +158,22 @@ export class PedidoComponent implements OnInit {
                   this.tab2disabled = true;
                   this.tab3disabled = true;
                   this.next = true;
+                  this.latmap = 24.02780775285771;
+                  this.lngmap = -104.65332895517349;
+                  this.zoom = 13;
+                  this.kityplancho = '/assets/map-markerEnCola.png';
+                  this.latmape = 24.02720775285771;
+                  this.lngmape = -104.63332895517349;
+                  this.statusservicio = [
+                        { status: 'en_cola', nombre: 'Pedido en espera'},
+                        { status: 'en_camino', nombre: 'Pedido aprobado'},
+                        { status: 'en_proceso', nombre: 'Procesando pedido'},
+                        { status: 'para_entregar', nombre: 'Listo para entregar'},
+                        { status: 'entregado', nombre: 'Pedido entregado'},
+                        { status: 'no_atendido', nombre: 'Rechazar pedido'}
+                    ];
+              this.inputdisabled = false;
+
 
   }
 
@@ -155,18 +183,19 @@ export class PedidoComponent implements OnInit {
       IDPEDIDO:null,
       PPRECIOTOTAL:0,
       PSTATUS:'en_camino',
-      PPAGADO:'pagado',
+      PPAGADO:'contraentrega',
+      PFORMA:'efectivo',
       PFECHA:'',
-      PDIRECCIONR:'1Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico',
-      COORDENADASR:'',
-      PDIRECCIONE:'2Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico',
-      COORDENADASE:'',
+      PDIRECCIONR:'Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico',
+      COORDENADASR:'24.02780775285771,-104.65332895517349',
+      PDIRECCIONE:'Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico',
+      COORDENADASE:'24.02780775285771,-104.65332895517349',
       IDCLIENTE:null,
   }
 
   this.detallepedido = {
       IDDP:null,
-      CANTIDAD:null,
+      CANTIDAD:1,
       IDSP:null,
       IDPEDIDO:null,
       COSTO:0,
@@ -178,7 +207,7 @@ export class PedidoComponent implements OnInit {
       SPDESCUENTO:null,
   }
       this.getServicios();
-      this.getClientes();
+
 
   }
 
@@ -208,10 +237,10 @@ export class PedidoComponent implements OnInit {
   }
 
     getSucursales(){
-       this._sucursalesService.getSucursales().subscribe(
+       this._sucursalesService.getSucursalesActivos().subscribe(
           response => {
               console.log(response);
-              this.sucursales = response.SUCURSALES;
+              this.sucursales = response.SUCURSALESACTIVOS;
               if (!this.sucursales) {
                   console.log('Error en el servidor...');
               }else{
@@ -228,9 +257,9 @@ export class PedidoComponent implements OnInit {
     }
 
      getClientes(){
-      this._clientesService.getClientes().subscribe(
+      this._clientesService.getClientesActivos().subscribe(
             result =>{
-                this.clientes = result.CLIENTES;
+                this.clientes = result.CLIENTESACTIVOS;
                 if(!this.clientes){
                     console.warn('Error en el servidor...');
                 }else{
@@ -253,16 +282,10 @@ export class PedidoComponent implements OnInit {
         setTimeout(()=>{
           this._pedidoService.getlastpedido().subscribe(
           result => {
-              console.log('Último pedido');
-              console.log(result);
               this.detallepedido = result.PEDIDO;
-                this.detallepedido = {
-                  IDPEDIDO:this.detallepedido[0].IDPEDIDO,
-                  IDDP:this.detallepedido[0].IDDP,
-                  CANTIDAD:this.detallepedido[0].CANTIDAD,
-                  IDSP:this.detallepedido[0].IDSP,
-                  COSTO:this.detallepedido[0].COSTO
-                }
+                this.detallepedido.IDPEDIDO = this.detallepedido[0].IDPEDIDO;
+                console.log('Último pedido');
+              console.log(this.detallepedido.IDPEDIDO);
               if (!this.detallepedido.IDPEDIDO) {
                   console.warn('Error en el servidor...');
               }else{
@@ -282,59 +305,65 @@ export class PedidoComponent implements OnInit {
         },1000);
     }
 
+    getpedido(idpedido){
+      this.ingresacoords();
+      setTimeout(()=>{this._router.navigate(['pedidos',idpedido]);},1000);
+    }
+
     postPedido(){
                 this.getlastpedido();
 
-                this.tab1disabled = true;
+                // this.tab1disabled = true;
+                // this.tab2disabled = false;
+                // this.tab3disabled = true;
+                // this.selectedIndex = 1;
+                // console.log(`Detalle pedido before:`)
+                // console.log(this.detallepedido);
+
+        this._pedidoService.postPedido(this.pedido).subscribe(
+            data => {
+                this.toastMe();
+                this.tab1disabled = true
                 this.tab2disabled = false;
                 this.tab3disabled = true;
                 this.selectedIndex = 1;
-                console.log(`Detalle pedido before:`)
-                console.log(this.detallepedido);
-        // this._pedidoService.postPedido(this.pedido).subscribe(
-        //     data => {
-        //         this.toastMe();
-        //         this.tab1disabled = true
-        //         this.tab2disabled = false;
-        //         this.tab3disabled = true;
-        //         this.selectedIndex = 1;
-        //     },
+            },
 
-        //     error =>  {
-        //         console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
-        //          this.errorMessage = <any>error;
-        //           if(this.errorMessage != null){
-        //           this.failpostPedido();
-        //       }
-        //     });
+            error =>  {
+                console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+                 this.errorMessage = <any>error;
+                  if(this.errorMessage != null){
+                  this.failpostPedido();
+              }
+            });
     }
 
     postServicio(){
       this.detallepedido.COSTO = this.items[this.detallepedido.IDSP - 1].SPCOSTO * this.detallepedido.CANTIDAD;
 
-        this.tab1disabled = true;
-        this.tab2disabled = false;
-        this.tab3disabled = false;
-        this.next = false;
-        this.postServiciotoast();
+        // this.tab1disabled = true;
+        // this.tab2disabled = false;
+        // this.tab3disabled = false;
+        // this.next = false;
+        // this.postServiciotoast();
 
-        // this._pedidoService.postDetallePedido(this.detallepedido).subscribe(
-        //     data => {
-        //         this.tab1disabled = true;
-        //         this.tab2disabled = false;
-        //         this.tab3disabled = false;
-        //         this.next = false;
-        //         this.postServiciotoast();
+        this._pedidoService.postDetallePedido(this.detallepedido).subscribe(
+            data => {
+                this.tab1disabled = true;
+                this.tab2disabled = true;
+                this.tab3disabled = true;
+                this.next = false;
+                this.postServiciotoast();
 
-        //     },
+            },
 
-        //     error =>  {
-        //         console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
-        //          this.errorMessage = <any>error;
-        //           if(this.errorMessage != null){
-        //           this.failpostServicio();
-        //       }
-        //     });
+            error =>  {
+                console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+                 this.errorMessage = <any>error;
+                  if(this.errorMessage != null){
+                  this.failpostServicio();
+              }
+            });
     }
 
   nuevoclientes(dialog){
@@ -378,15 +407,75 @@ export class PedidoComponent implements OnInit {
       this.toast.toast(`Temporalmente no se puede continuar con el pedido`);
     }
 
+  ingresacoords() {
+      this.toast.toast(`Ahora por favor actualiza las coordenadas a recoger y entrega del pedido`);
+    }
+
+
   postServiciotoast() {
       this.toast.toast(`Servicio añadido al pedido`);
     }
 
-  changeSelectedTab(){
-          this.selectedIndex = 2;
-          console.log('al tab del mapa');
-          if(this.selectedIndex != 2){
-              this.selectedIndex = 2;
-          }
+  getSumaP(id){
+    setTimeout(()=>{
+    this._pedidoService.getSumaP(id).subscribe(
+            data => {
+              let CARRITOSUMA = data.CARRITOSUMA[0];
+              this.suma = data.CARRITOSUMA[0].SUMA;
+              console.log('CARRITOSUMA');
+              console.log(this.suma);
+
+            },
+
+            error =>  {
+                console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+                 this.errorMessage = <any>error;
+                  if(this.errorMessage != null){
+                  this.failpostServicio();
+              }
+            });
+            },1000);
   }
+
+    public putPedido(){
+        if(!this.pedido) return;
+
+       if(this.pedido.PPAGADO == 'por_adelantado'){
+                let descuento = this.suma * 10 / 100;
+                this.suma = this.suma - descuento;
+                this.pedido.PPRECIOTOTAL = Math.round(this.suma);
+        }else{
+          this.suma = this.suma;
+          this.pedido.PPRECIOTOTAL = parseInt(this.suma.toString());
+        }
+      this.pedido.IDPEDIDO = this.detallepedido.IDPEDIDO;
+      console.log('PUT pedido');
+        console.log(this.pedido);
+              this._pedidosService.putPedido(this.pedido).subscribe(
+              data => {
+                    this.toastMe();
+                    //console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
+
+              }, error => {
+                  console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
+                    this.errorMessage = <any>error;
+                    if(this.errorMessage != null){
+                    this.failinfoputPedido();
+                }
+              })
+  }
+
+    changeSelectedTab(){
+            this.tab1disabled = true;
+            this.tab2disabled = true;
+            this.tab3disabled = false;
+            this.selectedIndex = 2;
+            if(this.selectedIndex != 2){
+                this.selectedIndex = 2;
+            }
+  }
+
+  failinfoputPedido(){
+      this.toast.toast(`Ocurrió un error al intentar actualizar los datos del pedido ${this.pedido.IDPEDIDO}`);
+    }
 }

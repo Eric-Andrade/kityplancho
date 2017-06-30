@@ -3,7 +3,7 @@
         <md-tab-group [selectedIndex]="selectedIndex">
             <md-tab [disabled]="tab1disabled">
                 <ng-template md-tab-label>
-                  Cliente
+                  Servicio
                 </ng-template>
          <form #formServicio="ngForm" (ngSubmit)="postServicio()">
               <md-input-container dividerColor="accent">
@@ -37,16 +37,17 @@
                 <ng-template md-tab-label>
                   Añadir prendas al servicio {{iservicio.SERVNOMBRE}}
                 </ng-template>
-                <form #formSP="ngForm" (ngSubmit)="postSP()">
+                 <form #formSP="ngForm" (ngSubmit)="postSP()">
 
-                <md2-select name="IDPRENDAS"
+                <md2-select
                         class="form-select"
-                        [(ngModel)]="servicio.IDPRENDAS"
+                        [(ngModel)]="spone.IDPRENDAS"
                         #IDPRENDAS="ngModel"
+                        name="IDPRENDAS"
                         placeholder="Prendas que pertenecerán al servicio"
                         [required]="isRequired"
                         [disabled]="isDisabled"
-                        #sucursalesControl="ngModel"
+
                         autofocus="autofocus">
               <!--<md2-select-header>
               <input name="search" type="text" placeholder="Buscar..." />
@@ -59,13 +60,14 @@
               <table class="example-full-width" cellspacing="0">
               <tr>
                 <td width="40%"><md-input-container dividerColor="accent">
-                <input type="number" mdInput #costo min="1" max="100" #SPCOSTO="ngModel" [(ngModel)]="servicio.SPCOSTO" name="SPCOSTO" placeholder="Costo del servicio" required autocomplete="off">
+                <input type="number" mdInput #costo min="1" max="100" #SPCOSTO="ngModel" [(ngModel)]="spone.SPCOSTO" name="SPCOSTO" placeholder="Costo del servicio" required autocomplete="off">
                 <!--<md-hint align="end">{{costo.value.length}}/45</md-hint>-->
                 <md-error align="start">por favor ingresa costo al servicio</md-error>
               </md-input-container></td>
                 <td>
                   <p class="kp-text">Descuento %</p>
                   <md-slider
+                      #SPDESCUENTO="ngModel" [(ngModel)]="spone.SPDESCUENTO" name="SPDESCUENTO"
                         class="md-slider"
                         [disabled]="disabled"
                         [invert]="invert"
@@ -80,9 +82,12 @@
                 </tr>
             </table>
 
+                  <!--<input type="hidden" #IDSERVICIO="ngModel" [(ngModel)]="spone.IDSERVICIO" name="IDSERVICIO" placeholder="IDSERVICIO" autocomplete="off" value={{lastservicio}}>-->
+
               <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formSP.form.valid">Vincular prenda a {{iservicio.SERVNOMBRE}}</button>
-                <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
          </form>
+         <button class="button-form" color="accent" md-button style="width:100%; margin-top:2px;" [disabled]="next" (click)="getservicio(lastservicio)">Ir a detalles del servicio<md-icon >keyboard_arrow_right</md-icon></button>
+                <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
           </md-tab>
       </md-tab-group>
 </md2-dialog>

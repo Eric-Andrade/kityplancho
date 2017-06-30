@@ -22,7 +22,7 @@ export interface IPrenda{
 }
 
 export interface IPrendas{
-  IDPRENDA: number;
+  IDPRENDAS: number;
   PNOMBREUNIDAD: string;
   PDESCRIPCION?: string;
 }
@@ -34,4 +34,12 @@ export interface SP {
     IDSP:number;
     SPCOSTO:number;
     SPDESCUENTO:number;
+}
+
+export interface SPone {
+    IDPRENDAS: number;
+    IDSERVICIO: number;
+    IDSP: number;
+    SPCOSTO:  number;
+    SPDESCUENTO: number;
 }

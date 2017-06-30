@@ -3,6 +3,7 @@ import { ClientesService } from './clientes.service';
 import { Clientes } from './clientes';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Md2Toast } from 'md2';
+import { LoginService } from '../core/shell/login/login.service';
 
 @Component({
   selector: 'kp-clientes',
@@ -20,7 +21,8 @@ export class ClientesComponent implements OnInit {
   constructor(private _clienteService: ClientesService,
               private _route: ActivatedRoute,
               private _router: Router,
-              private toast: Md2Toast
+              private toast: Md2Toast,
+              private _loginService: LoginService
               ) {
       this.loading = true;
       this.message = false;
@@ -30,7 +32,7 @@ export class ClientesComponent implements OnInit {
     this.getclientes();
   }
 
-  getclientes(){
+    getclientes(){
     this._clienteService.getClientes().subscribe(
           result =>{
               console.log(result);
@@ -62,6 +64,8 @@ export class ClientesComponent implements OnInit {
   // }
 
   toastMe() {
-      this.toast.toast(`Algo falló al tratar de obtener la lista de clientes, intenta nuevamente por favor`);
+    this.toast.show('Algo falló al tratar de obtener la lista de clientes, intenta nuevamente por favor', 10000);
+
     }
 }
+

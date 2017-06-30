@@ -1,21 +1,48 @@
-<div class="toolbar">
+<div class="toolbar" *ngIf="username">
     <md-toolbar>
         <button md-icon-button (click)="sidenav.toggle()">
            <md-icon class="demo-toolbar-icon">more_vert</md-icon>
         </button>
         <div class="company">
             <a routerLink="/" class="namecompany" (click)="sidenav.close()" (click)="map.close()">
-            <img src="assets/logokity.png" width="5%" alt="Icono KityPlancho">
+            <img src="assets/logokity.png" width="30%" alt="Icono KityPlancho">
             <span class="kp-text">KityPlancho</span></a>
         </div>
 
         <span class="fill-toolbar-space"></span>
         <kp-pedido></kp-pedido>
 
-        <button md-icon-button>
-            <md-icon >notifications_none</md-icon>
-        </button>
-        <button md-icon-button (click)="map.toggle();getpedidosmap()" >
+        <div class="notification-wraps">
+            <div class="notification">
+              <div class="dropdown">
+              <button md-icon-button id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                class="btn btn-default dropdown-toggle" (click)="getpedidossec()">
+                <md-icon >notifications_none</md-icon>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" *ngIf="notify">
+                <li *ngFor="let n of notify">
+                  <div class="notify">
+                    Pedido {{n.IDPEDIDO}} | {{n.PPRECIOTAL | currency:'USD':true}}
+                  <br><span class="pforma">{{n.CNOMBRE}} {{n.CAPELLIDOS}}</span>
+                  </div>
+                  <hr style="margin-top: 5px;margin-bottom: 5px;border: 0;border-top: 1px solid #f7f7f7;">
+                </li>
+
+              </ul>
+            </div>
+              <div class="" *ngIf="suma != 0;then thenTemplate; else elseTemplate"></div>
+              <ng-template #thenTemplate>
+                <div class="notification-alert">
+                    {{suma}}
+                </div>
+              </ng-template>
+              <ng-template #elseTemplate>
+
+              </ng-template>
+              </div>
+            </div>
+
+        <button md-icon-button (click)="map.toggle()" >
             <md-icon>satellite</md-icon>
         </button>
         <span>|</span>
@@ -25,10 +52,10 @@
         </button>
 
         <md-menu #help="mdMenu">
-          <button md-menu-item disabled>
+          <!--<button md-menu-item disabled>
             <md-icon>account_circle</md-icon>
             <a class="" routerLink="/perfil" (click)="sidenav.close()" (click)="map.close()">Perfil</a>
-          </button>
+          </button>-->
           <button md-menu-item disabled>
             <md-icon>favorite</md-icon>
             <a class="" routerLink="/sucursales" (click)="sidenav.close()" (click)="map.close()">KityPlancho</a>
@@ -39,7 +66,7 @@
           </button>
           <button md-menu-item disabled>
             <md-icon>exit_to_app</md-icon>
-            <a class="" routerLink="/" class="align-center" (click)="sidenav.close()" (click)="map.close()">Cerrar sesión</a>
+            <a class="" routerLink="/" class="align-center" (click)="sidenav.close(); map.close()" (click)="closesession()">Cerrar sesión</a>
           </button>
         </md-menu>
 

@@ -37,7 +37,7 @@
                     <h2 class="kp-text kp-text-h2 welcome">Lavandería, planchaduría y más a las puertas de tu casa...</h2>
                     <h4 class="kp-text kp-text-h4">Vamos por tu ropa hasta donde te encuentres.</h4>
                 </div>
-                <span>KityPlancho Durango</span>
+                <!--<span>KityPlancho Durango</span>-->
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@
 				<div *ngIf="servicios">
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center" *ngFor="let servicio of servicios">
                 <img src="assets/kitypink.png" class="img-resposive img-kitypink" alt="KityPlancho Servicio">
-            <h5 class="kp-text">{{servicio.NOMBRE}}</h5>
+            <h5 class="kp-text">{{servicio.SERVNOMBRE}}</h5>
           </div>
          </div>
 			</div>
@@ -95,11 +95,21 @@
 <section class="watch bg-img">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12">
-                <span>¿Cómo </span>
-                <!--<a class="popup-youtube btn" href="https://www.youtube.com/watch?v=4KRHIbsl8BE">
-                <span class="fa fa-play"></span></a>-->
-                <span>funcionamos?</span>
+          <h2>Sobre nosotros</h2><br>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <!--<span>¿Cómo </span>
+                  <a class="popup-youtube btn" href="https://www.youtube.com/watch?v=4KRHIbsl8BE">
+                  <span class="fa fa-play"></span></a>
+                  <span>funcionamos?</span>-->
+
+                <h3>Nuestra misión...</h3>
+                <p>En KityPlancho nuestro objetivo es el de ofrecer el mejor servicio de cuidado de ropa al público, enfocando a
+                  dar mantenimiento y confort a las prendas que se nos confían. Siempre tomando en cuenta las necesidades y opiniones
+                  de cada uno de nuestros clientes. Así mismo tenemos la iniciativa de ir en una mejora progresiva para así continuar siendo la mejor opción para su familia.</p>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h3>Nuestra visión</h3>
+                <p>Ser la empresa líder en nuestra categoría de ofrecer servicios de lavandería innovando el proceso de servicio a domicilio aplicando tecnologías <span class="bold">Móviles y Web</span> impactando positivamente en las personas y comunidad.</p>
             </div>
         </div>
     </div>
@@ -109,7 +119,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <p> ©KityPlancho Durango <span class="fa fa-heart"></span> | <a href="http://itecordurango.com/itecordurango/WebPages/WelcomeItecor-es.aspx" target="_blank"><span class="kp-text">©Itecor Durango Mx | 2017.</span></a></p>
+                <p>©KityPlancho Durango <span class="fa fa-heart"></span> | <a href="http://itecordurango.com/itecordurango/WebPages/WelcomeItecor-es.aspx" target="_blank"><span class="kp-text">©Itecor Durango Mx 2017.</span></a></p>
             </div>
         </div>
     </div>

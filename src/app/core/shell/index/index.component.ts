@@ -1,17 +1,21 @@
+import { LoginService } from '../login/login.service';
 import { Component, OnInit } from '@angular/core';
 import { PedidoComponent } from '../pedido/pedido.component';
-import { IPedidos } from '../pedidos/pedidos';
+import { IPedidos, Notify } from '../pedidos/pedidos';
 import { PedidosService } from '../pedidos/pedidos.service';
 import { Md2Toast } from 'md2';
+import { username, password } from '../login/authguard.guard';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'kp-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css'],
-  providers:[ PedidosService ]
+  providers:[ PedidosService, LoginService ]
 })
 export class IndexComponent implements OnInit {
-  message: boolean;
+
+  public message: boolean;
   public errorMessage: any;
   public loading: boolean;
   public coord: Array<any>;
@@ -19,19 +23,37 @@ export class IndexComponent implements OnInit {
   public plat:any;
   public plng:any;
   public pIcon: string;
-  title: string;
-  secciones: Array<string>;
+  public title: string;
+  public secciones: Array<string>;
   public pedidos: IPedidos[];
+  public notify: Notify[];
+  public isUserLoggedIn: boolean;
+  public username;
+  public password;
+  public suma:any;
+
 
   constructor(private _pedidosService: PedidosService,
-              private toast: Md2Toast) {
+              private toast: Md2Toast,
+              private _loginService: LoginService,
+              private _router: Router) {
       this.title = 'KityPlancho';
       this.secciones = ['pedidos', 'clientes', 'empleados', 'servicios', 'ayuda'];
       this.loading = true;
       this.message = false;
+      this.username = username;
+      this.password = password;
+      // this.suma = 0;
   }
 
   ngOnInit() {
+  //  this.isUserLoggedIn = this._loginService.getUserLoggedIn();
+  console.log('username:');
+  console.log(this.username);
+  console.log('password:');
+  console.log(this.password);
+
+  this.sumaencola();
   }
 
   getpedidosmap(){
@@ -51,49 +73,6 @@ export class IndexComponent implements OnInit {
               this.pedidos[i].LNG = this.plng;
               // console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' plat: ' + this.plat + ' plng: ' + this.plng );
               console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' '+ this.coords  + ' '+ this.pedidos[i].PSTATUS)
-              if(this.pedidos[i].PSTATUS == 'en_cola'){
-                  this.pIcon = '/assets/map-markerEnCola.png';
-                    if(this.pedidos[i].PSTATUS == 'en_camino'){
-                      this.pIcon = '/assets/map-markerEncamino.png';
-                    }
-                      if(this.pedidos[i].PSTATUS == 'en_proceso'){
-                        this.pIcon = '/assets/map-markerProcess.png';
-                      }
-                        if(this.pedidos[i].PSTATUS == 'para_entregar'){
-                          this.pIcon = '/assets/map-markerDeliver.png';
-                        }
-              }
-
-                //   switch(this.pedidos[i].PSTATUS) {
-                //    case "en_cola": {
-                //       this.pIcon = '/assets/map-markerEnCola.png';
-                //       break;
-                //    }
-                //    case "en_camino": {
-                //       this.pIcon = '/assets/map-markerEncamino.png';
-                //       break;
-                //    }
-                //    case "en_proceso": {
-                //       this.pIcon = '/assets/map-markerProcess.png';
-                //       break;
-                //    }
-                //    case "para_entregar": {
-                //       this.pIcon = '/assets/map-markerDeliver.png';
-                //       break;
-                //    }
-                //   case "entregado": {
-                //       this.pIcon = '/assets/map-markerComplete.png';
-                //       break;
-                //    }
-                //    case "no_atendido": {
-                //       this.pIcon = '/assets/map-markerDenenged.png';
-                //       break;
-                //    }
-                //    default: {
-                //       console.log('Status invalido');
-                //       break;
-                //    }
-                // }
             }
 
             if (!this.pedidos ) {
@@ -115,9 +94,59 @@ export class IndexComponent implements OnInit {
 
   }
 
+  sumaencola(){
+    setInterval(() =>
+    this._pedidosService.sumaencola().subscribe(
+      result=>{
 
-    failgetPedidos() {
-      this.toast.toast(`Algo falló al intentar obtener la lista de pedidos, intenta de nuevo por favor`);
-    }
+        if(!result.COUNT[0]){
+          this.suma = 0;
+        }else{
+          this.suma = result.COUNT[0].COUNT;
 
+        }
+        console.log('Suma en cola');
+        console.log(this.suma);
+      },
+      error =>{
+            this.errorMessage = <any>error;
+            if (this.errorMessage != null ) {
+                console.log(`This is the error: ${this.errorMessage}`);
+                this.message = true;
+                this.failgetPedidos();
+            }
+      })
+    ,3000);
+
+  }
+
+  getpedidossec(){
+    this._pedidosService.getpedidossec().subscribe(
+      result=>{
+        this.notify = result.GETPDPENCOLA;
+        console.log('Pedidos en cola');
+        console.log(this.notify);
+      },
+      error =>{
+            this.errorMessage = <any>error;
+            if (this.errorMessage != null ) {
+                console.log(`This is the error: ${this.errorMessage}`);
+                this.message = true;
+                this.failgetPedidos();
+            }
+      })
+  }
+
+  failgetPedidos() {
+    this.toast.toast(`Algo fallo al intentar obtener la lista de pedidos, intenta de nuevo por favor`);
+  }
+
+  closesession(){
+    this._loginService.logout();
+    location.reload();
+  }
+
+  pedidosencola() {
+    this.toast.toast(`Hay ${this.suma} pedidos que necesitan aprobación`);
+  }
 }

@@ -11,10 +11,12 @@ import { MaterialModule } from '@angular/material';
 import { Md2Module } from 'md2';
 import { EmpleadoDetalleComponent } from './empleadodetalle.component';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+// import { Ng2UploaderModule } from 'ng2-uploader';
 
 const routes: Routes = [
   { path: '', component: EmpleadosComponent },
-  { path: ':id', component: EmpleadoDetalleComponent }
+  { path: ':id', component: EmpleadoDetalleComponent },
+  { path: '**', component: EmpleadosComponent }
 ];
 
 @NgModule({
@@ -26,7 +28,7 @@ const routes: Routes = [
   FormsModule,
   HttpModule,
   SharedModule,
-  Ng2FilterPipeModule
+  Ng2FilterPipeModule,
   ],
   declarations: [ EmpleadosComponent, EmpleadoComponent, EmpleadoDetalleComponent ],
   providers: [ EmpleadosService ],

@@ -16,6 +16,16 @@ export class SucursalesService {
         this.url = global.url;
     }
 
+    getlastSucursal() {
+        return this._http.get(this.url + 'getlastsucursal')
+         .map(res => res.json());
+    }
+
+    getSucursalesActivos() {
+        return this._http.get(this.url + 'getsucursalesactivos')
+         .map(res => res.json());
+    }
+
     getSucursales() {
         return this._http.get(this.url + 'getsucursales')
          .map(res => res.json());

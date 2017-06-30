@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { IPedido, IDetallePedidos } from './pedido';
+import { IPedido, IDetallePedidos, DP } from './pedido';
 import { global } from '../../../global';
 import 'rxjs/add/operator/map';
 
@@ -25,6 +25,7 @@ export class PedidoService {
             body.set('PDIRECCIONE',pedido.PDIRECCIONE);
             body.set('PPRECIOTOTAL',pedido.PPRECIOTOTAL.toString());
             body.set('PPAGADO',pedido.PPAGADO);
+            body.set('PFORMA', pedido.PFORMA);
             body.set('COORDENADASR',pedido.COORDENADASR);
             body.set('COORDENADASE',pedido.COORDENADASE);
             body.set('IDCLIENTE',pedido.IDCLIENTE.toString());
@@ -53,6 +54,30 @@ export class PedidoService {
                   .map((response:Response)=>{
                     JSON.stringify(response);
                   });
+    }
+
+    postDP(dp: DP){
+
+       let body = new URLSearchParams();
+            body.set('IDSP',dp.DPIDSP.toString());
+            body.set('CANTIDAD',dp.DPCANTIDAD.toString());
+            body.set('IDPEDIDO',dp.DPIDPEDIDO.toString());
+            body.set('COSTO',dp.DPCOSTO.toString());
+            console.log('Datos service');
+            console.log(body);
+            return this._http.post(this.url + 'postDetallePedido', body, {headers : this.getHeaders()})
+                  .map((response:Response)=>{
+                    JSON.stringify(response);
+                  });
+    }
+
+    getSumaP(id){
+        let body = new URLSearchParams();
+          body.set('IDPEDIDO',id.toString());
+          console.log('Datos service');
+          console.log(body);
+          return this._http.post(this.url + 'getSumaP', body, {headers : this.getHeaders()})
+                .map(res => res.json());
     }
 
     private getHeaders() {

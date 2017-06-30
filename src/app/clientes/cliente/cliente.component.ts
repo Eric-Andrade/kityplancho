@@ -22,6 +22,10 @@ export class ClienteComponent implements OnInit {
     public Client: string;
     public cliente: Clientes;
     public errorMessage;
+    public lastcliente: number;
+    public loading: boolean;
+    public message: boolean;
+
   constructor(private _clientesService: ClientesService,
               private _route: ActivatedRoute,
               private _router: Router,
@@ -32,20 +36,51 @@ export class ClienteComponent implements OnInit {
         this.isDisabled = false;
         this.isDisabledMultiple = false;
         this.itemMultiple = null;
+          this.loading = true;
+          this.message = false;
   }
 
 ngOnInit( ) {
     // this.cliente = new Clientes("","","","","");
-    this.cliente = { IDCLIENTE:null, CEMAIL:'',CPASSWORD:'',CNOMBRE:'',CAPELLIDOS:'',CTELEFONO:''};
+    this.cliente = { IDCLIENTE:null, CEMAIL:'correo@gmail.com',CPASSWORD:'12345678',CNOMBRE:'correoprueba',CAPELLIDOS:'apellidos',CTELEFONO:'1234567890'};
+  }
+
+   getlastcliente(){
+   setTimeout(()=>{
+      this._clientesService.getLastCliente().subscribe(
+        result =>{
+              this.lastcliente = result.ULTIMOCLIENTE[0].IDCLIENTE;
+              console.log('último cliente');
+              console.log(this.lastcliente);
+              if(!this.lastcliente){
+                  console.log('Error en el servidor...');
+              }else{
+
+              }
+          },
+          error =>{
+              this.errorMessage = <any>error;
+              if(this.errorMessage != null){
+                  console.log(this.errorMessage);
+                  this.message = true;
+                  this.toastMe();
+              }
+          }
+    )
+   },500)
   }
 
   public postCliente(){
+
     this._clientesService.postCliente(this.cliente).subscribe(
           data => {
+            this.getlastcliente();
             this.toastMe();
-               //this._clientesComponent.ngOnInit();
-               //this.close(this.diag);
-               //this._router.navigate(['/clientes', this.cliente.IDCLIENTE[]]);
+            setTimeout(()=>{
+                 let idcliente = this.lastcliente;
+                     this._router.navigate(['clientes',idcliente]);
+                     console.log('enviar al cliente desde el post');
+               },1200);
 
           }, error => {
               console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
@@ -55,6 +90,8 @@ ngOnInit( ) {
             }
           });
   }
+
+
 
   open(dialog: any) {
     dialog.open();

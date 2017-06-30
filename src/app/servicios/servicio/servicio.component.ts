@@ -1,7 +1,7 @@
 import { PrendasService } from '../prendas/prendas.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { IServicios, Servicios, IPrendas } from '../servicios';
+import { IServicios, Servicios, IPrendas, SPone } from '../servicios';
 import { ServiciosService } from '../servicios.service';
 import { Md2Toast } from 'md2';
 import { SucursalesService } from '../../sucursales/sucursales.service';
@@ -16,6 +16,7 @@ import { Sucursales } from '../../sucursales/sucursales';
 
 export class ServicioComponent implements OnInit {
   public iservicio: IServicios;
+  public spone: SPone;
   public servicio: Servicios;
   public iprenda: IPrendas[];
   public errorMessage;
@@ -36,17 +37,20 @@ export class ServicioComponent implements OnInit {
   public thumbLabel = true;
   public value = 0;
   public vertical = false;
-
-
+  public next: boolean;
+  public lastservicio:number;
 
   constructor(private _serviciosService: ServiciosService,
               private _prendasService: PrendasService,
               private toast: Md2Toast,
+              private _route: ActivatedRoute,
+              private _router: Router,
               private _sucursalesService: SucursalesService,) {
                 this.isRequired = true;
                 this.selectedIndex = 0;
-                this.tab1disabled = false
+                this.tab1disabled = false;
                 this.tab2disabled = true;
+                this.next = true;
                }
 
   ngOnInit() {
@@ -67,28 +71,39 @@ export class ServicioComponent implements OnInit {
       SPCOSTO:null,
       SPDESCUENTO:null,
     }
+
+    this.spone = {
+      IDPRENDAS:null,
+      IDSERVICIO:null,
+      IDSP:null,
+      SPCOSTO:null,
+      SPDESCUENTO:0,
+    }
   }
 
   postServicio(){
         // this.toastMe();
-        this.tab1disabled = true
-        this.tab2disabled = false;
-        this.selectedIndex = 1;
+        // this.tab1disabled = true
+        // this.tab2disabled = false;
+        // this.selectedIndex = 1;
         this.getprendas();
         this.getlastservicio();
 
-    // this._serviciosService.postServicio(this.iservicio).subscribe(
-    //         data => {
-    //             this.toastMe();
-    //         },
+    this._serviciosService.postServicio(this.iservicio).subscribe(
+            data => {
+                this.toastMe();
+                this.tab1disabled = true
+                this.tab2disabled = false;
+                this.selectedIndex = 1;
+            },
 
-    //         error =>  {
-    //             console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
-    //              this.errorMessage = <any>error;
-    //               if(this.errorMessage != null){
-    //               this.failpostSP();
-    //           }
-    //         });
+            error =>  {
+                console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+                 this.errorMessage = <any>error;
+                  if(this.errorMessage != null){
+                  this.failpostSP();
+              }
+            });
   }
 
   public getSucursales(){
@@ -115,19 +130,10 @@ export class ServicioComponent implements OnInit {
     setTimeout(()=>{
           this._serviciosService.getlastservicio().subscribe(
           result => {
-              console.log('Último servicio');
-              console.log(result);
-              this.servicio = result.SERVICIO;
-                 this.servicio = {
-                    IDSERVICIO:this.servicio[0].IDSERVICIO,
-                    IDSP:this.servicio[0].IDSP,
-                    IDPRENDAS:this.servicio[0].IDPRENDAS,
-                    SERVNOMBRE:this.servicio[0].SERVNOMBRE,
-                    PNOMBREUNIDAD:this.servicio[0].PNOMBREUNIDAD,
-                    SPCOSTO:this.servicio[0].SPCOSTO,
-                    SPDESCUENTO:this.servicio[0].SPDESCUENTO
-                  }
-              if (!this.servicio.IDSERVICIO) {
+                 this.lastservicio = result.ULTIMOSERVICIO[0].IDSERVICIO;
+                  console.log('Último servicio');
+                  console.log(this.lastservicio);
+              if (!this.lastservicio) {
                   console.warn('Error en el servidor...');
               }else{
                   // this.loading = false;
@@ -143,12 +149,13 @@ export class ServicioComponent implements OnInit {
           }
 
         );
-        },1000);
+        },500);
   }
 
   public getprendas(){
      this._prendasService.getPrendas().subscribe(
         response => {
+          console.log('getprendas!!!!');
             console.log(response);
             this.iprenda = response.PRENDAS;
             if (!this.iprenda) {
@@ -167,8 +174,15 @@ export class ServicioComponent implements OnInit {
   }
 
   public postSP(){
-      this._serviciosService.postSP(this.servicio).subscribe(
+
+    this.next = false;
+
+     this.spone.IDSERVICIO = this.lastservicio;
+     console.log('Servicio!!!!');
+            console.log(this.spone);
+      this._serviciosService.postSP(this.spone).subscribe(
         data => {
+          this.next = false;
             this.postServiciotoast();
         },
 
@@ -180,6 +194,10 @@ export class ServicioComponent implements OnInit {
           }
         });
   }
+
+  getservicio(idservicio){
+      setTimeout(()=>{this._router.navigate(['servicios/servicio/',idservicio]);},500);
+    }
 
   toastMe() {
      this.toast.toast(`Nuevo servicio creado exitosamente`);

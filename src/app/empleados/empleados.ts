@@ -22,12 +22,20 @@ export interface Empleados {
   ENOMBRE: string;
   EAPELLIDOS: string;
   ETELEFONO: string;
+  EDIRECCION: string;
+  EREFERENCIAFAM1: string;
+  EREFERENCIAFAM2: string;
   EREFERENCIA1: string;
   EREFERENCIA2?: string;
-  EFECHACONTRATO: string;
+  EFECHACONTRATO?: string;
   EUBICACION?: string;
+  LATR?: string;
+  LNGR?: string;
+  ESUELDO: string;
+  ERFC: string;
+  EIMSS: string;
+  ETIPOCONTRATO: string;
   IDSUCURSAL: number;
-
 }
 
 

@@ -3,6 +3,7 @@ export interface IPedido{
     PPRECIOTOTAL:number;
     PSTATUS:string;
     PPAGADO:string;
+    PFORMA: string;
     PFECHA?:string;
     PDIRECCIONR:string;
     COORDENADASR?:string;
@@ -29,6 +30,14 @@ export interface IDetallePedido{
   IDSP:number;
   IDPEDIDO:number;
   DPCOSTOPEDIDO?:number;
+}
+
+export interface DP{
+  DPIDDP:number;
+  DPCANTIDAD:number;
+  DPIDSP:number;
+  DPIDPEDIDO:number;
+  DPCOSTO?:number;
 }
 
 export interface ISP {

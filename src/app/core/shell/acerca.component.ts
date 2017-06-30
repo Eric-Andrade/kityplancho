@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
             <p class="kp-text">©KityPlancho web y ©KityPlancho app son servicios de software desarrollados por ©Itecor Durango</p>
 
             <a href="http://itecordurango.com/itecordurango/WebPages/WelcomeItecor-es.aspx" target="_blank">
-              <img src="assets/itecor1.png" class="img-responsive imgsticky" alt="©Itecor Durango" border="0">
+              <img src="assets/itecor.png" class="img-responsive imgsticky" alt="©Itecor Durango" border="0">
             </a>
             <br>
             <span>10 Jun 2017</span>
@@ -36,6 +36,7 @@ div {
 
 .imgsticky{
       position: sticky;
+      width: 150px;
 }`]
 })
 export class AcercaComponent implements OnInit {

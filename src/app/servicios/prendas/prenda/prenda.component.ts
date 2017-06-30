@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IPrenda } from '../../servicios';
+import { IPrendas } from '../../servicios';
 import { PrendasService } from '../prendas.service';
 import { Md2Toast } from 'md2';
 
@@ -10,7 +10,7 @@ import { Md2Toast } from 'md2';
   providers: [ PrendasService ]
 })
 export class PrendaComponent implements OnInit {
-  public prenda: IPrenda;
+  public prenda: IPrendas;
   public errorMessage;
 
   constructor(private _prendasService: PrendasService,
@@ -18,13 +18,18 @@ export class PrendaComponent implements OnInit {
 
   ngOnInit() {
     this.prenda = {
-        IDPRENDA:null,
+        IDPRENDAS:null,
         PNOMBREUNIDAD:'',
         PDESCRIPCION:'',
     }
   }
 
   postPrenda(){
+    if(this.prenda.PDESCRIPCION == '' || this.prenda.PDESCRIPCION == null){
+      this.prenda.PDESCRIPCION = 'En espera de descripción';
+    }else{
+      this.prenda.PDESCRIPCION = this.prenda.PDESCRIPCION;
+    }
     this._prendasService.postPrenda(this.prenda).subscribe(
             data => {
                 this.toastMe();
@@ -39,11 +44,11 @@ export class PrendaComponent implements OnInit {
   }
 
    toastMe() {
-     this.toast.toast(`Nueva creada exitosamente`);
+     this.toast.toast(`Nueva prenda creada exitosamente`);
   }
 
   failpostPrenda() {
-     this.toast.toast(`Ocurrió un problema al intentar crear un nueva nueva prenda. Recarga la página por favor`);
+     this.toast.toast(`Ocurrió un problema al intentar crear un nueva prenda. Recarga la página por favor`);
   }
 
 }

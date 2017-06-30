@@ -16,7 +16,7 @@
             </td>
           </tr>-->
           <tr>
-            <th style="width: 10%"
+            <th style="width: 7%"
                         tooltip="Status del pedido"
                         tooltip-position="above"
                         tooltip-delay="0 * 1000"></th>
@@ -24,15 +24,15 @@
                         tooltip="Identificador de pedido"
                         tooltip-position="above"
                         tooltip-delay="0 * 1000">ID Pedido</th>
-            <th style="width: 25%"
+            <th style="width: 23%"
                         tooltip="Nombre de cliente"
                         tooltip-position="above"
                         tooltip-delay="0 * 1000">Cliente</th>
             <!--<th style="width: 30%">Servicio</th>-->
-            <th style="width: 5%"
+            <th style="width: 10%"
                         tooltip="Cantidad total de prendas"
                         tooltip-position="above"
-                        tooltip-delay="0 * 1000">#</th>
+                        tooltip-delay="0 * 1000">Forma de pago</th>
             <th style="width: 5%"
                         tooltip="Precio total por pedido"
                         tooltip-position="above"
@@ -90,7 +90,17 @@
                     tooltip="Ver más de {{pedido.CNOMBRE}} {{pedido.CAPELLIDOS}}"
                     tooltip-position="above"
                     tooltip-delay="0 * 1000"> {{pedido.CNOMBRE}} {{pedido.CAPELLIDOS}}</span></td>
-            <td class="enfasis-td">{{pedido.PPAGADO}}</td>
+            <td class="enfasis-td">
+               <div *ngIf="pedido.PPAGADO == 'por_adelantado'; then thenTemplate; else elseTemplate"></div>
+                  <ng-template #thenTemplate>
+                    <span>por adelantado</span>
+                  </ng-template>
+                  <ng-template #elseTemplate>
+                   <span>contraentrega</span>
+                  </ng-template>
+                 <br>
+                <span class="pforma">({{pedido.PFORMA}})</span>
+            </td>
             <td>{{pedido.PPRECIOTAL | currency:'USD':true}}</td>
             <!--<td>{{pedido.PFECHA | date: 'medium'}}</td>-->
             <td>{{pedido.PFECHA }}</td>

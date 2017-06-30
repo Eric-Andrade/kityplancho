@@ -24,13 +24,15 @@ md-toolbar button{
 .namecompany{
     color: #FB5BA0;
     font-weight: 400;
-
 }
 
 .toolbar{
     padding-bottom: 56px
 }
 
+.company{
+    width: 130px;
+}
 /** Sidenav */
 
 md-sidenav-container{
@@ -81,7 +83,45 @@ md-card {
 
 .functions{
     height: 100%;
-
 }
 
+.notification-wraps{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
 
+.notification{
+    position: relative;
+}
+
+.notification-alert{
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    line-height: 20px;
+    color: #fff;
+    border-radius: 50%;
+    background: #ff008d;
+    text-align: center;
+    top: 0px;
+    right: 7px;
+    font-size: 9px;
+    font-weight: bold;
+    /*border: white 1px solid;*/
+}
+
+.pforma{
+    font-size: 11px;
+    color: #ff6262;
+}
+
+.notify{
+  text-align: center
+}
+
+.notify:hover{
+  cursor: pointer;
+  color:#e0e0e0;
+}

@@ -42,7 +42,7 @@ postPrenda(prenda: IPrendas){
 
 putPrenda(prenda: IPrendas){
   let body = new URLSearchParams();
-      body.set('IDPRENDAS',prenda.IDPRENDA.toString());
+      body.set('IDPRENDAS',prenda.IDPRENDAS.toString());
       body.set('PNOMBREUNIDAD',prenda.PNOMBREUNIDAD);
       body.set('PDESCRIPCION',prenda.PDESCRIPCION);
         console.log('Prenda body');

@@ -4,23 +4,23 @@
     <!--<md-progress-bar color="accent" value="90" mode="indeterminate"></md-progress-bar>-->
 </div>
 <div *ngIf="cliente">
-  <div class="container" >
+  <div class="container-fluid" >
     <div class="row">
       <h2 class="kp-text text-center">Información e historial de {{cliente.CNOMBRE}} {{cliente.CAPELLIDOS}}</h2>
       <br>
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
           <button md-button color="accent" (click)="regresar()"><md-icon >keyboard_arrow_left</md-icon>Clientes</button>
          <md-card>
-       <form #formCliente="ngForm" (ngSubmit)="putCliente()">
-         <md-card-header>
-           <div md-card-avatar class="example-header-image mat-card-avatar text-center"></div>
-            <br>
-            </md-card-header>
-            <table class="example-full-width" cellspacing="0">
-              <tr>
-                <td><md-input-container dividerColor="accent" class="form-space">
-                  <input type="number" mdInput #id name="IDCLIENTE" #IDCLIENTE="ngModel" [(ngModel)]="cliente.IDCLIENTE" placeholder="ID de cliente" [disabled]="true">
-          </md-input-container></td>
+        <form #formCliente="ngForm" (ngSubmit)="putCliente()">
+          <md-card-header>
+            <div md-card-avatar class="example-header-image mat-card-avatar text-center"></div>
+              <br>
+              </md-card-header>
+              <table class="example-full-width" cellspacing="0">
+                <tr>
+                  <td><md-input-container dividerColor="accent" class="form-space">
+                    <input type="number" mdInput #id name="IDCLIENTE" #IDCLIENTE="ngModel" [(ngModel)]="cliente.IDCLIENTE" placeholder="ID de cliente" [disabled]="true">
+            </md-input-container></td>
                 <!--<td>
             <md-slide-toggle
             class="example-margin form-space"

@@ -28,16 +28,15 @@ export class EmpleadoComponent implements OnInit {
     public sucursales: Sucursales[];
     public loading: boolean;
     public message: boolean;
-    tab1disabled: boolean;
-    tab2disabled: boolean;
-    selectedIndex: number;
-
-  uploadFile: any;
-  hasBaseDropZoneOver: boolean = false;
-  options: Object = {
-    url: 'http://localhost:10050/upload'
-  };
-  sizeLimit = 2000000;
+    public tab1disabled: boolean;
+    public tab2disabled: boolean;
+    public selectedIndex: number;
+    public lastempleado: number;
+    public tipodecontrato: Array<any>;
+    // public uploadFile: any;
+    // public hasBaseDropZoneOver: boolean = false;
+    // public options;
+    // sizeLimit = 2000000;
 
   constructor(private _empleadosService: EmpleadosService,
               private _route:ActivatedRoute,
@@ -45,29 +44,43 @@ export class EmpleadoComponent implements OnInit {
               private _sucursalesService: SucursalesService,
               private toast: Md2Toast) {
 
-    this.opcionempleado = 'nuevo empleado';
-    this.isRequired = true;
-    this.isDisabled = false;
-    this.isDisabledMultiple = false;
-    this.itemMultiple = null;
-    this.tab1disabled = false
-    this.tab2disabled = true;
+              this.opcionempleado = 'nuevo empleado';
+              this.isRequired = true;
+              this.isDisabled = false;
+              this.isDisabledMultiple = false;
+              this.itemMultiple = null;
+              this.tab1disabled = false;
+              this.tab2disabled = true;
+              this.tipodecontrato = [
+                        { tipo: 'asimilados', nombre: 'Asimilados a salarios'},
+                        { tipo: 'nomina', nombre: 'Nomina'},
+                        { tipo: 'honorarios', nombre: 'Honorarios'},
+                        { tipo: 'raya', nombre: 'Raya (efectivo)'},
+                    ];
     }
 
    ngOnInit( ) {
      this.getSucursales();
     this.empleado = { IDEMPLEADO:0,
                       EEMAIL:'vero@hotmail.com',
-                      EPASSWORD:'123213',
+                      EPASSWORD:'12345678',
                       EPRIVILEGIO:'rutero',
                       ENOMBRE:'vero',
                       EAPELLIDOS:'nicads',
                       ETELEFONO:'1234567890',
-                      EREFERENCIA1:'ref1dasdsadasdsadsadsad',
-                      EREFERENCIA2:'ref2sadasdasdsadsadsaddsa',
-                      EFECHACONTRATO:'2017-04-13',
-                      EUBICACION:'Dgo',
-                      IDSUCURSAL:null,
+                      EDIRECCION:'Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico',
+                      EREFERENCIAFAM1:'primo 1 vive en durango 123457890',
+                      EREFERENCIAFAM2:'primo 1 vive en durango 123457890',
+                      EREFERENCIA1:'Itecor Itecor Itecor Itecor',
+                      EREFERENCIA2:'Itecor Itecor Itecor Itecor',
+                      EFECHACONTRATO:'2017-04-15',
+                      EUBICACION:'24.02780775285771,-104.65332895517349',
+                      ESUELDO:'111.00',
+                      ERFC:'TOAE920427974',
+                      EIMSS:'31099207941',
+                      ETIPOCONTRATO:'raya',
+                      IDSUCURSAL:1,
+                      // TOAE920427HDGRNR07
                     };
 
     this.empleadoad = {
@@ -76,32 +89,66 @@ export class EmpleadoComponent implements OnInit {
         EACURP:'',
         EAACTANACIMIENTO:'',
         EACOMPROBANTEDOM:'',
-        IDEMPLEADO: 1
+        IDEMPLEADO: null
     }
+  }
+
+   getlastempleado(){
+   setTimeout(()=>{
+      this._empleadosService.getLastEmpleado().subscribe(
+        result =>{
+              this.lastempleado = result.ULTIMOEMPLEADO[0].IDEMPLEADO;
+              console.log('último empleado');
+              console.log(this.lastempleado);
+              if(!this.lastempleado){
+                  console.log('Error en el servidor...');
+              }else{
+
+              }
+          },
+          error =>{
+              this.errorMessage = <any>error;
+              if(this.errorMessage != null){
+                  console.log(this.errorMessage);
+                  this.message = true;
+                  this.toastMe();
+              }
+          }
+    )
+   },1000)
+  }
+
+  public next(){
+      this.tab1disabled = true
+      this.tab2disabled = false;
+      this.selectedIndex = 1;
   }
 
   public postEmpleado(){
 
-      this.toastMe();
-      this.tab1disabled = true
-      this.tab2disabled = false;
-      this.selectedIndex = 1;
+    this._empleadosService.postEmpleado(this.empleado).subscribe(
+          data => {
+            this.getlastempleado();
+               this.tab1disabled = true
+               this.tab2disabled = false;
+               this.selectedIndex = 1;
 
-    // this._empleadosService.postEmpleado(this.empleado).subscribe(
-    //       data => {
-    //             this.toastMe();
-    //            this.tab1disabled = true
-    //            this.tab2disabled = false;
-    //            this.selectedIndex = 1;
-    //       },
+               setTimeout(()=>{
+                 this.toastMe();
+                 let idempleado = this.lastempleado;
+                     this._router.navigate(['empleados',idempleado]);
+                     console.log('enviar al empleado desde el post');
+               },1800);
+              //  this._router.navigate(['clientes',idcliente])
+          },
 
-    //       error =>  {
-    //           console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
-    //            this.errorMessage = <any>error;
-    //             if(this.errorMessage != null){
-    //             this.failpostEmpleado();
-    //         }
-    //       });
+          error =>  {
+              console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+               this.errorMessage = <any>error;
+                if(this.errorMessage != null){
+                this.failpostEmpleado();
+            }
+          });
   }
 
   public postEmpleadoAdjuntos(){
@@ -165,5 +212,27 @@ export class EmpleadoComponent implements OnInit {
       ${this.empleado.ENOMBRE}
       ${this.empleado.EAPELLIDOS}, intenta de nuevo por favor`);
     }
+
+    failgetLastEmpleado() {
+      this.toast.toast(`Temporalmente no se puede continuar con el registro del empleado`);
+    }
+
+  //     handleUpload(data): void {
+  //   if (data && data.response) {
+  //     data = JSON.parse(data.response);
+  //     this.uploadFile = data;
+  //   }
+  // }
+
+  // fileOverBase(e:any):void {
+  //   this.hasBaseDropZoneOver = e;
+  // }
+
+  // beforeUpload(uploadingFile): void {
+  //   if (uploadingFile.size > this.sizeLimit) {
+  //     uploadingFile.setAbort();
+  //     alert('File is too large');
+  //   }
+  // }
 }
 

@@ -16,3 +16,19 @@ md2-dialog{
     min-width: 150px !important;
     width: 150px !important
 }
+
+
+.md2-dialog-panel {
+    position: relative !important;
+    max-width: 50vw !important;
+    width: 400px;
+    height: 200px !important;
+    border-radius: 3px !important;
+    background-color: #ffdada !important;
+    overflow: hidden !important;
+    box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12) !important;
+}
+
+.md2-dialog-panel {
+    min-height: 400px !important;
+}

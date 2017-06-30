@@ -169,12 +169,12 @@ md-spinner{
     display: inline-block !important;
 }
 
-.datarepite :hover{
+/*.datarepite :hover{
     cursor: pointer;
     color: #8a8a8a;
     -webkit-transition: .25s;
     transition: .25s;
-}
+}*/
 
 .datacontainer{
     text-align: center;
@@ -255,8 +255,8 @@ md-spinner{
 
 .statuspedido{
     margin: 0 auto;
-    width: 2px;
-    height: 2px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     position: absolute;
     margin-top: 5px;
@@ -282,13 +282,13 @@ md-spinner{
 
 .message {
     margin: 0 auto;
-    width: 400px;
+    width: 320px;
     padding-top: 12px;
 }
 
 .message h5{
-    color: #ff375c;
-    font-family: Roboto;
+    color: #ff5473;
+    font-family: "Source Sans Pro",sans-serif;
     font-weight: 400;
 }
 

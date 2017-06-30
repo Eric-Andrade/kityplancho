@@ -1,9 +1,9 @@
-
 import { ServiciosService } from '../../../servicios/servicios.service';
 import { Servicios } from '../../../servicios/servicios';
-import { IDetallePedidos, IDetallePedido, IPedido, ISP } from '../pedido/pedido';
+import { IDetallePedidos, IDetallePedido, IPedido, ISP, DP } from '../pedido/pedido';
 import { Component, OnInit } from '@angular/core';
 import { PedidosService } from './pedidos.service';
+import { PedidoService } from '../pedido/pedido.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Md2Toast } from 'md2';
 import { ClientesService } from '../../../clientes/clientes.service';
@@ -13,9 +13,10 @@ import { Clientes } from '../../../clientes/clientes';
   selector: 'kp-pedidodetalle',
   templateUrl: './pedidodetalle.component.html',
   styleUrls: ['./pedidodetalle.component.css'],
-  providers:[ PedidosService, ClientesService, ServiciosService ]
+  providers:[ PedidosService, ClientesService, ServiciosService, PedidoService ]
 })
 export class PedidodetalleComponent implements OnInit {
+  suma: any;
    /*Map*/
         public customStyle = [
             {
@@ -93,6 +94,7 @@ export class PedidodetalleComponent implements OnInit {
   public pedido:IPedido;
   public detallepedidos:IDetallePedidos[];
   public detallepedido:IDetallePedido;
+  public dp: DP;
   public clientes: Clientes[];
   public items: Servicios;
   public errorMessage;
@@ -106,8 +108,8 @@ export class PedidodetalleComponent implements OnInit {
   public autoTicks = true;
   public disabled = false;
   public invert = false;
-  public max = 20;
-  public min = 0;
+  public max = 50;
+  public min = 1;
   public showTicks = true;
   public step = 1;
   public thumbLabel = true;
@@ -133,19 +135,20 @@ export class PedidodetalleComponent implements OnInit {
   public opacitye:number = 1;
   public pedidocoord: string;
   public pedidocoorde: string;
-  public direccion:string;
+  public direccion: string;
 
   constructor(private _pedidosService: PedidosService,
               private _serviciosService: ServiciosService,
               private _route: ActivatedRoute,
               private _router: Router,
               private _clientesService: ClientesService,
-              private toast: Md2Toast) {
+              private toast: Md2Toast,
+              private _pedidoService: PedidoService) {
 
               this.loading = true;
               this.isRequired = true;
               this.isDisabled = false;
-              this.kityplancho = '/assets/kityplancho-marker.png';
+              this.kityplancho = '/assets/map-marker.png';
               // this.lat = 24.02780775285771;
               // this.lng = -104.65332895517349;
                this.statusservicio = [
@@ -160,10 +163,18 @@ export class PedidodetalleComponent implements OnInit {
              }
 
   ngOnInit() {
+
     this.getPedido();
     this.getDetallePedido();
     this.getClientes();
     this.getServicios();
+  this.dp = {
+    DPIDDP:0,
+    DPCANTIDAD:1,
+    DPIDSP:0,
+    DPIDPEDIDO:0,
+    DPCOSTO:0,
+  }
   }
 
   getPedido(){
@@ -180,6 +191,7 @@ export class PedidodetalleComponent implements OnInit {
                   PPRECIOTOTAL:this.pedido[0].PPRECIOTOTAL,
                   PSTATUS:`${this.pedido[0].PSTATUS}`,
                   PPAGADO:`${this.pedido[0].PPAGADO}`,
+                  PFORMA:`${this.pedido[0].PFORMA}`,
                   PFECHA:`${this.pedido[0].PFECHA}`,
                   PDIRECCIONR:`${this.pedido[0].PDIRECCION_R}`,
                   COORDENADASR: this.pedido[0].COORDENADAS_R,
@@ -202,7 +214,10 @@ export class PedidodetalleComponent implements OnInit {
               this.pedido.LATE = this.plate;
               this.pedido.LNGE = this.plnge;
 
-
+   this.getSumaP(this.pedido.IDPEDIDO);
+    this.suma = this.pedido.PPRECIOTOTAL;
+    console.log('ngOInit suma');
+    console.log(this.suma);
             // if(this.pedido.PSTATUS == 'entregado' || this.pedido.PSTATUS == 'no_atendido'){
             //   this.inputdisabled = true;
             //   this.draggable = false;
@@ -307,10 +322,10 @@ export class PedidodetalleComponent implements OnInit {
               console.log(this.detallepedido)
             this.detallepedido = {
               IDDP:this.detallepedido[0].IDDP,
-              DPCANTIDADPRENDAS:this.detallepedido[0].DPCANTIDADPRENDAS,
+              DPCANTIDADPRENDAS:this.detallepedido[0].DP_CANTIDADPRENDAS,
               IDSP:this.detallepedido[0].IDSP,
               IDPEDIDO:this.detallepedido[0].IDPEDIDO,
-              DPCOSTOPEDIDO:this.detallepedido[0].DPCOSTOPEDIDO,
+              DPCOSTOPEDIDO:this.detallepedido[0].DP_COSTOPEDIDO,
             }
             this.loading = false;
                 if(!this.detallepedido){
@@ -340,14 +355,25 @@ export class PedidodetalleComponent implements OnInit {
     console.log('dragEndMarcador');
     console.log(this.pedidocoord, evento);
     this.pedido.COORDENADASR = this.pedidocoord;
-    if(this.pedido.COORDENADASR == this.pedido.COORDENADASE){
-      this.pedidocoorde = this.pedidocoord;
+
+    if(this.pedido.COORDENADASR === this.pedido.COORDENADASE){
+          this.pedidocoorde = `${marcador.LAT},${marcador.LNG}`;
+          console.log('dragEndMarcadorE');
+          console.log(this.pedidocoorde, evento);
+          this.pedido.COORDENADASE = this.pedidocoorde;
     }
-  }
+    else{
+     console.log('son diferentes')
+    }
+      }
 
   public dragEndMarcadore(marcador:IPedido, evento){
+
     if(this.pedido.COORDENADASR == this.pedido.COORDENADASE){
-      this.pedidocoorde = this.pedidocoord;
+      this.pedidocoorde = `${marcador.LAT},${marcador.LNG}`;
+      console.log('dragEndMarcadorE');
+      console.log(this.pedidocoorde, evento);
+      this.pedido.COORDENADASE = this.pedidocoorde;
     }else{
       marcador.LATE = evento.coords.lat;
       marcador.LNGE = evento.coords.lng;
@@ -358,19 +384,48 @@ export class PedidodetalleComponent implements OnInit {
     }
   }
 
+   getSumaP(id){
+        setTimeout(()=>{
+                this._pedidoService.getSumaP(id).subscribe(
+                  data => {
+                    let CARRITOSUMA = data.CARRITOSUMA[0];
+                    this.suma = data.CARRITOSUMA[0].SUMA;
+                    console.log('CARRITOSUMA');
+                    console.log(this.suma);
+
+                  },
+
+                  error =>  {
+                      console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+                        this.errorMessage = <any>error;
+                        if(this.errorMessage != null){
+                        this.failpostServicio();
+                    }
+                  });
+                },500);
+      }
+
   public putPedido(){
+    setTimeout(()=>{
+
         if(!this.pedido) return;
-
-
-
-        // if(this.pedido.COORDENADASR == "null" && this.pedido.COORDENADASE == "null"){
+           if(this.pedido.PPAGADO == 'por_adelantado'){
+                let descuento = this.suma * 10 / 100;
+                this.suma = this.suma - descuento;
+                this.pedido.PPRECIOTOTAL = Math.round(this.suma);
+        }else{
+          this.suma = this.suma;
+          this.pedido.PPRECIOTOTAL = this.suma;
+        }
+      this.getDetallePedido();
+       // if(this.pedido.COORDENADASR == "null" && this.pedido.COORDENADASE == "null"){
         //     this.pedido.COORDENADASR = `${this.pedido[0].LAT},${this.pedido[0].LNG}`;
         //     this.pedido.COORDENADASE = `${this.pedido[0].LATE},${this.pedido[0].LNGE}`;
         // }else{
         //   this.pedido.COORDENADASR = this.pedidocoord;
         //   this.pedido.COORDENADASE = this.pedidocoorde;
         // }
-        console.log('PUT pedido');
+      console.log('PUT pedido');
         console.log(this.pedido);
               this._pedidosService.putPedido(this.pedido).subscribe(
               data => {
@@ -384,10 +439,14 @@ export class PedidodetalleComponent implements OnInit {
                     this.failinfoputPedido();
                 }
               })
+    },1500)
   }
 
+
   public putServicio(){
+
         if(!this.detallepedido) return;
+        this.detallepedido.DPCOSTOPEDIDO = this.items[this.detallepedido.IDSP - 1].SPCOSTO * this.detallepedido.DPCANTIDADPRENDAS;
         this._pedidosService.putDetallePedido(this.detallepedido).subscribe(
         data => {
             this.toastMe();
@@ -401,6 +460,52 @@ export class PedidodetalleComponent implements OnInit {
         }
         })
   }
+
+  public deletecarrito(id){
+  this._pedidosService.deletecarrito(id).subscribe(
+          data => {
+            this.getDetallePedido();
+            this.getSumaP(this.pedido.IDPEDIDO);
+            this.suma = this.suma;
+                this.postdeletedetalle();
+          },
+
+          error =>  {
+              console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+               this.errorMessage = <any>error;
+                if(this.errorMessage != null){
+                this.faildeletedetalle();
+            }
+          });
+  }
+
+  postServicio(){
+        this.dp.DPCOSTO = this.items[this.dp.DPIDSP - 1].SPCOSTO * this.dp.DPCANTIDAD;
+        this.dp.DPIDPEDIDO = this.pedido.IDPEDIDO;
+        console.log('Post servicio');
+        console.log(this.dp);
+        this._pedidoService.postDP(this.dp).subscribe(
+            data => {
+           this.getDetallePedido();
+           this.postServiciotoast();
+            },
+
+            error =>  {
+                console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+                 this.errorMessage = <any>error;
+                  if(this.errorMessage != null){
+                  this.failpostServicio();
+              }
+            });
+    }
+
+
+    failpostServicio() {
+          this.toast.toast(`Ocurrió un problemaal intentar añadir el servicio al pedido. Por favor ve a detalles del pedido`);
+        }
+    postServiciotoast() {
+          this.toast.toast(`Servicio añadido al pedido`);
+        }
 
   public regresar(){
     this._router.navigate(['pedidos']);
@@ -430,4 +535,11 @@ export class PedidodetalleComponent implements OnInit {
       this.toast.toast(`Ocurrió un error al intentar actualizar los servicios del pedido ${this.pedido.IDPEDIDO}`);
     }
 
+faildeletedetalle(){
+      this.toast.toast(`Ocurrió un error al intentar eliminar los servicios del pedido ${this.pedido.IDPEDIDO}`);
+    }
+
+    postdeletedetalle(){
+      this.toast.toast(`Servicio del pedido ${this.pedido.IDPEDIDO} eliminado exitosamente`);
+    }
 }

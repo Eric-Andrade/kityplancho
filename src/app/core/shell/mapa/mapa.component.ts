@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MapaService } from './mapa.service';
 import { Mapa } from "./mapa";
-import { IPedidos } from '../pedidos/pedidos';
+import { IPedidos, CR, CE } from '../pedidos/pedidos';
 import { PedidosService } from '../pedidos/pedidos.service';
 import { Md2Toast } from 'md2';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
+import { Empleados } from '../../../empleados/empleados'
 @Component({
   selector: 'kp-mapa',
   templateUrl: './mapa.component.html',
   styleUrls: ['./mapa.component.css'],
-  providers:[ PedidosService ]
+  providers:[ PedidosService, MapaService ]
 })
 export class MapaComponent implements OnInit {
     /*Map*/
@@ -92,9 +92,13 @@ export class MapaComponent implements OnInit {
     public draggable:boolean = false;
     public imageEC: string;
     public imageECola: string;
+    public imageD: string;
     public kityplancho: string;
     public opcionpedido:string = 'Registrar nuevo pedido';
     public pedidos: IPedidos[];
+    public cr: CR[];
+    public ce: CE[];
+    public rutero: Empleados[];
     public errorMessage;
     public loading: boolean;
     public message: boolean;
@@ -102,10 +106,18 @@ export class MapaComponent implements OnInit {
     public coords: Array<any>;
     public plat:any;
     public plng:any;
-    public pIcon: string;
+    public pIcon: string = '/assets/map-marker.png';
+    public coordr: Array<any>;
+    public coordsr: Array<any>;
+    public platr:any;
+    public plngr:any;
+    public pIconr: string = '/assets/map-marker.png';
+    public ruteroIco: string;
+
 /*Markers*/
     markers: Mapa[];
     constructor(private _pedidosService: PedidosService,
+               private _mapaService: MapaService,
                 private toast: Md2Toast,
                 private _route: ActivatedRoute,
               private _router: Router) {
@@ -118,7 +130,9 @@ export class MapaComponent implements OnInit {
         this.zoom = 13;
         this.imageECola = '/assets/map-markerEnCola.png';
         this.imageEC = '/assets/map-markerEncamino.png';
+        this.imageD = '/assets/map-markerDeliver.png';
         this.kityplancho = '/assets/kityplancho-marker.png';
+        this.ruteroIco = '/assets/rutero.png';
         this.markers = [
                         { name: 'Pedido 1', lat: 24.0248976, lng: -104.6649055, draggable: true },
                         { name: 'Pedido 2', lat: 24.0094675, lng: -104.6594958, draggable: true },
@@ -130,75 +144,33 @@ export class MapaComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getpedidos();
+    this.getcoordenasr();
+    this.getcoordenase();
+    this.getubicacionrutero();
   }
-
-  postPedido(){
-
-  }
-  //pendiente poner array de punteros
-  getpedidos(){
-     this._pedidosService.getPedidos().subscribe(
+  getcoordenasr(){
+     setInterval(()=>
+     this._mapaService.getcoordenasr().subscribe(
         result => {
-            this.pedidos = result.PEDIDOS;
+            this.cr = result.CO;
             var cont = 0;
-            for(let entry of this.pedidos){
+            for(let entry of this.cr){
               var i = cont++;
-              this.coord = this.pedidos[i].COORDENADAS_R.split(',',2);
+              if(this.cr[i].COORDENADA != null){
+                this.coord = this.cr[i].COORDENADA.split(',',2);
+
               // console.log(' IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' latitud: ' + this.coord[0] + ' longitud: ' + this.coord[1]);
               this.plat = parseFloat(this.coord[0]);
               this.plng = parseFloat(this.coord[1]);
               this.coords = [this.plat, this.plng]
-              this.pedidos[i].LAT = this.plat;
-              this.pedidos[i].LNG = this.plng;
+              this.cr[i].LAT = this.plat;
+              this.cr[i].LNG = this.plng;
+            }
               // console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' plat: ' + this.plat + ' plng: ' + this.plng );
-              console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' '+ this.coords  + ' '+ this.pedidos[i].PSTATUS)
-                // if(this.pedidos[i].PSTATUS == 'en_cola'){
-                  //     this.pIcon = '/assets/map-markerEnCola.png';
-                  //       if(this.pedidos[i].PSTATUS == 'en_camino'){
-                  //         this.pIcon = '/assets/map-markerEncamino.png';
-                  //       }
-                  //         if(this.pedidos[i].PSTATUS == 'en_proceso'){
-                  //           this.pIcon = '/assets/map-markerProcess.png';
-                  //         }
-                  //           if(this.pedidos[i].PSTATUS == 'para_entregar'){
-                  //             this.pIcon = '/assets/map-markerDeliver.png';
-                  //           }
-                  // }
-
-                switch(this.pedidos[i].PSTATUS) {
-                   case "en_cola": {
-                      this.pIcon = '/assets/map-markerEnCola.png';
-                      break;
-                   }
-                   case "en_camino": {
-                      this.pIcon = '/assets/map-markerEncamino.png';
-                      break;
-                   }
-                   case "en_proceso": {
-                      this.pIcon = '/assets/map-markerProcess.png';
-                      break;
-                   }
-                   case "para_entregar": {
-                      this.pIcon = '/assets/map-markerDeliver.png';
-                      break;
-                   }
-                  case "entregado": {
-                      this.pIcon = '/assets/map-markerComplete.png';
-                      break;
-                   }
-                   case "no_atendido": {
-                      this.pIcon = '/assets/map-markerDenenged.png';
-                      break;
-                   }
-                   default: {
-                      console.log('Status invalido');
-                      break;
-                   }
-              }
+              console.log('IDPEDIDO: ' + this.cr[i].IDPEDIDO + ' '+ this.coords  + ' '+ this.cr[i].STATUS)
             }
 
-            if (!this.pedidos ) {
+            if (!this.cr ) {
                 console.warn('Error en el servidor...');
             }else{
                 this.loading = false;
@@ -213,7 +185,91 @@ export class MapaComponent implements OnInit {
             }
         }
 
-      );
+      )
+     ,5000)
+  }
+
+getcoordenase(){
+    setInterval(()=>
+      this._mapaService.getcoordenase().subscribe(
+        result => {
+            this.ce = result.CO;
+            var cont = 0;
+            for(let entry of this.ce){
+              var i = cont++;
+              if(this.ce[i].COORDENADA != null){
+                this.coord = this.ce[i].COORDENADA.split(',',2);
+
+              // console.log(' IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' latitud: ' + this.coord[0] + ' longitud: ' + this.coord[1]);
+              this.plat = parseFloat(this.coord[0]);
+              this.plng = parseFloat(this.coord[1]);
+              this.coords = [this.plat, this.plng]
+              this.ce[i].LATE = this.plat;
+              this.ce[i].LNGE = this.plng;
+            }
+              // console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' plat: ' + this.plat + ' plng: ' + this.plng );
+              console.log('IDPEDIDO: ' + this.ce[i].IDPEDIDO + ' '+ this.coords  + ' '+ this.ce[i].STATUS)
+            }
+
+            if (!this.ce ) {
+                console.warn('Error en el servidor...');
+            }else{
+                this.loading = false;
+            }
+        },
+        error => {
+            this.errorMessage = <any>error;
+            if (this.errorMessage != null ) {
+                console.log(`This is the error: ${this.errorMessage}`);
+                this.message = true;
+                this.failgetPedidos();
+            }
+        }
+
+      )
+    ,5100)
+  }
+
+
+getubicacionrutero(){
+    setInterval(()=>
+      this._mapaService.getubicacionrutero().subscribe(
+        result => {
+            this.rutero = result.RUTERO;
+            var cont = 0;
+            for(let entry of this.rutero){
+              var i = cont++;
+              if(this.rutero[i].EUBICACION != null){
+                this.coordr = this.rutero[i].EUBICACION.split(',',2);
+
+              // console.log(' IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' latitud: ' + this.coord[0] + ' longitud: ' + this.coord[1]);
+              this.platr = parseFloat(this.coordr[0]);
+              this.plngr = parseFloat(this.coordr[1]);
+              this.coordsr = [this.platr, this.plngr]
+              this.rutero[i].LATR = this.platr;
+              this.rutero[i].LNGR = this.plngr;
+            }
+              // console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' plat: ' + this.plat + ' plng: ' + this.plng );
+              console.log('Rutero: ' + this.rutero[i].IDEMPLEADO + ' '+ this.coords  + ' '+ this.rutero[i].EPRIVILEGIO)
+            }
+
+            if (!this.rutero ) {
+                console.warn('Error en el servidor...');
+            }else{
+                this.loading = false;
+            }
+        },
+        error => {
+            this.errorMessage = <any>error;
+            if (this.errorMessage != null ) {
+                console.log(`This is the error: ${this.errorMessage}`);
+                this.message = true;
+                this.failgetRutero();
+            }
+        }
+
+      )
+    ,30000)
   }
 /*Marcadores*/
     mapClicked($event: any) {
@@ -266,7 +322,16 @@ export class MapaComponent implements OnInit {
       this._router.navigate(['pedidos',idpedido]);
     }
 
+    getempleado(idempleado){
+      this._router.navigate(['empleados',idempleado]);
+    }
+
+
+    failgetRutero() {
+      this.toast.toast(`Algo falló al intentar obtener la ubicación de los ruteros en el mapa, intenta de nuevo por favor`);
+    }
+
     failgetPedidos() {
-      this.toast.toast(`Algo falló al intentar obtener la lista de pedidos, intenta de nuevo por favor`);
+      this.toast.toast(`Algo falló al intentar obtener la ubicación de los pedidos en el mapa, intenta de nuevo por favor`);
     }
 }

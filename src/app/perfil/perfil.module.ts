@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 import { Md2Module } from 'md2';
 import { RouterModule, Routes } from '@angular/router/';
-import { PerfilService } from "app/perfil/perfil.service";
+import { PerfilService } from "./perfil.service";
 
 const routes: Routes = [
   { path: '', component: PerfilComponent }

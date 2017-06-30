@@ -8,7 +8,7 @@ import { MaterialModule} from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { Ng2UploaderModule } from 'ng2-uploader';
+// import { Ng2UploaderModule } from 'ng2-uploader';
 import { DataTablePipe } from '../pipes/data-table-pipe.pipe';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
@@ -30,19 +30,20 @@ import { EmpleadosService } from '../empleados/empleados.service';
 import { PerfilService } from "../perfil/perfil.service";
 import { PedidoService } from "../core/shell/pedido/pedido.service";
 import { LoginService } from '../core/shell/login/login.service';
+import { AuthguardGuard } from "./shell/login/authguard.guard";
 
 const routes: Routes = [
   { path: '', loadChildren: './../home/home.module#HomeModule' },
-  { path: 'ayuda', loadChildren: './../ayuda/ayuda.module#AyudaModule' },
-  { path: 'clientes', loadChildren: './../clientes/clientes.module#ClientesModule' },
-  { path: 'empleados', loadChildren: './../empleados/empleados.module#EmpleadosModule' },
-  { path: 'servicios', loadChildren: './../servicios/servicios.module#ServiciosModule' },
-  { path: 'perfil', loadChildren: './../perfil/perfil.module#PerfilModule' },
-  { path: 'sucursales', loadChildren: './../sucursales/sucursales.module#SucursalesModule' },
-  { path: 'sucursales', loadChildren: './../sucursales/sucursales.module#SucursalesModule' },
-  { path: 'pedidos', component: PedidosComponent },
-  { path: 'pedidos/:id', component: PedidodetalleComponent },
-  { path: 'acerca', component: AcercaComponent },
+  { path: 'ayuda', canActivate:[AuthguardGuard], loadChildren: './../ayuda/ayuda.module#AyudaModule' },
+  { path: 'clientes', canActivate:[AuthguardGuard], loadChildren: './../clientes/clientes.module#ClientesModule' },
+  { path: 'empleados', canActivate:[AuthguardGuard], loadChildren: './../empleados/empleados.module#EmpleadosModule' },
+  { path: 'servicios', canActivate:[AuthguardGuard], loadChildren: './../servicios/servicios.module#ServiciosModule' },
+  { path: 'perfil', canActivate:[AuthguardGuard], loadChildren: './../perfil/perfil.module#PerfilModule' },
+  { path: 'sucursales', canActivate:[AuthguardGuard], loadChildren: './../sucursales/sucursales.module#SucursalesModule' },
+  { path: 'sucursales', canActivate:[AuthguardGuard], loadChildren: './../sucursales/sucursales.module#SucursalesModule' },
+  { path: 'pedidos', canActivate:[AuthguardGuard], component: PedidosComponent },
+  { path: 'pedidos/:id', canActivate:[AuthguardGuard], component: PedidodetalleComponent },
+  { path: 'acerca', canActivate:[AuthguardGuard], component: AcercaComponent },
   { path: '**', loadChildren: './../home/home.module#HomeModule' }
 ];
 
@@ -60,13 +61,12 @@ const routes: Routes = [
       Md2Module.forRoot(),
       BrowserAnimationsModule,
       HttpModule,
-      Ng2UploaderModule,
       Ng2FilterPipeModule,
-      PedidosModule
+      PedidosModule,
 
   ],
-  declarations: [ShellComponent, IndexComponent, PedidosComponent, MapaComponent, PedidoComponent, PedidodetalleComponent, AcercaComponent, DataTablePipe ],
-  exports: [ShellComponent, SharedModule, LoginModule, AgmCoreModule],
-  providers: [ PedidosService, ClientesService, EmpleadosService, PerfilService, PedidoService, LoginService ]
+  declarations: [ ShellComponent, IndexComponent, PedidosComponent, MapaComponent, PedidoComponent, PedidodetalleComponent, AcercaComponent, DataTablePipe ],
+  exports: [ ShellComponent, SharedModule, LoginModule, AgmCoreModule],
+  providers: [ PedidosService, ClientesService, EmpleadosService, PerfilService, PedidoService, LoginService, AuthguardGuard ]
 })
 export class CoreModule { }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import { IServicios, Servicios } from './servicios';
+import { IServicios, Servicios, SPone } from './servicios';
 import { global } from '../global';
 
 @Injectable()
@@ -16,12 +16,17 @@ export class ServiciosService {
         this.url = global.url;
     }
 
-     getallsp() {
+    getservicios(){
+      return this._http.get(this.url + 'getservicios')
+            .map(res => res.json());
+    }
+
+    getallsp() {
         return this._http.get(this.url + 'getallsp')
             .map(res => res.json());
     }
 
-     getServiciosActivos() {
+    getServiciosActivos() {
         return this._http.get(this.url + 'getallServiciosNombres')
             .map(res => res.json());
     }
@@ -51,7 +56,7 @@ export class ServiciosService {
             .map(res => res.json());
     }
 
-    postSP(servicios: Servicios){
+    postSP(servicios: SPone){
       let body = new URLSearchParams();
       body.set('IDPRENDAS',servicios.IDPRENDAS.toString());
       body.set('IDSERVICIO',servicios.IDSERVICIO.toString());
@@ -84,6 +89,27 @@ export class ServiciosService {
     getSP(id: string) {
         return this._http.get(this.url + 'getservicioprendas?id='+id)
           .map(res => res.json());
+    }
+
+    getoneSP(id: string) {
+        return this._http.get(this.url + 'getserviciosprenda?id='+id)
+          .map(res => res.json());
+    }
+
+    putoneSP(sp: SPone){
+      let body = new URLSearchParams();
+          body.set('IDSP',sp.IDSP.toString());
+          body.set('IDSERVICIO',sp.IDSERVICIO.toString());
+          body.set('IDPRENDAS',sp.IDPRENDAS.toString());
+          body.set('SPCOSTO',sp.SPCOSTO.toString());
+          body.set('SPDESCUENTO',sp.SPDESCUENTO.toString());
+            console.log('Servicio body');
+
+          return this._http.post(this.url + 'updateserviciosprenda', body, {headers : this.getHeaders()})
+          .map((response:Response)=>{
+            JSON.stringify(response);
+          });
+
     }
 
     private getHeaders() {

@@ -6,7 +6,7 @@
 }
 
 .mat-card-avatar{
-    background-image: url('http://sm.ign.com/ign_es/screenshot/default/0007775435_67fw.jpg');
+    background-image: url('../../assets/logokity.png');
     background-size:cover
 }
 
@@ -18,3 +18,47 @@ md-card-header{
 .example-margin {
   margin: 10px;
 }
+
+.datacontainer {
+    text-align: center;
+}
+
+.datarepite {
+    display: inline-block !important;
+    width: 100% !important;
+    margin: 2px !important;
+}
+
+.margin-top{
+    margin-bottom: 2px;
+    margin: .6em 0 !important;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+  .datarepite {
+    display: inline-block !important;
+    width: 90% !important;
+    margin: 2px !important;
+  }
+}
+
+/*Tablets en horizonal y escritorios normales*/
+@media (min-width: 1024px) {
+  .datarepite {
+      display: inline-block !important;
+      width: 50% !important;
+      margin: 2px !important;
+  }
+}
+
+/*Escritorios muy anchos*/
+@media (min-width: 1200px) {
+  .datarepite {
+      display: inline-block !important;
+      width: 50% !important;
+      margin: 2px !important;
+  }
+}
+
+

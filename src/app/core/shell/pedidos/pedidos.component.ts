@@ -3,6 +3,8 @@ import { PedidosService } from './pedidos.service';
 import { Pedidos } from './pedidos';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Md2Toast } from 'md2';
+import { LoginService } from '../login/login.service';
+
 
 @Component({
   selector: 'kp-pedidos',
@@ -19,6 +21,7 @@ export class PedidosComponent implements OnInit {
               private _route: ActivatedRoute,
               private _router: Router,
               private toast: Md2Toast,
+              private _loginService: LoginService
               ) {
     this.loading = true;
     this.message = false;

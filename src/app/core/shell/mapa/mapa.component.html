@@ -1,4 +1,4 @@
-    <md2-dialog #pedidoDialog>
+    <!--<md2-dialog #pedidoDialog>
         <h5>Nuevo pedido :)</h5>
         <form #formPedido="ngForm" (ngSubmit)="postPedido()">
 
@@ -18,7 +18,7 @@
                         tooltip="¿El pedido se pagará después de la entrega?"
                         tooltip-position="above"
                         tooltip-delay="0 * 1000">Pagado a contraentrega</md-radio-button>
-              <md-radio-button class="form-radiobutton" value="pagado"
+              <md-radio-button class="form-radiobutton" value="por_adelantado"
                         tooltip="[-10%] Por pagar el pedido al entregar la ropa"
                         tooltip-position="above"
                         tooltip-delay="0 * 1000">Pagado al entregar</md-radio-button>
@@ -30,11 +30,11 @@
 
 
         <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
-    </md2-dialog>
+    </md2-dialog>-->
 
    <div class="kpgoogle-maps">
     <agm-map
-        (mapClick)="pedidoDialog.open(); mapClicked($event)"
+        (mapClick)=" mapClicked($event)"
         [latitude]="lat"
         [longitude]="lng"
         [zoom]="zoom"
@@ -54,23 +54,60 @@
           </agm-marker>
 
           <div>
-            <agm-marker *ngFor="let pedido of pedidos; let i = index"
+            <agm-marker *ngFor="let pedido of cr; let i = index"
               (markerClick)="markerClicked(pedido, i)"
               (dragEnd)="markerDragEnd(pedido, $event)"
               [latitude]="pedido.LAT"
               [longitude]="pedido.LNG"
-              [markerDraggable]="pedido.draggable"
-              [iconUrl]="pIcon"
+              [markerDraggable]="draggable"
+              [iconUrl]="imageEC"
               [opacity]="1">
 
-                  <agm-info-window
-                  [maxWidth]="200">
-                    <p><span class="kp-text bold">{{pedido.IDPEDIDO}} | {{pedido.PFECHA }}</span></p>
-                    <h5>Dirección</h5>
-                    <span class="bold">{{pedido.PDIRECCION_E}}</span>
-                    <span>{{pedido.PSTATUS}}</span><br>
+                  <agm-info-window >
+                    <h5>Status del pedido #<span class="kp-text bold">{{pedido.IDPEDIDO}}:</span></h5>
+                    <span>Pedido para recoger</span><br>
                     <button class="btn btn-default btn-xs" type="button" aria-haspopup="true" aria-expanded="false" (click)="getpedido(pedido.IDPEDIDO)" >
                       ver detalles
+                    </button>
+                  </agm-info-window>
+            </agm-marker>
+          </div>
+
+         <div>
+            <agm-marker *ngFor="let pedidoe of ce; let i = index"
+              (markerClick)="markerClicked(pedidoe, i)"
+              (dragEnd)="markerDragEnd(pedidoe, $event)"
+              [latitude]="pedidoe.LATE"
+              [longitude]="pedidoe.LNGE"
+              [markerDraggable]="draggable"
+              [iconUrl]="imageD"
+              [opacity]="1">
+
+                  <agm-info-window >
+                    <h5>Status del pedido #<span class="kp-text bold">{{pedidoe.IDPEDIDO}}:</span></h5>
+                    <span>Pedido listo para entregar</span><br>
+                    <button class="btn btn-default btn-xs" type="button" aria-haspopup="true" aria-expanded="false" (click)="getpedido(pedidoe.IDPEDIDO)" >
+                      ver detalles
+                    </button>
+                  </agm-info-window>
+            </agm-marker>
+          </div>
+
+          <div>
+            <agm-marker *ngFor="let r of rutero; let i = index"
+              (markerClick)="markerClicked(r, i)"
+              (dragEnd)="markerDragEnd(r, $event)"
+              [latitude]="r.LATR"
+              [longitude]="r.LNGR"
+              [markerDraggable]="draggable"
+              [iconUrl]="ruteroIco"
+              [opacity]="1">
+
+                  <agm-info-window >
+                    <h5><span >ID {{r.IDEMPLEADO}}</span> | <span class="kp-text">{{r.ENOMBRE}} {{r.EAPELLIDOS}}</span></h5>
+                    <h5> Tel: <span class="kp-text">{{r.ETELEFONO}}</span></h5>
+                    <button class="btn btn-default btn-xs" type="button" aria-haspopup="true" aria-expanded="false" (click)="getempleado(r.IDEMPLEADO)" >
+                      ver detalles del rutero
                     </button>
                   </agm-info-window>
             </agm-marker>

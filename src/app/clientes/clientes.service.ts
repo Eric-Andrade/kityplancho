@@ -49,6 +49,11 @@ export class ClientesService {
       });
     }
 
+    getClientesActivos() {
+        return this._http.get(this.url + 'getclientesactivos')
+          .map(res => res.json());
+    }
+
     getClientes() {
         return this._http.get(this.url + 'getclientes')
           .map(res => res.json());
@@ -56,6 +61,11 @@ export class ClientesService {
 
     getCliente(id: string) {
         return this._http.get(this.url + 'getcliente?id='+id)
+          .map(res => res.json());
+    }
+
+    getLastCliente() {
+        return this._http.get(this.url + 'getlastcliente')
           .map(res => res.json());
     }
 

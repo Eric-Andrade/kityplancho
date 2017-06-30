@@ -35,7 +35,7 @@ export class PrendadetalleComponent implements OnInit {
           response => {
             this.prenda = response.PRENDA;
             this.loading = false;
-            this.prenda = {     IDPRENDA:this.prenda[0].IDPRENDAS,
+            this.prenda = {     IDPRENDAS:this.prenda[0].IDPRENDAS,
                                 PNOMBREUNIDAD:`${this.prenda[0].PNOMBREUNIDAD}`,
                                 PDESCRIPCION:`${this.prenda[0].PDESCRIPCION}`,
                               };

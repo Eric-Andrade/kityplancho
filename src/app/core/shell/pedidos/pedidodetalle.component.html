@@ -2,7 +2,7 @@
     <md2-dialog #detallepedidodialog>
         <h5>Servicios del pedido</h5>
           <div *ngIf="detallepedido">
-            {{detallepedido.IDPEDIDO}}
+            #{{detallepedido.IDPEDIDO}}
                 <form #formServicio="ngForm" (ngSubmit)="putServicio()">
 
                   <md2-select name="IDSP"
@@ -18,8 +18,9 @@
                     <md2-option *ngFor="let i of items" [value]="i.IDSP"><strong>{{i.IDSP}}</strong> | {{i.SERVNOMBRE}} <strong>{{i.PNOMBREUNIDAD}}</strong> | <strong class="kp-text bold">{{i.SPCOSTO | currency:'USD':true}}</strong>
                     </md2-option>
                   </md2-select>
-                  <md-slider
 
+                   <h3 class="kp-text">Cantidad</h3>
+                  <md-slider
                     #DPCANTIDADPRENDAS="ngModel" [(ngModel)]="detallepedido.DPCANTIDADPRENDAS" name="DPCANTIDADPRENDAS"
                     [disabled]="disabled"
                     [invert]="invert"
@@ -37,21 +38,61 @@
                 <input type="hidden" #IDPEDIDO="ngModel" [(ngModel)]="detallepedido.IDPEDIDO" name="IDPEDIDO">
 
             <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid">Guardar cambios</button>
+            <button (click)="deletecarrito(detallepedido.IDDP)" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid">Eliminar del pedido</button>
             </form>
           </div>
-        <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
+
+    </md2-dialog>
+
+    <md2-dialog #detallepedidoserviciodialog>
+        <h5>Añadir más servicios al pedido</h5>
+                <form #formServicio="ngForm" (ngSubmit)="postServicio()">
+
+                  <md2-select name="IDSP"
+                              class="form-select"
+                              [(ngModel)]="dp.DPIDSP"
+                              #DPIDSP="ngModel"
+                              placeholder="Servicio"
+                              [required]="isRequired"
+                              [disabled]="isDisabled"
+                              #servicioControl="ngModel"
+                              autofocus="autofocus">
+
+                    <md2-option *ngFor="let i of items" [value]="i.IDSP"><strong>{{i.IDSP}}</strong> | {{i.SERVNOMBRE}} <strong>{{i.PNOMBREUNIDAD}}</strong> | <strong class="kp-text bold">{{i.SPCOSTO | currency:'USD':true}}</strong>
+                    </md2-option>
+                  </md2-select>
+
+                   <h3 class="kp-text">Cantidad</h3>
+                  <md-slider
+                    #DPCANTIDAD="ngModel" [(ngModel)]="dp.DPCANTIDAD" name="DPCANTIDAD"
+                    [disabled]="disabled"
+                    [invert]="invert"
+                    [max]="max"
+                    [min]="min"
+                    [step]="step"
+                    [thumb-label]="thumbLabel"
+                    [tick-interval]="tickInterval"
+                    [value]="value"
+                    [vertical]="vertical"
+                    style="width:100%;"
+                    required>
+                </md-slider>
+
+            <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid" (click)="getSumaP(pedido.IDPEDIDO)">Añadir servicio al pedido</button>
+            </form>
     </md2-dialog>
 
 <!--/dialogo pra edición de dp-->
 
-
 <div *ngIf="pedido">
-  <div class="container" >
+  <div class="container-fluid" >
     <div class="row">
       <h2 class="kp-text text-center">Detalles del pedido <span class="bold">#{{pedido.IDPEDIDO}}</span></h2>
       <br>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
          <button md-button color="accent" (click)="regresar()"><md-icon >keyboard_arrow_left</md-icon>Pedidos</button>
+         <button md-button color="accent" (click)="detallepedidoserviciodialog.open()"><md-icon >add</md-icon>Añadir más servicios</button>
+
          <md-card>
            <form #formPedido="ngForm" (ngSubmit)="putPedido()">
 
@@ -107,44 +148,55 @@
                     </md-input-container>
 
                     <div style="margin:0 auto; text-align: center;">
-                      <md-radio-group dividerColor="accent" #PPAGADO="ngModel" [(ngModel)]="pedido.PPAGADO" name="PPAGADO" [disabled]="inputdisabled">
-                      <md-radio-button class="form-radiobutton" checked="checked" value="contraentrega"
-                              tooltip="¿El pedido se pagará después de la entrega?"
+                      <md-radio-group dividerColor="accent" #PPAGADO="ngModel" [(ngModel)]="pedido.PPAGADO" name="PPAGADO" [disabled]="false">
+                      <md-radio-button class="form-radiobutton" value="contraentrega"
+                              tooltip="¿El pedido se pagó después de la entrega?"
                               tooltip-position="above"
                               tooltip-delay="0 * 1000">Pagado a contraentrega</md-radio-button>
-                      <md-radio-button class="form-radiobutton" value="pagado"
+                      <md-radio-button class="form-radiobutton" value="por_adelantado"
                               tooltip="[-10%] Por pagar el pedido al entregar la ropa"
                               tooltip-position="above"
-                              tooltip-delay="0 * 1000">Pagado al entregar</md-radio-button>
+                              tooltip-delay="0 * 1000">Pagado por adelantado</md-radio-button>
                       </md-radio-group>
-                    </div>
-
-                    <!--<md-chip-list class="mat-chip-list-stacked">
-                      <md-chip color="accent" selected="true"style="width:50px;">{{pedido.PPRECIOTOTAL | currency:'USD':true}}</md-chip>
-                    </md-chip-list>-->
-
-                    <md-input-container class="example-full-width form-space"  dividerColor="accent">
+                      <md-radio-group dividerColor="accent" #PFORMA="ngModel" [(ngModel)]="pedido.PFORMA" name="PFORMA" [disabled]="inputdisabled"
+                      tooltip="¿El pedido se efectúa en efectivo o con tarjeta bancaria?"
+                              tooltip-position="above"
+                              tooltip-delay="0 * 1000">
+                      <md-radio-button class="form-radiobutton" value="efectivo">Efectivo</md-radio-button>
+                      <md-radio-button class="form-radiobutton" value="tarjeta">Tarjeta</md-radio-button>
+                      </md-radio-group>
+                      <br>
+                    <md-chip-list class="mat-chip-list-stacked">
+                      <md-chip color="accent" selected="true">Precio total {{pedido.PPRECIOTOTAL | currency:'USD':true}}</md-chip>
+                    </md-chip-list>
+                  </div>
+                      <br>
+                    <!--<md-input-container class="example-full-width form-space"  dividerColor="accent">
                       <input mdInput #precio #PPRECIOTOTAL="ngModel" [(ngModel)]="pedido.PPRECIOTOTAL" name="PPRECIOTOTAL" placeholder="Precio total" autocomplete="off" required [disabled]="inputdisabled">
                       <md-hint align="end">{{precio.value.length}}/200</md-hint>
-                    </md-input-container>
+                    </md-input-container>-->
 
-                    <md-input-container class="example-full-width form-space"  dividerColor="accent">
+
+
+                    <!--<md-input-container class="example-full-width form-space"  dividerColor="accent">
                       <input mdInput #precio #LAT="ngModel" [(ngModel)]="pedido.LAT" name="LAT" placeholder="Coordenadas de recolección" autocomplete="off" required [disabled]="inputdisabled">
                     </md-input-container>
 
                     <p>Coords-r:</p> {{pedido.LAT}} | {{pedido.LNG}}
-                    <p class="kp-text">{{pedido.COORDENADASR}}</p>
+                    <p class="kp-text">{{pedido.COORDENADASR}}</p>-->
 
-              <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formPedido.form.valid">Actualizar datos del pedido #{{pedido.IDPEDIDO}}</button>
+              <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formPedido.form.valid" (click)="getSumaP(pedido.IDPEDIDO)">Actualizar datos del pedido #{{pedido.IDPEDIDO}}</button>
             </form>
               <!--<p class="kp-text bold">Pedido</p>-->
+                  <br>
                     <md-chip-list class="mat-chip-list-stacked">
+                      <h5 class="kp-text">Servicios del pedido</h5>
                        <md-chip *ngFor="let dp of detallepedidos"
                           selected="true"
                           color="primary"
                           (click)="detallepedidodialog.open(); getdp(dp.IDDP)"
                           >
-                       IDDP: {{dp.IDDP}} -- IDSP: {{dp.IDSP}} prendas {{dp.DP_CANTIDADPRENDAS}} | total {{dp.DP_COSTOPEDIDO | currency:'USD':true}}
+                        # Prendas {{dp.DP_CANTIDADPRENDAS}} | {{dp.DP_COSTOPEDIDO | currency:'USD':true}}
                       </md-chip>
                     </md-chip-list>
                 <!--<div class="datacontainer" *ngIf="detallepedidos">
@@ -189,29 +241,31 @@
                     [streetViewControl]="false"
                     [styles]="customStyle"
                     >
-                      <agm-marker
-                        *ngIf="pedido.LAT != null && pedido.LNG != null; let i = index"
-                        [latitude]="pedido.LAT" [longitude]="pedido.LNG"
-                        [iconUrl]="kityplancho"
-                        [markerDraggable]="draggable"
-                        (markerClick)="clickMarcador(pedido, i)"
-                        (dragEnd)="dragEndMarcador(pedido, $event)"
-                        [opacity]="opacityr"
-                        >
-                          <agm-info-window
-                          [disableAutoPan]="true"
-                          [isOpen]="true"
-                          [maxWidth]="225">
-                            <p><span class="kp-text bold">{{pedido.IDPEDIDO}} | {{pedido.PFECHA}}</span></p>
-                            <h5>{{direccion}}</h5>
-                            <span class="bold">{{pedido.PDIRECCIONR}}</span>
-                            <span>{{pedido.PSTATUS}}</span>
-                            <span>{{pedido.LAT}}</span>
-                            <span>{{pedido.LNG}}</span>
-                          </agm-info-window>
-                      </agm-marker>
+                      <div>
+                          <agm-marker
+                            *ngIf="pedido.LAT != null && pedido.LNG != null; let i = index"
+                            [latitude]="pedido.LAT" [longitude]="pedido.LNG"
+                            [iconUrl]="kityplancho"
+                            [markerDraggable]="draggable"
+                            (markerClick)="clickMarcador(pedido, i)"
+                            (dragEnd)="dragEndMarcador(pedido, $event)"
+                            [opacity]="opacityr"
+                            >
+                              <agm-info-window
+                              [disableAutoPan]="true"
+                              [isOpen]="true"
+                              [maxWidth]="230">
+                                <p><span class="kp-text bold">{{pedido.IDPEDIDO}} | {{pedido.PFECHA}}</span></p>
+                                <h5>{{direccion}}</h5>
+                                <span class="bold">{{pedido.PDIRECCIONR}}</span>
+                                <!--<span>{{pedido.PSTATUS}}</span>-->
+                                <!--<span>{{pedido.LAT}}</span>
+                                <span>{{pedido.LNG}}</span>-->
+                              </agm-info-window>
+                          </agm-marker>
+                      </div>
 
-                      <div *ngIf="pedido.COORDENADASR != pedido.COORDENADASE">
+                      <div *ngIf="pedido.COORDENADASE != pedido.COORDENADASR">
                           <agm-marker
                             *ngIf="pedido.LATE != null && pedido.LNGE != null; let i = index"
                             [latitude]="pedido.LATE" [longitude]="pedido.LNGE"
@@ -224,13 +278,13 @@
                               <agm-info-window
                               [disableAutoPan]="true"
                               [isOpen]="true"
-                              [maxWidth]="200">
+                              [maxWidth]="230">
                                 <p><span class="kp-text bold">{{pedido.IDPEDIDO}} | {{pedido.PFECHA}}</span></p>
                                 <h5>Dirección a entregar pedido</h5>
                                 <span class="bold">{{pedido.PDIRECCIONE}}</span>
-                                <span>{{pedido.PSTATUS}}</span>
-                                <span>{{pedido.LATE}}</span>
-                                <span>{{pedido.LNGE}}</span>
+                                <!--<span>{{pedido.PSTATUS}}</span>-->
+                                <!--<span>{{pedido.LATE}}</span>
+                                <span>{{pedido.LNGE}}</span>-->
                               </agm-info-window>
                           </agm-marker>
                       </div>

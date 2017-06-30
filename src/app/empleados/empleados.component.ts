@@ -52,6 +52,7 @@ export class EmpleadosComponent implements OnInit {
   }
 
   toastMe() {
+
       this.toast.toast(`Algo falló al tratar de obtener la lista de empleados, intenta nuevamente por favor`);
     }
 }
