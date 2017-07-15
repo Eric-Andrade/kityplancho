@@ -125,3 +125,28 @@ md-card {
   cursor: pointer;
   color:#e0e0e0;
 }
+
+.example-header-image {
+  background-image: url('../../../../assets/logokity.png');
+  background-size: cover;
+}
+
+.mat-card-avatar {
+    height: 47px;
+    width: 47px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.notifications-container{
+    min-height: 350px;
+    min-width: 250px;
+    max-height: 350px;
+    max-width: 250px;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}

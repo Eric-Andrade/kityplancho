@@ -10,7 +10,7 @@ import { Sucursales } from '../../../sucursales/sucursales';
 import { ClientesService } from '../../../clientes/clientes.service';
 import { Clientes } from '../../../clientes/clientes';
 import { Md2Toast } from 'md2';
-
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'kp-pedido',
@@ -19,7 +19,7 @@ import { Md2Toast } from 'md2';
   providers: [ PedidoService, ServiciosService, SucursalesService, ClientesService, PedidosService]
 })
 export class PedidoComponent implements OnInit {
-    suma: number;
+    public suma: number;
     /*Map*/
         public customStyle = [
             {
@@ -186,9 +186,9 @@ export class PedidoComponent implements OnInit {
       PPAGADO:'contraentrega',
       PFORMA:'efectivo',
       PFECHA:'',
-      PDIRECCIONR:'Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico',
+      PDIRECCIONR:'',
       COORDENADASR:'24.02780775285771,-104.65332895517349',
-      PDIRECCIONE:'Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico',
+      PDIRECCIONE:'',
       COORDENADASE:'24.02780775285771,-104.65332895517349',
       IDCLIENTE:null,
   }
@@ -229,7 +229,6 @@ export class PedidoComponent implements OnInit {
             this.errorMessage = <any>error;
             if (this.errorMessage != null ) {
                 console.log(this.errorMessage);
-
             }
         }
 
@@ -312,10 +311,10 @@ export class PedidoComponent implements OnInit {
 
     postPedido(){
                 this.getlastpedido();
-
                 // this.tab1disabled = true;
                 // this.tab2disabled = false;
                 // this.tab3disabled = true;
+                // // formPedido.reset();
                 // this.selectedIndex = 1;
                 // console.log(`Detalle pedido before:`)
                 // console.log(this.detallepedido);
@@ -437,7 +436,7 @@ export class PedidoComponent implements OnInit {
             },1000);
   }
 
-    public putPedido(){
+    public putPedido(formPedido, pedidodialog){
         if(!this.pedido) return;
 
        if(this.pedido.PPAGADO == 'por_adelantado'){
@@ -453,7 +452,18 @@ export class PedidoComponent implements OnInit {
         console.log(this.pedido);
               this._pedidosService.putPedido(this.pedido).subscribe(
               data => {
-                    this.toastMe();
+                setTimeout(()=>{
+                this.close(pedidodialog);
+                },1300)
+
+                setTimeout(()=>{
+                  this.selectedIndex = 0;
+                  this.tab1disabled = false;
+                  this.tab2disabled = true;
+                  this.tab3disabled = true;
+                  formPedido.reset();
+                },1000)
+                
                     //console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
 
               }, error => {

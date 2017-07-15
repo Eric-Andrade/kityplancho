@@ -1,11 +1,11 @@
 <md2-dialog #clientedialog>
         <h5>{{opcioncliente | uppercase}}</h5>
-        <form #formCliente="ngForm" (ngSubmit)="postCliente()">
+        <form #formCliente="ngForm" (ngSubmit)="postCliente(clientedialog)">
 
         <table class="example-full-width" cellspacing="0">
            <tr>
             <td><md-input-container dividerColor="accent">
-                  <input type="email" mdInput name="CEMAIL" [(ngModel)]="cliente.CEMAIL" #correo #CEMAIL="ngModel" minlength="10" maxlength="45" autofocus="autofocus" placeholder="Correo eléctronico" autocomplete="off" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+                  <input type="email" mdInput name="CEMAIL" [(ngModel)]="cliente.CEMAIL" #correo #CEMAIL="ngModel" minlength="10" maxlength="45" autofocus="autofocus" placeholder="Correo eléctronico" autocomplete="off" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}">
                   <md-error align="start">ingresa un email válido</md-error>
                   <md-hint align="end">{{correo.value.length}}/45</md-hint>
                   </md-input-container></td>
@@ -34,7 +34,7 @@
             </md-input-container></td>
           </tr>
          </table>
-
+ 
         <md-input-container class="example-full-width form-space"  dividerColor="accent">
           <input type="tel" name="CTELEFONO" #telefono #CTELEFONO="ngModel" [(ngModel)]="cliente.CTELEFONO" mdInput minlength="10" maxlength="10" placeholder="Número de teléfono/celular" required autocomplete="off" pattern="[0-9]{10}">
           <md-error align="start">ingresa un número de tel. válido</md-error>

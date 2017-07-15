@@ -8,13 +8,13 @@
       </div>
 
     <div class="table-responsive content">
-      <table class="table table-hover">
+      <table class="table table-hover search-results"
+        infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="10"
+        (scrolled)="onScroll()"
+        [scrollWindow]="false">
         <thead class="thead">
-          <!--<tr>
-            <td colspan="4">
-              <input placeholder="Filter By Name" class="md2-input" [(ngModel)]="search" />
-            </td>
-          </tr>-->
           <tr>
             <th style="width: 7%"
                         tooltip="Status del pedido"
@@ -101,7 +101,27 @@
                  <br>
                 <span class="pforma">({{pedido.PFORMA}})</span>
             </td>
-            <td>{{pedido.PPRECIOTAL | currency:'USD':true}}</td>
+            <td>
+              <div *ngIf="pedido.PPRECIOTAL == '0'; then siTemplate; else noTemplate"></div>
+                  <ng-template #siTemplate>
+                    <md-chip-list class="mat-chip-list-stacked">
+                       <md-chip
+                          tooltip="Ir a detalles del pedido para continuar con el registro"
+                          tooltip-position="above"
+                          tooltip-delay="0 * 1000"
+                          selected="true"
+                          color="accent">
+                        <span style="font-weight: 400; color:#fff;">sin servicios</span>
+                      </md-chip>
+                    </md-chip-list>
+
+
+                  </ng-template>
+                  <ng-template #noTemplate>
+                   {{pedido.PPRECIOTAL | currency:'USD':true}}
+                  </ng-template>
+             
+              </td>
             <!--<td>{{pedido.PFECHA | date: 'medium'}}</td>-->
             <td>{{pedido.PFECHA }}</td>
          </tr>

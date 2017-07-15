@@ -143,13 +143,23 @@ export class MapaComponent implements OnInit {
     }
 
   ngOnInit() {
-
     this.getcoordenasr();
     this.getcoordenase();
     this.getubicacionrutero();
+  
+    setInterval(()=>{
+    this.getcoordenasr();
+    this.getcoordenase();
+    console.log('reejecutado coords de pedidos con exito');
+    },30000)
+
+    setInterval(()=>{
+    this.getubicacionrutero();
+    console.log('reejecutado  coords de rutero con exito');
+    },20000)
   }
   getcoordenasr(){
-     setInterval(()=>
+ 
      this._mapaService.getcoordenasr().subscribe(
         result => {
             this.cr = result.CO;
@@ -167,7 +177,7 @@ export class MapaComponent implements OnInit {
               this.cr[i].LNG = this.plng;
             }
               // console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' plat: ' + this.plat + ' plng: ' + this.plng );
-              console.log('IDPEDIDO: ' + this.cr[i].IDPEDIDO + ' '+ this.coords  + ' '+ this.cr[i].STATUS)
+              // console.log('IDPEDIDO: ' + this.cr[i].IDPEDIDO + ' '+ this.coords  + ' '+ this.cr[i].STATUS)
             }
 
             if (!this.cr ) {
@@ -186,11 +196,9 @@ export class MapaComponent implements OnInit {
         }
 
       )
-     ,5000)
   }
 
 getcoordenase(){
-    setInterval(()=>
       this._mapaService.getcoordenase().subscribe(
         result => {
             this.ce = result.CO;
@@ -208,7 +216,7 @@ getcoordenase(){
               this.ce[i].LNGE = this.plng;
             }
               // console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' plat: ' + this.plat + ' plng: ' + this.plng );
-              console.log('IDPEDIDO: ' + this.ce[i].IDPEDIDO + ' '+ this.coords  + ' '+ this.ce[i].STATUS)
+             // console.log('IDPEDIDO: ' + this.ce[i].IDPEDIDO + ' '+ this.coords  + ' '+ this.ce[i].STATUS)
             }
 
             if (!this.ce ) {
@@ -227,12 +235,10 @@ getcoordenase(){
         }
 
       )
-    ,5100)
   }
 
 
 getubicacionrutero(){
-    setInterval(()=>
       this._mapaService.getubicacionrutero().subscribe(
         result => {
             this.rutero = result.RUTERO;
@@ -250,7 +256,7 @@ getubicacionrutero(){
               this.rutero[i].LNGR = this.plngr;
             }
               // console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' plat: ' + this.plat + ' plng: ' + this.plng );
-              console.log('Rutero: ' + this.rutero[i].IDEMPLEADO + ' '+ this.coords  + ' '+ this.rutero[i].EPRIVILEGIO)
+             // console.log('Rutero: ' + this.rutero[i].IDEMPLEADO + ' '+ this.coords  + ' '+ this.rutero[i].EPRIVILEGIO)
             }
 
             if (!this.rutero ) {
@@ -269,7 +275,6 @@ getubicacionrutero(){
         }
 
       )
-    ,30000)
   }
 /*Marcadores*/
     mapClicked($event: any) {

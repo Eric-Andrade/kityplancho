@@ -1,4 +1,4 @@
-
+﻿
 ng serve --host 192.168.1.16
 Correo:
 kityplancho@gmail.com
@@ -63,6 +63,9 @@ Links
 
   Expresiones regulares
   http://web.ontuts.com/snippets/10-expresiones-regulares-imprescindibles-en-desarrollo-web/
+
+  Material Design 2 
+	http://code.promactinfo.com/md2/#/
 ]
 
 Expresiones regulares pattern=""

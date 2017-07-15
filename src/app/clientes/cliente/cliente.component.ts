@@ -42,7 +42,14 @@ export class ClienteComponent implements OnInit {
 
 ngOnInit( ) {
     // this.cliente = new Clientes("","","","","");
-    this.cliente = { IDCLIENTE:null, CEMAIL:'correo@gmail.com',CPASSWORD:'12345678',CNOMBRE:'correoprueba',CAPELLIDOS:'apellidos',CTELEFONO:'1234567890'};
+    this.cliente = { 
+      IDCLIENTE:null, 
+      CEMAIL:'',
+      CPASSWORD:'',
+      CNOMBRE:'',
+      CAPELLIDOS:'',
+      CTELEFONO:''
+      };
   }
 
    getlastcliente(){
@@ -67,10 +74,10 @@ ngOnInit( ) {
               }
           }
     )
-   },500)
+   },800)
   }
 
-  public postCliente(){
+  public postCliente(clientedialog){
 
     this._clientesService.postCliente(this.cliente).subscribe(
           data => {
@@ -80,7 +87,8 @@ ngOnInit( ) {
                  let idcliente = this.lastcliente;
                      this._router.navigate(['clientes',idcliente]);
                      console.log('enviar al cliente desde el post');
-               },1200);
+                     this.close(clientedialog);
+               },2000);
 
           }, error => {
               console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
@@ -90,7 +98,6 @@ ngOnInit( ) {
             }
           });
   }
-
 
 
   open(dialog: any) {

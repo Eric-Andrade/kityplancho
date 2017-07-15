@@ -47,13 +47,9 @@
                         placeholder="Prendas que pertenecerán al servicio"
                         [required]="isRequired"
                         [disabled]="isDisabled"
-
                         autofocus="autofocus">
-              <!--<md2-select-header>
-              <input name="search" type="text" placeholder="Buscar..." />
-              </md2-select-header>-->
 
-              <md2-option *ngFor="let p of iprenda" [value]="p.IDPRENDAS"><strong>{{p.IDPRENDAS}}</strong> | <span class="kp-text">{{p.PNOMBREUNIDAD}}</span>
+              <md2-option *ngFor="let p of iprenda" [value]="p.IDPRENDAS"><span class="kp-text">{{p.PNOMBREUNIDAD}}</span>
               </md2-option>
               </md2-select>
 
@@ -86,7 +82,7 @@
 
               <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formSP.form.valid">Vincular prenda a {{iservicio.SERVNOMBRE}}</button>
          </form>
-         <button class="button-form" color="accent" md-button style="width:100%; margin-top:2px;" [disabled]="next" (click)="getservicio(lastservicio)">Ir a detalles del servicio<md-icon >keyboard_arrow_right</md-icon></button>
+         <button class="button-form" color="accent" md-button style="width:100%; margin-top:2px;" [disabled]="next" (click)="getservicio(serviciodialog, lastservicio)">Ir a detalles del servicio<md-icon >keyboard_arrow_right</md-icon></button>
                 <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
           </md-tab>
       </md-tab-group>

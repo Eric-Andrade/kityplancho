@@ -28,7 +28,15 @@ export class PedidosComponent implements OnInit {
   }
 
   ngOnInit() {
-      this._pedidosService.getpdp().subscribe(
+      this.getpedidos();
+      setInterval(()=>{
+            this.getpedidos();
+            console.log('reejecutado lista de pedidos con exito');
+        },60000) 
+  }
+
+  getpedidos(){
+    this._pedidosService.getpdp().subscribe(
         result => {
             console.log(result);
             this.pedidos = result.GETPDP;
@@ -45,9 +53,8 @@ export class PedidosComponent implements OnInit {
                 this.message = true;
                 this.failgetPedidos();
             }
-        }
-
-      );
+        });
+        
   }
 
   getpedido(idpedido){
@@ -60,5 +67,9 @@ export class PedidosComponent implements OnInit {
 
   failgetPedidos() {
       this.toast.toast(`Algo falló al intentar obtener la lista de pedidos, intenta de nuevo por favor`);
-    }
+  }
+
+  onScroll () {
+      console.log('scrolled!!')
+  }
 }

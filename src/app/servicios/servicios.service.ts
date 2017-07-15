@@ -86,6 +86,15 @@ export class ServiciosService {
           });
     }
 
+    eliminarsp(servicio){
+ let body = new URLSearchParams();
+      body.set('IDSP', servicio.toString());
+ return this._http.post(this.url + 'deleteserviciosprenda', body, {headers : this.getHeaders()})
+      .map((response:Response)=>{
+        JSON.stringify(response);
+      });
+    }
+
     getSP(id: string) {
         return this._http.get(this.url + 'getservicioprendas?id='+id)
           .map(res => res.json());

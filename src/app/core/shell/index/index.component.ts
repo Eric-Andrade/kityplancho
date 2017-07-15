@@ -6,12 +6,14 @@ import { PedidosService } from '../pedidos/pedidos.service';
 import { Md2Toast } from 'md2';
 import { username, password } from '../login/authguard.guard';
 import { Router } from '@angular/router';
+import { MapaComponent } from '../mapa/mapa.component';
+import { MapaService } from '../mapa/mapa.service';
 
 @Component({
   selector: 'kp-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css'],
-  providers:[ PedidosService, LoginService ]
+  providers:[ LoginService, MapaComponent, PedidosService, MapaService ]
 })
 export class IndexComponent implements OnInit {
 
@@ -33,8 +35,10 @@ export class IndexComponent implements OnInit {
   public suma:any;
 
 
-  constructor(private _pedidosService: PedidosService,
-              private toast: Md2Toast,
+  constructor(private _mapaComponent: MapaComponent,
+  private _mapaService:MapaService,
+  private _pedidosService: PedidosService,
+     private toast: Md2Toast,
               private _loginService: LoginService,
               private _router: Router) {
       this.title = 'KityPlancho';
@@ -48,50 +52,14 @@ export class IndexComponent implements OnInit {
 
   ngOnInit() {
   //  this.isUserLoggedIn = this._loginService.getUserLoggedIn();
-  console.log('username:');
-  console.log(this.username);
-  console.log('password:');
-  console.log(this.password);
-
   this.sumaencola();
+
   }
 
-  getpedidosmap(){
-    console.log('cargados desde el slide');
-     this._pedidosService.getPedidos().subscribe(
-        result => {
-            this.pedidos = result.PEDIDOS;
-            var cont = 0;
-            for(let entry of this.pedidos){
-              var i = cont++;
-              this.coord = this.pedidos[i].COORDENADAS_R.split(',',2);
-              // console.log(' IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' latitud: ' + this.coord[0] + ' longitud: ' + this.coord[1]);
-              this.plat = parseFloat(this.coord[0]);
-              this.plng = parseFloat(this.coord[1]);
-              this.coords = [this.plat, this.plng]
-              this.pedidos[i].LAT = this.plat;
-              this.pedidos[i].LNG = this.plng;
-              // console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' plat: ' + this.plat + ' plng: ' + this.plng );
-              console.log('IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' '+ this.coords  + ' '+ this.pedidos[i].PSTATUS)
-            }
-
-            if (!this.pedidos ) {
-                console.warn('Error en el servidor...');
-            }else{
-                this.loading = false;
-            }
-        },
-        error => {
-            this.errorMessage = <any>error;
-            if (this.errorMessage != null ) {
-                console.log(`This is the error: ${this.errorMessage}`);
-                this.message = true;
-                this.failgetPedidos();
-            }
-        }
-
-      );
-
+  clicksatellite(){
+this._mapaComponent.getcoordenasr();
+this._mapaComponent.getcoordenase();
+this._mapaComponent.getubicacionrutero();
   }
 
   sumaencola(){
@@ -116,7 +84,7 @@ export class IndexComponent implements OnInit {
                 this.failgetPedidos();
             }
       })
-    ,3000);
+    ,5123);
 
   }
 
@@ -135,6 +103,10 @@ export class IndexComponent implements OnInit {
                 this.failgetPedidos();
             }
       })
+  }
+
+  getpedido(idpedido){
+      this._router.navigate(['pedidos',idpedido]);
   }
 
   failgetPedidos() {

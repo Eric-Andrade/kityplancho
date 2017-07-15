@@ -26,19 +26,19 @@ export class LoginComponent implements OnInit {
               private toast: Md2Toast) {
                     this.empleado = {
                       IDEMPLEADO: null,
-                      EEMAIL:'erictor@gmail.com',
-                      EPASSWORD:'123456',
-                      EPRIVILEGIO:'administrador',
+                      EEMAIL:'',
+                      EPASSWORD:'',
+                      EPRIVILEGIO:'',
                       ENOMBRE:'',
                       EAPELLIDOS:'',
                       ETELEFONO:'',
                       EDIRECCION:'',
                       EREFERENCIAFAM1:'',
                       EREFERENCIAFAM2:'',
-                      EREFERENCIA1:'Itecor Itecor Itecor Itecor',
-                      EREFERENCIA2:'Itecor Itecor Itecor Itecor',
-                      EFECHACONTRATO:'2017-04-15',
-                      EUBICACION:'24.02780775285771,-104.65332895517349',
+                      EREFERENCIA1:'',
+                      EREFERENCIA2:'',
+                      EFECHACONTRATO:'',
+                      EUBICACION:'',
                       ESUELDO:'',
                       ERFC:'',
                       EIMSS:'',
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   //component login
-  public login(){
+  public login(logindialog){
     // e.preventDefault();
     //   	console.log(e);
     //   	var username = e.target.elements[0].value;
@@ -68,15 +68,17 @@ export class LoginComponent implements OnInit {
               console.log(response);
               this.empleado = response.ADMIN;
               if(response.ADMIN[0] != null){
+                this.close(logindialog);
                 let username = this.empleado[0].EEMAIL;
                 let password = this.empleado[0].EPASSWORD;
                    this._loginService.storedUserData(username, password);
                    this._loginService.setUserLoggedIn();
-                   this.toastMe();
+                   
                    this._router.navigate(['pedidos']);
                    setTimeout(()=>{
                     location.reload();
-                   },2000)
+                    
+                   },1000)
                   //  this._router.navigate(['pedidos']);
 
                  }else{
@@ -90,6 +92,10 @@ export class LoginComponent implements OnInit {
                   this.message = true;
               }
           });
+  }
+
+  close(dialog: any) {
+    dialog.close();
   }
 
   toastMe() {

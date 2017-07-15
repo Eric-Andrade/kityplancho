@@ -21,11 +21,12 @@
                   </md-card-header>
 
                     <md-input-container dividerColor="accent" class="example-full-width form-space">
-                    <input type="number" mdInput #id name="IDPRENDA" #IDPRENDA="ngModel" [(ngModel)]="prenda.IDPRENDA" placeholder="ID de prenda" [disabled]="true">
+                    <input type="number" mdInput #id name="IDPRENDAS" #IDPRENDAS="ngModel" [(ngModel)]="prenda.IDPRENDAS" placeholder="ID de prenda" [disabled]="true">
                     </md-input-container>
 
                     <md-input-container dividerColor="accent">
-                      <input mdInput #prendasnombre #PNOMBREUNIDAD="ngModel" [(ngModel)]="prenda.PNOMBREUNIDAD" minlenght="5" maxlength="45" name="PNOMBREUNIDAD" placeholder="Nombre de prenda" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
+                      <input mdInput #prendasnombre #PNOMBREUNIDAD="ngModel" [(ngModel)]="prenda.PNOMBREUNIDAD" minlenght="3" maxlength="45" name="PNOMBREUNIDAD" placeholder="Nombre de prenda" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,45}">
+                      <md-error align="start">minimo 3 caracteres, preferentemente alfabéticos</md-error>
                       <md-hint align="end">{{prendasnombre.value.length}}/45</md-hint>
                     </md-input-container>
 

@@ -176,7 +176,6 @@ export class ServicioComponent implements OnInit {
   public postSP(){
 
     this.next = false;
-
      this.spone.IDSERVICIO = this.lastservicio;
      console.log('Servicio!!!!');
             console.log(this.spone);
@@ -184,6 +183,7 @@ export class ServicioComponent implements OnInit {
         data => {
           this.next = false;
             this.postServiciotoast();
+
         },
 
         error =>  {
@@ -195,9 +195,17 @@ export class ServicioComponent implements OnInit {
         });
   }
 
-  getservicio(idservicio){
-      setTimeout(()=>{this._router.navigate(['servicios/servicio/',idservicio]);},500);
-    }
+
+  getservicio(serviciodialog, idservicio){
+      this.close(serviciodialog);
+      setTimeout(()=>{
+          this._router.navigate(['servicios/servicio/',idservicio]);
+        },500);
+  }
+
+ close(dialog: any) {
+    dialog.close();
+  }
 
   toastMe() {
      this.toast.toast(`Nuevo servicio creado exitosamente`);

@@ -50,6 +50,11 @@
     color: #ff6262;
 }
 
+.search-results {
+    height: 20rem;
+    overflow: scroll;
+}
+
 @media (min-width: 320px) {
   .filterpedidos{
     width: 100%;

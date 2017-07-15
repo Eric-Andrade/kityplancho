@@ -14,7 +14,8 @@ export class PrendaComponent implements OnInit {
   public errorMessage;
 
   constructor(private _prendasService: PrendasService,
-              private toast: Md2Toast,) { }
+              private toast: Md2Toast,
+              ) { }
 
   ngOnInit() {
     this.prenda = {
@@ -24,7 +25,7 @@ export class PrendaComponent implements OnInit {
     }
   }
 
-  postPrenda(){
+  postPrenda(formPrenda, prendasdialog){
     if(this.prenda.PDESCRIPCION == '' || this.prenda.PDESCRIPCION == null){
       this.prenda.PDESCRIPCION = 'En espera de descripción';
     }else{
@@ -33,6 +34,8 @@ export class PrendaComponent implements OnInit {
     this._prendasService.postPrenda(this.prenda).subscribe(
             data => {
                 this.toastMe();
+                formPrenda.reset();
+                this.close(prendasdialog);
             },
             error =>  {
                 console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
@@ -41,6 +44,10 @@ export class PrendaComponent implements OnInit {
                   this.failpostPrenda();
               }
             });
+  }
+
+  close(dialog: any) {
+    dialog.close();
   }
 
    toastMe() {

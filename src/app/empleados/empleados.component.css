@@ -27,3 +27,7 @@ md-card{
 md-chip{
   min-width: 89px;
   }
+
+.datarepite{
+  cursor: pointer
+}

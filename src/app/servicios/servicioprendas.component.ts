@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { IServicios, SP } from './servicios'
+import { IServicios, SP, SPone, IPrendas } from './servicios'
 import { ServiciosService } from './servicios.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Md2Toast } from 'md2';
 import { SucursalesService } from '../sucursales/sucursales.service';
 import { Sucursales } from '../sucursales/sucursales';
+import { PrendasService } from './prendas/prendas.service';
 
 @Component({
   selector: 'kp-servicioprendas',
   templateUrl: './servicioprendas.component.html',
   styleUrls: ['./servicioprendas.component.css'],
-  providers: [ServiciosService, SucursalesService]
+  providers: [ServiciosService, SucursalesService, PrendasService]
 })
 export class ServicioprendasComponent implements OnInit {
  public servicio: IServicios;
+ public iprenda: IPrendas[];
     public loading: boolean;
     public errorMessage;
     public message: boolean;
@@ -21,7 +23,19 @@ export class ServicioprendasComponent implements OnInit {
     public isRequired: boolean;
     public isDisabled: boolean;
     public servicioprendas:SP;
+    public spone: SPone;
+    public autoTicks = true;
+  public disabled = false;
+  public invert = false;
+  public max = 100;
+  public min = 0;
+  public showTicks = true;
+  public step = 1;
+  public thumbLabel = true;
+  public value = 0;
+  public vertical = false;
   constructor(private _serviciosService: ServiciosService,
+              private _prendasService: PrendasService,
               private _sucursalesService: SucursalesService,
               private _route: ActivatedRoute,
               private _router: Router,
@@ -31,6 +45,14 @@ export class ServicioprendasComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.spone = {
+      IDPRENDAS:null,
+      IDSERVICIO:null,
+      IDSP:null,
+      SPCOSTO:null,
+      SPDESCUENTO:0,
+    }
+    this.getprendas();
     this.getServicio();
     this.getSP();
 
@@ -121,16 +143,91 @@ export class ServicioprendasComponent implements OnInit {
         });
     }
 
+  
+   getprendas(){
+     this._prendasService.getPrendas().subscribe(
+        response => {
+          console.log('getprendas!!!!');
+            console.log(response);
+            this.iprenda = response.PRENDAS;
+            if (!this.iprenda) {
+                console.log('Error en el servidor...');
+            }else{
+                console.log('Prendas cargadas correctamente');
+            }
+        },
+        error => {
+            this.errorMessage = <any>error;
+            if (this.errorMessage != null) {
+                console.log(this.errorMessage);
+                this.message = true;
+            }
+        });
+  }
+
+   
+   postSP(){
+     this.spone.IDSERVICIO = this.servicio.IDSERVICIO;
+     console.log('Servicio!!!!');
+            console.log(this.spone);
+      this._serviciosService.postSP(this.spone).subscribe(
+        data => {
+            this.getSP();
+            this.postServiciotoast();
+        },
+
+        error =>  {
+            console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+              this.errorMessage = <any>error;
+              if(this.errorMessage != null){
+              this.failpostSP();
+          }
+        });
+  }
+
+  eliminarsp(idsp){
+this._serviciosService.eliminarsp(idsp).subscribe(
+  success=>{
+    this.getSP();
+    this.eliminarspsuccess();
+  },
+  error =>{
+    console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+              this.errorMessage = <any>error;
+              if(this.errorMessage != null){
+              this.faileliminarsp();
+          }
+  }
+)
+  }
+
+  postServiciotoast() {
+      this.toast.toast(`Prenda vinculada al servicio`);
+  }
+
+  failpostSP() {
+     this.toast.toast(`Ocurrió un problema al intentar crear un nuevo servicio. Recarga la página por favor`);
+  }
+
   failinfogetPrenda() {
       this.toast.toast(`Error al encontrar la información de esta prenda, intenta nuevamente por favor`);
-    }
+  }
+
+  eliminarspsuccess(){
+     this.toast.toast(`Prenda eliminada del servicio`);
+  }
+
+  faileliminarsp(){
+    this.toast.toast(`Error al tratar de eliminar esta prenda, intenta nuevamente por favor`);
+  }
 
   toastMe() {
       this.toast.toast(`Datos de ${this.servicio.SERVNOMBRE} actualizados exitosamente`);
-    }
+  }
+
   failinfoputCliente() {
       this.toast.toast(`Error al actualizar la información de ${this.servicio.SERVNOMBRE}, intenta nuevamente por favor`);
-    }
+  }
   regresar(){
     this._router.navigate(['servicios']);
   }
@@ -138,4 +235,12 @@ export class ServicioprendasComponent implements OnInit {
   failgetServicio() {
           this.toast.toast('Error al encontrar la información de este servicio, intenta nuevamente por favor');
   }
+
+  get tickInterval(): number | 'auto' {
+    return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : null;
+  }
+  set tickInterval(v) {
+    this._tickInterval = Number(v);
+  }
+  private _tickInterval = 5;
 }

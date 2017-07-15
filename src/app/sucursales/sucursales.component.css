@@ -2,6 +2,7 @@
     display: inline-block !important;
     width: 100% !important;
     margin: 4px !important;
+    cursor: pointer;
 }
 
 .sebm-google-map-container {

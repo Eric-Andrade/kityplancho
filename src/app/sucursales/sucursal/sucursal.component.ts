@@ -65,7 +65,7 @@ getlastsucursal(){
   }
 
 
-  public postSucursal(){
+  public postSucursal(sucursaldialog){
      this._sucursalService.postSucursal(this.sucursal).subscribe(
             data => {
                 this.toastMe();
@@ -74,7 +74,9 @@ getlastsucursal(){
                  let idsucursal = this.lastesucursal;
                      this._router.navigate(['sucursales',idsucursal]);
                      console.log('enviar al sucursal desde el post');
+                     this.close(sucursaldialog);
                },2000);
+               
             },
 
             error =>  {
@@ -84,6 +86,10 @@ getlastsucursal(){
                   this.failpostSucursal();
               }
             });
+  }
+
+ close(dialog: any) {
+    dialog.close();
   }
 
   toastMe() {

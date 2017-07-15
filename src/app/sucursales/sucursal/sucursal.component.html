@@ -1,20 +1,23 @@
 <md2-dialog #sucursaldialog>
         <h5>{{opcionsucursal | uppercase}}</h5>
-          <form #formEmpleado="ngForm" (ngSubmit)="postSucursal()">
+          <form #formEmpleado="ngForm" (ngSubmit)="postSucursal(sucursaldialog)">
 
             <md-input-container dividerColor="accent">
-            <input mdInput #nombre #SNOMBRE="ngModel" [(ngModel)]="sucursal.SNOMBRE" maxlength="45" name="SNOMBRE" placeholder="Nombre de la sucursal" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
-            <md-hint align="end">{{nombre.value.length}}/45</md-hint>
+            <input mdInput #nombre #SNOMBRE="ngModel" [(ngModel)]="sucursal.SNOMBRE" maxlength="45" minlength="10" name="SNOMBRE" placeholder="Nombre de la sucursal" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{10,45}">
+              <md-error align="start">minimo 10 caracteres, unicamente alfabéticos</md-error>
+              <md-hint align="end">{{nombre.value.length}}/45</md-hint>
             </md-input-container>
 
             <md-input-container dividerColor="accent">
-              <input mdInput #email #SEMAIL="ngModel" [(ngModel)]="sucursal.SEMAIL" maxlength="45" name="SEMAIL" placeholder="Correo eléctronico" required autocomplete="off" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
-              <md-hint align="end">{{email.value.length}}/45</md-hint>
+              <input mdInput #email #SEMAIL="ngModel" [(ngModel)]="sucursal.SEMAIL" maxlength="100" name="SEMAIL" placeholder="Correo eléctronico" required autocomplete="off" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}">
+              <md-error align="start">ingresa un email válido</md-error>
+              <md-hint align="end">{{email.value.length}}/100</md-hint>
             </md-input-container>
 
             <md-input-container class="example-full-width"  dividerColor="accent">
-              <input mdInput #direccion #SDIRECCION="ngModel" [(ngModel)]="sucursal.SDIRECCION" minlength="5" maxlength="45" name="SDIRECCION" placeholder="Dirección de sucursal" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
-                  <md-hint align="end">{{direccion.value.length}}/45</md-hint>
+              <input mdInput #direccion #SDIRECCION="ngModel" [(ngModel)]="sucursal.SDIRECCION" minlength="20" maxlength="200" name="SDIRECCION" placeholder="Dirección de sucursal" required autocomplete="off">
+                <md-error align="start">minimo 20 caracteres</md-error>
+                <md-hint align="end">Orden sugerido: calle, número ext., colonia/zona, código postal, ciudad {{direccion.value.length}}/200</md-hint>
             </md-input-container>
 
             <table class="example-full-width" cellspacing="0">
@@ -22,44 +25,47 @@
                 <td>
                   <md-input-container dividerColor="accent">
                     <input mdInput #estado #SESTADO="ngModel" [(ngModel)]="sucursal.SESTADO" minlength="5" maxlength="45" name="SESTADO" placeholder="Estado" required autocomplete="off">
+                    <md-error align="start">minimo 5 caracteres</md-error>
                     <md-hint align="end">{{estado.value.length}}/45</md-hint>
                   </md-input-container>
                 </td>
                 <td>
                   <md-input-container dividerColor="accent">
-                    <input mdInput #municipio #SMUNICIPIO="ngModel" [(ngModel)]="sucursal.SMUNICIPIO" maxlength="45" name="SMUNICIPIO" placeholder="Municipio" required autocomplete="off">
+                    <input mdInput #municipio #SMUNICIPIO="ngModel" [(ngModel)]="sucursal.SMUNICIPIO" minlength="5" maxlength="45" name="SMUNICIPIO" placeholder="Municipio" required autocomplete="off">
+                     <md-error align="start">minimo 5 caracteres</md-error>
                     <md-hint align="end">{{municipio.value.length}}/45</md-hint>
                   </md-input-container></td>
                 </tr>
             </table>
 
             <md-input-container class="example-full-width form-space"  dividerColor="accent">
-                <input mdInput #localidad #SLOCALIDAD="ngModel" [(ngModel)]="sucursal.SLOCALIDAD" maxlength="150" name="SLOCALIDAD" placeholder="Localidad" autocomplete="off">
+                <input mdInput #localidad #SLOCALIDAD="ngModel" [(ngModel)]="sucursal.SLOCALIDAD" minlength="5" maxlength="150" name="SLOCALIDAD" placeholder="Localidad" autocomplete="off">
+                <md-error align="start">minimo 5 caracteres</md-error>
                 <md-hint align="end">{{localidad.value.length}}/150</md-hint>
             </md-input-container>
 
-          <div style="margin:0 auto; text-align: center;"
-                  tooltip="Status de sucursal"
-                  tooltip-position="above"
-                  tooltip-delay="0 * 1000">
-                <md-radio-group dividerColor="accent" #ACTIVO="ngModel" [(ngModel)]="sucursal.ACTIVO" name="ACTIVO">
-                  <md-radio-button class="form-radiobutton" checked="activo" value="sucursal">Sucursal en servicio</md-radio-button>
-                  <md-radio-button class="form-radiobutton" value="desactivado">Fuera de servicio</md-radio-button>
-                </md-radio-group>
-            </div>
+            <h4 class="kp-text text-center">Status inicial de sucursal</h4>
+            <div style="margin:0 auto; text-align: center;"
+                    tooltip="Status de sucursal"
+                    tooltip-position="above"
+                    tooltip-delay="0 * 1000">
+                  <md-radio-group dividerColor="accent" #ACTIVO="ngModel" [(ngModel)]="sucursal.ACTIVO" name="ACTIVO">
+                    <md-radio-button class="form-radiobutton" checked="activo" value="activo">En servicio</md-radio-button>
+                    <md-radio-button class="form-radiobutton" value="desactivado">Fuera de servicio</md-radio-button>
+                  </md-radio-group>
+              </div>
 
-                <md-input-container class="example-full-width form-space"  dividerColor="accent">
-                  <input mdInput #telefono #STELEFONO="ngModel" [(ngModel)]="sucursal.STELEFONO" minlength="10" maxlength="10" name="STELEFONO" placeholder="Número de teléfono/celular" required autocomplete="off">
+              <md-input-container class="example-full-width form-space" dividerColor="accent">
+                <input mdInput #telefono #STELEFONO="ngModel" [(ngModel)]="sucursal.STELEFONO" minlength="10" maxlength="10" name="STELEFONO" placeholder="Número de teléfono/celular" required autocomplete="off" pattern="[0-9]{10}">
+                  <md-error align="start">ingresa un número de tel. válido</md-error>
                   <md-hint align="end">{{telefono.value.length}}/10</md-hint>
-                </md-input-container>
+              </md-input-container>
 
-
-    <!--Valor: {{sucursal.EFECHACONTRATO}}-->
-
-            <md-input-container dividerColor="accent">
-            <input mdInput #ubicacion #SHORARIO="ngModel" [(ngModel)]="sucursal.SHORARIO" maxlength="45" name="SHORARIO" placeholder="Horario" required autocomplete="off">
-            <md-hint align="end">{{ubicacion.value.length}}/45</md-hint>
-            </md-input-container>
+              <md-input-container dividerColor="accent">
+                <input mdInput #horario #SHORARIO="ngModel" [(ngModel)]="sucursal.SHORARIO" minlength="20" maxlength="45" name="SHORARIO" placeholder="Horario. Ej: Lunes a Sábado 8am a 8pm" required autocomplete="off">
+                  <md-error align="start">minimo 20 caracteres</md-error>
+                  <md-hint align="end">{{horario.value.length}}/45</md-hint>
+              </md-input-container>
 
             <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formEmpleado.form.valid">Crear {{opcionsucursal}}</button>
               </form>

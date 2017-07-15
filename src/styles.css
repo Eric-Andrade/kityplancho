@@ -326,6 +326,17 @@ input {
 
 }
 
+.welcomedesign{
+    background:
+        linear-gradient( rgba(255, 2, 112, 0.8), rgba(255, 2, 119, 0.55), rgba(251, 91, 217, 0.32)),
+         url('./assets/lavanderia2.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 85%;
+}
+
 /*Media's*/
 
 @media (min-width: 320px) {
@@ -333,13 +344,18 @@ input {
         display:none;
     }
 
+    .welcomedesign{
+        height: 100%;
+    }
     .slogan{
     font-size: 12px !important;
+    margin-bottom: 10px !important;
     }
 
     md-input-container{
         margin: 0 auto;
         width: 100%
+
     }
 
     .sidesection{
@@ -351,14 +367,30 @@ input {
     }
 
     md-sidenav-container {
-    height: 88vh !important;
-}
+        height: 88vh !important;
+    }
+
+    .cards{
+        width: initial;
+        margin: 0 auto;
+    }
 
 }
+
+@media (width: 480px) {
+     .cards{
+        display: none
+     }  
+ }
 
 @media (min-width: 480px) {
+
     .namecompany{
         display:none;
+    }
+
+    .welcomedesign{
+        height: 100%;
     }
 
     md-input-container{
@@ -368,6 +400,8 @@ input {
 
     .slogan{
     font-size: 12px !important;
+    margin-bottom: 10px !important;
+
     }
 
     .sidesection{
@@ -386,6 +420,9 @@ input {
         display:inherit;
     }
 
+    .welcomedesign{
+        height: 100%;
+    }
    .inputfilter{
         width: 90%;
         /*margin: 0 auto;*/
@@ -393,6 +430,7 @@ input {
 
     md-input-container{
         margin: 0 auto;
+
     }
 
     .sidesection{
@@ -401,6 +439,11 @@ input {
 
     .sidemap{
         width:100%;
+    }
+
+    .cards{
+        width: 250px;
+        margin: 0 auto;
     }
 
 }
@@ -431,6 +474,8 @@ input {
     md-sidenav-container {
         height: 91vh !important;
     }
+
+
 }
 
 /*Tablets en horizonal y escritorios normales*/
@@ -463,6 +508,13 @@ input {
     md-sidenav-container{
         height: 91vh !important;
     }
+
+    .cards{
+        width: 500px;
+        margin: 0 auto;
+    }
+
+
 
 
 }
@@ -497,6 +549,12 @@ input {
     md-sidenav-container{
         height: 91vh !important;
     }
+
+    .cards{
+        width: 500px;
+        margin: 0 auto;
+    }
+    
 
 
 

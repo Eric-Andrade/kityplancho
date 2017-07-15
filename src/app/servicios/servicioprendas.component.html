@@ -1,3 +1,57 @@
+<md2-dialog #serviciodialog>
+      <h5>Añadir más prendas al servicio</h5>
+          <form #formSP="ngForm" (ngSubmit)="postSP()">
+
+                <md2-select
+                        class="form-select"
+                        [(ngModel)]="spone.IDPRENDAS"
+                        #IDPRENDAS="ngModel"
+                        name="IDPRENDAS"
+                        placeholder="Prendas que pertenecerán al servicio"
+                        [required]="isRequired"
+                        [disabled]="isDisabled"
+
+                        autofocus="autofocus">
+              <!--<md2-select-header>
+              <input name="search" type="text" placeholder="Buscar..." />
+              </md2-select-header>-->
+
+              <md2-option *ngFor="let p of iprenda" [value]="p.IDPRENDAS"><strong>{{p.IDPRENDAS}}</strong> | <span class="kp-text">{{p.PNOMBREUNIDAD}}</span>
+              </md2-option>
+              </md2-select>
+
+              <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td width="40%"><md-input-container dividerColor="accent">
+                <input type="number" mdInput #costo min="1" max="100" #SPCOSTO="ngModel" [(ngModel)]="spone.SPCOSTO" name="SPCOSTO" placeholder="Costo del servicio" required autocomplete="off">
+                <!--<md-hint align="end">{{costo.value.length}}/45</md-hint>-->
+                <md-error align="start">por favor ingresa costo al servicio</md-error>
+              </md-input-container></td>
+                <td>
+                  <p class="kp-text">Descuento %</p>
+                  <md-slider style="width: 100%"
+                      #SPDESCUENTO="ngModel" [(ngModel)]="spone.SPDESCUENTO" name="SPDESCUENTO"
+                        class="md-slider"
+                        [disabled]="disabled"
+                        [invert]="invert"
+                        [max]="max"
+                        [min]="min"
+                        [step]="step"
+                        [thumb-label]="thumbLabel"
+                        [tick-interval]="tickInterval"
+                        [value]="value"
+                        [vertical]="vertical">
+                    </md-slider></td>
+                </tr>
+            </table>
+
+                  <!--<input type="hidden" #IDSERVICIO="ngModel" [(ngModel)]="spone.IDSERVICIO" name="IDSERVICIO" placeholder="IDSERVICIO" autocomplete="off" value={{lastservicio}}>-->
+
+              <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formSP.form.valid">Vincular prenda</button>
+         </form>
+                <p class="nota">*Nota: Los campos que contienen <span class="enfasis">*</span> son obligatorios</p>
+</md2-dialog>
+
 <div class="loading" *ngIf="loading">
   <img src="assets/kity.gif" width="68" height="50" alt="Cargando datos...">
     <!--<md-spinner color="accent"></md-spinner>-->
@@ -56,25 +110,40 @@
                                   [required]="isRequired"
                                   [disabled]="isDisabled"
                                   autofocus="autofocus">
-                          <!--<md2-select-header>
-                          <input name="search" type="text" placeholder="Buscar..." />
-                          </md2-select-header>-->
 
-                        <md2-option *ngFor="let s of sucursales" [value]="s.IDSUCURSAL"><strong>{{s.IDSUCURSAL}}</strong> | {{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
+                        <md2-option *ngFor="let s of sucursales" [value]="s.IDSUCURSAL">{{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
                         </md2-option>
                       </md2-select>
 
                         <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formservicio.form.valid">Actualizar datos de {{servicio.SERVNOMBRE}}</button>
                   </form>
                   <br>
-                  <p class="kp-text bold">Prendas pertenecientes a {{servicio.SERVNOMBRE}}</p>
 
+                  <p class="kp-text bold">Prendas pertenecientes a {{servicio.SERVNOMBRE}}</p>
+                  <button md-button color="accent" (click)="serviciodialog.open()"><md-icon >add</md-icon>Añadir más prendas</button>
+                  <br><br>
                     <md-chip-list class="mat-chip-list-stacked">
-                       <md-chip *ngFor="let sp of servicioprendas"
+                       <md-chip *ngFor="let sp of servicioprendas" (dblclick)="eliminarsp(sp.IDSP)"
                           selected="true"
-                          color="primary"
                           >
-                       IDDP: {{sp.IDSERVICIO}} -- IDSP: {{sp.IDSP}} prendas {{sp.DP_CANTIDADPRENDAS}} | total {{sp.DP_COSTOPEDIDO | currency:'USD':true}}
+
+                          <div class="notification-wraps">
+                              <div class="notification">
+                                <div>
+                                      <span>{{sp.PNOMBREUNIDAD}} {{sp.SPCOSTO | currency:'USD':true}}</span>
+
+                                </div>
+                                <div class="" *ngIf="sp.SPDESCUENTO != 0;then thenTemplate; else elseTemplate" class="kp-text"></div>
+                                <ng-template #thenTemplate>
+                                  <div class="notification-alert">
+                                      -{{sp.SPDESCUENTO}}%
+                                  </div>
+                                </ng-template>
+                                <ng-template #elseTemplate>
+
+                                </ng-template>
+                              </div>
+                          </div>
                       </md-chip>
                     </md-chip-list>
             </md-card>

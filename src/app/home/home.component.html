@@ -2,12 +2,38 @@
     <div class="welcome">
         <h1>KityPlancho</h1>
         <p class="slogan">Consentimos a tu ropa para que ella te consienta a ti</p>
-        <div class="divcenter">
+        <div class="divcenterr">
          <kp-login></kp-login>
-          <!--<a href="https://play.google.com/" class="textwelcome">
-            <img src="assets/googleplay.png" class="img-responsive img-kpplaystore" alt="Descarga KityPlancho en Google Play" border="0">
-          </a>-->
+<!-- 
+creo que la valentia es el valor mas grande que pueda tener un ser humano en la actualidad, un valiente arriesga, elige, toma partido, se hace responsable crea su destino. Es el capitan de los optimistas pues no solo ve lo bueno sino que lo persigue sin negociar. Una persona así solo puede hacer tu vida más rica, más esquisita más feliz. "El coraje más que la ausencia de miedo, es la conciencia de que hay algo por lo que merece la pena que arriesguemos, el coraje es la fuerza el del amor al servicio de la conciencia" Y es que coraje son atributos que se ven en el espejo. El que ama arriesga y el que arriesga ama, porque detrás de alguien que arriesga hay alguien que ama. -->
         </div>
+          <div class="cards">
+              <div class="container-fluid">
+                <div class="row">
+            <p class="kp-text kp-text-h2 welcome" style="font-size: 14px; color: #ffffff;">Aceptamos tarjetas</p>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <img src="assets/mastercard.png" class="card" alt="MCCard" border="0">
+                    <img src="assets/up.png" class="card" alt="UpCard" border="0">
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <img src="assets/ae.png" class="card" alt="AECard" border="0">
+                    <img src="assets/carnet.png" class="card" alt="CarnetCard" border="0">
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <img src="assets/visa.png" class="card" alt="VisaCard" border="0">
+                    <img src="assets/sodexo.png" class="card" alt="SodexoCard" border="0">    
+                  </div>
+               <!--    <div class="col-sm-12 col-xs-12">
+                    <img src="assets/mastercard.png" class="img-responsive card" alt="MCCard" border="0">
+                    <img src="assets/visa.png" class="img-responsive card" alt="VisaCard" border="0">
+                    <img src="assets/ae.png" class="img-responsive card" alt="AECard" border="0">
+                    <img src="assets/carnet.png" class="img-responsive card" alt="CarnetCard" border="0">
+                    <img src="assets/up.png" class="img-responsive card" alt="UpCard" border="0">
+                    <img src="assets/sodexo.png" class="img-responsive card" alt="SodexoCard" border="0">
+                  </div> -->
+                </div>
+              </div>
+          </div>
     </div>
     <!--<h1 class="textwelcome">Bienvenido</h1>-->
 </div>
@@ -45,13 +71,14 @@
 
 <section class="kpservicios">
     <!--start services-->
-	<div class="services" id="services">
+	<div class="section" id="services">
 		<div class="container-fluid">
 			<div class="row">
 				<div *ngIf="servicios">
+        <h2 class="kp-text kp-text-h2 welcome">Ofrecemos públicamente nuestros servicios de...</h2>
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center" *ngFor="let servicio of servicios">
                 <img src="assets/kitypink.png" class="img-resposive img-kitypink" alt="KityPlancho Servicio">
-            <h5 class="kp-text">{{servicio.SERVNOMBRE}}</h5>
+            <h5 class="kp-text">{{servicio.NOMBRE}}</h5>
           </div>
          </div>
 			</div>
@@ -93,23 +120,22 @@
 </section><!-- #contant-1 close -->
 
 <section class="watch bg-img">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-          <h2>Sobre nosotros</h2><br>
+        <h2 class="kp-text kp-text-h2 welcome" style="color: #ffffff;">Sobre nosotros...</h2>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <!--<span>¿Cómo </span>
                   <a class="popup-youtube btn" href="https://www.youtube.com/watch?v=4KRHIbsl8BE">
                   <span class="fa fa-play"></span></a>
                   <span>funcionamos?</span>-->
-
-                <h3>Nuestra misión...</h3>
+                   <h2 class="kp-text kp-text-h2 welcome bold" style="font-size: 32px; color: #ffffff;">Nuestra misión</h2>
                 <p>En KityPlancho nuestro objetivo es el de ofrecer el mejor servicio de cuidado de ropa al público, enfocando a
                   dar mantenimiento y confort a las prendas que se nos confían. Siempre tomando en cuenta las necesidades y opiniones
                   de cada uno de nuestros clientes. Así mismo tenemos la iniciativa de ir en una mejora progresiva para así continuar siendo la mejor opción para su familia.</p>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <h3>Nuestra visión</h3>
-                <p>Ser la empresa líder en nuestra categoría de ofrecer servicios de lavandería innovando el proceso de servicio a domicilio aplicando tecnologías <span class="bold">Móviles y Web</span> impactando positivamente en las personas y comunidad.</p>
+                   <h2 class="kp-text kp-text-h2 welcome bold" style="font-size: 32px; color: #ffffff;">Nuestra visión</h2>
+                <p>Ser la empresa líder en nuestra categoría por medio de ofrecer nuestros servicios de lavandería, planchaduría y más a través de una búsqueda de innovación del proceso con servicio a domicilio aplicando tecnologías <span class="bold">Móviles y Web.</span> impactando así positivamente en la vida de nuestros clientes y en la comunidad.</p>
             </div>
         </div>
     </div>

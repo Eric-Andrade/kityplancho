@@ -62,23 +62,23 @@ export class EmpleadoComponent implements OnInit {
    ngOnInit( ) {
      this.getSucursales();
     this.empleado = { IDEMPLEADO:0,
-                      EEMAIL:'vero@hotmail.com',
-                      EPASSWORD:'12345678',
+                      EEMAIL:'',
+                      EPASSWORD:'',
                       EPRIVILEGIO:'rutero',
-                      ENOMBRE:'vero',
-                      EAPELLIDOS:'nicads',
-                      ETELEFONO:'1234567890',
-                      EDIRECCION:'Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico',
-                      EREFERENCIAFAM1:'primo 1 vive en durango 123457890',
-                      EREFERENCIAFAM2:'primo 1 vive en durango 123457890',
-                      EREFERENCIA1:'Itecor Itecor Itecor Itecor',
-                      EREFERENCIA2:'Itecor Itecor Itecor Itecor',
-                      EFECHACONTRATO:'2017-04-15',
-                      EUBICACION:'24.02780775285771,-104.65332895517349',
-                      ESUELDO:'111.00',
-                      ERFC:'TOAE920427974',
-                      EIMSS:'31099207941',
-                      ETIPOCONTRATO:'raya',
+                      ENOMBRE:'',
+                      EAPELLIDOS:'',
+                      ETELEFONO:'',
+                      EDIRECCION:'',
+                      EREFERENCIAFAM1:'',
+                      EREFERENCIAFAM2:'',
+                      EREFERENCIA1:'',
+                      EREFERENCIA2:'',
+                      EFECHACONTRATO:'',
+                      EUBICACION:' ',
+                      ESUELDO:'',
+                      ERFC:'',
+                      EIMSS:'',
+                      ETIPOCONTRATO: 'raya',
                       IDSUCURSAL:1,
                       // TOAE920427HDGRNR07
                     };
@@ -124,7 +124,7 @@ export class EmpleadoComponent implements OnInit {
       this.selectedIndex = 1;
   }
 
-  public postEmpleado(){
+  public postEmpleado(empleadodialog){
 
     this._empleadosService.postEmpleado(this.empleado).subscribe(
           data => {
@@ -138,6 +138,7 @@ export class EmpleadoComponent implements OnInit {
                  let idempleado = this.lastempleado;
                      this._router.navigate(['empleados',idempleado]);
                      console.log('enviar al empleado desde el post');
+                     this.close(empleadodialog);
                },1800);
               //  this._router.navigate(['clientes',idcliente])
           },
@@ -190,6 +191,11 @@ export class EmpleadoComponent implements OnInit {
   open(dialog: any) {
     dialog.open();
   }
+
+  close(dialog: any) {
+    dialog.close();
+  }
+
 
  toastMe() {
       this.toast.toast(`El empleado

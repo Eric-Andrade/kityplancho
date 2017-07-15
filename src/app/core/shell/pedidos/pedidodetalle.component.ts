@@ -169,7 +169,7 @@ export class PedidodetalleComponent implements OnInit {
     this.getClientes();
     this.getServicios();
   this.dp = {
-    DPIDDP:0,
+DPIDDP:0,
     DPCANTIDAD:1,
     DPIDSP:0,
     DPIDPEDIDO:0,
@@ -499,10 +499,22 @@ export class PedidodetalleComponent implements OnInit {
             });
     }
 
+    refreshpdp(id){
+        this.getSumaP(id);
+        let gs = this.getSumaP(id);
+        console.log('Suma post servicicio añadido')
+        console.log(gs)
+        this.putPedido();
+        setTimeout(()=>{
+            this.getPedido();
+        },1000)
+    }
+
 
     failpostServicio() {
           this.toast.toast(`Ocurrió un problemaal intentar añadir el servicio al pedido. Por favor ve a detalles del pedido`);
         }
+
     postServiciotoast() {
           this.toast.toast(`Servicio añadido al pedido`);
         }

@@ -18,3 +18,6 @@
 [0515/154125.369:ERROR:process_info.cc(625)] range at 0x9be057d000000000, size 0x1ca fully unreadable
 [0515/154125.369:ERROR:process_info.cc(625)] range at 0x0, size 0x1ca fully unreadable
 [0515/154139.414:ERROR:http_transport_win.cc(214)] WinHttpSendRequest: No se pudo resolver el nombre de servidor o su dirección  (0x2ee7)
+[0708/224038.506:ERROR:process_info.cc(631)] range at 0x38e958fc00000000, size 0x240 fully unreadable
+[0708/224041.740:ERROR:process_info.cc(631)] range at 0x38e9591c00000000, size 0x240 fully unreadable
+[0708/224041.741:ERROR:process_info.cc(631)] range at 0x0, size 0x240 fully unreadable

@@ -13,8 +13,10 @@ table{
 }
 
 .md-slider{
-  width: 100%
+  width: 100% !important;
 }
+
+
 
 @media (min-width: 768px) {
   .datarepite {

@@ -30,6 +30,10 @@ export class ClientesComponent implements OnInit {
 
   ngOnInit() {
     this.getclientes();
+     setInterval(()=>{
+            this.getclientes();
+            console.log('reejecutado clientes con exito');
+        },60000) 
   }
 
     getclientes(){

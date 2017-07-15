@@ -1,0 +1,29 @@
+.notification-wraps{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.notification{
+    position: relative;
+}
+
+.notification-alert{
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    color: #fff;
+    border-radius: 50%;
+    background: #ff008d;
+    text-align: center;
+    top: -14px;
+    right: -17px;
+    font-size: 8.5px;
+    font-weight: 500;
+}
+
+md-chip{
+    cursor: pointer;
+}

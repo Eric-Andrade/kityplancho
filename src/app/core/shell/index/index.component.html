@@ -19,17 +19,17 @@
                 class="btn btn-default dropdown-toggle" (click)="getpedidossec()">
                 <md-icon >notifications_none</md-icon>
               </button>
-              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" *ngIf="notify">
-                <li *ngFor="let n of notify">
-                  <div class="notify">
-                    Pedido {{n.IDPEDIDO}} | {{n.PPRECIOTAL | currency:'USD':true}}
-                  <br><span class="pforma">{{n.CNOMBRE}} {{n.CAPELLIDOS}}</span>
-                  </div>
-                  <hr style="margin-top: 5px;margin-bottom: 5px;border: 0;border-top: 1px solid #f7f7f7;">
-                </li>
-
-              </ul>
-            </div>
+                    <!-- <span class="text-center"><i>Notificaciones</i></span> -->
+                    <ul  class="notifications-container scrollable-menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" *ngIf="notify">
+                    <li *ngFor="let n of notify" (click)="getpedido(n.IDPEDIDO)">
+                      <div class="notify">
+                        Pedido {{n.IDPEDIDO}} | {{n.PPRECIOTAL | currency:'USD':true}}
+                      <br><span class="pforma">{{n.CNOMBRE}} {{n.CAPELLIDOS}}</span>
+                      </div>
+                      <hr style="margin-top: 5px;margin-bottom: 5px;border: 0;border-top: 1px solid #f7f7f7;">
+                    </li>
+                  </ul>
+              </div>
               <div class="" *ngIf="suma != 0;then thenTemplate; else elseTemplate"></div>
               <ng-template #thenTemplate>
                 <div class="notification-alert">
@@ -39,10 +39,10 @@
               <ng-template #elseTemplate>
 
               </ng-template>
-              </div>
             </div>
+        </div>
 
-        <button md-icon-button (click)="map.toggle()" >
+        <button md-icon-button (click)="map.toggle();clicksatellite()" >
             <md-icon>satellite</md-icon>
         </button>
         <span>|</span>

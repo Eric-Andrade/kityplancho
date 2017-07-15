@@ -35,7 +35,7 @@
                       <input name="search" type="text" placeholder="Buscar..." />
                       </md2-select-header>-->
 
-                      <md2-option *ngFor="let i of items" [value]="i.IDSERVICIO"><strong>{{i.IDSERVICIO}}</strong> | {{i.SERVNOMBRE}}
+                      <md2-option *ngFor="let i of items" [value]="i.IDSERVICIO">{{i.SERVNOMBRE}}
                       </md2-option>
                     </md2-select>
 
@@ -52,14 +52,9 @@
                       <input name="search" type="text" placeholder="Buscar..." />
                       </md2-select-header>-->
 
-                      <md2-option *ngFor="let p of iprenda" [value]="p.IDPRENDAS"><strong>{{p.IDPRENDAS}}</strong> | <span class="kp-text">{{p.PNOMBREUNIDAD}}</span>
+                      <md2-option *ngFor="let p of iprenda" [value]="p.IDPRENDAS"><span class="kp-text">{{p.PNOMBREUNIDAD}}</span>
                       </md2-option>
                     </md2-select>
-
-                    <md-input-container dividerColor="accent">
-                      <input mdInput #prendasnombre #IDPRENDAS="ngModel" [(ngModel)]="servicio.IDPRENDAS" minlenght="5" maxlength="45" name="IDPRENDAS" placeholder="Nombre de prenda" required autocomplete="off">
-                      <md-hint align="end">{{prendasnombre.value.length}}/45</md-hint>
-                    </md-input-container>
 
                     <table class="example-full-width" cellspacing="0">
                       <tr>
@@ -69,7 +64,7 @@
                         <md-error align="start">por favor ingresa costo al servicio</md-error>
                       </md-input-container></td>
                         <td>
-                          <p class="kp-text">Descuento % {{servicio.SPDESCUENTO}}</p>
+                          <p class="kp-text">Descuento {{servicio.SPDESCUENTO}}%</p>
                           <md-slider
                             #SPDESCUENTO="ngModel" [(ngModel)]="servicio.SPDESCUENTO" name="SPDESCUENTO"
                                 class="md-slider"

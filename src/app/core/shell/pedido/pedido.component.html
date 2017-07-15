@@ -9,7 +9,7 @@
                     tooltip-position="above"
                     tooltip-delay="0 * 1000">person</md-icon>
                 </ng-template>
-                    <form #formPedido="ngForm" (ngSubmit)="postPedido()">
+                    <form #formPedido="ngForm" (ngSubmit)="postPedido()" novalidate>
                     <md2-select name="IDCLIENTE"
                       class="form-select"
                       [(ngModel)]="pedido.IDCLIENTE"
@@ -44,32 +44,10 @@
                       <md-hint align="end">{{directione.value.length}}/200</md-hint>
                     </md-input-container>
 
-                    <h3 class="kp-text">Forma de pago</h3>
-                    <hr>
-                    <div style="margin:0 auto; text-align: center;">
-                    <md-radio-group dividerColor="accent" #PPAGADO="ngModel" [(ngModel)]="pedido.PPAGADO" name="PPAGADO" [disabled]="inputdisabled">
-                    <md-radio-button class="form-radiobutton" value="contraentrega" checked="checked"
-                            tooltip="¿El pedido se pagará después de la entrega?"
-                            tooltip-position="above"
-                            tooltip-delay="0 * 1000">Pagado a contraentrega</md-radio-button>
-                    <md-radio-button class="form-radiobutton" value="por_adelantado"
-                            tooltip="[-10%] Por pagar el pedido al entregar la ropa"
-                            tooltip-position="above"
-                            tooltip-delay="0 * 1000">Pagado por adelantado</md-radio-button>
-                    </md-radio-group>
-                          <br>
-                    <md-radio-group dividerColor="accent" #PFORMA="ngModel" [(ngModel)]="pedido.PFORMA" name="PFORMA"
-                    tooltip="¿El pedido se efectúa en efectivo o con tarjeta bancaria?"
-                            tooltip-position="above"
-                            tooltip-delay="0 * 1000">
-                    <md-radio-button class="form-radiobutton" checked="checked" value="efectivo">Efectivo</md-radio-button>
-                    <md-radio-button class="form-radiobutton" value="tarjeta"
-                            >Tarjeta</md-radio-button>
-                    </md-radio-group>
-
-                    </div>
+                    
                     <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formPedido.form.valid">Siguiente<md-icon >keyboard_arrow_right</md-icon></button>
                     </form>
+                    <!--<button class="new-request" style="width:100%" color="accent" md-icon-button (click)="pedidodialog.close()">Cerrar ventana</button>-->
             </md-tab>
 
             <md-tab label="Tab servicios" [disabled]="tab2disabled">
@@ -181,7 +159,7 @@
             <div style="margin:0 auto; text-align: center;">
 
               <h4 class="kp-text bold">Cantidad a pagar {{suma | currency:'USD': true}}</h4>
-             <form #formPutPedido="ngForm" (ngSubmit)="putPedido()">
+             <form #formPutPedido="ngForm" (ngSubmit)="putPedido(formPedido, pedidodialog)">
 
                      <table class="example-full-width" cellspacing="0">
                         <tr>
@@ -234,29 +212,31 @@
                       <md-hint align="end">{{directione.value.length}}/200</md-hint>
                     </md-input-container>
 
+                   <h3 class="kp-text">Forma de pago</h3>
+                    <hr>
                     <div style="margin:0 auto; text-align: center;">
-                      <md-radio-group dividerColor="accent" #PPAGADO="ngModel" [(ngModel)]="pedido.PPAGADO" name="PPAGADO" [disabled]="inputdisabled">
-                      <md-radio-button class="form-radiobutton" checked="checked" value="contraentrega"
-                              tooltip="¿El pedido se pagará después de la entrega?"
-                              tooltip-position="above"
-                              tooltip-delay="0 * 1000">Pagado a contraentrega</md-radio-button>
-                      <md-radio-button class="form-radiobutton" value="por_adelantado"
-                              tooltip="[-10%] Por pagar el pedido al entregar la ropa"
-                              tooltip-position="above"
-                              tooltip-delay="0 * 1000">Pagado por adelantado</md-radio-button>
-                      </md-radio-group>
+                      
+                    <md-radio-group dividerColor="accent" #PPAGADO="ngModel" [(ngModel)]="pedido.PPAGADO" name="PPAGADO" [disabled]="inputdisabled">
+                    <md-radio-button class="form-radiobutton" value="contraentrega" 
+                            tooltip="¿El pedido se pagará después de la entrega?"
+                            tooltip-position="above"
+                            tooltip-delay="0 * 1000">Pagado a contraentrega</md-radio-button>
+                    <md-radio-button class="form-radiobutton" value="por_adelantado"
+                            tooltip="[-10%] Por pagar el pedido al entregar la ropa"
+                            tooltip-position="above"
+                            tooltip-delay="0 * 1000">Pagado por adelantado</md-radio-button>
+                    </md-radio-group>
 
-                      <md-radio-group dividerColor="accent" #PFORMA="ngModel" [(ngModel)]="pedido.PFORMA" name="PFORMA" [disabled]="inputdisabled"
-                      tooltip="¿El pedido se efectúa en efectivo o con tarjeta bancaria?"
-                              tooltip-position="above"
-                              tooltip-delay="0 * 1000">
-                      <md-radio-button class="form-radiobutton" checked="checked" value="efectivo"
-                              >Efectivo</md-radio-button>
-                      <md-radio-button class="form-radiobutton" value="tarjeta"
-                              >Tarjeta</md-radio-button>
-                      </md-radio-group>
+                          <br>
+                    <md-radio-group dividerColor="accent" #PFORMA="ngModel" [(ngModel)]="pedido.PFORMA" name="PFORMA"
+                    tooltip="¿El pedido se efectúa en efectivo o con tarjeta bancaria?"
+                            tooltip-position="above"
+                            tooltip-delay="0 * 1000">
+                    <md-radio-button class="form-radiobutton" value="efectivo">Efectivo</md-radio-button>
+                    <md-radio-button class="form-radiobutton" value="tarjeta">Tarjeta</md-radio-button>
+                    </md-radio-group>
+
                     </div>
-
                     <md-chip-list class="mat-chip-list-stacked">
                       <md-chip color="accent" selected="true">Precio total {{suma | currency:'USD':true}}</md-chip>
                     </md-chip-list>

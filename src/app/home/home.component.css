@@ -1,13 +1,4 @@
-.welcomedesign{
-    background:
-        linear-gradient( rgba(255, 2, 112, 0.8), rgba(255, 2, 119, 0.55), rgba(251, 91, 217, 0.32)),
-         url('../../assets/lavanderia2.jpg');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 85%;
-}
+
 
 .bottom {
     box-shadow: 2px 2px 9px -1px;
@@ -195,4 +186,16 @@ h1 {
 .phonecenter{
     margin: 0 auto;
     width: 350px;
+}
+
+
+
+.card{
+    display: inline-block !important;
+    margin: 4px !important;
+}
+
+.divcenterr {
+    margin: 0 auto;
+    width: 230px;
 }

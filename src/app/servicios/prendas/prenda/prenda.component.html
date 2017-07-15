@@ -1,6 +1,6 @@
 <md2-dialog #prendasdialog>
         <h5>Nueva prenda</h5>
-         <form #formPrenda="ngForm" (ngSubmit)="postPrenda()">
+         <form #formPrenda="ngForm" (ngSubmit)="postPrenda(formPrenda, prendasdialog)">
 
               <md-input-container dividerColor="accent">
                 <input mdInput #prendasnombre #PNOMBREUNIDAD="ngModel" [(ngModel)]="prenda.PNOMBREUNIDAD" minlenght="5" maxlength="45" name="PNOMBREUNIDAD" placeholder="Nombre de prenda" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
