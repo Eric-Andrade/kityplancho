@@ -2,14 +2,16 @@
         <h5>Nueva prenda</h5>
          <form #formPrenda="ngForm" (ngSubmit)="postPrenda(formPrenda, prendasdialog)">
 
-              <md-input-container dividerColor="accent">
-                <input mdInput #prendasnombre #PNOMBREUNIDAD="ngModel" [(ngModel)]="prenda.PNOMBREUNIDAD" minlenght="5" maxlength="45" name="PNOMBREUNIDAD" placeholder="Nombre de prenda" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{5,45}">
-                <md-hint align="end">{{prendasnombre.value.length}}/45</md-hint>
+              <md-input-container dividerColor="accent" class="form-input">
+                <input mdInput #prendasnombre #PNOMBREUNIDAD="ngModel" [(ngModel)]="prenda.PNOMBREUNIDAD" minlenght="4" maxlength="70" name="PNOMBREUNIDAD" placeholder="Nombre de prenda" autofocus="autofocus" required autocomplete="off">
+                <md-error align="start">minimo 4 caracteres</md-error>
+                <md-hint align="end">{{prendasnombre.value.length}}/70</md-hint>
               </md-input-container>
 
-              <md-input-container dividerColor="accent">
-                <input mdInput #descripcion #PDESCRIPCION="ngModel" [(ngModel)]="prenda.PDESCRIPCION" minlenght="5" maxlength="45" name="PDESCRIPCION" placeholder="Descripción" autocomplete="off">
-                <md-hint align="end">{{descripcion.value.length}}/45</md-hint>
+              <md-input-container dividerColor="accent" class="form-input">
+                <input mdInput #descripcion #PDESCRIPCION="ngModel" [(ngModel)]="prenda.PDESCRIPCION" minlenght="5" maxlength="100" name="PDESCRIPCION" placeholder="Descripción" autocomplete="off">
+                <md-error align="start">minimo 5 caracteres</md-error>
+                <md-hint align="end">{{descripcion.value.length}}/100</md-hint>
               </md-input-container>
 
               <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formPrenda.form.valid">Crear nueva prenda</button>

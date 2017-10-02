@@ -5,3 +5,8 @@ form{
 table{
   margin: 10px 0 15px 0;
 }
+
+.form-input{
+    margin-bottom: 2px;
+    margin: .5em 0 !important;
+ }

@@ -409,13 +409,23 @@ DPIDDP:0,
     setTimeout(()=>{
 
         if(!this.pedido) return;
-           if(this.pedido.PPAGADO == 'por_adelantado'){
-                let descuento = this.suma * 10 / 100;
+           if(this.pedido.PPAGADO == 'por_adelantado' ){
+               if(this.suma != null){
+                   let descuento = this.suma * 10 / 100;
                 this.suma = this.suma - descuento;
                 this.pedido.PPRECIOTOTAL = Math.round(this.suma);
+               }else{
+                   this.pedido.PPRECIOTOTAL = 0;
+               }
+                
         }else{
-          this.suma = this.suma;
-          this.pedido.PPRECIOTOTAL = this.suma;
+          
+          if(this.suma != null){
+                this.suma = this.suma;
+                this.pedido.PPRECIOTOTAL = this.suma;
+            }else{
+                this.pedido.PPRECIOTOTAL = 0;
+            }
         }
       this.getDetallePedido();
        // if(this.pedido.COORDENADASR == "null" && this.pedido.COORDENADASE == "null"){
@@ -547,7 +557,7 @@ DPIDDP:0,
       this.toast.toast(`Ocurrió un error al intentar actualizar los servicios del pedido ${this.pedido.IDPEDIDO}`);
     }
 
-faildeletedetalle(){
+    faildeletedetalle(){
       this.toast.toast(`Ocurrió un error al intentar eliminar los servicios del pedido ${this.pedido.IDPEDIDO}`);
     }
 

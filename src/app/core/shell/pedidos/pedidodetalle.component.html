@@ -44,7 +44,7 @@
     </md2-dialog>
 
     <md2-dialog #detallepedidoserviciodialog>
-        <h5>Añadir más servicios al pedido #{{pedido.IDPEDIDO}}</h5>
+        <h5>Añadir más servicios al pedido</h5>
                 <form #formServicio="ngForm" (ngSubmit)="postServicio()">
 
                   <md2-select name="IDSP"
@@ -188,31 +188,6 @@
                         # Prendas {{dp.DP_CANTIDADPRENDAS}} | {{dp.DP_COSTOPEDIDO | currency:'USD':true}}
                       </md-chip>
                     </md-chip-list>
-                <!--<div class="datacontainer" *ngIf="detallepedidos">
-                    <div class="datarepite" *ngFor="let dp of detallepedidos">
-                         <md-card (click)="detallepedidodialog.open(); getdp(dp.IDDP)">
-                          <md-card-header>
-                            <md-card-title
-                              tooltip=""
-                              tooltip-position="above"
-                              tooltip-delay="0 * 1000"><p>{{dp.IDDP}} | {{dp.IDSP}}</p></md-card-title>
-                            <md-card-subtitle>
-                              <md-chip-list>
-                                  <md-chip color="accent" selected="true">{{dp.DP_COSTOPEDIDO | currency:'USD':true}}</md-chip>
-                              </md-chip-list>
-                            </md-card-subtitle>
-                          </md-card-header>
-                          <md-card-content>
-                            <br>
-                            <md-input-container class="example-full-width form-space"  dividerColor="accent">
-                              <input type="number" value="dp.DP_CANTIDADPRENDAS" mdInput #cantidad #CANTIDAD="ngModel" [(ngModel)]="dp.DP_CANTIDADPRENDAS" min="1" max="20" name="DP_CANTIDADPRENDAS" placeholder="Cantidad de prendas" autocomplete="off" required >
-                            </md-input-container>
-                          </md-card-content>
-                       </md-card>
-                      </div>
-                   </div>-->
-
-
          </md-card>
         </div>
         <br><br>

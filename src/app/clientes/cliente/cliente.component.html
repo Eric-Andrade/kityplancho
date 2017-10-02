@@ -4,12 +4,12 @@
 
         <table class="example-full-width" cellspacing="0">
            <tr>
-            <td><md-input-container dividerColor="accent">
+            <td><md-input-container dividerColor="accent" class="form-input">
                   <input type="email" mdInput name="CEMAIL" [(ngModel)]="cliente.CEMAIL" #correo #CEMAIL="ngModel" minlength="10" maxlength="45" autofocus="autofocus" placeholder="Correo eléctronico" autocomplete="off" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}">
                   <md-error align="start">ingresa un email válido</md-error>
                   <md-hint align="end">{{correo.value.length}}/45</md-hint>
                   </md-input-container></td>
-            <td><md-input-container dividerColor="accent">
+            <td><md-input-container dividerColor="accent" class="form-input">
                   <input type="text" name="CPASSWORD" #contrasena #CPASSWORD="ngModel" [(ngModel)]="cliente.CPASSWORD" mdInput minlength="8" maxlength="45" placeholder="Contraseña" required autocomplete="off">
                   <!--<span *ngIf="contrasena.touched && !contrasena.valid">Ingrese un nombre de cliente por favor</span>-->
                   <md-error align="start">minimo 8 caracteres</md-error>

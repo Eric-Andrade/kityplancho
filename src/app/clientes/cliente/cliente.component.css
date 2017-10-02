@@ -41,6 +41,11 @@ md2-dialog-footer{
     width: 100%;
 }
 
+.form-input{
+    margin-bottom: 2px;
+    margin: .5em 0 !important;
+ }
+
 .form-radiobutton{
     margin-bottom: 20px;
     margin-left: 5px;

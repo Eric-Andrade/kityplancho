@@ -102,8 +102,8 @@
                     <md-hint align="end">{{rfc.value.length}}/13</md-hint>
               </md-input-container></td>
               <td>
-                <md-input-container class="margin-top"  dividerColor="accent">
-                <input mdInput #imss #EIMSS="ngModel" [(ngModel)]="empleado.EIMSS" min="11" max="11" name="EIMSS" placeholder="Número de IMSS" required autocomplete="off" pattern="[0-9]{11}">
+                <md-input-container class="margin-top" dividerColor="accent">
+                <input mdInput #imss #EIMSS="ngModel" [(ngModel)]="empleado.EIMSS" minlength="11" maxlength="11" name="EIMSS" placeholder="Número de IMSS" required autocomplete="off" pattern="[0-9]{11}">
                   <md-error align="start">ingresa un número de IMSS válido</md-error>
                   <md-hint align="end">{{imss.value.length}}/11</md-hint>
               </md-input-container>
