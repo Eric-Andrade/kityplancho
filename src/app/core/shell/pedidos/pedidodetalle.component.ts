@@ -13,87 +13,87 @@ import { Clientes } from '../../../clientes/clientes';
   selector: 'kp-pedidodetalle',
   templateUrl: './pedidodetalle.component.html',
   styleUrls: ['./pedidodetalle.component.css'],
-  providers:[ PedidosService, ClientesService, ServiciosService, PedidoService ]
+  providers: [ PedidosService, ClientesService, ServiciosService, PedidoService ]
 })
 export class PedidodetalleComponent implements OnInit {
   suma: any;
    /*Map*/
         public customStyle = [
             {
-                "featureType": "all",
-                "elementType": "all",
-                "stylers": [
+                'featureType': 'all',
+                'elementType': 'all',
+                'stylers': [
                     {
-                        "saturation": "-30"
+                        'saturation': '-30'
                     }
                 ]
             },
             {
-                "featureType": "all",
-                "elementType": "geometry",
-                "stylers": [
+                'featureType': 'all',
+                'elementType': this.newFunction(),
+                'stylers': [
                     {
-                        "visibility": "simplified"
+                        'visibility': 'simplified'
                     },
                     {
-                        "hue": "#ff004d"
+                        'hue': '#ff004d'
                     },
                     {
-                        "saturation": "73"
+                        'saturation': '73'
                     }
                 ]
             },
             {
-                "featureType": "administrative",
-                "elementType": "all",
-                "stylers": [
+                'featureType': 'administrative',
+                'elementType': 'all',
+                'stylers': [
                     {
-                        "visibility": "simplified"
+                        'visibility': 'simplified'
                     }
                 ]
             },
             {
-                "featureType": "poi",
-                "elementType": "all",
-                "stylers": [
+                'featureType': 'poi',
+                'elementType': 'all',
+                'stylers': [
                     {
-                        "visibility": "off"
+                        'visibility': 'off'
                     }
                 ]
             },
             {
-                "featureType": "road",
-                "elementType": "labels.icon",
-                "stylers": [
+                'featureType': 'road',
+                'elementType': 'labels.icon',
+                'stylers': [
                     {
-                        "visibility": "off"
+                        'visibility': 'off'
                     }
                 ]
             },
             {
-                "featureType": "transit.station",
-                "elementType": "labels.icon",
-                "stylers": [
+                'featureType': 'transit.station',
+                'elementType': 'labels.icon',
+                'stylers': [
                     {
-                        "visibility": "off"
+                        'visibility': 'off'
                     }
                 ]
             },
             {
-                "featureType": "water",
-                "elementType": "all",
-                "stylers": [
+                'featureType': 'water',
+                'elementType': 'all',
+                'stylers': [
                     {
-                        "visibility": "off"
+                        'visibility': 'off'
                     }
                 ]
             }
         ];
         /*Start position */
 
-  public pedido:IPedido;
-  public detallepedidos:IDetallePedidos[];
-  public detallepedido:IDetallePedido;
+  public pedido: IPedido;
+  public detallepedidos: IDetallePedidos[];
+  public detallepedido: IDetallePedido;
   public dp: DP;
   public clientes: Clientes[];
   public items: Servicios;
@@ -104,7 +104,7 @@ export class PedidodetalleComponent implements OnInit {
   public checked;
   public isRequired: boolean;
   public isDisabled: boolean;
-  public _search: string = '';
+  public _search = '';
   public autoTicks = true;
   public disabled = false;
   public invert = false;
@@ -118,9 +118,9 @@ export class PedidodetalleComponent implements OnInit {
   public sp: ISP;
   public lat: number;
   public lng: number;
-  public zoom: number = 14;
-  public kityplancho:string;
-  public draggable: boolean = true;
+  public zoom = 14;
+  public kityplancho: string;
+  public draggable = true;
   public coord: Array<any>;
   public coords: Array<any>;
   public plat: any;
@@ -131,8 +131,8 @@ export class PedidodetalleComponent implements OnInit {
   public plnge: any;
   public statusservicio: Array<any>;
   public inputdisabled: boolean;
-  public opacityr:number = 1;
-  public opacitye:number = 1;
+  public opacityr = 1;
+  public opacitye = 1;
   public pedidocoord: string;
   public pedidocoorde: string;
   public direccion: string;
@@ -169,48 +169,48 @@ export class PedidodetalleComponent implements OnInit {
     this.getClientes();
     this.getServicios();
   this.dp = {
-DPIDDP:0,
-    DPCANTIDAD:1,
-    DPIDSP:0,
-    DPIDPEDIDO:0,
-    DPCOSTO:0,
-  }
+    DPIDDP: 0,
+    DPCANTIDAD: 1,
+    DPIDSP: 0,
+    DPIDPEDIDO: 0,
+    DPCOSTO: 0,
+  };
   }
 
-  getPedido(){
+  getPedido() {
     this._route.params.forEach((params: Params) => {
         const id = params['id'];
         this._pedidosService.getPedido(id).subscribe(
           response => {
             this.pedido = response.PEDIDO;
              console.log('Pedido b');
-            console.log(this.pedido)
+            console.log(this.pedido);
             this.loading = false;
             this.pedido = {
-                  IDPEDIDO:this.pedido[0].IDPEDIDO,
-                  PPRECIOTOTAL:this.pedido[0].PPRECIOTOTAL,
-                  PSTATUS:`${this.pedido[0].PSTATUS}`,
-                  PPAGADO:`${this.pedido[0].PPAGADO}`,
-                  PFORMA:`${this.pedido[0].PFORMA}`,
-                  PFECHA:`${this.pedido[0].PFECHA}`,
-                  PDIRECCIONR:`${this.pedido[0].PDIRECCION_R}`,
+                  IDPEDIDO: this.pedido[0].IDPEDIDO,
+                  PPRECIOTOTAL: this.pedido[0].PPRECIOTOTAL,
+                  PSTATUS: `${this.pedido[0].PSTATUS}`,
+                  PPAGADO: `${this.pedido[0].PPAGADO}`,
+                  PFORMA: `${this.pedido[0].PFORMA}`,
+                  PFECHA: `${this.pedido[0].PFECHA}`,
+                  PDIRECCIONR: `${this.pedido[0].PDIRECCION_R}`,
                   COORDENADASR: this.pedido[0].COORDENADAS_R,
-                  PDIRECCIONE:`${this.pedido[0].PDIRECCION_E}`,
+                  PDIRECCIONE: `${this.pedido[0].PDIRECCION_E}`,
                   COORDENADASE: this.pedido[0].COORDENADAS_E,
                   IDCLIENTE: this.pedido[0].IDCLIENTE,
                       };
 
-              this.coord = this.pedido.COORDENADASR.split(',',2);
+              this.coord = this.pedido.COORDENADASR.split(',', 2);
               this.plat = parseFloat(this.coord[0]);
               this.plng = parseFloat(this.coord[1]);
-              this.coords = [this.plat, this.plng]
+              this.coords = [this.plat, this.plng];
               this.pedido.LAT = this.plat;
               this.pedido.LNG = this.plng;
-              console.log('IDPEDIDO: ' + this.pedido.IDPEDIDO + ' '+ this.coords  + ' '+ this.pedido.PSTATUS)
-              this.coorde = this.pedido.COORDENADASE.split(',',2);
+              console.log('IDPEDIDO: ' + this.pedido.IDPEDIDO + ' ' + this.coords  + ' ' + this.pedido.PSTATUS);
+              this.coorde = this.pedido.COORDENADASE.split(',', 2);
               this.plate = parseFloat(this.coorde[0]);
               this.plnge = parseFloat(this.coorde[1]);
-              this.coordse = [this.plate, this.plnge]
+              this.coordse = [this.plate, this.plnge];
               this.pedido.LATE = this.plate;
               this.pedido.LNGE = this.plnge;
 
@@ -222,15 +222,15 @@ DPIDDP:0,
             //   this.inputdisabled = true;
             //   this.draggable = false;
             // }
-            if(this.pedido.COORDENADASR == this.pedido.COORDENADASE){
+            if (this.pedido.COORDENADASR === this.pedido.COORDENADASE) {
                 this.direccion = 'Dirección de recolección y entrega';
-            }else{
+            }else {
               this.direccion = 'Dirección a recoger pedido';
             }
 
             console.log('Pedido');
-            console.log(this.pedido)
-            if(!this.pedido){
+            console.log(this.pedido);
+            if (!this.pedido) {
                     this._router.navigate(['/pedidos']);
                 }
           },
@@ -246,14 +246,14 @@ DPIDDP:0,
       });
   }
 
-  getDetallePedido(){
+  getDetallePedido() {
     this._route.params.forEach((params: Params) => {
         const id = params['id'];
         this._pedidosService.getDetallePedidos(id).subscribe(
           response => {
             this.detallepedidos = response.DPS;
             this.loading = false;
-                if(!this.detallepedidos){
+                if (!this.detallepedidos) {
                     this._router.navigate(['/pedidos']);
                 }
           },
@@ -268,19 +268,19 @@ DPIDDP:0,
       });
   }
 
-  getClientes(){
+  getClientes() {
         this._clientesService.getClientes().subscribe(
-              result =>{
+              result => {
                   this.clientes = result.CLIENTES;
-                  if(!this.clientes){
+                  if (!this.clientes) {
                       console.warn('Error en el servidor...');
-                  }else{
+                  }else {
                       this.loading = false;
                   }
               },
-              error =>{
+              error => {
                   this.errorMessage = <any>error;
-                  if(this.errorMessage != null){
+                  if (this.errorMessage != null) {
                       console.log(this.errorMessage);
                       this.message = true;
                       // this.toastMe();
@@ -289,18 +289,18 @@ DPIDDP:0,
             );
   }
 
-  getServicios(){
+  getServicios() {
     this._serviciosService.getallsp().subscribe(
         result => {
             this.items = result.SP;
             this.sp = {
-              IDSP:this.items.IDSP,
-              SPCOSTO:this.items.SPCOSTO,
-              SPDESCUENTO:this.items.SPDESCUENTO,
-            }
+              IDSP: this.items.IDSP,
+              SPCOSTO: this.items.SPCOSTO,
+              SPDESCUENTO: this.items.SPDESCUENTO,
+            };
             if (!this.items) {
                 console.log('Error en el servidor...');
-            }else{
+            }else {
             }
         },
         error => {
@@ -314,21 +314,21 @@ DPIDDP:0,
       );
   }
 
-    getdp(id){
+    getdp(id) {
        this._pedidosService.getDetallePedido(id).subscribe(
           response => {
               this.detallepedido = response.DP;
               console.log('Datalles pedido');
-              console.log(this.detallepedido)
+              console.log(this.detallepedido);
             this.detallepedido = {
-              IDDP:this.detallepedido[0].IDDP,
-              DPCANTIDADPRENDAS:this.detallepedido[0].DP_CANTIDADPRENDAS,
-              IDSP:this.detallepedido[0].IDSP,
-              IDPEDIDO:this.detallepedido[0].IDPEDIDO,
-              DPCOSTOPEDIDO:this.detallepedido[0].DP_COSTOPEDIDO,
-            }
+              IDDP: this.detallepedido[0].IDDP,
+              DPCANTIDADPRENDAS: this.detallepedido[0].DP_CANTIDADPRENDAS,
+              IDSP: this.detallepedido[0].IDSP,
+              IDPEDIDO: this.detallepedido[0].IDPEDIDO,
+              DPCOSTOPEDIDO: this.detallepedido[0].DP_COSTOPEDIDO,
+            };
             this.loading = false;
-                if(!this.detallepedido){
+                if (!this.detallepedido) {
                     this._router.navigate(['/pedidos']);
                 }
           },
@@ -342,13 +342,13 @@ DPIDDP:0,
         );
   }
 
-  public clickMarcador(marcador:IPedido, i:number){
+  public clickMarcador(marcador: IPedido, i: number) {
     console.log('clickMarcador');
     console.log(marcador, i);
     this.opacityr = 1;
   }
 
-  public dragEndMarcador(marcador:IPedido, evento){
+  public dragEndMarcador(marcador: IPedido, evento) {
     marcador.LAT = evento.coords.lat;
     marcador.LNG = evento.coords.lng;
     this.pedidocoord = `${marcador.LAT},${marcador.LNG}`;
@@ -356,25 +356,26 @@ DPIDDP:0,
     console.log(this.pedidocoord, evento);
     this.pedido.COORDENADASR = this.pedidocoord;
 
-    if(this.pedido.COORDENADASR === this.pedido.COORDENADASE){
+    if (this.pedido.COORDENADASR === this.pedido.COORDENADASE) {
           this.pedidocoorde = `${marcador.LAT},${marcador.LNG}`;
           console.log('dragEndMarcadorE');
           console.log(this.pedidocoorde, evento);
           this.pedido.COORDENADASE = this.pedidocoorde;
     }
-    else{
-     console.log('son diferentes')
+    // tslint:disable-next-line:one-line
+    else {
+     console.log('son diferentes');
     }
       }
 
-  public dragEndMarcadore(marcador:IPedido, evento){
+  public dragEndMarcadore(marcador: IPedido, evento) {
 
-    if(this.pedido.COORDENADASR == this.pedido.COORDENADASE){
+    if (this.pedido.COORDENADASR === this.pedido.COORDENADASE) {
       this.pedidocoorde = `${marcador.LAT},${marcador.LNG}`;
       console.log('dragEndMarcadorE');
       console.log(this.pedidocoorde, evento);
       this.pedido.COORDENADASE = this.pedidocoorde;
-    }else{
+    }else {
       marcador.LATE = evento.coords.lat;
       marcador.LNGE = evento.coords.lng;
       this.pedidocoorde = `${marcador.LATE},${marcador.LNGE}`;
@@ -384,11 +385,11 @@ DPIDDP:0,
     }
   }
 
-   getSumaP(id){
-        setTimeout(()=>{
+   getSumaP(id) {
+        setTimeout(() => {
                 this._pedidoService.getSumaP(id).subscribe(
                   data => {
-                    let CARRITOSUMA = data.CARRITOSUMA[0];
+                    const CARRITOSUMA = data.CARRITOSUMA[0];
                     this.suma = data.CARRITOSUMA[0].SUMA;
                     console.log('CARRITOSUMA');
                     console.log(this.suma);
@@ -398,32 +399,33 @@ DPIDDP:0,
                   error =>  {
                       console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
                         this.errorMessage = <any>error;
-                        if(this.errorMessage != null){
+                        if (this.errorMessage != null) {
                         this.failpostServicio();
                     }
                   });
-                },500);
+                }, 500);
       }
 
-  public putPedido(){
-    setTimeout(()=>{
+  public putPedido() {
+    setTimeout(() => {
 
-        if(!this.pedido) return;
-           if(this.pedido.PPAGADO == 'por_adelantado' ){
-               if(this.suma != null){
-                   let descuento = this.suma * 10 / 100;
+        // tslint:disable-next-line:curly
+        if (!this.pedido) return;
+           if (this.pedido.PPAGADO === 'por_adelantado' ) {
+               if (this.suma != null) {
+                   const descuento = this.suma * 10 / 100;
                 this.suma = this.suma - descuento;
                 this.pedido.PPRECIOTOTAL = Math.round(this.suma);
-               }else{
+               }else {
                    this.pedido.PPRECIOTOTAL = 0;
                }
-                
-        }else{
-          
-          if(this.suma != null){
+
+        }else {
+
+          if (this.suma != null) {
                 this.suma = this.suma;
                 this.pedido.PPRECIOTOTAL = this.suma;
-            }else{
+            }else {
                 this.pedido.PPRECIOTOTAL = 0;
             }
         }
@@ -440,38 +442,39 @@ DPIDDP:0,
               this._pedidosService.putPedido(this.pedido).subscribe(
               data => {
                     this.toastMe();
-                    //console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
+                    // console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
 
               }, error => {
                   console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
                     this.errorMessage = <any>error;
-                    if(this.errorMessage != null){
+                    if (this.errorMessage != null) {
                     this.failinfoputPedido();
                 }
-              })
-    },1500)
+              } );
+    }, 1500 );
   }
 
 
-  public putServicio(){
+  public putServicio() {
 
-        if(!this.detallepedido) return;
+        // tslint:disable-next-line:curly
+        if (!this.detallepedido) return;
         this.detallepedido.DPCOSTOPEDIDO = this.items[this.detallepedido.IDSP - 1].SPCOSTO * this.detallepedido.DPCANTIDADPRENDAS;
         this._pedidosService.putDetallePedido(this.detallepedido).subscribe(
         data => {
             this.toastMe();
-            //console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
+            // console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
 
         }, error => {
           console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
             this.errorMessage = <any>error;
-            if(this.errorMessage != null){
+            if (this.errorMessage != null) {
             this.failinfoputDetallePedido();
         }
-        })
+        });
   }
 
-  public deletecarrito(id){
+  public deletecarrito(id) {
   this._pedidosService.deletecarrito(id).subscribe(
           data => {
             this.getDetallePedido();
@@ -483,13 +486,13 @@ DPIDDP:0,
           error =>  {
               console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
                this.errorMessage = <any>error;
-                if(this.errorMessage != null){
+                if (this.errorMessage != null) {
                 this.faildeletedetalle();
             }
           });
   }
 
-  postServicio(){
+  postServicio() {
         this.dp.DPCOSTO = this.items[this.dp.DPIDSP - 1].SPCOSTO * this.dp.DPCANTIDAD;
         this.dp.DPIDPEDIDO = this.pedido.IDPEDIDO;
         console.log('Post servicio');
@@ -503,21 +506,21 @@ DPIDDP:0,
             error =>  {
                 console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
                  this.errorMessage = <any>error;
-                  if(this.errorMessage != null){
+                  if (this.errorMessage != null) {
                   this.failpostServicio();
               }
             });
     }
 
-    refreshpdp(id){
+    refreshpdp(id) {
         this.getSumaP(id);
-        let gs = this.getSumaP(id);
-        console.log('Suma post servicicio añadido')
-        console.log(gs)
+        const gs = this.getSumaP(id);
+        console.log('Suma post servicicio añadido');
+        console.log(gs);
         this.putPedido();
-        setTimeout(()=>{
+        setTimeout(() => {
             this.getPedido();
-        },1000)
+        }, 1000 );
     }
 
 
@@ -529,7 +532,7 @@ DPIDDP:0,
           this.toast.toast(`Servicio añadido al pedido`);
         }
 
-  public regresar(){
+  public regresar() {
     this._router.navigate(['pedidos']);
   }
 
@@ -539,6 +542,7 @@ DPIDDP:0,
   set tickInterval(v) {
     this._tickInterval = Number(v);
   }
+  // tslint:disable-next-line:member-ordering
   private _tickInterval = 5;
 
    toastMe() {
@@ -549,19 +553,23 @@ DPIDDP:0,
       this.toast.toast(`Error al encontrar la información de este pedido, intenta nuevamente por favor`);
     }
 
-    failinfoputPedido(){
+    failinfoputPedido() {
       this.toast.toast(`Ocurrió un error al intentar actualizar los datos del pedido ${this.pedido.IDPEDIDO}`);
     }
 
-    failinfoputDetallePedido(){
+    failinfoputDetallePedido() {
       this.toast.toast(`Ocurrió un error al intentar actualizar los servicios del pedido ${this.pedido.IDPEDIDO}`);
     }
 
-    faildeletedetalle(){
+    faildeletedetalle() {
       this.toast.toast(`Ocurrió un error al intentar eliminar los servicios del pedido ${this.pedido.IDPEDIDO}`);
     }
 
-    postdeletedetalle(){
+    postdeletedetalle() {
       this.toast.toast(`Servicio del pedido ${this.pedido.IDPEDIDO} eliminado exitosamente`);
+    }
+
+    private newFunction() {
+        return 'geometry';
     }
 }

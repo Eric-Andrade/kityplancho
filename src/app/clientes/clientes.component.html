@@ -23,7 +23,7 @@
             <div *ngIf="clientesCard; then thenTemplate; else elseTemplate"></div>
             <ng-template #thenTemplate>
                   <div class="datacontainer" *ngIf="clientes">
-                   <div class="datarepite" *ngFor="let cliente of clientes | filterBy: userFilter" (click)="getcliente(cliente.IDCLIENTE)">
+                   <div class="datarepite" *ngFor="let cliente of clientes | filterBy: userFilter" (click)="getcliente(cliente.ID)">
                        <md-card>
                           <md-card-header>
                             <div *ngIf="cliente.ACTIVO == 1; then thenTemplate; else elseTemplate"></div>
@@ -44,7 +44,7 @@
                             <md-card-title
                             tooltip="{{cliente.CNOMBRE}} {{cliente.CAPELLIDOS}}"
                                   tooltip-position="above"
-                                  tooltip-delay="0 * 1000"><strong>{{cliente.IDCLIENTE}} | {{cliente.CNOMBRE | truncate: 10 }} </strong> <p>{{cliente.CAPELLIDOS | truncate: 10 }}</p></md-card-title>
+                                  tooltip-delay="0 * 1000"><strong>{{cliente.ID}} | {{cliente.CNOMBRE | truncate: 10 }} </strong> <p>{{cliente.CAPELLIDOS | truncate: 10 }}</p></md-card-title>
                             <md-card-subtitle>
                               <md-chip-list>
                                   <md-chip color="accent" selected="true"
@@ -96,7 +96,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                         <tr *ngFor="let cliente of clientes | filterBy: userFilter" (click)="getcliente(cliente.IDCLIENTE)"
+                         <tr *ngFor="let cliente of clientes | filterBy: userFilter" (click)="getcliente(cliente.ID)"
                           >
                            <td>
                             <div *ngIf="cliente.ACTIVO == 1; then thenTemplate; else elseTemplate"></div>
@@ -113,7 +113,7 @@
                               tooltip-delay="0 * 1000"></span>
                             </ng-template>
                             </td>
-                            <td><strong>{{cliente.IDCLIENTE}}</strong> </td>
+                            <td><strong>{{cliente.ID}}</strong> </td>
                             <td>{{cliente.CNOMBRE}} {{cliente.CAPELLIDOS}}</td>
                             <td class="enfasis-td">{{cliente.CEMAIL | lowercase}}</td>
                             <td>{{cliente.CPASSWORD | truncate: 10}}</td>

@@ -34,12 +34,12 @@ export class PedidosComponent implements OnInit {
             console.log('reejecutado lista de pedidos con exito');
         },60000) 
   }
-
+// * MVC
   getpedidos(){
     this._pedidosService.getpdp().subscribe(
         result => {
             console.log(result);
-            this.pedidos = result.GETPDP;
+            this.pedidos = result;
             if (!this.pedidos ) {
                 console.warn('Error en el servidor...');
             }else{

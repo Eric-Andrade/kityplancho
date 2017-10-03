@@ -15,7 +15,7 @@
 // }
 
 export interface Empleados {
-  IDEMPLEADO: number;
+  ID: number;
   EEMAIL: string;
   EPASSWORD: string;
   EPRIVILEGIO: string;

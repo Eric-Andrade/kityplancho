@@ -26,7 +26,7 @@ export class SucursalComponent implements OnInit {
 
   ngOnInit() {
     this.sucursal = {
-      IDSUCURSAL:null,
+      ID:null,
       SNOMBRE:'',
       SDIRECCION:'',
       SEMAIL:'',
@@ -43,7 +43,7 @@ getlastsucursal(){
    setTimeout(()=>{
       this._sucursalService.getlastSucursal().subscribe(
         result =>{
-              this.lastesucursal = result.ULTIMASUCURSAL[0].IDSUCURSAL;
+              this.lastesucursal = result.ULTIMASUCURSAL[0].ID;
               console.log('último sucursal');
               console.log(this.lastesucursal);
               if(!this.lastesucursal){

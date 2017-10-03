@@ -17,12 +17,12 @@ export class EmpleadosService {
     }
 
     getEmpleados() {
-        return this._http.get(this.url + 'getempleados')
+        return this._http.get(this.url + 'empleados')
           .map(res => res.json());
     }
 
     getEmpleado(id:string) {
-        return this._http.get(this.url + 'getempleado?id='+id)
+        return this._http.get(this.url + 'empleados?id='+id)
           .map( res => res.json());
     }
 
@@ -68,7 +68,7 @@ export class EmpleadosService {
 
     putEmpleado(empleado: Empleados){
         let body = new URLSearchParams();
-            body.set('IDEMPLEADO',empleado.IDEMPLEADO.toString());
+            body.set('IDEMPLEADO',empleado.ID.toString());
             body.set('EEMAIL',empleado.EEMAIL);
             body.set('EPASSWORD',empleado.EPASSWORD);
             body.set('EPRIVILEGIO',empleado.EPRIVILEGIO);

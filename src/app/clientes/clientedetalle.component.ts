@@ -38,9 +38,9 @@ export class ClienteDetalleComponent implements OnInit {
         const id = params['id'];
         this._clientesService.getCliente(id).subscribe(
           response => {
-            this.cliente = response.CLIENTE;
+            this.cliente = response;
             this.loading = false;
-            this.cliente = {    IDCLIENTE:this.cliente[0].IDCLIENTE,
+            this.cliente = {    ID:this.cliente[0].ID,
                                 CEMAIL:`${this.cliente[0].CEMAIL}`,
                                 CPASSWORD:`${this.cliente[0].CPASSWORD}`,
                                 CNOMBRE:`${this.cliente[0].CNOMBRE}`,
@@ -80,8 +80,8 @@ export class ClienteDetalleComponent implements OnInit {
           this._clientesService.putCliente(this.cliente).subscribe(
           data => {
                this.toastMe();
-               //console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
-               this._router.navigate(['/clientes', this.cliente.IDCLIENTE]);
+               //console.log(`El cliente ${this.cliente.ID} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
+               this._router.navigate(['/clientes', this.cliente.ID]);
 
           }, error => {
               console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);

@@ -13,7 +13,7 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit() {
 
-     this.perfil = {  IDEMPLEADO:0,
+     this.perfil = {  ID:0,
                       EEMAIL:'vero@hotmail.com',
                       EPASSWORD:'123213',
                       EPRIVILEGIO:'rutero',

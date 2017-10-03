@@ -18,7 +18,7 @@ export class PedidosService {
     }
 
     getpdp() {
-        return this._http.get(this.url + 'getpdp')
+        return this._http.get(this.url + 'dedicados/getpdp')
             .map(res => res.json());
     }
 

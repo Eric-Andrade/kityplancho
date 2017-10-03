@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
               private _router: Router,
               private toast: Md2Toast) {
                     this.empleado = {
-                      IDEMPLEADO: null,
+                      ID: null,
                       EEMAIL:'',
                       EPASSWORD:'',
                       EPRIVILEGIO:'',

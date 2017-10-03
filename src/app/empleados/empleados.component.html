@@ -23,7 +23,7 @@
             <div *ngIf="empleadosCard; then thenTemplate; else elseTemplate"></div>
             <ng-template #thenTemplate>
                    <div class="datacontainer" *ngIf="empleados">
-                    <div class="datarepite" *ngFor="let empleado of empleados | filterBy: userFilter" (click)="getempleado(empleado.IDEMPLEADO)">
+                    <div class="datarepite" *ngFor="let empleado of empleados | filterBy: userFilter" (click)="getempleado(empleado.ID)">
                          <md-card>
                           <md-card-header>
                             <div *ngIf="empleado.EPRIVILEGIO == 'desempleado'; then thenTemplate; else elseTemplate"></div>

@@ -1,5 +1,5 @@
 export interface Clientes {
-    IDCLIENTE: string;
+    ID: string;
     CEMAIL: string;
     CPASSWORD: string;
     CNOMBRE: string;

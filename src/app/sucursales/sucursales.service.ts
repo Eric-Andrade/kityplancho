@@ -25,14 +25,14 @@ export class SucursalesService {
         return this._http.get(this.url + 'getsucursalesactivos')
          .map(res => res.json());
     }
-
+// * MVC
     getSucursales() {
-        return this._http.get(this.url + 'getsucursales')
+        return this._http.get(this.url + 'sucursales')
          .map(res => res.json());
     }
-
+// * MVC
     getSucursal(id:string) {
-        return this._http.get(this.url + 'getsucursal?id='+id)
+        return this._http.get(this.url + 'sucursales?id='+id)
           .map( res => res.json());
     }
 
@@ -56,7 +56,7 @@ export class SucursalesService {
 
     putSucursal(sucursal: Sucursales){
         let body = new URLSearchParams();
-            body.set('IDSUCURSAL',sucursal.IDSUCURSAL.toString());
+            body.set('ID',sucursal.ID.toString());
             body.set('SNOMBRE',sucursal.SNOMBRE);
             body.set('SDIRECCION',sucursal.SDIRECCION);
             body.set('SEMAIL',sucursal.SEMAIL);

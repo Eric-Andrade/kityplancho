@@ -25,10 +25,10 @@ export class SucursaldetalleComponent implements OnInit {
             let id = params['id'];
             this._sucursalesService.getSucursal(id).subscribe(
               response => {
-                    this.sucursal = response.SUCURSAL;
+                    this.sucursal = response;
                     this.loading = false;
                     this.sucursal = {
-                        IDSUCURSAL:this.sucursal[0].IDSUCURSAL,
+                        ID:this.sucursal[0].ID,
                         SNOMBRE:this.sucursal[0].SNOMBRE,
                         SDIRECCION:this.sucursal[0].SDIRECCION,
                         SEMAIL:this.sucursal[0].SEMAIL,
@@ -63,7 +63,7 @@ export class SucursaldetalleComponent implements OnInit {
           data => {
               console.log(this.sucursal);
                this.toastMe();
-               this._router.navigate(['/sucursales', this.sucursal.IDSUCURSAL]);
+               this._router.navigate(['/sucursales', this.sucursal.ID]);
 
           }, error => {
               console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);

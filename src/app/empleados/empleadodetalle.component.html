@@ -22,7 +22,7 @@
                   <table class="" cellspacing="0">
                     <tr>
                       <td><md-input-container dividerColor="accent" class=" form-space">
-                        <input type="number" mdInput #id name="IDEMPLEADO" #IDEMPLEADO="ngModel" [(ngModel)]="empleado.IDEMPLEADO" placeholder="ID de empleado" [disabled]="true">
+                        <input type="number" mdInput #id name="ID" #ID="ngModel" [(ngModel)]="empleado.ID" placeholder="ID de empleado" [disabled]="true">
                          </md-input-container></td>
                       <td>
                         <!--<md-slide-toggle
@@ -204,7 +204,7 @@
             <input name="search" type="text" placeholder="Buscar..." />
             </md2-select-header>-->
 
-          <md2-option *ngFor="let s of sucursales" [value]="s.IDSUCURSAL"><strong>{{s.IDSUCURSAL}}</strong> | {{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
+          <md2-option *ngFor="let s of sucursales" [value]="s.ID"><strong>{{s.ID}}</strong> | {{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
           </md2-option>
          </md2-select>
 

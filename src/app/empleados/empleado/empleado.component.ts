@@ -61,7 +61,7 @@ export class EmpleadoComponent implements OnInit {
 
    ngOnInit( ) {
      this.getSucursales();
-    this.empleado = { IDEMPLEADO:0,
+    this.empleado = { ID:0,
                       EEMAIL:'',
                       EPASSWORD:'',
                       EPRIVILEGIO:'rutero',
@@ -97,7 +97,7 @@ export class EmpleadoComponent implements OnInit {
    setTimeout(()=>{
       this._empleadosService.getLastEmpleado().subscribe(
         result =>{
-              this.lastempleado = result.ULTIMOEMPLEADO[0].IDEMPLEADO;
+              this.lastempleado = result.ULTIMOEMPLEADO[0].ID;
               console.log('último empleado');
               console.log(this.lastempleado);
               if(!this.lastempleado){

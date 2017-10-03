@@ -29,7 +29,7 @@ export class EmpleadosComponent implements OnInit {
       this._empleadoService.getEmpleados().subscribe(
         response => {
             console.log(response);
-            this.empleados = response.EMPLEADOS;
+            this.empleados = response;
             if (!this.empleados) {
                 console.log('Error en el servidor...');
                 this.toastMe();

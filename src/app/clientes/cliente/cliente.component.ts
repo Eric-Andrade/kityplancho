@@ -43,7 +43,7 @@ export class ClienteComponent implements OnInit {
 ngOnInit( ) {
     // this.cliente = new Clientes("","","","","");
     this.cliente = { 
-      IDCLIENTE:null, 
+      ID:null, 
       CEMAIL:'',
       CPASSWORD:'',
       CNOMBRE:'',
@@ -56,7 +56,7 @@ ngOnInit( ) {
    setTimeout(()=>{
       this._clientesService.getLastCliente().subscribe(
         result =>{
-              this.lastcliente = result.ULTIMOCLIENTE[0].IDCLIENTE;
+              this.lastcliente = result.ULTIMOCLIENTE[0].ID;
               console.log('último cliente');
               console.log(this.lastcliente);
               if(!this.lastcliente){

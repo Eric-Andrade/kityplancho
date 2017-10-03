@@ -56,10 +56,10 @@ getEmpleado() {
             let id = params['id'];
             this._empleadosService.getEmpleado(id).subscribe(
               response => {
-                    this.empleado = response.EMPLEADO;
+                    this.empleado = response;
                     this.loading = false;
                     this.empleado = {
-                        IDEMPLEADO:this.empleado[0].IDEMPLEADO,
+                        ID:this.empleado[0].ID,
                         EEMAIL:this.empleado[0].EEMAIL,
                         EPASSWORD:this.empleado[0].EPASSWORD,
                         EPRIVILEGIO:this.empleado[0].EPRIVILEGIO,
@@ -101,7 +101,7 @@ putEmpleado(){
           data => {
               console.log(this.empleado);
                this.toastMe();
-               this._router.navigate(['/empleados', this.empleado.IDEMPLEADO]);
+               this._router.navigate(['/empleados', this.empleado.ID]);
 
           }, error => {
               console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
@@ -116,7 +116,7 @@ putEmpleado(){
       this._sucursalesService.getSucursales().subscribe(
         response => {
             console.log(response);
-            this.sucursales = response.SUCURSALES;
+            this.sucursales = response;
             if (!this.sucursales) {
                 console.log('Error en el servidor...');
             }else{
@@ -126,7 +126,7 @@ putEmpleado(){
         error => {
             this.errorMessage = <any>error;
             if (this.errorMessage != null) {
-                console.log(this.errorMessage);
+                console.log('Error 129', this.errorMessage);
                 this.message = true;
             }
         });

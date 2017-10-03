@@ -1,5 +1,5 @@
 export interface Sucursales {
-  IDSUCURSAL: number;
+  ID: number;
   SNOMBRE: string;
   SDIRECCION: string;
   SEMAIL: string;

@@ -35,7 +35,7 @@ export class ClientesService {
 
     putCliente(cliente: Clientes){
     let body = new URLSearchParams();
-        body.set('IDCLIENTE', cliente.IDCLIENTE.toString());
+        body.set('IDCLIENTE', cliente.ID.toString());
         body.set('CEMAIL', cliente.CEMAIL);
         body.set('CPASSWORD', cliente.CPASSWORD);
         body.set('CNOMBRE', cliente.CNOMBRE);
@@ -53,33 +53,33 @@ export class ClientesService {
         return this._http.get(this.url + 'getclientesactivos')
           .map(res => res.json());
     }
-
+// * MVC
     getClientes() {
-        return this._http.get(this.url + 'getclientes')
+        return this._http.get(this.url + 'clientes')
           .map(res => res.json());
     }
 
     getCliente(id: string) {
-        return this._http.get(this.url + 'getcliente?id='+id)
+        return this._http.get(this.url + 'clientes?id=' + id)
           .map(res => res.json());
     }
-
+// * MVC
     getLastCliente() {
-        return this._http.get(this.url + 'getlastcliente')
+        return this._http.get(this.url + 'clientes/getlastcliente')
           .map(res => res.json());
     }
 
     private getHeaders() {
         let headers = new Headers();
-        headers.append('Content-Type','application/x-www-form-urlencoded');
-        headers.append('X-Requested-With','XMLHttpRequest');
-        headers.append('cache-control','no-cache');
-        headers.append('status','OK');
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('X-Requested-With', 'XMLHttpRequest');
+        headers.append('cache-control', 'no-cache');
+        headers.append('status', 'OK');
         return headers;
       }
 
      getMisPedidos(idcliente: string){
-        return this._http.get(this.url + 'getMisPedidos?id='+idcliente)
+        return this._http.get(this.url + 'getMisPedidos?id=' + idcliente)
           .map(res => res.json());
     }
 
