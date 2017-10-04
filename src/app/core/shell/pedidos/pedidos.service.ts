@@ -43,8 +43,10 @@ export class PedidosService {
     }
 
     sumaencola() {
-        return this._http.get(this.url + 'sumaencola')
-            .map(res => res.json());
+        return this._http.get(this.url + 'dedicados/getsumacola' )
+        .map((response: Response) => {
+            JSON.stringify(response);
+          });
     }
 
     getpedidossec() {
@@ -67,7 +69,7 @@ export class PedidosService {
             console.log('Datos service');
             console.log(body);
        return this._http.post(this.url + 'updatepedido', body, {headers : this.getHeaders()})
-      .map((response:Response)=>{
+      .map((response: Response) => {
         JSON.stringify(response);
       });
 

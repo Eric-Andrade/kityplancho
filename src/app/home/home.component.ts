@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
       this._serviciosService.getServiciosActivos().subscribe(
         result =>{
             console.log(result);
-            this.servicios = result.SERVICIOS;
+            this.servicios = result;
             if(!this.servicios){
                 console.log('Error en el servidor...');
             }else{

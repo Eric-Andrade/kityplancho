@@ -64,9 +64,9 @@
               [opacity]="1">
 
                   <agm-info-window >
-                    <h5>Status del pedido #<span class="kp-text bold">{{pedido.IDPEDIDO}}:</span></h5>
+                    <h5>Status del pedido #<span class="kp-text bold">{{pedido.ID}}:</span></h5>
                     <span>Pedido para recoger</span><br>
-                    <button class="btn btn-default btn-xs" type="button" aria-haspopup="true" aria-expanded="false" (click)="getpedido(pedido.IDPEDIDO)" >
+                    <button class="btn btn-default btn-xs" type="button" aria-haspopup="true" aria-expanded="false" (click)="getpedido(pedido.ID)" >
                       ver detalles
                     </button>
                   </agm-info-window>
@@ -84,9 +84,9 @@
               [opacity]="1">
 
                   <agm-info-window >
-                    <h5>Status del pedido #<span class="kp-text bold">{{pedidoe.IDPEDIDO}}:</span></h5>
+                    <h5>Status del pedido #<span class="kp-text bold">{{pedidoe.ID}}:</span></h5>
                     <span>Pedido listo para entregar</span><br>
-                    <button class="btn btn-default btn-xs" type="button" aria-haspopup="true" aria-expanded="false" (click)="getpedido(pedidoe.IDPEDIDO)" >
+                    <button class="btn btn-default btn-xs" type="button" aria-haspopup="true" aria-expanded="false" (click)="getpedido(pedidoe.ID)" >
                       ver detalles
                     </button>
                   </agm-info-window>

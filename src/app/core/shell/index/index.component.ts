@@ -65,12 +65,12 @@ this._mapaComponent.getubicacionrutero();
   sumaencola(){
     setInterval(() =>
     this._pedidosService.sumaencola().subscribe(
-      result=>{
+      result => {
 
-        if(!result.COUNT[0]){
+        if (!result) {
           this.suma = 0;
-        }else{
-          this.suma = result.COUNT[0].COUNT;
+        }else {
+          this.suma = result;
 
         }
         console.log('Suma en cola');

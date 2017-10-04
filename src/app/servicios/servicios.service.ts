@@ -27,7 +27,7 @@ export class ServiciosService {
     }
 
     getServiciosActivos() {
-        return this._http.get(this.url + 'getallServiciosNombres')
+        return this._http.get(this.url + 'servicios/getallactivos')
             .map(res => res.json());
     }
 

@@ -14,12 +14,12 @@ export class MapaService {
    }
 
  getcoordenasr( ) {
-        return this._http.get(this.url + 'getcoordenadas_r')
+        return this._http.get(this.url + 'rutero')
           .map(res => res.json());
     }
 
   getcoordenase( ) {
-        return this._http.get(this.url + 'getcoordenadas_e')
+        return this._http.get(this.url + 'rutero?idcliente=1')
           .map(res => res.json());
     }
 

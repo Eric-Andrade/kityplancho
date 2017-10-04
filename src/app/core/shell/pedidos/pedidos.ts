@@ -17,10 +17,10 @@ export interface Notify {
   PFECHA: string;
   PPAGADO: string;
   PFORMA: string;
-  PSTATUS: string
+  PSTATUS: string;
 }
 
-export interface IPedidos{
+export interface IPedidos {
   IDPEDIDO: number;
   PPRECIOTOTAL: number;
   PSTATUS: string;
@@ -36,18 +36,18 @@ export interface IPedidos{
   IDCLIENTE: number;
 }
 
-export interface CR{
-  IDPEDIDO:number;
-  STATUS: string;
-  COORDENADA:string;
+export interface CR {
+  ID: number;
+  PSTATUS: string;
+  PCOORDENADAS_R: string;
   LAT?: string;
   LNG?: string;
 }
 
-export interface CE{
-  IDPEDIDO:number;
-  STATUS: string;
-  COORDENADA:string;
+export interface CE {
+  ID: number;
+  PSTATUS: string;
+  PCOORDENADAS_E: string;
   LATE?: string;
   LNGE?: string;
 }

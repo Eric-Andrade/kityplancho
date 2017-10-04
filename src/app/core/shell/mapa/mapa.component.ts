@@ -89,12 +89,12 @@ export class MapaComponent implements OnInit {
     public lat: number;
     public lng: number;
     public zoom: number;
-    public draggable:boolean = false;
+    public draggable: boolean = false;
     public imageEC: string;
     public imageECola: string;
     public imageD: string;
     public kityplancho: string;
-    public opcionpedido:string = 'Registrar nuevo pedido';
+    public opcionpedido: string = 'Registrar nuevo pedido';
     public pedidos: IPedidos[];
     public cr: CR[];
     public ce: CE[];
@@ -146,7 +146,7 @@ export class MapaComponent implements OnInit {
     this.getcoordenasr();
     this.getcoordenase();
     this.getubicacionrutero();
-  
+
     setInterval(()=>{
     this.getcoordenasr();
     this.getcoordenase();
@@ -162,17 +162,17 @@ export class MapaComponent implements OnInit {
  
      this._mapaService.getcoordenasr().subscribe(
         result => {
-            this.cr = result.CO;
-            var cont = 0;
+            this.cr = result;
+            let cont = 0;
             for(let entry of this.cr){
-              var i = cont++;
-              if(this.cr[i].COORDENADA != null){
-                this.coord = this.cr[i].COORDENADA.split(',',2);
+              let i = cont++;
+              if (this.cr[i].PCOORDENADAS_R != null){
+                this.coord = this.cr[i].PCOORDENADAS_R.split(',', 2);
 
               // console.log(' IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' latitud: ' + this.coord[0] + ' longitud: ' + this.coord[1]);
               this.plat = parseFloat(this.coord[0]);
               this.plng = parseFloat(this.coord[1]);
-              this.coords = [this.plat, this.plng]
+              this.coords = [this.plat, this.plng];
               this.cr[i].LAT = this.plat;
               this.cr[i].LNG = this.plng;
             }
@@ -195,23 +195,23 @@ export class MapaComponent implements OnInit {
             }
         }
 
-      )
+      );
   }
 
-getcoordenase(){
+getcoordenase() {
       this._mapaService.getcoordenase().subscribe(
         result => {
-            this.ce = result.CO;
+            this.ce = result;
             var cont = 0;
-            for(let entry of this.ce){
+            for (let entry of this.ce){
               var i = cont++;
-              if(this.ce[i].COORDENADA != null){
-                this.coord = this.ce[i].COORDENADA.split(',',2);
+              if (this.ce[i].PCOORDENADAS_E != null) {
+                this.coord = this.ce[i].PCOORDENADAS_E.split(',', 2);
 
-              // console.log(' IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' latitud: ' + this.coord[0] + ' longitud: ' + this.coord[1]);
+             // console.log(' latitudE: ' + this.coord[0] + ' longitudE: ' + this.coord[1]);
               this.plat = parseFloat(this.coord[0]);
               this.plng = parseFloat(this.coord[1]);
-              this.coords = [this.plat, this.plng]
+              this.coords = [this.plat, this.plng];
               this.ce[i].LATE = this.plat;
               this.ce[i].LNGE = this.plng;
             }
@@ -220,8 +220,8 @@ getcoordenase(){
             }
 
             if (!this.ce ) {
-                console.warn('Error en el servidor...');
-            }else{
+                console.warn('Error en el servidor this.ce...');
+            }else {
                 this.loading = false;
             }
         },
