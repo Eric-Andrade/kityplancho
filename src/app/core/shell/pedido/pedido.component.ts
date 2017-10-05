@@ -202,7 +202,7 @@ export class PedidoComponent implements OnInit {
   };
 
   this.sp ={
-      IDSP:null,
+      ID:null,
       SPCOSTO:null,
       SPDESCUENTO:null,
   }
@@ -214,9 +214,9 @@ export class PedidoComponent implements OnInit {
   getServicios(){
     this._serviciosService.getallsp().subscribe(
         result => {
-            this.items = result.SP;
+            this.items = result;
             this.sp = {
-              IDSP:this.items.IDSP,
+              ID:this.items.ID,
               SPCOSTO:this.items.SPCOSTO,
               SPDESCUENTO:this.items.SPDESCUENTO,
             }
@@ -239,11 +239,11 @@ export class PedidoComponent implements OnInit {
        this._sucursalesService.getSucursalesActivos().subscribe(
           response => {
               console.log(response);
-              this.sucursales = response.SUCURSALESACTIVOS;
+              this.sucursales = response;
               if (!this.sucursales) {
                   console.log('Error en el servidor...');
               }else{
-                  console.log('Sucursales cargadas correctamente');
+                //   console.log('Sucursales cargadas correctamente');
               }
           },
           error => {

@@ -79,7 +79,7 @@ export class ClientesService {
       }
 
      getMisPedidos(idcliente: string){
-        return this._http.get(this.url + 'getMisPedidos?id=' + idcliente)
+        return this._http.get(this.url + 'pedidos?idcliente=' + idcliente)
           .map(res => res.json());
     }
 

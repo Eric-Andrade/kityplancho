@@ -100,7 +100,7 @@ export class ClienteDetalleComponent implements OnInit {
         const id = params['id'];
         this._clientesService.getMisPedidos(id).subscribe(
           response => {
-            this.pedidos = response.MISPEDIDOS;
+            this.pedidos = response;
             this.loading = false;
           console.log(this.pedidos);
           },

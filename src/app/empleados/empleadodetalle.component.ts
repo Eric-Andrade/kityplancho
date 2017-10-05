@@ -120,7 +120,7 @@ putEmpleado(){
             if (!this.sucursales) {
                 console.log('Error en el servidor...');
             }else{
-                console.log('Sucursales cargadas correctamente');
+                // console.log('Sucursales cargadas correctamente');
             }
         },
         error => {

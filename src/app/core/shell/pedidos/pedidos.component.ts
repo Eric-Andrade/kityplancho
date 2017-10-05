@@ -38,7 +38,6 @@ export class PedidosComponent implements OnInit {
   getpedidos(){
     this._pedidosService.getpdp().subscribe(
         result => {
-            console.log(result);
             this.pedidos = result;
             if (!this.pedidos ) {
                 console.warn('Error en el servidor...');
@@ -54,7 +53,6 @@ export class PedidosComponent implements OnInit {
                 this.failgetPedidos();
             }
         });
-        
   }
 
   getpedido(idpedido){

@@ -292,9 +292,9 @@ export class PedidodetalleComponent implements OnInit {
   getServicios() {
     this._serviciosService.getallsp().subscribe(
         result => {
-            this.items = result.SP;
+            this.items = result;
             this.sp = {
-              IDSP: this.items.IDSP,
+              ID: this.items.ID,
               SPCOSTO: this.items.SPCOSTO,
               SPDESCUENTO: this.items.SPDESCUENTO,
             };

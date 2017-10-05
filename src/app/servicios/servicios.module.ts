@@ -36,6 +36,7 @@ const routes: Routes = [
   SharedModule,
   Ng2FilterPipeModule
   ],
+  // tslint:disable-next-line:max-line-length
   declarations: [ServiciosComponent, ServicioComponent, ServiciodetalleComponent, PrendasComponent, PrendadetalleComponent, PrendaComponent, ServicioprendasComponent],
   providers: [ ServiciosService, PrendasService ]
 })

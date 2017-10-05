@@ -56,14 +56,14 @@ export class ServicioComponent implements OnInit {
   ngOnInit() {
     this.getSucursales();
     this.iservicio = {
-      IDSERVICIO:null,
+      ID :null,
       SERVNOMBRE:'',
       SERVACTIVO:'activo',
       IDSUCURSAL:null
     }
 
     this.servicio = {
-      IDSP:null,
+      ID:null,
       IDPRENDAS:null,
       IDSERVICIO:null,
       SERVNOMBRE:'',
@@ -92,7 +92,7 @@ export class ServicioComponent implements OnInit {
     this._serviciosService.postServicio(this.iservicio).subscribe(
             data => {
                 this.toastMe();
-                this.tab1disabled = true
+                this.tab1disabled = true;
                 this.tab2disabled = false;
                 this.selectedIndex = 1;
             },
@@ -110,11 +110,11 @@ export class ServicioComponent implements OnInit {
       this._sucursalesService.getSucursales().subscribe(
         response => {
             console.log(response);
-            this.sucursales = response.SUCURSALES;
+            this.sucursales = response;
             if (!this.sucursales) {
                 console.log('Error en el servidor...');
             }else{
-                console.log('Sucursales cargadas correctamente');
+                // console.log('Sucursales cargadas correctamente');
             }
         },
         error => {

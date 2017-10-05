@@ -25,7 +25,7 @@
             <input name="search" type="text" placeholder="Buscar..." />
             </md2-select-header>-->
 
-            <md2-option *ngFor="let s of sucursales" [value]="s.IDSUCURSAL"><strong>{{s.IDSUCURSAL}}</strong> | {{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
+            <md2-option *ngFor="let s of sucursales" [value]="s.ID"><strong>{{s.ID}}</strong> | {{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
             </md2-option>
           </md2-select>
               <button class="button-form" color="accent" md-button style="width:100%" type="submit"[disabled]="!formServicio.form.valid">Crear nuevo servicio</button>

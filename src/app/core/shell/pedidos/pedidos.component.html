@@ -45,7 +45,7 @@
         </thead>
 
         <tbody *ngIf="pedidos">
-         <tr *ngFor="let pedido of pedidos | filterBy: userFilter" (click)="getpedido(pedido.ID)" >
+         <tr *ngFor="let pedido of pedidos | filterBy: userFilter" (click)="getpedido(pedido.IDPEDIDO)" >
            <td>
               <div [ngSwitch]="pedido.PSTATUS">
                   <div *ngSwitchCase="'cotizando'"><span class="statuspedido Cot"

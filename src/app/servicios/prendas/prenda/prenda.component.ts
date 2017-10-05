@@ -19,16 +19,16 @@ export class PrendaComponent implements OnInit {
 
   ngOnInit() {
     this.prenda = {
-        IDPRENDAS:null,
-        PNOMBREUNIDAD:'',
-        PDESCRIPCION:'',
+        ID: null,
+        PNOMBREUNIDAD: '',
+        PDESCRIPCION: '',
     }
   }
 
   postPrenda(formPrenda, prendasdialog){
-    if(this.prenda.PDESCRIPCION == '' || this.prenda.PDESCRIPCION == null){
+    if (this.prenda.PDESCRIPCION == '' || this.prenda.PDESCRIPCION == null){
       this.prenda.PDESCRIPCION = 'En espera de descripción';
-    }else{
+    }else {
       this.prenda.PDESCRIPCION = this.prenda.PDESCRIPCION;
     }
     this._prendasService.postPrenda(this.prenda).subscribe(

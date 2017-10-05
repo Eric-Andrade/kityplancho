@@ -145,11 +145,11 @@
                                   tooltip-delay="0 * 1000"></span></div>
                               </div>
                             </td>
-                            <td><strong >{{pedido.IDPEDIDO}}</strong> </td>
-                            <td>{{pedido.FECHA}}</td>
+                            <td><strong >{{pedido.ID}}</strong> </td>
+                            <td>{{pedido.PFECHA}}</td>
                             <!--<td>{{pedido.FECHA | date: 'dd MMMM yyyy'}}</td>-->
-                            <td class="enfasis-td">{{pedido.PRECIO | currency:'USD':true}}</td>
-                            <td>{{pedido.PAGADO}}</td>
+                            <td class="enfasis-td">{{pedido.PPRECIOTOTAL | currency:'USD':true}}</td>
+                            <td>{{pedido.PPAGADO}}</td>
                          </tr>
                         </tbody>
                       </table>

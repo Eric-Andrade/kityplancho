@@ -1,5 +1,5 @@
 export interface Pedidos {
-  IDPEDIDO: number;
+  ID: number;
   CNOMBRE: string;
   CAPELLIDOS: string;
   PPRECIOTAL: number;

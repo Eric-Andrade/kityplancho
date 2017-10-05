@@ -70,11 +70,9 @@ this._mapaComponent.getubicacionrutero();
         if (!result) {
           this.suma = 0;
         }else {
-          this.suma = result;
+          this.suma = result.COUNT;
 
         }
-        console.log('Suma en cola');
-        console.log(this.suma);
       },
       error =>{
             this.errorMessage = <any>error;
@@ -91,9 +89,7 @@ this._mapaComponent.getubicacionrutero();
   getpedidossec(){
     this._pedidosService.getpedidossec().subscribe(
       result=>{
-        this.notify = result.GETPDPENCOLA;
-        console.log('Pedidos en cola');
-        console.log(this.notify);
+        this.notify = result;
       },
       error =>{
             this.errorMessage = <any>error;

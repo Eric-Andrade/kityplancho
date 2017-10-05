@@ -33,9 +33,9 @@ export class PrendadetalleComponent implements OnInit {
         const id = params['id'];
         this._prendasService.getPrenda(id).subscribe(
           response => {
-            this.prenda = response.PRENDA;
+            this.prenda = response;
             this.loading = false;
-            this.prenda = {     IDPRENDAS:this.prenda[0].IDPRENDAS,
+            this.prenda = {     ID:this.prenda[0].ID,
                                 PNOMBREUNIDAD:`${this.prenda[0].PNOMBREUNIDAD}`,
                                 PDESCRIPCION:`${this.prenda[0].PDESCRIPCION}`,
                               };
@@ -59,17 +59,18 @@ export class PrendadetalleComponent implements OnInit {
     }
 
   putPrenda(){
-       if(!this.prenda) return;
+       // tslint:disable-next-line:curly
+       if (!this.prenda) return;
 
                 this._prendasService.putPrenda(this.prenda).subscribe(
                 data => {
                      this.toastMe();
-                     //console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`)
+                     // console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`)
 
                 }, error => {
                     console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
                      this.errorMessage = <any>error;
-                      if(this.errorMessage != null){
+                      if (this.errorMessage != null) {
                       this.failinfoputCliente();
                   }
                 });

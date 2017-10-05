@@ -22,7 +22,7 @@ export class EmpleadosService {
     }
 
     getEmpleado(id:string) {
-        return this._http.get(this.url + 'empleados?id='+id)
+        return this._http.get(this.url + 'empleados?id=' + id)
           .map( res => res.json());
     }
 
@@ -49,7 +49,7 @@ export class EmpleadosService {
           body.set('ESUELDO',empleado.ESUELDO);
           body.set('ERFC',empleado.ERFC);
           body.set('EIMSS',empleado.EIMSS);
-          body.set('ETIPOCONTRATO',empleado.ETIPOCONTRATO);
+          body.set('ETIPOCONTRATO', empleado.ETIPOCONTRATO);
           body.set('IDSUCURSAL',empleado.IDSUCURSAL.toString());
         // body.set('IDEA',empleado.IDEA.toString());
         // body.set('EAINE',empleado.EAINE);
@@ -60,7 +60,7 @@ export class EmpleadosService {
       console.log('body de empleado');
       console.log(body);
       return this._http.post(this.url + 'postempleado', body, {headers : this.getHeaders()})
-      .map((response:Response)=>{
+      .map((response:Response) => {
         console.log('Employee saved');
         JSON.stringify(response);
       });
@@ -91,7 +91,7 @@ export class EmpleadosService {
             console.log(body);
 
            return this._http.post(this.url + 'updateempleado', body, {headers : this.getHeaders()})
-          .map((response:Response)=>{
+          .map((response:Response) => {
             console.log('Employee updated');
             JSON.stringify(response);
           });
@@ -99,10 +99,10 @@ export class EmpleadosService {
 
     private getHeaders() {
     let headers = new Headers();
-    headers.append('Content-Type','application/x-www-form-urlencoded');
-    headers.append('X-Requested-With','XMLHttpRequest');
-    headers.append('cache-control','no-cache');
-    headers.append('status','OK');
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('X-Requested-With', 'XMLHttpRequest');
+    headers.append('cache-control', 'no-cache');
+    headers.append('status', 'OK');
     return headers;
   }
 }

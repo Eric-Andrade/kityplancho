@@ -44,13 +44,11 @@ export class PedidosService {
 
     sumaencola() {
         return this._http.get(this.url + 'dedicados/getsumacola' )
-        .map((response: Response) => {
-            JSON.stringify(response);
-          });
+        .map(res => res.json());
     }
 
     getpedidossec() {
-        return this._http.get(this.url + 'getpdpencola')
+        return this._http.get(this.url + 'dedicados/getpdpencola')
             .map(res => res.json());
     }
 

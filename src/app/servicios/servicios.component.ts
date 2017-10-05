@@ -32,7 +32,7 @@ export class ServiciosComponent implements OnInit {
       this._serviciosService.getallsp().subscribe(
         result => {
             console.log(result);
-            this.servicios = result.SP;
+            this.servicios = result;
             if (!this.servicios) {
                 console.log('Error en el servidor...');
             }else{

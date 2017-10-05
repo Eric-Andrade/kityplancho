@@ -150,16 +150,16 @@ export class MapaComponent implements OnInit {
     setInterval(()=>{
     this.getcoordenasr();
     this.getcoordenase();
-    console.log('reejecutado coords de pedidos con exito');
+    // console.log('reejecutado coords de pedidos con exito');
     },30000)
 
     setInterval(()=>{
     this.getubicacionrutero();
-    console.log('reejecutado  coords de rutero con exito');
+    // console.log('reejecutado  coords de rutero con exito');
     },20000)
   }
   getcoordenasr(){
- 
+
      this._mapaService.getcoordenasr().subscribe(
         result => {
             this.cr = result;
@@ -234,24 +234,24 @@ getcoordenase() {
             }
         }
 
-      )
+      );
   }
 
 
-getubicacionrutero(){
+getubicacionrutero() {
       this._mapaService.getubicacionrutero().subscribe(
         result => {
-            this.rutero = result.RUTERO;
+            this.rutero = result;
             var cont = 0;
             for(let entry of this.rutero){
               var i = cont++;
-              if(this.rutero[i].EUBICACION != null){
-                this.coordr = this.rutero[i].EUBICACION.split(',',2);
+              if(this.rutero[i].EUBICACION != null) {
+                this.coordr = this.rutero[i].EUBICACION.split(',', 2);
 
               // console.log(' IDPEDIDO: ' + this.pedidos[i].IDPEDIDO + ' latitud: ' + this.coord[0] + ' longitud: ' + this.coord[1]);
               this.platr = parseFloat(this.coordr[0]);
               this.plngr = parseFloat(this.coordr[1]);
-              this.coordsr = [this.platr, this.plngr]
+              this.coordsr = [this.platr, this.plngr];
               this.rutero[i].LATR = this.platr;
               this.rutero[i].LNGR = this.plngr;
             }

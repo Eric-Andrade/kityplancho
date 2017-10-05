@@ -41,7 +41,7 @@ export interface DP {
 }
 
 export interface ISP {
-  IDSP: number;
+  ID: number;
   SPCOSTO: number;
   SPDESCUENTO: number;
 }

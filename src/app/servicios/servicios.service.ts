@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, URLSearchParams, ResponseContentType, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { IServicios, Servicios, SPone } from './servicios';
@@ -17,12 +17,12 @@ export class ServiciosService {
     }
 
     getservicios(){
-      return this._http.get(this.url + 'getservicios')
+      return this._http.get(this.url + 'servicios')
             .map(res => res.json());
     }
 
     getallsp() {
-        return this._http.get(this.url + 'getallsp')
+        return this._http.get(this.url + 'dedicados/getallsp')
             .map(res => res.json());
     }
 
@@ -36,17 +36,24 @@ export class ServiciosService {
           .map(res => res.json());
     }
 
-     postServicio(servicio: IServicios){
+     postServicio(servicio: IServicios) {
       let body = new URLSearchParams();
-      body.set('SERVNOMBRE',servicio.SERVNOMBRE);
-      body.set('SERVACTIVO',servicio.SERVACTIVO);
-      body.set('IDSUCURSAL',servicio.IDSUCURSAL.toString());
+      body.set('SERVNOMBRE', servicio.SERVNOMBRE);
+      body.set('SERVACTIVO', servicio.SERVACTIVO);
+      body.set('IDSUCURSAL', servicio.IDSUCURSAL.toString());
         console.log('Servicio body');
         console.log(body);
         console.log(servicio);
 
-      return this._http.post(this.url + 'postservicio', body, {headers : this.getHeaders()})
-      .map((response:Response)=>{
+        const options = new RequestOptions({
+          // method: 'PUT',
+          // headers: this.getHeaders(),
+          responseType: ResponseContentType.Json,
+          withCredentials: false
+        });
+
+      return this._http.post(this.url + `servicios?${body}`, JSON.stringify({body: body}), options)
+      .map((response: Response) => {
         JSON.stringify(response);
       });
     }
@@ -74,7 +81,7 @@ export class ServiciosService {
 
     putServicio(servicio: IServicios){
       let body = new URLSearchParams();
-          body.set('IDSERVICIO',servicio.IDSERVICIO.toString());
+          body.set('ID',servicio.ID.toString());
           body.set('SERVNOMBRE',servicio.SERVNOMBRE);
           body.set('SERVACTIVO',servicio.SERVACTIVO);
           body.set('IDSUCURSAL',servicio.IDSUCURSAL.toString());

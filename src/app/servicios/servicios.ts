@@ -1,5 +1,5 @@
 export interface Servicios {
-  IDSP: number;
+  ID: number;
   IDPRENDAS: number;
   IDSERVICIO: number;
   SERVNOMBRE: string;
@@ -9,7 +9,7 @@ export interface Servicios {
 }
 
 export interface IServicios {
-  IDSERVICIO: number;
+  ID: number;
   SERVNOMBRE: string;
   SERVACTIVO: string;
   IDSUCURSAL: number;
@@ -22,7 +22,7 @@ export interface IPrenda{
 }
 
 export interface IPrendas{
-  IDPRENDAS: number;
+  ID: number;
   PNOMBREUNIDAD: string;
   PDESCRIPCION?: string;
 }

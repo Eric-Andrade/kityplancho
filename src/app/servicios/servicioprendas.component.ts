@@ -22,7 +22,7 @@ export class ServicioprendasComponent implements OnInit {
     public sucursales: Sucursales[];
     public isRequired: boolean;
     public isDisabled: boolean;
-    public servicioprendas:SP;
+    public servicioprendas: SP;
     public spone: SPone;
     public autoTicks = true;
   public disabled = false;
@@ -46,11 +46,11 @@ export class ServicioprendasComponent implements OnInit {
 
   ngOnInit() {
     this.spone = {
-      IDPRENDAS:null,
-      IDSERVICIO:null,
-      IDSP:null,
-      SPCOSTO:null,
-      SPDESCUENTO:0,
+      IDPRENDAS: null,
+      IDSERVICIO: null,
+      IDSP: null,
+      SPCOSTO: null,
+      SPDESCUENTO: 0,
     }
     this.getprendas();
     this.getServicio();
@@ -59,11 +59,11 @@ export class ServicioprendasComponent implements OnInit {
     this._sucursalesService.getSucursales().subscribe(
         response => {
             console.log(response);
-            this.sucursales = response.SUCURSALES;
+            this.sucursales = response;
             if (!this.sucursales) {
                 console.log('Error en el servidor...');
             }else{
-                console.log('Sucursales cargadas correctamente');
+                // console.log('Sucursales cargadas correctamente');
             }
         },
         error => {
@@ -80,16 +80,16 @@ export class ServicioprendasComponent implements OnInit {
         const id = params['id'];
         this._serviciosService.getServicio(id).subscribe(
           response => {
-            this.servicio = response.SERVICIO;
+            this.servicio = response;
             console.log('get servicio');
             console.log(this.servicio);
             this.loading = false;
-            this.servicio = {   IDSERVICIO:this.servicio[0].IDSERVICIO,
-                                SERVNOMBRE:`${this.servicio[0].SERVNOMBRE}`,
-                                SERVACTIVO:`${this.servicio[0].SERVACTIVO}`,
-                                IDSUCURSAL:this.servicio[0].SUCURSAL,
+            this.servicio = {   ID: this.servicio[0].ID,
+                                SERVNOMBRE: `${this.servicio[0].SERVNOMBRE}`,
+                                SERVACTIVO: `${this.servicio[0].SERVACTIVO}`,
+                                IDSUCURSAL: this.servicio[0].SUCURSAL,
                               };
-                if(!this.servicio){
+                if (!this.servicio) {
                     this._router.navigate(['/servicios']);
                 }
           },
@@ -106,16 +106,17 @@ export class ServicioprendasComponent implements OnInit {
     }
 
   putServicio(){
-    if(!this.servicio) return;
+    // tslint:disable-next-line:curly
+    if (!this.servicio) return;
         this._serviciosService.putServicio(this.servicio).subscribe(
         data => {
               this.toastMe();
-              //console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`)
+              // console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`)
 
         }, error => {
             console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
               this.errorMessage = <any>error;
-              if(this.errorMessage != null){
+              if(this.errorMessage != null) {
               this.failinfoputCliente();
           }
         });
@@ -126,7 +127,7 @@ export class ServicioprendasComponent implements OnInit {
             let id = params['id'];
       this._serviciosService.getSP(id).subscribe(
         response =>{
-          this.servicioprendas = response.SERVICIOPRENDAS;
+          this.servicioprendas = response;
           this.loading = false;
           console.log('Este es SP');
           console.log(this.servicioprendas);
@@ -149,7 +150,7 @@ export class ServicioprendasComponent implements OnInit {
         response => {
           console.log('getprendas!!!!');
             console.log(response);
-            this.iprenda = response.PRENDAS;
+            this.iprenda = response;
             if (!this.iprenda) {
                 console.log('Error en el servidor...');
             }else{
@@ -167,7 +168,7 @@ export class ServicioprendasComponent implements OnInit {
 
    
    postSP(){
-     this.spone.IDSERVICIO = this.servicio.IDSERVICIO;
+     this.spone.IDSERVICIO = this.servicio.ID;
      console.log('Servicio!!!!');
             console.log(this.spone);
       this._serviciosService.postSP(this.spone).subscribe(

@@ -17,7 +17,7 @@ export class SucursalesComponent implements OnInit {
 
   constructor(private _sucursalesService: SucursalesService,
               private _route: ActivatedRoute,
-              private _router: Router,) {
+              private _router: Router, ) {
 
                 this.loading = true;
                 this.message = false;
@@ -27,7 +27,7 @@ export class SucursalesComponent implements OnInit {
 
     this._sucursalesService.getSucursales().subscribe(
         response => {
-            console.log(response);
+
             this.sucursales = response;
             if (!this.sucursales) {
                 console.log('Error en el servidor...');

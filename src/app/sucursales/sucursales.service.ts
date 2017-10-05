@@ -49,7 +49,7 @@ export class SucursalesService {
       body.set('ACTIVO',sucursal.ACTIVO);
 
       return this._http.post(this.url + 'postsucursales', body, {headers : this.getHeaders()})
-      .map((response:Response)=>{
+      .map((response:Response) => {
         JSON.stringify(response);
       });
     }

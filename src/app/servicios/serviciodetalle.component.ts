@@ -43,7 +43,7 @@ export class ServiciodetalleComponent implements OnInit {
       this.getSP();
       this._serviciosService.getservicios().subscribe(
         result => {
-            this.items = result.SERVICIOS;
+            this.items = result;
             if (!this.items) {
                 console.log('Error en el servidor...');
             }else{
@@ -60,7 +60,7 @@ export class ServiciodetalleComponent implements OnInit {
       this._prendasService.getPrendas().subscribe(
         response => {
             console.log(response);
-            this.iprenda = response.PRENDAS;
+            this.iprenda = response;
             if (!this.iprenda) {
                 console.log('Error en el servidor...');
             }else{
@@ -81,7 +81,7 @@ export class ServiciodetalleComponent implements OnInit {
         const id = params['id'];
         this._serviciosService.getoneSP(id).subscribe(
           response => {
-            this.servicio = response.SERVICIOPRENDA;
+            this.servicio = response;
             console.log('get servicio');
             console.log(this.servicio);
             this.loading = false;
@@ -109,7 +109,8 @@ export class ServiciodetalleComponent implements OnInit {
     }
 
     putServicio(){
-      if(!this.servicio) return;
+      // tslint:disable-next-line:curly
+      if (!this.servicio) return;
           this._serviciosService.putoneSP(this.servicio).subscribe(
           data => {
               console.log(this.servicio);

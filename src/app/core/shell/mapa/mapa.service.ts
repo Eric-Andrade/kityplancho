@@ -24,7 +24,7 @@ export class MapaService {
     }
 
   getubicacionrutero( ) {
-        return this._http.get(this.url + 'getubicacionrutero')
+        return this._http.get(this.url + 'empleados/getcoordsrutero')
           .map(res => res.json());
     }
 }
