@@ -64,7 +64,7 @@ export class ServicioComponent implements OnInit {
 
     this.servicio = {
       ID:null,
-      IDPRENDAS:null,
+      IDPRENDA:null,
       IDSERVICIO:null,
       SERVNOMBRE:'',
       PNOMBREUNIDAD:'',
@@ -157,7 +157,7 @@ export class ServicioComponent implements OnInit {
         response => {
           console.log('getprendas!!!!');
             console.log(response);
-            this.iprenda = response.PRENDAS;
+            this.iprenda = response;
             if (!this.iprenda) {
                 console.log('Error en el servidor...');
             }else{

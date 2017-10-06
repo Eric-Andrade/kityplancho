@@ -40,13 +40,13 @@ export class ClienteDetalleComponent implements OnInit {
           response => {
             this.cliente = response;
             this.loading = false;
-            this.cliente = {    ID:this.cliente[0].ID,
-                                CEMAIL:`${this.cliente[0].CEMAIL}`,
-                                CPASSWORD:`${this.cliente[0].CPASSWORD}`,
-                                CNOMBRE:`${this.cliente[0].CNOMBRE}`,
-                                CAPELLIDOS:`${this.cliente[0].CAPELLIDOS}`,
-                                CTELEFONO:`${this.cliente[0].CTELEFONO}`,
-                                ACTIVO: this.cliente[0].ACTIVO
+            this.cliente = {    ID:this.cliente.ID,
+                                CEMAIL:`${this.cliente.CEMAIL}`,
+                                CPASSWORD:`${this.cliente.CPASSWORD}`,
+                                CNOMBRE:`${this.cliente.CNOMBRE}`,
+                                CAPELLIDOS:`${this.cliente.CAPELLIDOS}`,
+                                CTELEFONO:`${this.cliente.CTELEFONO}`,
+                                ACTIVO: this.cliente.ACTIVO
                               };
 
               // if(this.cliente.ACTIVO === 1){

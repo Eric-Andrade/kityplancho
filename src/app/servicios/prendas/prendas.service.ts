@@ -22,7 +22,7 @@ getPrendas() {
             .map(res => res.json());
     }
 
- getPrenda(id: string) {
+ getPrenda(id: number) {
         return this._http.get(this.url + 'prendas?id='+id)
           .map(res => res.json());
  }

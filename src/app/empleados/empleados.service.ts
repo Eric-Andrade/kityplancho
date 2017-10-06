@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, URLSearchParams, RequestOptions, ResponseContentType } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { Empleados } from './empleados';
@@ -57,9 +57,11 @@ export class EmpleadosService {
         // body.set('EAACTANACIMIEN',empleado.EAACTANACIMIENTO);
         // body.set('EACOMPROBANTEDOM',empleado.EACOMPROBANTEDOM);
         // body.set('IDEMPLEADOEA',empleado.IDEMPLEADOEA.toString());
-      console.log('body de empleado');
-      console.log(body);
-      return this._http.post(this.url + 'postempleado', body, {headers : this.getHeaders()})
+      const options = new RequestOptions({
+          responseType: ResponseContentType.Json,
+          withCredentials: false
+        });
+      return this._http.post(this.url + `empleados?${body}`, JSON.stringify({body: body}), options)
       .map((response:Response) => {
         console.log('Employee saved');
         JSON.stringify(response);
@@ -68,7 +70,7 @@ export class EmpleadosService {
 
     putEmpleado(empleado: Empleados){
         let body = new URLSearchParams();
-            body.set('IDEMPLEADO',empleado.ID.toString());
+            body.set('ID',empleado.ID.toString());
             body.set('EEMAIL',empleado.EEMAIL);
             body.set('EPASSWORD',empleado.EPASSWORD);
             body.set('EPRIVILEGIO',empleado.EPRIVILEGIO);
@@ -87,10 +89,11 @@ export class EmpleadosService {
             body.set('EIMSS',empleado.EIMSS);
             body.set('ETIPOCONTRATO',empleado.ETIPOCONTRATO);
             body.set('IDSUCURSAL',empleado.IDSUCURSAL.toString());
-            console.log('Body empleado update');
-            console.log(body);
-
-           return this._http.post(this.url + 'updateempleado', body, {headers : this.getHeaders()})
+            const options = new RequestOptions({
+              responseType: ResponseContentType.Json,
+              withCredentials: false
+            });
+          return this._http.put(this.url + `empleados?${body}`, JSON.stringify({body: body}), options)
           .map((response:Response) => {
             console.log('Employee updated');
             JSON.stringify(response);

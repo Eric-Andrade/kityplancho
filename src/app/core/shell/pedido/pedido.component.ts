@@ -258,7 +258,7 @@ export class PedidoComponent implements OnInit {
      getClientes(){
       this._clientesService.getClientesActivos().subscribe(
             result =>{
-                this.clientes = result.CLIENTESACTIVOS;
+                this.clientes = result;
                 if(!this.clientes){
                     console.warn('Error en el servidor...');
                 }else{

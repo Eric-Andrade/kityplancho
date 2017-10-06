@@ -35,9 +35,9 @@ export class PrendadetalleComponent implements OnInit {
           response => {
             this.prenda = response;
             this.loading = false;
-            this.prenda = {     ID:this.prenda[0].ID,
-                                PNOMBREUNIDAD:`${this.prenda[0].PNOMBREUNIDAD}`,
-                                PDESCRIPCION:`${this.prenda[0].PDESCRIPCION}`,
+            this.prenda = {     ID:this.prenda.ID,
+                                PNOMBREUNIDAD:`${this.prenda.PNOMBREUNIDAD}`,
+                                PDESCRIPCION:`${this.prenda.PDESCRIPCION}`,
                               };
           if(this.prenda.PDESCRIPCION == null){
             this.prenda.PDESCRIPCION = ' ';
@@ -49,7 +49,7 @@ export class PrendadetalleComponent implements OnInit {
           error => {
                 this.errorMessage = <any>error;
                 if (this.errorMessage != null) {
-                    console.log(this.errorMessage);
+                    console.log('Whop!'+this.errorMessage);
                     this.message = true;
                     this.failinfogetPrenda();
                 }

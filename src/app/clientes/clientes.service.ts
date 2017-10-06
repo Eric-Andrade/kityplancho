@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, URLSearchParams, ResponseContentType, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Clientes } from './clientes';
 import { global } from '../global';
@@ -27,7 +27,12 @@ export class ClientesService {
         body.set('CAPELLIDOS', cliente.CAPELLIDOS);
         body.set('CTELEFONO', cliente.CTELEFONO);
 
-      return this._http.post(this.url + 'clientes', body, {headers : this.getHeaders()})
+         const options = new RequestOptions({
+            responseType: ResponseContentType.Json,
+            withCredentials: false
+          });
+
+      return this._http.post(this.url + `clientes?${body}`, JSON.stringify({body: body}), options)
       .map((response:Response)=>{
         JSON.stringify(response);
       });
@@ -43,14 +48,19 @@ export class ClientesService {
         body.set('CTELEFONO', cliente.CTELEFONO);
         body.set('ACTIVO', cliente.ACTIVO.toString());
 
-       return this._http.post(this.url + 'updatecliente', body, {headers : this.getHeaders()})
+         const options = new RequestOptions({
+            responseType: ResponseContentType.Json,
+            withCredentials: false
+          });
+
+      return this._http.put(this.url + `clientes?${body}`, JSON.stringify({body: body}), options)
       .map((response:Response)=>{
         JSON.stringify(response);
       });
     }
 
     getClientesActivos() {
-        return this._http.get(this.url + 'getclientesactivos')
+        return this._http.get(this.url + 'clientes/getallactivos')
           .map(res => res.json());
     }
 // * MVC

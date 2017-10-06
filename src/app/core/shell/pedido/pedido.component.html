@@ -27,7 +27,7 @@
 
                     </md2-select-header>
                 <!--<button md-button class="kp-text kp-aselect" color="accent" (click)="nuevoclientes()">Registrar nuevo cliente<md-icon >keyboard_arrow_right</md-icon></button>-->
-                    <md2-option *ngFor="let c of clientes | dataPipe : _search" [value]="c.IDCLIENTE"><strong>{{c.IDCLIENTE}}</strong> | <span class="kp-text">{{c.CNOMBRE}} {{c.CAPELLIDOS}} </span>
+                    <md2-option *ngFor="let c of clientes | dataPipe : _search" [value]="c.ID"><span class="kp-text">{{c.CNOMBRE}} {{c.CAPELLIDOS}} </span>
                     </md2-option>
                     </md2-select>
 

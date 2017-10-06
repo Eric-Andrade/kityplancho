@@ -1,6 +1,6 @@
 export interface Servicios {
   ID: number;
-  IDPRENDAS: number;
+  IDPRENDA: number;
   IDSERVICIO: number;
   SERVNOMBRE: string;
   PNOMBREUNIDAD: string;
