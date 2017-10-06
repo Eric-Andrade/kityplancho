@@ -33,14 +33,14 @@ export class ClientesService {
           });
 
       return this._http.post(this.url + `clientes?${body}`, JSON.stringify({body: body}), options)
-      .map((response:Response)=>{
+      .map((response:Response) => {
         JSON.stringify(response);
       });
     }
 
-    putCliente(cliente: Clientes){
+    putCliente(cliente: Clientes): Observable<any> {
     let body = new URLSearchParams();
-        body.set('IDCLIENTE', cliente.ID.toString());
+        body.set('ID', cliente.ID.toString());
         body.set('CEMAIL', cliente.CEMAIL);
         body.set('CPASSWORD', cliente.CPASSWORD);
         body.set('CNOMBRE', cliente.CNOMBRE);
@@ -54,9 +54,11 @@ export class ClientesService {
           });
 
       return this._http.put(this.url + `clientes?${body}`, JSON.stringify({body: body}), options)
-      .map((response:Response)=>{
+      .map((response: Response) => {
         JSON.stringify(response);
-      });
+        console.log('response   ' + response);
+      })
+      .catch(this.handleError);
     }
 
     getClientesActivos() {
@@ -101,6 +103,11 @@ export class ClientesService {
     //         erroMessage = `${error.status} - ${error.statusText || ''} ${err}`;
     //     }
     // }
+
+    public handleError(error: Response) {
+        console.error('Error :v ' + error);
+        return Observable.throw(error.json().error || 'Server error');
+      }
 
 
 }

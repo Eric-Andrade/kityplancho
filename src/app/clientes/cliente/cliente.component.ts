@@ -73,17 +73,17 @@ ngOnInit( ) {
                   this.toastMe();
               }
           }
-    )
-   },800)
+    );
+   }, 800 );
   }
 
-  public postCliente(clientedialog){
+  public postCliente(clientedialog) {
 
     this._clientesService.postCliente(this.cliente).subscribe(
           data => {
             this.getlastcliente();
             this.toastMe();
-            setTimeout(()=>{
+            setTimeout(() => {
                  let idcliente = this.lastcliente;
                      this._router.navigate(['clientes',idcliente]);
                      console.log('enviar al cliente desde el post');
@@ -93,7 +93,7 @@ ngOnInit( ) {
           }, error => {
               console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);
                this.errorMessage = <any>error;
-                if(this.errorMessage != null){
+                if (this.errorMessage != null) {
                 this.failpostCliente();
             }
           });

@@ -16,126 +16,126 @@ import { Clientes } from '../../../clientes/clientes';
   providers: [ PedidosService, ClientesService, ServiciosService, PedidoService ]
 })
 export class PedidodetalleComponent implements OnInit {
-  suma: any;
-   /*Map*/
-        public customStyle = [
-            {
-                'featureType': 'all',
-                'elementType': 'all',
-                'stylers': [
+        suma: any;
+        /*Map*/
+                public customStyle = [
                     {
-                        'saturation': '-30'
-                    }
-                ]
-            },
-            {
-                'featureType': 'all',
-                'elementType': this.newFunction(),
-                'stylers': [
-                    {
-                        'visibility': 'simplified'
+                        'featureType': 'all',
+                        'elementType': 'all',
+                        'stylers': [
+                            {
+                                'saturation': '-30'
+                            }
+                        ]
                     },
                     {
-                        'hue': '#ff004d'
+                        'featureType': 'all',
+                        'elementType': this.newFunction(),
+                        'stylers': [
+                            {
+                                'visibility': 'simplified'
+                            },
+                            {
+                                'hue': '#ff004d'
+                            },
+                            {
+                                'saturation': '73'
+                            }
+                        ]
                     },
                     {
-                        'saturation': '73'
-                    }
-                ]
-            },
-            {
-                'featureType': 'administrative',
-                'elementType': 'all',
-                'stylers': [
+                        'featureType': 'administrative',
+                        'elementType': 'all',
+                        'stylers': [
+                            {
+                                'visibility': 'simplified'
+                            }
+                        ]
+                    },
                     {
-                        'visibility': 'simplified'
-                    }
-                ]
-            },
-            {
-                'featureType': 'poi',
-                'elementType': 'all',
-                'stylers': [
+                        'featureType': 'poi',
+                        'elementType': 'all',
+                        'stylers': [
+                            {
+                                'visibility': 'off'
+                            }
+                        ]
+                    },
                     {
-                        'visibility': 'off'
-                    }
-                ]
-            },
-            {
-                'featureType': 'road',
-                'elementType': 'labels.icon',
-                'stylers': [
+                        'featureType': 'road',
+                        'elementType': 'labels.icon',
+                        'stylers': [
+                            {
+                                'visibility': 'off'
+                            }
+                        ]
+                    },
                     {
-                        'visibility': 'off'
-                    }
-                ]
-            },
-            {
-                'featureType': 'transit.station',
-                'elementType': 'labels.icon',
-                'stylers': [
+                        'featureType': 'transit.station',
+                        'elementType': 'labels.icon',
+                        'stylers': [
+                            {
+                                'visibility': 'off'
+                            }
+                        ]
+                    },
                     {
-                        'visibility': 'off'
+                        'featureType': 'water',
+                        'elementType': 'all',
+                        'stylers': [
+                            {
+                                'visibility': 'off'
+                            }
+                        ]
                     }
-                ]
-            },
-            {
-                'featureType': 'water',
-                'elementType': 'all',
-                'stylers': [
-                    {
-                        'visibility': 'off'
-                    }
-                ]
-            }
-        ];
-        /*Start position */
+                ];
+                /*Start position */
 
-  public pedido: IPedido;
-  public detallepedidos: IDetallePedidos[];
-  public detallepedido: IDetallePedido;
-  public dp: DP;
-  public clientes: Clientes[];
-  public items: Servicios;
-  public errorMessage;
-  public message: boolean;
-  public loading: boolean;
-  public color = 'accent';
-  public checked;
-  public isRequired: boolean;
-  public isDisabled: boolean;
-  public _search = '';
-  public autoTicks = true;
-  public disabled = false;
-  public invert = false;
-  public max = 50;
-  public min = 1;
-  public showTicks = true;
-  public step = 1;
-  public thumbLabel = true;
-  public value = 0;
-  public vertical = false;
-  public sp: ISP;
-  public lat: number;
-  public lng: number;
-  public zoom = 14;
-  public kityplancho: string;
-  public draggable = true;
-  public coord: Array<any>;
-  public coords: Array<any>;
-  public plat: any;
-  public plng: any;
-  public coorde: Array<any>;
-  public coordse: Array<any>;
-  public plate: any;
-  public plnge: any;
-  public statusservicio: Array<any>;
-  public inputdisabled: boolean;
-  public opacityr = 1;
-  public opacitye = 1;
-  public pedidocoord: string;
-  public pedidocoorde: string;
-  public direccion: string;
+        public pedido: IPedido;
+        public detallepedidos: IDetallePedidos[];
+        public detallepedido: IDetallePedido;
+        public dp: DP;
+        public clientes: Clientes[];
+        public items: Servicios;
+        public errorMessage;
+        public message: boolean;
+        public loading: boolean;
+        public color = 'accent';
+        public checked;
+        public isRequired: boolean;
+        public isDisabled: boolean;
+        public _search = '';
+        public autoTicks = true;
+        public disabled = false;
+        public invert = false;
+        public max = 50;
+        public min = 1;
+        public showTicks = true;
+        public step = 1;
+        public thumbLabel = true;
+        public value = 0;
+        public vertical = false;
+        public sp: ISP;
+        public lat: number;
+        public lng: number;
+        public zoom = 14;
+        public kityplancho: string;
+        public draggable = true;
+        public coord: Array<any>;
+        public coords: Array<any>;
+        public plat: any;
+        public plng: any;
+        public coorde: Array<any>;
+        public coordse: Array<any>;
+        public plate: any;
+        public plnge: any;
+        public statusservicio: Array<any>;
+        public inputdisabled: boolean;
+        public opacityr = 1;
+        public opacitye = 1;
+        public pedidocoord: string;
+        public pedidocoorde: string;
+        public direccion: string;
 
   constructor(private _pedidosService: PedidosService,
               private _serviciosService: ServiciosService,
@@ -182,39 +182,39 @@ export class PedidodetalleComponent implements OnInit {
         const id = params['id'];
         this._pedidosService.getPedido(id).subscribe(
           response => {
-            this.pedido = response.PEDIDO;
+            this.pedido = response;
              console.log('Pedido b');
             console.log(this.pedido);
             this.loading = false;
             this.pedido = {
-                  IDPEDIDO: this.pedido[0].IDPEDIDO,
-                  PPRECIOTOTAL: this.pedido[0].PPRECIOTOTAL,
-                  PSTATUS: `${this.pedido[0].PSTATUS}`,
-                  PPAGADO: `${this.pedido[0].PPAGADO}`,
-                  PFORMA: `${this.pedido[0].PFORMA}`,
-                  PFECHA: `${this.pedido[0].PFECHA}`,
-                  PDIRECCIONR: `${this.pedido[0].PDIRECCION_R}`,
-                  COORDENADASR: this.pedido[0].COORDENADAS_R,
-                  PDIRECCIONE: `${this.pedido[0].PDIRECCION_E}`,
-                  COORDENADASE: this.pedido[0].COORDENADAS_E,
-                  IDCLIENTE: this.pedido[0].IDCLIENTE,
+                  ID: this.pedido.ID,
+                  PPRECIOTOTAL: this.pedido.PPRECIOTOTAL,
+                  PSTATUS: `${this.pedido.PSTATUS}`,
+                  PPAGADO: `${this.pedido.PPAGADO}`,
+                  PFORMA: `${this.pedido.PFORMA}`,
+                  PFECHA: `${this.pedido.PFECHA}`,
+                  PDIRECCION_R: `${this.pedido.PDIRECCION_R}`,
+                  PCOORDENADAS_R: this.pedido.PCOORDENADAS_R,
+                  PDIRECCION_E: `${this.pedido.PDIRECCION_E}`,
+                  PCOORDENADAS_E: this.pedido.PCOORDENADAS_E,
+                  IDCLIENTE: this.pedido.IDCLIENTE,
                       };
 
-              this.coord = this.pedido.COORDENADASR.split(',', 2);
+              this.coord = this.pedido.PCOORDENADAS_R.split(',', 2);
               this.plat = parseFloat(this.coord[0]);
               this.plng = parseFloat(this.coord[1]);
               this.coords = [this.plat, this.plng];
               this.pedido.LAT = this.plat;
               this.pedido.LNG = this.plng;
-              console.log('IDPEDIDO: ' + this.pedido.IDPEDIDO + ' ' + this.coords  + ' ' + this.pedido.PSTATUS);
-              this.coorde = this.pedido.COORDENADASE.split(',', 2);
+              console.log('IDPEDIDO: ' + this.pedido.ID + ' ' + this.coords  + ' ' + this.pedido.PSTATUS);
+              this.coorde = this.pedido.PCOORDENADAS_E.split(',', 2);
               this.plate = parseFloat(this.coorde[0]);
               this.plnge = parseFloat(this.coorde[1]);
               this.coordse = [this.plate, this.plnge];
               this.pedido.LATE = this.plate;
               this.pedido.LNGE = this.plnge;
 
-   this.getSumaP(this.pedido.IDPEDIDO);
+   this.getSumaP(this.pedido.ID);
     this.suma = this.pedido.PPRECIOTOTAL;
     console.log('ngOInit suma');
     console.log(this.suma);
@@ -222,7 +222,7 @@ export class PedidodetalleComponent implements OnInit {
             //   this.inputdisabled = true;
             //   this.draggable = false;
             // }
-            if (this.pedido.COORDENADASR === this.pedido.COORDENADASE) {
+            if (this.pedido.PCOORDENADAS_R === this.pedido.PCOORDENADAS_E) {
                 this.direccion = 'Dirección de recolección y entrega';
             }else {
               this.direccion = 'Dirección a recoger pedido';
@@ -251,7 +251,7 @@ export class PedidodetalleComponent implements OnInit {
         const id = params['id'];
         this._pedidosService.getDetallePedidos(id).subscribe(
           response => {
-            this.detallepedidos = response.DPS;
+            this.detallepedidos = response;
             this.loading = false;
                 if (!this.detallepedidos) {
                     this._router.navigate(['/pedidos']);
@@ -271,7 +271,7 @@ export class PedidodetalleComponent implements OnInit {
   getClientes() {
         this._clientesService.getClientes().subscribe(
               result => {
-                  this.clientes = result.CLIENTES;
+                  this.clientes = result;
                   if (!this.clientes) {
                       console.warn('Error en el servidor...');
                   }else {
@@ -317,7 +317,7 @@ export class PedidodetalleComponent implements OnInit {
     getdp(id) {
        this._pedidosService.getDetallePedido(id).subscribe(
           response => {
-              this.detallepedido = response.DP;
+              this.detallepedido = response;
               console.log('Datalles pedido');
               console.log(this.detallepedido);
             this.detallepedido = {
@@ -354,13 +354,13 @@ export class PedidodetalleComponent implements OnInit {
     this.pedidocoord = `${marcador.LAT},${marcador.LNG}`;
     console.log('dragEndMarcador');
     console.log(this.pedidocoord, evento);
-    this.pedido.COORDENADASR = this.pedidocoord;
+    this.pedido.PCOORDENADAS_R = this.pedidocoord;
 
-    if (this.pedido.COORDENADASR === this.pedido.COORDENADASE) {
+    if (this.pedido.PCOORDENADAS_R === this.pedido.PCOORDENADAS_E) {
           this.pedidocoorde = `${marcador.LAT},${marcador.LNG}`;
           console.log('dragEndMarcadorE');
           console.log(this.pedidocoorde, evento);
-          this.pedido.COORDENADASE = this.pedidocoorde;
+          this.pedido.PCOORDENADAS_E = this.pedidocoorde;
     }
     // tslint:disable-next-line:one-line
     else {
@@ -370,18 +370,18 @@ export class PedidodetalleComponent implements OnInit {
 
   public dragEndMarcadore(marcador: IPedido, evento) {
 
-    if (this.pedido.COORDENADASR === this.pedido.COORDENADASE) {
+    if (this.pedido.PCOORDENADAS_R === this.pedido.PCOORDENADAS_E) {
       this.pedidocoorde = `${marcador.LAT},${marcador.LNG}`;
       console.log('dragEndMarcadorE');
       console.log(this.pedidocoorde, evento);
-      this.pedido.COORDENADASE = this.pedidocoorde;
+      this.pedido.PCOORDENADAS_E = this.pedidocoorde;
     }else {
       marcador.LATE = evento.coords.lat;
       marcador.LNGE = evento.coords.lng;
       this.pedidocoorde = `${marcador.LATE},${marcador.LNGE}`;
       console.log('dragEndMarcadore');
       console.log(this.pedidocoorde, evento);
-      this.pedido.COORDENADASE = this.pedidocoorde;
+      this.pedido.PCOORDENADAS_E = this.pedidocoorde;
     }
   }
 
@@ -389,7 +389,7 @@ export class PedidodetalleComponent implements OnInit {
         setTimeout(() => {
                 this._pedidoService.getSumaP(id).subscribe(
                   data => {
-                    const CARRITOSUMA = data.CARRITOSUMA[0];
+                    const CARRITOSUMA = data;
                     this.suma = data.CARRITOSUMA[0].SUMA;
                     console.log('CARRITOSUMA');
                     console.log(this.suma);
@@ -478,7 +478,7 @@ export class PedidodetalleComponent implements OnInit {
   this._pedidosService.deletecarrito(id).subscribe(
           data => {
             this.getDetallePedido();
-            this.getSumaP(this.pedido.IDPEDIDO);
+            this.getSumaP(this.pedido.ID);
             this.suma = this.suma;
                 this.postdeletedetalle();
           },
@@ -494,7 +494,7 @@ export class PedidodetalleComponent implements OnInit {
 
   postServicio() {
         this.dp.DPCOSTO = this.items[this.dp.DPIDSP - 1].SPCOSTO * this.dp.DPCANTIDAD;
-        this.dp.DPIDPEDIDO = this.pedido.IDPEDIDO;
+        this.dp.DPIDPEDIDO = this.pedido.ID;
         console.log('Post servicio');
         console.log(this.dp);
         this._pedidoService.postDP(this.dp).subscribe(
@@ -546,7 +546,7 @@ export class PedidodetalleComponent implements OnInit {
   private _tickInterval = 5;
 
    toastMe() {
-      this.toast.toast(`Datos del pedido ${this.pedido.IDPEDIDO} se actualizaron exitosamente`);
+      this.toast.toast(`Datos del pedido ${this.pedido.ID} se actualizaron exitosamente`);
     }
 
     failinfogetCliente() {
@@ -554,19 +554,19 @@ export class PedidodetalleComponent implements OnInit {
     }
 
     failinfoputPedido() {
-      this.toast.toast(`Ocurrió un error al intentar actualizar los datos del pedido ${this.pedido.IDPEDIDO}`);
+      this.toast.toast(`Ocurrió un error al intentar actualizar los datos del pedido ${this.pedido.ID}`);
     }
 
     failinfoputDetallePedido() {
-      this.toast.toast(`Ocurrió un error al intentar actualizar los servicios del pedido ${this.pedido.IDPEDIDO}`);
+      this.toast.toast(`Ocurrió un error al intentar actualizar los servicios del pedido ${this.pedido.ID}`);
     }
 
     faildeletedetalle() {
-      this.toast.toast(`Ocurrió un error al intentar eliminar los servicios del pedido ${this.pedido.IDPEDIDO}`);
+      this.toast.toast(`Ocurrió un error al intentar eliminar los servicios del pedido ${this.pedido.ID}`);
     }
 
     postdeletedetalle() {
-      this.toast.toast(`Servicio del pedido ${this.pedido.IDPEDIDO} eliminado exitosamente`);
+      this.toast.toast(`Servicio del pedido ${this.pedido.ID} eliminado exitosamente`);
     }
 
     private newFunction() {

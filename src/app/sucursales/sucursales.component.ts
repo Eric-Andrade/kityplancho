@@ -27,7 +27,6 @@ export class SucursalesComponent implements OnInit {
 
     this._sucursalesService.getSucursales().subscribe(
         response => {
-
             this.sucursales = response;
             if (!this.sucursales) {
                 console.log('Error en el servidor...');

@@ -75,8 +75,8 @@ private getHeaders() {
         return headers;
       }
 
-      public handleError(error: Response) {
-        console.error('Error :v ' + error);
-        return Observable.throw(error.json().error || 'Server error');
-      }
+public handleError(error: Response) {
+    console.error('Error :v ' + error);
+    return Observable.throw(error.json().error || 'Server error');
+  }
 }

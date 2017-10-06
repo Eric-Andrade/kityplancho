@@ -62,22 +62,22 @@ export class EmpleadoComponent implements OnInit {
    ngOnInit( ) {
      this.getSucursales();
     this.empleado = { ID:0,
-                      EEMAIL:'',
-                      EPASSWORD:'',
+                      EEMAIL:'nuevoempleado@gmail.com',
+                      EPASSWORD:'password',
                       EPRIVILEGIO:'rutero',
-                      ENOMBRE:'',
-                      EAPELLIDOS:'',
-                      ETELEFONO:'',
-                      EDIRECCION:'',
-                      EREFERENCIAFAM1:'',
-                      EREFERENCIAFAM2:'',
-                      EREFERENCIA1:'',
-                      EREFERENCIA2:'',
-                      EFECHACONTRATO:'',
-                      EUBICACION:' ',
-                      ESUELDO:'',
-                      ERFC:'',
-                      EIMSS:'',
+                      ENOMBRE:'nuevo',
+                      EAPELLIDOS:'empleado',
+                      ETELEFONO:'1234567890',
+                      EDIRECCION:'nuevadirecciondel empleado',
+                      EREFERENCIAFAM1:'referencia familiar del empleado1',
+                      EREFERENCIAFAM2:'referencia familiar del empleado2',
+                      EREFERENCIA1:'referencia laboral del empleado',
+                      EREFERENCIA2:'referencia laboral del empleado2',
+                      EFECHACONTRATO:'2017-07-20',
+                      EUBICACION:'24.025112476834142,-104.66076859577711',
+                      ESUELDO:'999.00',
+                      ERFC:'PEAF920427971',
+                      EIMSS:'31099207941',
                       ETIPOCONTRATO: 'raya',
                       IDSUCURSAL:1,
                       // TOAE920427HDGRNR07
@@ -85,19 +85,19 @@ export class EmpleadoComponent implements OnInit {
 
     this.empleadoad = {
         IDEA: 0,
-        EAINE:'',
-        EACURP:'',
-        EAACTANACIMIENTO:'',
-        EACOMPROBANTEDOM:'',
+        EAINE: '',
+        EACURP: '',
+        EAACTANACIMIENTO: '',
+        EACOMPROBANTEDOM: '',
         IDEMPLEADO: null
     }
   }
 
-   getlastempleado(){
-   setTimeout(()=>{
+   getlastempleado() {
+   setTimeout(() => {
       this._empleadosService.getLastEmpleado().subscribe(
-        result =>{
-              this.lastempleado = result.ULTIMOEMPLEADO[0].ID;
+        result => {
+              this.lastempleado = result.ID;
               console.log('último empleado');
               console.log(this.lastempleado);
               if(!this.lastempleado){
@@ -119,7 +119,7 @@ export class EmpleadoComponent implements OnInit {
   }
 
   public next(){
-      this.tab1disabled = true
+      this.tab1disabled = true;
       this.tab2disabled = false;
       this.selectedIndex = 1;
   }
@@ -129,7 +129,7 @@ export class EmpleadoComponent implements OnInit {
     this._empleadosService.postEmpleado(this.empleado).subscribe(
           data => {
             this.getlastempleado();
-               this.tab1disabled = true
+               this.tab1disabled = true;
                this.tab2disabled = false;
                this.selectedIndex = 1;
 
@@ -171,12 +171,10 @@ export class EmpleadoComponent implements OnInit {
     public getSucursales(){
       this._sucursalesService.getSucursales().subscribe(
         response => {
-            console.log(response);
             this.sucursales = response;
             if (!this.sucursales) {
                 console.log('Error en el servidor...');
-            }else{
-                console.log('Sucursales cargadas correctamente');
+            }else {
             }
         },
         error => {

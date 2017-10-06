@@ -31,7 +31,6 @@ export class ServiciosComponent implements OnInit {
   ngOnInit() {
       this._serviciosService.getallsp().subscribe(
         result => {
-            console.log(result);
             this.servicios = result;
             if (!this.servicios) {
                 console.log('Error en el servidor...');

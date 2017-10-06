@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, URLSearchParams, RequestOptions, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { IPedido, IDetallePedidos, DP } from './pedido';
 import { global } from '../../../global';
@@ -20,20 +20,26 @@ export class PedidoService {
 
     postPedido(pedido: IPedido){
        let body = new URLSearchParams();
-            body.set('PSTATUS',pedido.PSTATUS);
-            body.set('PDIRECCIONR',pedido.PDIRECCIONR);
-            body.set('PDIRECCIONE',pedido.PDIRECCIONE);
-            body.set('PPRECIOTOTAL',pedido.PPRECIOTOTAL.toString());
-            body.set('PPAGADO',pedido.PPAGADO);
-            body.set('PFORMA', pedido.PFORMA);
-            body.set('COORDENADASR',pedido.COORDENADASR);
-            body.set('COORDENADASE',pedido.COORDENADASE);
+            // body.set('PSTATUS',pedido.PSTATUS);
+            body.set('DIRECCION_R',pedido.PDIRECCION_R);
+            body.set('DIRECCION_E',pedido.PDIRECCION_E);
+            body.set('PRECIO',pedido.PPRECIOTOTAL.toString());
+            body.set('PAGADO',pedido.PPAGADO);
+            body.set('FORMA', pedido.PFORMA);
+            body.set('COORDENADASR',pedido.PCOORDENADAS_R);
+            body.set('COORDENADASE',pedido.PCOORDENADAS_E);
             body.set('IDCLIENTE',pedido.IDCLIENTE.toString());
-            console.log('El pedido');
-            console.log(pedido);
 
-            return this._http.post(this.url + 'postpedido', body, {headers : this.getHeaders()})
-                  .map((response:Response)=>{
+            const options = new RequestOptions({
+              responseType: ResponseContentType.Json,
+              withCredentials: false
+            });
+  
+          // console.log('Options: ' + JSON.stringify(options));
+          // console.log('Prenda body   ' + body);
+  
+        return this._http.post(this.url + `pedidos?${body}`, JSON.stringify({body: body}), options)
+                  .map((response: Response) => {
                     JSON.stringify(response);
                   });
             // return console.log('Whop')
@@ -76,7 +82,7 @@ export class PedidoService {
           body.set('IDPEDIDO',id.toString());
           console.log('Datos service');
           console.log(body);
-          return this._http.post(this.url + 'getSumaP', body, {headers : this.getHeaders()})
+          return this._http.post(this.url + `carrito?idpedido=${id}&idcliente=1`, body, {headers : this.getHeaders()})
                 .map(res => res.json());
     }
 

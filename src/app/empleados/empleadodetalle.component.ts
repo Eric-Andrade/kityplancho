@@ -98,8 +98,7 @@ getEmpleado() {
 putEmpleado(){
         if(!this.empleado) return;
           this._empleadosService.putEmpleado(this.empleado).subscribe(
-          data => {
-              console.log(this.empleado);
+          data => {;
                this.toastMe();
                this._router.navigate(['/empleados', this.empleado.ID]);
 
@@ -115,7 +114,6 @@ putEmpleado(){
   public getSucursales(){
       this._sucursalesService.getSucursales().subscribe(
         response => {
-            console.log(response);
             this.sucursales = response;
             if (!this.sucursales) {
                 console.log('Error en el servidor...');

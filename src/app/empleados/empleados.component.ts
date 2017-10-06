@@ -28,7 +28,6 @@ export class EmpleadosComponent implements OnInit {
   ngOnInit() {
       this._empleadoService.getEmpleados().subscribe(
         response => {
-            console.log(response);
             this.empleados = response;
             if (!this.empleados) {
                 console.log('Error en el servidor...');

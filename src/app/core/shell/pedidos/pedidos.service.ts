@@ -28,12 +28,12 @@ export class PedidosService {
     }
 
     getPedido(id: string) {
-        return this._http.get(this.url + 'getpedido?id='+id)
+        return this._http.get(this.url + 'pedidos/getpedido?id='+id)
           .map(res => res.json());
     }
 
     getDetallePedidos(id: string) {
-        return this._http.get(this.url + 'getdetallepedidos?id='+id)
+        return this._http.get(this.url + 'detallespedidos/getone?id='+id)
           .map(res => res.json());
     }
 
@@ -54,15 +54,15 @@ export class PedidosService {
 
     putPedido(pedido: IPedido){
     let body = new URLSearchParams();
-        body.set('IDPEDIDO', pedido.IDPEDIDO.toString());
+        body.set('IDPEDIDO', pedido.ID.toString());
         body.set('PPRECIOTOTAL', pedido.PPRECIOTOTAL.toString());
         body.set('PSTATUS', pedido.PSTATUS);
         body.set('PPAGADO', pedido.PPAGADO);
         body.set('PFORMA', pedido.PFORMA);
-        body.set('PDIRECCIONR', pedido.PDIRECCIONR);
-        body.set('COORDENADASR', pedido.COORDENADASR);
-        body.set('PDIRECCIONE', pedido.PDIRECCIONE);
-        body.set('COORDENADASE', pedido.COORDENADASE);
+        body.set('PDIRECCIONR', pedido.PDIRECCION_R);
+        body.set('COORDENADASR', pedido.PCOORDENADAS_R);
+        body.set('PDIRECCIONE', pedido.PDIRECCION_E);
+        body.set('COORDENADASE', pedido.PCOORDENADAS_E);
         body.set('IDCLIENTE', pedido.IDCLIENTE.toString());
             console.log('Datos service');
             console.log(body);

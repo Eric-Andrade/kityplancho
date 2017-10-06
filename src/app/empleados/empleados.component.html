@@ -44,7 +44,7 @@
                             <md-card-title
                               tooltip="{{empleado.ENOMBRE}} {{empleado.EAPELLIDOS}} | email: {{empleado.EEMAIL}}"
                               tooltip-position="above"
-                              tooltip-delay="0 * 1000"><strong>{{empleado.IDEMPLEADO}} | {{empleado.ENOMBRE | truncate: 10}} </strong> <p>{{empleado.EAPELLIDOS | truncate: 10}}</p></md-card-title>
+                              tooltip-delay="0 * 1000"><strong>{{empleado.ID}} | {{empleado.ENOMBRE | truncate: 10}} </strong> <p>{{empleado.EAPELLIDOS | truncate: 10}}</p></md-card-title>
                             <md-card-subtitle>
                               <md-chip-list>
                                   <md-chip color="accent" selected="true">{{empleado.EPRIVILEGIO}}</md-chip>
@@ -115,7 +115,7 @@
                               tooltip-delay="0 * 1000"></span>
                             </ng-template>
                             </td>
-                            <td><strong>{{empleado.IDEMPLEADO}}</strong></td>
+                            <td><strong>{{empleado.ID}}</strong></td>
                             <td>{{empleado.ENOMBRE}} {{empleado.EAPELLIDOS}}</td>
                             <td class="enfasis-td">{{empleado.EEMAIL | lowercase}}</td>
                             <td>{{empleado.EPASSWORD}}</td>

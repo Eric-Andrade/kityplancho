@@ -32,14 +32,12 @@ export class ClientesComponent implements OnInit {
     this.getclientes();
      setInterval(()=>{
             this.getclientes();
-            console.log('reejecutado clientes con exito');
         },60000) 
   }
 // * MVC
     getclientes(){
     this._clienteService.getClientes().subscribe(
           result =>{
-              console.log(result);
               this.clientes = result;
               if(!this.clientes){
                   console.log('Error en el servidor...');

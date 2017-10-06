@@ -27,7 +27,7 @@ export class EmpleadosService {
     }
 
     getLastEmpleado() {
-        return this._http.get(this.url + 'getlastempleado')
+        return this._http.get(this.url + 'empleados/getlastempleado')
           .map(res => res.json());
     }
 

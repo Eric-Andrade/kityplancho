@@ -180,16 +180,16 @@ export class PedidoComponent implements OnInit {
   ngOnInit() {
 
   this.pedido = {
-      IDPEDIDO:null,
+      ID:null,
       PPRECIOTOTAL:0,
       PSTATUS:'en_camino',
       PPAGADO:'contraentrega',
       PFORMA:'efectivo',
       PFECHA:'',
-      PDIRECCIONR:'',
-      COORDENADASR:'24.02780775285771,-104.65332895517349',
-      PDIRECCIONE:'',
-      COORDENADASE:'24.02780775285771,-104.65332895517349',
+      PDIRECCION_R:'',
+      PCOORDENADAS_R:'24.02780775285771,-104.65332895517349',
+      PDIRECCION_E:'',
+      PCOORDENADAS_E:'24.02780775285771,-104.65332895517349',
       IDCLIENTE:null,
   }
 
@@ -447,7 +447,7 @@ export class PedidoComponent implements OnInit {
           this.suma = this.suma;
           this.pedido.PPRECIOTOTAL = parseInt(this.suma.toString());
         }
-      this.pedido.IDPEDIDO = this.detallepedido.IDPEDIDO;
+      this.pedido.ID = this.detallepedido.IDPEDIDO;
       console.log('PUT pedido');
         console.log(this.pedido);
               this._pedidosService.putPedido(this.pedido).subscribe(
@@ -486,6 +486,6 @@ export class PedidoComponent implements OnInit {
   }
 
   failinfoputPedido(){
-      this.toast.toast(`Ocurrió un error al intentar actualizar los datos del pedido ${this.pedido.IDPEDIDO}`);
+      this.toast.toast(`Ocurrió un error al intentar actualizar los datos del pedido ${this.pedido.ID}`);
     }
 }

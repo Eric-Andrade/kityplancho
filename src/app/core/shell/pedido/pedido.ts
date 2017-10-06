@@ -1,18 +1,18 @@
 export interface IPedido {
-    IDPEDIDO: number;
+    ID: number;
     PPRECIOTOTAL: number;
     PSTATUS: string;
     PPAGADO: string;
     PFORMA: string;
     PFECHA?: string;
-    PDIRECCIONR: string;
-    COORDENADASR?: string;
-    PDIRECCIONE?: string;
+    PDIRECCION_R: string;
+    PCOORDENADAS_R?: string;
+    PDIRECCION_E?: string;
     LAT?: string;
     LNG?: string;
     LATE?: string;
     LNGE?: string;
-    COORDENADASE?: string;
+    PCOORDENADAS_E?: string;
     IDCLIENTE: number;
 }
 
