@@ -21,23 +21,23 @@ export class PedidoService {
     postPedido(pedido: IPedido){
        let body = new URLSearchParams();
             // body.set('PSTATUS',pedido.PSTATUS);
-            body.set('DIRECCION_R',pedido.PDIRECCION_R);
-            body.set('DIRECCION_E',pedido.PDIRECCION_E);
-            body.set('PRECIO',pedido.PPRECIOTOTAL.toString());
-            body.set('PAGADO',pedido.PPAGADO);
+            body.set('DIRECCION_R', pedido.PDIRECCION_R);
+            body.set('DIRECCION_E', pedido.PDIRECCION_E);
+            body.set('PRECIO', pedido.PPRECIOTOTAL.toString());
+            body.set('PAGADO', pedido.PPAGADO);
             body.set('FORMA', pedido.PFORMA);
-            body.set('COORDENADASR',pedido.PCOORDENADAS_R);
-            body.set('COORDENADASE',pedido.PCOORDENADAS_E);
-            body.set('IDCLIENTE',pedido.IDCLIENTE.toString());
+            body.set('COORDENADASR', pedido.PCOORDENADAS_R);
+            body.set('COORDENADASE', pedido.PCOORDENADAS_E);
+            body.set('IDCLIENTE', pedido.IDCLIENTE.toString());
 
             const options = new RequestOptions({
               responseType: ResponseContentType.Json,
               withCredentials: false
             });
-  
+
           // console.log('Options: ' + JSON.stringify(options));
           // console.log('Prenda body   ' + body);
-  
+
         return this._http.post(this.url + `pedidos?${body}`, JSON.stringify({body: body}), options)
                   .map((response: Response) => {
                     JSON.stringify(response);
@@ -50,14 +50,20 @@ export class PedidoService {
   postDetallePedido(detallepedido: IDetallePedidos){
 
        let body = new URLSearchParams();
-            body.set('IDSP',detallepedido.IDSP.toString());
-            body.set('CANTIDAD',detallepedido.DPCANTIDADPRENDAS.toString());
-            body.set('IDPEDIDO',detallepedido.DPIDPEDIDO.toString());
-            body.set('COSTO',detallepedido.DPCOSTOPEDIDO.toString());
+            body.set('IDSP', detallepedido.IDSP.toString());
+            body.set('CANTIDADPRENDA', detallepedido.DPCANTIDADPRENDAS.toString());
+            body.set('IDPEDIDO', detallepedido.DPIDPEDIDO.toString());
+            body.set('COSTO', detallepedido.DPCOSTOPEDIDO.toString());
             console.log('Datos service');
             console.log(body);
-            return this._http.post(this.url + 'postDetallePedido', body, {headers : this.getHeaders()})
-                  .map((response:Response)=>{
+
+            const options = new RequestOptions({
+              responseType: ResponseContentType.Json,
+              withCredentials: false
+            });
+  
+            return this._http.post(this.url + `detallespedidos?${body}`, JSON.stringify({body: body}), options)
+                  .map((response: Response) => {
                     JSON.stringify(response);
                   });
     }
@@ -82,11 +88,18 @@ export class PedidoService {
 
     getSumaP(id){
         let body = new URLSearchParams();
-          body.set('IDPEDIDO', id);
+          body.set('idpedido', id);
+          console.log('Datos getSumaP');
+          console.log(id);
           return this._http.get(this.url + `carrito?${body}&idcliente=1`)
-                .map(res => res.json());
+                .map(res => res.json())
+                .catch(this.handleError);
     }
 
+    getlastpedido() {
+      return this._http.get(this.url + 'pedidos')
+          .map(res => res.json());
+    }
     private getHeaders() {
         let headers = new Headers();
         headers.append('Content-Type','application/x-www-form-urlencoded');
@@ -96,8 +109,10 @@ export class PedidoService {
         return headers;
       }
 
-     getlastpedido() {
-        return this._http.get(this.url + 'getlastpedido')
-            .map(res => res.json());
+
+
+    public handleError(error: Response) {
+      console.error('Error :v ' + error);
+      return Observable.throw(error.json().error || 'Server error');
     }
 }

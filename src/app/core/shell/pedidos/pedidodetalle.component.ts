@@ -462,6 +462,9 @@ export class PedidodetalleComponent implements OnInit {
         this.detallepedido.DPCOSTOPEDIDO = this.items[this.detallepedido.IDSP - 1].SPCOSTO * this.detallepedido.DPCANTIDADPRENDAS;
         this._pedidosService.putDetallePedido(this.detallepedido).subscribe(
         data => {
+            this.getDetallePedido();
+            this.getSumaP(this.pedido.ID);
+            this.suma = this.suma;
             this.toastMe();
             // console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
 

@@ -92,10 +92,10 @@
                     required>
                 </md-slider>
 
-                <input type="hidden" #IDPEDIDO="ngModel" [(ngModel)]="detallepedido.ID" name="ID">
+                <input type="hidden" #DPIDPEDIDO="ngModel" [(ngModel)]="detallepedido.DPIDPEDIDO" name="DPIDPEDIDO">
                 <!--<input type="hidden" #COSTO="ngModel" [(ngModel)]="detallepedido.COSTO" name="COSTO">-->
-
-            <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid" (click)="getSumaP(detallepedido.ID)">Añadir servicio</button>
+                <!-- ID!!! {{detallepedido.DPIDPEDIDO}} -->
+            <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid" (click)="getSumaP(detallepedido.DPIDPEDIDO)">Añadir servicio</button>
             </form>
             <button class="button-form" color="accent" md-button style="width:100%; margin-top:2px;" [disabled]="next" (click)="changeSelectedTab()">Siguiente<md-icon >keyboard_arrow_right</md-icon></button>
 
@@ -164,7 +164,7 @@
                      <table class="example-full-width" cellspacing="0">
                         <tr>
                           <td><md-input-container dividerColor="accent" class="form-space">
-                              <input type="number" mdInput #id name="ID" #ID="ngModel" [(ngModel)]="detallepedido.ID" placeholder="ID de pedido" [disabled]="true">
+                              <input type="number" mdInput #id name="ID" #ID="ngModel" [(ngModel)]="detallepedido.DPIDPEDIDO" placeholder="ID de pedido" [disabled]="true">
                           </md-input-container></td>
                           <td>
                             <md2-select name="PSTATUS"
@@ -197,12 +197,12 @@
                                 placeholder="Buscar por nombre..."
                                 [(ngModel)]="_search" />
                           </md2-select-header>
-                            <md2-option *ngFor="let c of clientes | dataPipe : _search" [value]="c.IDCLIENTE"><strong>{{c.IDCLIENTE}}</strong> | <span class="kp-text">{{c.CNOMBRE}} {{c.CAPELLIDOS}} </span>
+                            <md2-option *ngFor="let c of clientes | dataPipe : _search" [value]="c.ID"><span class="kp-text">{{c.CNOMBRE}} {{c.CAPELLIDOS}} </span>
                             </md2-option>
                     </md2-select>
 
                     <md-input-container dividerColor="accent">
-                      <input mdInput #direccionr #PDIRECCIONR="ngModel" [(ngModel)]="pedido.PDIRECCION_R" minlength="20" maxlength="200" name="PDIRECCION:R" placeholder="Dirección a recoger" required autocomplete="off" [disabled]="inputdisabled">
+                      <input mdInput #direccionr #PDIRECCIONR="ngModel" [(ngModel)]="pedido.PDIRECCION_R" minlength="20" maxlength="200" name="PDIRECCION_R" placeholder="Dirección a recoger" required autocomplete="off" [disabled]="inputdisabled">
                       <md-hint align="end">Orden sugerido: calle, número ext., colonia/zona, código postal, ciudad {{direccionr.value.length}}/200</md-hint>
                       <!--Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico-->
                     </md-input-container>
@@ -229,7 +229,7 @@
 
                           <br>
                     <md-radio-group dividerColor="accent" #PFORMA="ngModel" [(ngModel)]="pedido.PFORMA" name="PFORMA"
-                    tooltip="¿El pedido se efectúa en efectivo o con tarjeta bancaria?"
+                    tooltip="¿El pago del pedido se efectúa en efectivo o con tarjeta bancaria?"
                             tooltip-position="above"
                             tooltip-delay="0 * 1000">
                     <md-radio-button class="form-radiobutton" value="efectivo">Efectivo</md-radio-button>
@@ -255,7 +255,7 @@
                     <p>Coords-r:</p> {{pedido.LAT}} | {{pedido.LNG}}
                     <p class="kp-text">{{pedido.COORDENADASR}}</p>-->
 
-              <button type="submit" class="button-form" color="accent" md-button style="width:100%; margin-top:2px;" [disabled]="!formPutPedido.form.valid" (click)="getpedido(detallepedido.ID)">Ir a detalles del pedido<md-icon >keyboard_arrow_right</md-icon></button>
+              <button type="submit" class="button-form" color="accent" md-button style="width:100%; margin-top:2px;" [disabled]="!formPutPedido.form.valid" (click)="getpedido(detallepedido.DPIDPEDIDO)">Ir a detalles del pedido<md-icon >keyboard_arrow_right</md-icon></button>
             </form>
             </div>
              <!--<button class="button-form" color="accent" md-button style="width:100%;" ></button>-->

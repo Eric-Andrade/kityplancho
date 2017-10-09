@@ -27,15 +27,15 @@ export class SucursalComponent implements OnInit {
   ngOnInit() {
     this.sucursal = {
       ID:null,
-      SNOMBRE:'',
-      SDIRECCION:'',
-      SEMAIL:'',
-      STELEFONO:'',
-      SESTADO:'',
-      SMUNICIPIO:'',
-      SLOCALIDAD:'',
-      SHORARIO:'',
-      ACTIVO:'activo',
+      SNOMBRE: '',
+      SDIRECCION: '',
+      SEMAIL: '',
+      STELEFONO: '',
+      SESTADO: '',
+      SMUNICIPIO: '',
+      SLOCALIDAD: '',
+      SHORARIO: '',
+      ACTIVO: 'activo',
     }
   }
 
@@ -43,7 +43,7 @@ getlastsucursal(){
    setTimeout(()=>{
       this._sucursalService.getlastSucursal().subscribe(
         result =>{
-              this.lastesucursal = result.ULTIMASUCURSAL[0].ID;
+              this.lastesucursal = result.ID;
               console.log('último sucursal');
               console.log(this.lastesucursal);
               if(!this.lastesucursal){
@@ -70,13 +70,13 @@ getlastsucursal(){
             data => {
                 this.toastMe();
                 this.getlastsucursal();
-                setTimeout(()=>{
+                setTimeout(() => {
                  let idsucursal = this.lastesucursal;
-                     this._router.navigate(['sucursales',idsucursal]);
+                     this._router.navigate(['sucursales', idsucursal]);
                      console.log('enviar al sucursal desde el post');
                      this.close(sucursaldialog);
-               },2000);
-               
+               }, 2000);
+
             },
 
             error =>  {

@@ -180,31 +180,31 @@ export class PedidoComponent implements OnInit {
   ngOnInit() {
 
   this.pedido = {
-      ID:null,
-      PPRECIOTOTAL:0,
-      PSTATUS:'en_camino',
-      PPAGADO:'contraentrega',
-      PFORMA:'efectivo',
-      PFECHA:'',
-      PDIRECCION_R:'Direcion de un nuevo pedido de prueba',
-      PCOORDENADAS_R:'24.02780775285771,-104.65332895517349',
-      PDIRECCION_E:'Direcion de un nuevo pedido de prueba',
-      PCOORDENADAS_E:'24.02780775285771,-104.65332895517349',
-      IDCLIENTE:null,
+      ID: null,
+      PPRECIOTOTAL: 0,
+      PSTATUS: 'en_camino',
+      PPAGADO: 'contraentrega',
+      PFORMA: 'efectivo',
+      PFECHA: '',
+      PDIRECCION_R: 'Direcion de un nuevo pedido de prueba',
+      PCOORDENADAS_R: '24.02780775285771,-104.65332895517349',
+      PDIRECCION_E: 'Direcion de un nuevo pedido de prueba',
+      PCOORDENADAS_E: '24.02780775285771,-104.65332895517349',
+      IDCLIENTE: null,
   }
 
   this.detallepedido = {
-      ID:null,
-      DPCANTIDADPRENDAS:1,
-      IDSP:null,
-      DPIDPEDIDO:null,
-      DPCOSTOPEDIDO:0,
+      ID: null,
+      DPCANTIDADPRENDAS: 1,
+      IDSP: null,
+      DPIDPEDIDO: null,
+      DPCOSTOPEDIDO: 0,
   };
 
   this.sp ={
-      ID:null,
-      SPCOSTO:null,
-      SPDESCUENTO:null,
+      ID: null,
+      SPCOSTO: null,
+      SPDESCUENTO: null,
   }
       this.getServicios();
 
@@ -255,7 +255,7 @@ export class PedidoComponent implements OnInit {
           });
     }
 
-     getClientes(){
+     getClientes() {
       this._clientesService.getClientesActivos().subscribe(
             result =>{
                 this.clientes = result;
@@ -277,17 +277,40 @@ export class PedidoComponent implements OnInit {
           );
     }
 
-    getlastpedido(){
-        setTimeout(()=>{
+    getSumaP(id){
+        console.log('getsumaP');
+        console.log(id)
+        setTimeout(() => {
+        this._pedidoService.getSumaP(id).subscribe(
+                data => {
+                  let CARRITOSUMA = data;
+                  this.suma = CARRITOSUMA.COSTOPEDIDO;
+                  console.log('CARRITOSUMA');
+                  console.log(this.suma);
+
+                },
+
+                error =>  {
+                    console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
+                     this.errorMessage = <any>error;
+                      if(this.errorMessage != null){
+                      this.failpostServicio();
+                  }
+                });
+                },1000);
+      }
+
+    getlastpedido() {
+        setTimeout(() => {
           this._pedidoService.getlastpedido().subscribe(
           result => {
-              this.detallepedido = result.PEDIDO;
-                this.detallepedido.DPIDPEDIDO = this.detallepedido[0].IDPEDIDO; // ? Ah?
+            //   this.detallepedido = result.ID;
+                 this.detallepedido.DPIDPEDIDO = result.ID; // ? Ah?
                 console.log('Último pedido');
               console.log(this.detallepedido.DPIDPEDIDO);
               if (!this.detallepedido.DPIDPEDIDO) {
                   console.warn('Error en el servidor...');
-              }else{
+              }else {
                   this.loading = false;
               }
           },
@@ -301,12 +324,12 @@ export class PedidoComponent implements OnInit {
           }
 
         );
-        },1000);
+        }, 1000);
     }
 
     getpedido(idpedido){
       this.ingresacoords();
-      setTimeout(()=>{this._router.navigate(['pedidos',idpedido]);},1000);
+      setTimeout(() => {this._router.navigate(['pedidos', idpedido]); }, 1000);
     }
 
     postPedido(){
@@ -322,7 +345,7 @@ export class PedidoComponent implements OnInit {
         this._pedidoService.postPedido(this.pedido).subscribe(
             data => {
                 this.toastMe();
-                this.tab1disabled = true
+                this.tab1disabled = true;
                 this.tab2disabled = false;
                 this.tab3disabled = true;
                 this.selectedIndex = 1;
@@ -337,8 +360,8 @@ export class PedidoComponent implements OnInit {
             });
     }
 
-    postServicio(){
-      this.detallepedido.DPCOSTOPEDIDO = this.items[this.detallepedido.IDSP - 1].SPCOSTO * this.detallepedido.DPCANTIDADPRENDAS;
+    postServicio() {
+       this.detallepedido.DPCOSTOPEDIDO = this.items[this.detallepedido.IDSP - 1].SPCOSTO * this.detallepedido.DPCANTIDADPRENDAS;
 
         // this.tab1disabled = true;
         // this.tab2disabled = false;
@@ -399,7 +422,7 @@ export class PedidoComponent implements OnInit {
     }
 
   failpostServicio() {
-      this.toast.toast(`Ocurrió un problemaal intentar añadir el servicio al pedido. Por favor ve a detalles del pedido`);
+      this.toast.toast(`Ocurrió un problema al intentar añadir el servicio al pedido. Por favor ve a detalles del pedido`);
     }
 
   failgetLastPedido() {
@@ -415,31 +438,11 @@ export class PedidoComponent implements OnInit {
       this.toast.toast(`Servicio añadido al pedido`);
     }
 
-  getSumaP(id){
-    setTimeout(()=>{
-    this._pedidoService.getSumaP(id).subscribe(
-            data => {
-              let CARRITOSUMA = data.CARRITOSUMA[0];
-              this.suma = data.CARRITOSUMA[0].SUMA;
-              console.log('CARRITOSUMA');
-              console.log(this.suma);
-
-            },
-
-            error =>  {
-                console.log(`WTF! The error is: ${JSON.stringify(error.json())}`);
-                 this.errorMessage = <any>error;
-                  if(this.errorMessage != null){
-                  this.failpostServicio();
-              }
-            });
-            },1000);
-  }
-
     public putPedido(formPedido, pedidodialog){
-        if(!this.pedido) return;
+        // tslint:disable-next-line:curly
+        if (!this.pedido) return;
 
-       if(this.pedido.PPAGADO == 'por_adelantado'){
+       if (this.pedido.PPAGADO == 'por_adelantado'){
                 let descuento = this.suma * 10 / 100;
                 this.suma = this.suma - descuento;
                 this.pedido.PPRECIOTOTAL = Math.round(this.suma);
@@ -463,8 +466,8 @@ export class PedidoComponent implements OnInit {
                   this.tab3disabled = true;
                   formPedido.reset();
                 },1000)
-                
-                    //console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
+
+                    // console.log(`El cliente ${this.cliente.IDCLIENTE} | ${this.cliente.CNOMBRE} fue actualizado exitosamente!`);
 
               }, error => {
                   console.warn(`WTF! The error is: ${JSON.stringify(error.json())}`);

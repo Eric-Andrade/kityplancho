@@ -46,7 +46,7 @@ export class ClientesService {
         body.set('CNOMBRE', cliente.CNOMBRE);
         body.set('CAPELLIDOS', cliente.CAPELLIDOS);
         body.set('CTELEFONO', cliente.CTELEFONO);
-        body.set('ACTIVO', cliente.ACTIVO.toString());
+        body.set('CACTIVO', cliente.ACTIVO.toString());
 
          const options = new RequestOptions({
             responseType: ResponseContentType.Json,

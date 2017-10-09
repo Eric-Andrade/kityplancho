@@ -100,7 +100,12 @@ export class PedidosService {
           body.set('IDDP',id.toString());
           console.log('Datos service');
           console.log(body);
-          return this._http.post(this.url + 'deletePrendaCarrito', body, {headers : this.getHeaders()})
+          const options = new RequestOptions({
+            responseType: ResponseContentType.Json,
+            withCredentials: false
+          });
+
+       return this._http.delete(this.url + `carrito?${body}`, options)
                 .map((response:Response)=>{
                   JSON.stringify(response);
                 });

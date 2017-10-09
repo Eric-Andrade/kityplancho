@@ -17,12 +17,12 @@ export class SucursalesService {
     }
 
     getlastSucursal() {
-        return this._http.get(this.url + 'getlastsucursal')
+        return this._http.get(this.url + 'sucursales/getlastsucursal')
          .map(res => res.json());
     }
 
     getSucursalesActivos() {
-        return this._http.get(this.url + 'getsucursalesactivos')
+        return this._http.get(this.url + 'sucursales/getallactivos')
          .map(res => res.json());
     }
 // * MVC
