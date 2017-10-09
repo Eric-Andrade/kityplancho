@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, URLSearchParams, RequestOptions, ResponseContentType } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { Sucursales } from './sucursales';
@@ -48,7 +48,11 @@ export class SucursalesService {
       body.set('SHORARIO',sucursal.SHORARIO);
       body.set('ACTIVO',sucursal.ACTIVO);
 
-      return this._http.post(this.url + 'postsucursales', body, {headers : this.getHeaders()})
+      const options = new RequestOptions({
+        responseType: ResponseContentType.Json,
+        withCredentials: false
+      });
+    return this._http.post(this.url + `sucursales?${body}`, JSON.stringify({body: body}), options)
       .map((response:Response) => {
         JSON.stringify(response);
       });
@@ -67,7 +71,11 @@ export class SucursalesService {
             body.set('SHORARIO',sucursal.SHORARIO);
             body.set('ACTIVO',sucursal.ACTIVO);
 
-           return this._http.post(this.url + 'updatesucursal', body, {headers : this.getHeaders()})
+            const options = new RequestOptions({
+                responseType: ResponseContentType.Json,
+                withCredentials: false
+              });
+            return this._http.put(this.url + `sucursales?${body}`, JSON.stringify({body: body}), options)
           .map((response:Response)=>{
             console.log('Employee updated');
             JSON.stringify(response);

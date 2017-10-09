@@ -186,19 +186,19 @@ export class PedidoComponent implements OnInit {
       PPAGADO:'contraentrega',
       PFORMA:'efectivo',
       PFECHA:'',
-      PDIRECCION_R:'',
+      PDIRECCION_R:'Direcion de un nuevo pedido de prueba',
       PCOORDENADAS_R:'24.02780775285771,-104.65332895517349',
-      PDIRECCION_E:'',
+      PDIRECCION_E:'Direcion de un nuevo pedido de prueba',
       PCOORDENADAS_E:'24.02780775285771,-104.65332895517349',
       IDCLIENTE:null,
   }
 
   this.detallepedido = {
-      IDDP:null,
-      CANTIDAD:1,
+      ID:null,
+      DPCANTIDADPRENDAS:1,
       IDSP:null,
-      IDPEDIDO:null,
-      COSTO:0,
+      DPIDPEDIDO:null,
+      DPCOSTOPEDIDO:0,
   };
 
   this.sp ={
@@ -282,10 +282,10 @@ export class PedidoComponent implements OnInit {
           this._pedidoService.getlastpedido().subscribe(
           result => {
               this.detallepedido = result.PEDIDO;
-                this.detallepedido.IDPEDIDO = this.detallepedido[0].IDPEDIDO;
+                this.detallepedido.DPIDPEDIDO = this.detallepedido[0].IDPEDIDO; // ? Ah?
                 console.log('Último pedido');
-              console.log(this.detallepedido.IDPEDIDO);
-              if (!this.detallepedido.IDPEDIDO) {
+              console.log(this.detallepedido.DPIDPEDIDO);
+              if (!this.detallepedido.DPIDPEDIDO) {
                   console.warn('Error en el servidor...');
               }else{
                   this.loading = false;
@@ -338,7 +338,7 @@ export class PedidoComponent implements OnInit {
     }
 
     postServicio(){
-      this.detallepedido.COSTO = this.items[this.detallepedido.IDSP - 1].SPCOSTO * this.detallepedido.CANTIDAD;
+      this.detallepedido.DPCOSTOPEDIDO = this.items[this.detallepedido.IDSP - 1].SPCOSTO * this.detallepedido.DPCANTIDADPRENDAS;
 
         // this.tab1disabled = true;
         // this.tab2disabled = false;
@@ -447,7 +447,7 @@ export class PedidoComponent implements OnInit {
           this.suma = this.suma;
           this.pedido.PPRECIOTOTAL = parseInt(this.suma.toString());
         }
-      this.pedido.ID = this.detallepedido.IDPEDIDO;
+      this.pedido.ID = this.detallepedido.DPIDPEDIDO;
       console.log('PUT pedido');
         console.log(this.pedido);
               this._pedidosService.putPedido(this.pedido).subscribe(

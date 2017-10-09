@@ -59,7 +59,7 @@ export class ServiciosService {
     }
 
      getlastservicio() {
-        return this._http.get(this.url + 'getlastservicio')
+        return this._http.get(this.url + 'servicios/getlastservicio')
             .map(res => res.json());
     }
 

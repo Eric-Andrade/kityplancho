@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
               private toast: Md2Toast) {
                     this.empleado = {
                       ID: null,
-                      EEMAIL:'',
-                      EPASSWORD:'',
+                      EEMAIL:'kityplancho@gmail.com',
+                      EPASSWORD:'adminkity20171',
                       EPRIVILEGIO:'',
                       ENOMBRE:'',
                       EAPELLIDOS:'',
@@ -65,12 +65,12 @@ export class LoginComponent implements OnInit {
 
     this._loginService.login(this.empleado).subscribe(
           response =>{
-              console.log(response);
-              this.empleado = response.ADMIN;
-              if(response.ADMIN[0] != null){
+              this.empleado = response;
+              console.log(this.empleado);              
+              if(response != null){
                 this.close(logindialog);
-                let username = this.empleado[0].EEMAIL;
-                let password = this.empleado[0].EPASSWORD;
+                let username = this.empleado.EEMAIL;
+                let password = this.empleado.EPASSWORD;
                    this._loginService.storedUserData(username, password);
                    this._loginService.setUserLoggedIn();
                    
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
           error =>{
               this.errorMessage = <any>error;
               if(this.errorMessage != null){
-                  console.log(this.errorMessage);
+                  console.log('Error al loggerse: '+this.errorMessage);
                   this.message = true;
               }
           });
@@ -99,7 +99,7 @@ export class LoginComponent implements OnInit {
   }
 
   toastMe() {
-      this.toast.toast(`Bienvenido de nuevo ${this.empleado[0].ENOMBRE}`);
+      this.toast.toast(`Bienvenido de nuevo ${this.empleado.ENOMBRE}`);
     }
 
   faillogin() {

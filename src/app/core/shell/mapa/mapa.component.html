@@ -104,9 +104,9 @@
               [opacity]="1">
 
                   <agm-info-window >
-                    <h5><span >ID {{r.IDEMPLEADO}}</span> | <span class="kp-text">{{r.ENOMBRE}} {{r.EAPELLIDOS}}</span></h5>
+                    <h5><span >ID {{r.ID}}</span> | <span class="kp-text">{{r.ENOMBRE}} {{r.EAPELLIDOS}}</span></h5>
                     <h5> Tel: <span class="kp-text">{{r.ETELEFONO}}</span></h5>
-                    <button class="btn btn-default btn-xs" type="button" aria-haspopup="true" aria-expanded="false" (click)="getempleado(r.IDEMPLEADO)" >
+                    <button class="btn btn-default btn-xs" type="button" aria-haspopup="true" aria-expanded="false" (click)="getempleado(r.ID)" >
                       ver detalles del rutero
                     </button>
                   </agm-info-window>

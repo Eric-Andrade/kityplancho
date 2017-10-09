@@ -28,16 +28,16 @@ export class SucursaldetalleComponent implements OnInit {
                     this.sucursal = response;
                     this.loading = false;
                     this.sucursal = {
-                        ID:this.sucursal[0].ID,
-                        SNOMBRE:this.sucursal[0].SNOMBRE,
-                        SDIRECCION:this.sucursal[0].SDIRECCION,
-                        SEMAIL:this.sucursal[0].SEMAIL,
-                        STELEFONO:this.sucursal[0].STELEFONO,
-                        SESTADO:this.sucursal[0].SESTADO,
-                        SMUNICIPIO:this.sucursal[0].SMUNICIPIO,
-                        SLOCALIDAD:this.sucursal[0].SLOCALIDAD,
-                        SHORARIO:this.sucursal[0].SHORARIO,
-                        ACTIVO:this.sucursal[0].ACTIVO,
+                        ID:this.sucursal.ID,
+                        SNOMBRE:this.sucursal.SNOMBRE,
+                        SDIRECCION:this.sucursal.SDIRECCION,
+                        SEMAIL:this.sucursal.SEMAIL,
+                        STELEFONO:this.sucursal.STELEFONO,
+                        SESTADO:this.sucursal.SESTADO,
+                        SMUNICIPIO:this.sucursal.SMUNICIPIO,
+                        SLOCALIDAD:this.sucursal.SLOCALIDAD,
+                        SHORARIO:this.sucursal.SHORARIO,
+                        ACTIVO:this.sucursal.ACTIVO,
                     };
                     console.log('Sucursal');
                     console.log(this.sucursal);

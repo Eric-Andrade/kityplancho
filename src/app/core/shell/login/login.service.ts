@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, URLSearchParams, RequestOptions, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Empleados } from '../../../empleados/empleados';
 import { global } from '../../../global';
@@ -22,16 +22,33 @@ export class LoginService {
         this.isUserLoggedIn = false;
     }
 
+    // public login(user:Empleados){
+
+    //   let body = new URLSearchParams();
+    //   body.set('EEMAIL',user.EEMAIL);
+    //   body.set('EPASSWORD',user.EPASSWORD);
+    //   // this.setUserLoggedIn();
+    //   const options = new RequestOptions({
+    //     responseType: ResponseContentType.Json,
+    //     withCredentials: false
+    //   });
+
+    //   return this._http.post(this.url + `empleados/admin?${body}`, JSON.stringify({body: body}), options)
+    //    .map( res => res.json());
+
+    // }
+
     public login(user:Empleados){
-
-      let body = new URLSearchParams();
-      body.set('ECORREO',user.EEMAIL);
-      body.set('ECONTRASENA',user.EPASSWORD);
-      // this.setUserLoggedIn();
-       return this._http.post(this.url + 'loginadmin', body, {headers : this.getHeaders()})
-       .map( res => res.json());
-
-    }
+      
+            let body = new URLSearchParams();
+            body.set('ECORREO',user.EEMAIL);
+            body.set('ECONTRASENA',user.EPASSWORD);
+            // this.setUserLoggedIn();
+             return this._http.post(this.url + 'loginadmin', body, {headers : this.getHeaders()})
+             .map( res => res.json());
+      
+          }
+      
 
     setUserLoggedIn() {
     	this.isUserLoggedIn = true;

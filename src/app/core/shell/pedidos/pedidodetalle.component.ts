@@ -183,8 +183,8 @@ export class PedidodetalleComponent implements OnInit {
         this._pedidosService.getPedido(id).subscribe(
           response => {
             this.pedido = response;
-             console.log('Pedido b');
-            console.log(this.pedido);
+            //  console.log('Pedido b');
+            // console.log(this.pedido);
             this.loading = false;
             this.pedido = {
                   ID: this.pedido.ID,
@@ -206,7 +206,7 @@ export class PedidodetalleComponent implements OnInit {
               this.coords = [this.plat, this.plng];
               this.pedido.LAT = this.plat;
               this.pedido.LNG = this.plng;
-              console.log('IDPEDIDO: ' + this.pedido.ID + ' ' + this.coords  + ' ' + this.pedido.PSTATUS);
+             // console.log('IDPEDIDO: ' + this.pedido.ID + ' ' + this.coords  + ' ' + this.pedido.PSTATUS);
               this.coorde = this.pedido.PCOORDENADAS_E.split(',', 2);
               this.plate = parseFloat(this.coorde[0]);
               this.plnge = parseFloat(this.coorde[1]);
@@ -228,8 +228,8 @@ export class PedidodetalleComponent implements OnInit {
               this.direccion = 'Dirección a recoger pedido';
             }
 
-            console.log('Pedido');
-            console.log(this.pedido);
+            // console.log('Pedido');
+            // console.log(this.pedido);
             if (!this.pedido) {
                     this._router.navigate(['/pedidos']);
                 }
@@ -321,11 +321,11 @@ export class PedidodetalleComponent implements OnInit {
               console.log('Datalles pedido');
               console.log(this.detallepedido);
             this.detallepedido = {
-              IDDP: this.detallepedido[0].IDDP,
-              DPCANTIDADPRENDAS: this.detallepedido[0].DP_CANTIDADPRENDAS,
-              IDSP: this.detallepedido[0].IDSP,
-              IDPEDIDO: this.detallepedido[0].IDPEDIDO,
-              DPCOSTOPEDIDO: this.detallepedido[0].DP_COSTOPEDIDO,
+              ID: this.detallepedido.ID,
+              DPCANTIDADPRENDAS: this.detallepedido.DPCANTIDADPRENDAS,
+              IDSP: this.detallepedido.IDSP,
+              DPIDPEDIDO: this.detallepedido.DPIDPEDIDO,
+              DPCOSTOPEDIDO: this.detallepedido.DPCOSTOPEDIDO,
             };
             this.loading = false;
                 if (!this.detallepedido) {
@@ -389,9 +389,9 @@ export class PedidodetalleComponent implements OnInit {
         setTimeout(() => {
                 this._pedidoService.getSumaP(id).subscribe(
                   data => {
-                    const CARRITOSUMA = data;
-                    this.suma = data.CARRITOSUMA[0].SUMA;
-                    console.log('CARRITOSUMA');
+                    // const CARRITOSUMA = data;
+                    this.suma = data.COSTOPEDIDO;
+                    console.log('COSTOPEDIDO');
                     console.log(this.suma);
 
                   },
@@ -525,7 +525,7 @@ export class PedidodetalleComponent implements OnInit {
 
 
     failpostServicio() {
-          this.toast.toast(`Ocurrió un problemaal intentar añadir el servicio al pedido. Por favor ve a detalles del pedido`);
+          this.toast.toast(`Ocurrió un problema al intentar añadir el servicio al pedido. Por favor ve a detalles del pedido`);
         }
 
     postServiciotoast() {

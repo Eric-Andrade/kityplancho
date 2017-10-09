@@ -21,3 +21,4 @@
 [0708/224038.506:ERROR:process_info.cc(631)] range at 0x38e958fc00000000, size 0x240 fully unreadable
 [0708/224041.740:ERROR:process_info.cc(631)] range at 0x38e9591c00000000, size 0x240 fully unreadable
 [0708/224041.741:ERROR:process_info.cc(631)] range at 0x0, size 0x240 fully unreadable
+[1007/223814.220:ERROR:file_io.cc(89)] ReadExactly: expected 36, observed 0

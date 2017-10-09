@@ -112,9 +112,24 @@ md-card {
     /*border: white 1px solid;*/
 }
 
+.notifynombre{
+    font-size: 11px;
+    color: #E72B73;
+    font-weight: 500;
+}
+
+.notifyidpedido{
+    color: #333333;
+    font-weight: 500;
+}
+
+.notifyid{
+    color: #E72B73;
+    font-weight: bold;
+}
+
 .pforma{
     font-size: 11px;
-    color: #ff6262;
 }
 
 .notify{

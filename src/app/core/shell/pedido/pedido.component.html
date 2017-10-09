@@ -32,14 +32,14 @@
                     </md2-select>
 
                     <md-input-container dividerColor="accent">
-                      <input mdInput #direccionr #PDIRECCIONR [(ngModel)]="pedido.PDIRECCIONR" minlength="20" maxlength="200" name="PDIRECCIONR" placeholder="Dirección a recoger" required autocomplete="off">
+                      <input mdInput #direccionr #PDIRECCIONR [(ngModel)]="pedido.PDIRECCION_R" minlength="20" maxlength="200" name="PDIRECCION_R" placeholder="Dirección a recoger" required autocomplete="off">
                       <md-error align="start">mínimo 20 caracteres</md-error>
                       <md-hint align="end">Orden sugerido: calle, número ext., colonia/zona, código postal, ciudad {{direccionr.value.length}}/200</md-hint>
                       <!--Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico-->
                     </md-input-container>
 
                     <md-input-container class="example-full-width form-space"  dividerColor="accent">
-                      <input mdInput #directione #PDIRECCIONE [(ngModel)]="pedido.PDIRECCIONE" minlength="20" maxlength="200" name="PDIRECCIONE" placeholder="Dirección a entregar" autocomplete="off" required>
+                      <input mdInput #directione #PDIRECCIONE [(ngModel)]="pedido.PDIRECCION_E" minlength="20" maxlength="200" name="PDIRECCION_E" placeholder="Dirección a entregar" autocomplete="off" required>
                       <md-error align="start">mínimo 20 caracteres</md-error>
                       <md-hint align="end">{{directione.value.length}}/200</md-hint>
                     </md-input-container>
@@ -78,7 +78,7 @@
 
                   <h3 class="kp-text">Cantidad</h3>
                   <md-slider
-                    #CANTIDAD="ngModel" [(ngModel)]="detallepedido.CANTIDAD" name="CANTIDAD"
+                    #CANTIDAD="ngModel" [(ngModel)]="detallepedido.DPCANTIDADPRENDAS" name="DPCANTIDADPRENDAS"
                     [disabled]="disabled"
                     [invert]="invert"
                     [max]="max"
@@ -92,10 +92,10 @@
                     required>
                 </md-slider>
 
-                <input type="hidden" #IDPEDIDO="ngModel" [(ngModel)]="detallepedido.IDPEDIDO" name="IDPEDIDO">
+                <input type="hidden" #IDPEDIDO="ngModel" [(ngModel)]="detallepedido.ID" name="ID">
                 <!--<input type="hidden" #COSTO="ngModel" [(ngModel)]="detallepedido.COSTO" name="COSTO">-->
 
-            <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid" (click)="getSumaP(detallepedido.IDPEDIDO)">Añadir servicio</button>
+            <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid" (click)="getSumaP(detallepedido.ID)">Añadir servicio</button>
             </form>
             <button class="button-form" color="accent" md-button style="width:100%; margin-top:2px;" [disabled]="next" (click)="changeSelectedTab()">Siguiente<md-icon >keyboard_arrow_right</md-icon></button>
 
@@ -164,7 +164,7 @@
                      <table class="example-full-width" cellspacing="0">
                         <tr>
                           <td><md-input-container dividerColor="accent" class="form-space">
-                              <input type="number" mdInput #id name="IDPEDIDO" #IDPEDIDO="ngModel" [(ngModel)]="detallepedido.IDPEDIDO" placeholder="ID de pedido" [disabled]="true">
+                              <input type="number" mdInput #id name="ID" #ID="ngModel" [(ngModel)]="detallepedido.ID" placeholder="ID de pedido" [disabled]="true">
                           </md-input-container></td>
                           <td>
                             <md2-select name="PSTATUS"
@@ -202,13 +202,13 @@
                     </md2-select>
 
                     <md-input-container dividerColor="accent">
-                      <input mdInput #direccionr #PDIRECCIONR="ngModel" [(ngModel)]="pedido.PDIRECCIONR" minlength="20" maxlength="200" name="PDIRECCIONR" placeholder="Dirección a recoger" required autocomplete="off" [disabled]="inputdisabled">
+                      <input mdInput #direccionr #PDIRECCIONR="ngModel" [(ngModel)]="pedido.PDIRECCION_R" minlength="20" maxlength="200" name="PDIRECCION:R" placeholder="Dirección a recoger" required autocomplete="off" [disabled]="inputdisabled">
                       <md-hint align="end">Orden sugerido: calle, número ext., colonia/zona, código postal, ciudad {{direccionr.value.length}}/200</md-hint>
                       <!--Av. Gral. Lazaro Cardenas 210B, Zona Centro, 34000 Durango, Dgo., Mexico-->
                     </md-input-container>
 
                     <md-input-container class="example-full-width form-space"  dividerColor="accent">
-                      <input mdInput #directione #PDIRECCIONE="ngModel" [(ngModel)]="pedido.PDIRECCIONE" minlength="20" maxlength="200" name="PDIRECCIONE" placeholder="Dirección a entregar" autocomplete="off" required [disabled]="inputdisabled">
+                      <input mdInput #directione #PDIRECCIONE="ngModel" [(ngModel)]="pedido.PDIRECCION_E" minlength="20" maxlength="200" name="PDIRECCION_E" placeholder="Dirección a entregar" autocomplete="off" required [disabled]="inputdisabled">
                       <md-hint align="end">{{directione.value.length}}/200</md-hint>
                     </md-input-container>
 
@@ -255,7 +255,7 @@
                     <p>Coords-r:</p> {{pedido.LAT}} | {{pedido.LNG}}
                     <p class="kp-text">{{pedido.COORDENADASR}}</p>-->
 
-              <button type="submit" class="button-form" color="accent" md-button style="width:100%; margin-top:2px;" [disabled]="!formPutPedido.form.valid" (click)="getpedido(detallepedido.IDPEDIDO)">Ir a detalles del pedido<md-icon >keyboard_arrow_right</md-icon></button>
+              <button type="submit" class="button-form" color="accent" md-button style="width:100%; margin-top:2px;" [disabled]="!formPutPedido.form.valid" (click)="getpedido(detallepedido.ID)">Ir a detalles del pedido<md-icon >keyboard_arrow_right</md-icon></button>
             </form>
             </div>
              <!--<button class="button-form" color="accent" md-button style="width:100%;" ></button>-->

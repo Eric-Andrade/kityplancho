@@ -51,9 +51,9 @@ export class PedidoService {
 
        let body = new URLSearchParams();
             body.set('IDSP',detallepedido.IDSP.toString());
-            body.set('CANTIDAD',detallepedido.CANTIDAD.toString());
-            body.set('IDPEDIDO',detallepedido.IDPEDIDO.toString());
-            body.set('COSTO',detallepedido.COSTO.toString());
+            body.set('CANTIDAD',detallepedido.DPCANTIDADPRENDAS.toString());
+            body.set('IDPEDIDO',detallepedido.DPIDPEDIDO.toString());
+            body.set('COSTO',detallepedido.DPCOSTOPEDIDO.toString());
             console.log('Datos service');
             console.log(body);
             return this._http.post(this.url + 'postDetallePedido', body, {headers : this.getHeaders()})
@@ -66,12 +66,15 @@ export class PedidoService {
 
        let body = new URLSearchParams();
             body.set('IDSP',dp.DPIDSP.toString());
-            body.set('CANTIDAD',dp.DPCANTIDAD.toString());
+            body.set('CANTIDADPRENDA',dp.DPCANTIDAD.toString());
             body.set('IDPEDIDO',dp.DPIDPEDIDO.toString());
             body.set('COSTO',dp.DPCOSTO.toString());
             console.log('Datos service');
-            console.log(body);
-            return this._http.post(this.url + 'postDetallePedido', body, {headers : this.getHeaders()})
+            const options = new RequestOptions({
+              responseType: ResponseContentType.Json,
+              withCredentials: false
+            });
+            return this._http.post(this.url + `detallespedidos?${body}`, JSON.stringify({body: body}), options)
                   .map((response:Response)=>{
                     JSON.stringify(response);
                   });
@@ -79,10 +82,8 @@ export class PedidoService {
 
     getSumaP(id){
         let body = new URLSearchParams();
-          body.set('IDPEDIDO',id.toString());
-          console.log('Datos service');
-          console.log(body);
-          return this._http.post(this.url + `carrito?idpedido=${id}&idcliente=1`, body, {headers : this.getHeaders()})
+          body.set('IDPEDIDO', id);
+          return this._http.get(this.url + `carrito?${body}&idcliente=1`)
                 .map(res => res.json());
     }
 

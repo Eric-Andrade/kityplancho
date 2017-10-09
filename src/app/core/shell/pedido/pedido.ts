@@ -17,18 +17,18 @@ export interface IPedido {
 }
 
 export interface IDetallePedidos {
-  IDDP: number;
-  CANTIDAD: number;
+  ID: number;
+  DPCANTIDADPRENDAS: number;
   IDSP: number;
-  IDPEDIDO: number;
-  COSTO?: number;
+  DPIDPEDIDO: number;
+  DPCOSTOPEDIDO?: number;
 }
 
 export interface IDetallePedido {
-  IDDP: number;
+  ID: number;
   DPCANTIDADPRENDAS: number;
   IDSP: number;
-  IDPEDIDO: number;
+  DPIDPEDIDO: number;
   DPCOSTOPEDIDO?: number;
 }
 

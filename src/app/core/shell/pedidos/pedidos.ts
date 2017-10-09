@@ -13,7 +13,7 @@ export interface Notify {
   IDPEDIDO: number;
   CNOMBRE: string;
   CAPELLIDOS: string;
-  PPRECIOTAL: number;
+  PPRECIOTOTAL: number;
   PFECHA: string;
   PPAGADO: string;
   PFORMA: string;

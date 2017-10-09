@@ -1,7 +1,7 @@
 <!--dialogo para edición de dp-->
     <md2-dialog #detallepedidodialog>
           <div *ngIf="detallepedido">
-           <h5>Servicios del pedido #{{detallepedido.IDPEDIDO}}</h5>
+           <h5>Servicios del pedido #{{detallepedido.DPIDPEDIDO}}</h5>
                 <form #formServicio="ngForm" (ngSubmit)="putServicio()">
 
                   <md2-select name="IDSP"
@@ -34,10 +34,10 @@
                     required>
                 </md-slider>
 
-                <input type="hidden" #IDPEDIDO="ngModel" [(ngModel)]="detallepedido.IDPEDIDO" name="IDPEDIDO">
+                <input type="hidden" #IDPEDIDO="ngModel" [(ngModel)]="detallepedido.DPIDPEDIDO" name="IDPEDIDO">
 
             <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid">Guardar cambios</button>
-            <button (click)="deletecarrito(detallepedido.IDDP)" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid">Eliminar del pedido</button>
+            <button (click)="deletecarrito(detallepedido.ID)" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid">Eliminar del pedido</button>
             </form>
           </div>
 
@@ -77,7 +77,7 @@
                     required>
                 </md-slider>
 
-            <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid" (click)="refreshpdp(pedido.IDPEDIDO)">Añadir servicio al pedido</button>
+            <button type="submit" class="button-form" color="accent" md-button style="width:100%" [disabled]="!formServicio.form.valid" (click)="refreshpdp(pedido.ID)">Añadir servicio al pedido</button>
             </form>
     </md2-dialog>
 
@@ -183,9 +183,9 @@
                        <md-chip *ngFor="let dp of detallepedidos"
                           selected="true"
                           color="primary"
-                          (click)="detallepedidodialog.open(); getdp(dp.IDDP)"
+                          (click)="detallepedidodialog.open(); getdp(dp.ID)"
                           >
-                        # Prendas {{dp.DP_CANTIDADPRENDAS}} | {{dp.DP_COSTOPEDIDO | currency:'USD':true}}
+                        ({{dp.ID}}) {{dp.DPCANTIDADPRENDAS}} prendas | {{dp.DPCOSTOPEDIDO | currency:'USD':true}}
                       </md-chip>
                     </md-chip-list>
          </md-card>
@@ -207,11 +207,11 @@
                     >
                       <div>
                           <agm-marker
-                            *ngIf="pedido.LAT != null && pedido.LNG != null; let i = index"
+                            *ngIf="pedido. LAT != null && pedido.LNG != null"
                             [latitude]="pedido.LAT" [longitude]="pedido.LNG"
                             [iconUrl]="kityplancho"
                             [markerDraggable]="draggable"
-                            (markerClick)="clickMarcador(pedido, i)"
+                            (markerClick)="clickMarcador(pedido)"
                             (dragEnd)="dragEndMarcador(pedido, $event)"
                             [opacity]="opacityr"
                             >
@@ -219,9 +219,9 @@
                               [disableAutoPan]="true"
                               [isOpen]="true"
                               [maxWidth]="230">
-                                <p><span class="kp-text bold">{{pedido.IDPEDIDO}} | {{pedido.PFECHA}}</span></p>
+                                <p><span class="kp-text bold">{{pedido.ID}} | {{pedido.PFECHA}}</span></p>
                                 <h5>{{direccion}}</h5>
-                                <span class="bold">{{pedido.PDIRECCIONR}}</span>
+                                <span class="bold">{{pedido.PDIRECCION_R}}</span>
                                 <!--<span>{{pedido.PSTATUS}}</span>-->
                                 <!--<span>{{pedido.LAT}}</span>
                                 <span>{{pedido.LNG}}</span>-->
@@ -229,13 +229,13 @@
                           </agm-marker>
                       </div>
 
-                      <div *ngIf="pedido.COORDENADASE != pedido.COORDENADASR">
+                      <div *ngIf="pedido.PCOORDENADAS_E != pedido.PCOORDENADAS_R">
                           <agm-marker
-                            *ngIf="pedido.LATE != null && pedido.LNGE != null; let i = index"
+                            *ngIf="pedido.LATE != null && pedido.LNGE != null"
                             [latitude]="pedido.LATE" [longitude]="pedido.LNGE"
                             [iconUrl]="kityplancho"
                             [markerDraggable]="draggable"
-                            (markerClick)="clickMarcador(pedido, i)"
+                            (markerClick)="clickMarcador(pedido)"
                             (dragEnd)="dragEndMarcadore(pedido, $event)"
                             [opacity]="opacitye"
                             >
@@ -243,9 +243,9 @@
                               [disableAutoPan]="true"
                               [isOpen]="true"
                               [maxWidth]="230">
-                                <p><span class="kp-text bold">{{pedido.IDPEDIDO}} | {{pedido.PFECHA}}</span></p>
+                                <p><span class="kp-text bold">{{pedido.ID}} | {{pedido.PFECHA}}</span></p>
                                 <h5>Dirección a entregar pedido</h5>
-                                <span class="bold">{{pedido.PDIRECCIONE}}</span>
+                                <span class="bold">{{pedido.PDIRECCION_E}}</span>
                                 <!--<span>{{pedido.PSTATUS}}</span>-->
                                 <!--<span>{{pedido.LATE}}</span>
                                 <span>{{pedido.LNGE}}</span>-->

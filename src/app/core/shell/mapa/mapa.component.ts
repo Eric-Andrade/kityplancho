@@ -151,7 +151,7 @@ export class MapaComponent implements OnInit {
     this.getcoordenasr();
     this.getcoordenase();
     // console.log('reejecutado coords de pedidos con exito');
-    },30000)
+    },60000)
 
     setInterval(()=>{
     this.getubicacionrutero();

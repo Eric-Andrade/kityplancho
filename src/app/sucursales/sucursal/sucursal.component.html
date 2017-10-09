@@ -39,7 +39,7 @@
             </table>
 
             <md-input-container class="example-full-width form-space"  dividerColor="accent">
-                <input mdInput #localidad #SLOCALIDAD="ngModel" [(ngModel)]="sucursal.SLOCALIDAD" minlength="5" maxlength="150" name="SLOCALIDAD" placeholder="Localidad" autocomplete="off">
+                <input mdInput #localidad #SLOCALIDAD="ngModel" [(ngModel)]="sucursal.SLOCALIDAD" minlength="5" maxlength="150" name="SLOCALIDAD" placeholder="Localidad" required autocomplete="off">
                 <md-error align="start">minimo 5 caracteres</md-error>
                 <md-hint align="end">{{localidad.value.length}}/150</md-hint>
             </md-input-container>

@@ -31,8 +31,8 @@ export class PedidosComponent implements OnInit {
       this.getpedidos();
       setInterval(()=>{
             this.getpedidos();
-            console.log('reejecutado lista de pedidos con exito');
-        },60000) 
+            // console.log('reejecutado lista de pedidos con exito');
+        },60000) // * cada minuto 
   }
 // * MVC
   getpedidos(){

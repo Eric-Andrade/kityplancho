@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, URLSearchParams, RequestOptions, ResponseContentType } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { Pedidos } from './pedidos';
@@ -33,12 +33,12 @@ export class PedidosService {
     }
 
     getDetallePedidos(id: string) {
-        return this._http.get(this.url + 'detallespedidos/getone?id='+id)
+        return this._http.get(this.url + 'detallespedidos?id='+id)
           .map(res => res.json());
     }
 
     getDetallePedido(id: string) {
-        return this._http.get(this.url + 'getdetallepedido?id='+id)
+        return this._http.get(this.url + 'detallespedidos/getone?id='+id)
           .map(res => res.json());
     }
 
@@ -55,18 +55,21 @@ export class PedidosService {
     putPedido(pedido: IPedido){
     let body = new URLSearchParams();
         body.set('IDPEDIDO', pedido.ID.toString());
-        body.set('PPRECIOTOTAL', pedido.PPRECIOTOTAL.toString());
-        body.set('PSTATUS', pedido.PSTATUS);
-        body.set('PPAGADO', pedido.PPAGADO);
-        body.set('PFORMA', pedido.PFORMA);
-        body.set('PDIRECCIONR', pedido.PDIRECCION_R);
-        body.set('COORDENADASR', pedido.PCOORDENADAS_R);
-        body.set('PDIRECCIONE', pedido.PDIRECCION_E);
-        body.set('COORDENADASE', pedido.PCOORDENADAS_E);
+        body.set('PRECIO', pedido.PPRECIOTOTAL.toString());
+        body.set('STATUS', pedido.PSTATUS);
+        body.set('PAGADO', pedido.PPAGADO);
+        body.set('FORMA', pedido.PFORMA);
+        body.set('DIRECCION_R', pedido.PDIRECCION_R);
+        body.set('COORDENADAS_R', pedido.PCOORDENADAS_R);
+        body.set('DIRECCION_E', pedido.PDIRECCION_E);
+        body.set('COORDENADAS_E', pedido.PCOORDENADAS_E);
         body.set('IDCLIENTE', pedido.IDCLIENTE.toString());
-            console.log('Datos service');
-            console.log(body);
-       return this._http.post(this.url + 'updatepedido', body, {headers : this.getHeaders()})
+        const options = new RequestOptions({
+            responseType: ResponseContentType.Json,
+            withCredentials: false
+          });
+  
+       return this._http.put(this.url + `pedidos?${body}`, JSON.stringify({body: body}), options)
       .map((response: Response) => {
         JSON.stringify(response);
       });
@@ -75,13 +78,18 @@ export class PedidosService {
 
     putDetallePedido(detallepedido: IDetallePedido){
     let body = new URLSearchParams();
-        body.set('IDDP', detallepedido.IDDP.toString());
-        body.set('DP_CANTIDADPRENDAS', detallepedido.DPCANTIDADPRENDAS.toString());
+        body.set('ID', detallepedido.ID.toString());
+        body.set('CANTIDADPRENDA', detallepedido.DPCANTIDADPRENDAS.toString());
         body.set('IDSP', detallepedido.IDSP.toString());
-        body.set('IDPEDIDO', detallepedido.IDPEDIDO.toString());
-        body.set('DP_COSTOPEDIDO', detallepedido.DPCOSTOPEDIDO.toString());
+        body.set('IDPEDIDO', detallepedido.DPIDPEDIDO.toString());
+        body.set('COSTO', detallepedido.DPCOSTOPEDIDO.toString());
 
-       return this._http.post(this.url + 'updatedetallepedido', body, {headers : this.getHeaders()})
+        const options = new RequestOptions({
+            responseType: ResponseContentType.Json,
+            withCredentials: false
+          });
+  
+       return this._http.put(this.url + `detallespedidos?${body}`, JSON.stringify({body: body}), options)
       .map((response:Response)=>{
         JSON.stringify(response);
       });
