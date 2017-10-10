@@ -102,7 +102,7 @@
                 <span class="pforma">({{pedido.PFORMA}})</span>
             </td>
             <td>
-              <div *ngIf="pedido.PPRECIOTAL == '0'; then siTemplate; else noTemplate"></div>
+              <div *ngIf="pedido.PPRECIOTOTAL == '0'; then siTemplate; else noTemplate"></div>
                   <ng-template #siTemplate>
                     <md-chip-list class="mat-chip-list-stacked">
                        <md-chip

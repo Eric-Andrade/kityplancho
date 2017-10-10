@@ -9,4 +9,8 @@ md-card{
 
 .sebm-google-map-container {
 			height: 400px;
-		}
+}
+
+.touchable :hover{
+    cursor: pointer;
+}

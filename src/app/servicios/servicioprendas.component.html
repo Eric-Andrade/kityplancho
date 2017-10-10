@@ -16,7 +16,7 @@
               <input name="search" type="text" placeholder="Buscar..." />
               </md2-select-header>-->
 
-              <md2-option *ngFor="let p of iprenda" [value]="p.IDPRENDAS"><strong>{{p.IDPRENDAS}}</strong> | <span class="kp-text">{{p.PNOMBREUNIDAD}}</span>
+              <md2-option *ngFor="let p of iprenda" [value]="p.ID"><strong>{{p.ID}}</strong> | <span class="kp-text">{{p.PNOMBREUNIDAD}}</span>
               </md2-option>
               </md2-select>
 
@@ -75,7 +75,7 @@
                       </md-card-header>
 
                         <md-input-container dividerColor="accent" class="example-full-width form-space">
-                        <input type="number" mdInput #id name="IDSERVICIO" #IDSERVICIO="ngModel" [(ngModel)]="servicio.IDSERVICIO" placeholder="ID de servicio" [disabled]="true">
+                        <input type="number" mdInput #id name="IDSERVICIO" #IDSERVICIO="ngModel" [(ngModel)]="servicio.ID" placeholder="ID de servicio" [disabled]="true">
                         </md-input-container>
 
                         <md-input-container dividerColor="accent">
@@ -111,7 +111,7 @@
                                   [disabled]="isDisabled"
                                   autofocus="autofocus">
 
-                        <md2-option *ngFor="let s of sucursales" [value]="s.IDSUCURSAL">{{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
+                        <md2-option *ngFor="let s of sucursales" [value]="s.ID">{{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
                         </md2-option>
                       </md2-select>
 

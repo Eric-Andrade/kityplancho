@@ -41,10 +41,12 @@ export class LoginService {
     public login(user:Empleados){
       
             let body = new URLSearchParams();
-            body.set('ECORREO',user.EEMAIL);
-            body.set('ECONTRASENA',user.EPASSWORD);
+            body.set('EEMAIL',user.EEMAIL);
+            body.set('EPASSWORD',user.EPASSWORD);
             // this.setUserLoggedIn();
-             return this._http.post(this.url + 'loginadmin', body, {headers : this.getHeaders()})
+            console.log('body login');
+            console.log(body)
+             return this._http.post(this.url + `empleados/admin?${body}`, body, {headers : this.getHeaders()})
              .map( res => res.json());
       
           }

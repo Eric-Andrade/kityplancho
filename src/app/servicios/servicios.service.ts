@@ -32,7 +32,7 @@ export class ServiciosService {
     }
 
     getServicio(id: string) {
-        return this._http.get(this.url + 'getservicio?id='+id)
+        return this._http.get(this.url + 'servicios/getservicio?id='+id)
           .map(res => res.json());
     }
 
@@ -83,11 +83,16 @@ export class ServiciosService {
       let body = new URLSearchParams();
           body.set('ID',servicio.ID.toString());
           body.set('SERVNOMBRE',servicio.SERVNOMBRE);
-          body.set('SERVACTIVO',servicio.SERVACTIVO);
+          body.set('SERVIACTIVO',servicio.SERVACTIVO);
           body.set('IDSUCURSAL',servicio.IDSUCURSAL.toString());
             console.log('Servicio body');
 
-          return this._http.post(this.url + 'updateservicio', body, {headers : this.getHeaders()})
+            const options = new RequestOptions({
+              responseType: ResponseContentType.Json,
+              withCredentials: false
+            });
+    
+          return this._http.put(this.url + `servicios?${body}`, JSON.stringify({body: body}), options)
           .map((response:Response)=>{
             JSON.stringify(response);
           });

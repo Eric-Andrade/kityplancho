@@ -178,16 +178,20 @@
             </form>
               <!--<p class="kp-text bold">Pedido</p>-->
                   <br>
-                    <md-chip-list class="mat-chip-list-stacked">
-                      <h3 class="kp-text">Servicios del pedido</h3>
-                       <md-chip *ngFor="let dp of detallepedidos"
-                          selected="true"
-                          color="primary"
-                          (click)="detallepedidodialog.open(); getdp(dp.ID)"
-                          >
-                        ({{dp.ID}}) {{dp.DPCANTIDADPRENDAS}} prendas | {{dp.DPCOSTOPEDIDO | currency:'USD':true}}
-                      </md-chip>
-                    </md-chip-list>
+                   
+                      <md-chip-list class="mat-chip-list-stacked">
+                        <h3 class="kp-text">Servicios del pedido</h3>
+                        <div class="touchable"> 
+                        <md-chip *ngFor="let dp of detallepedidos"
+                            selected="true"
+                            color="primary"
+                            (click)="detallepedidodialog.open(); getdp(dp.ID)"
+                            >
+                          {{dp.DPCANTIDADPRENDAS}} prendas | {{dp.DPCOSTOPEDIDO | currency:'USD':true}}
+                        </md-chip>
+                      </div>
+                      </md-chip-list>
+                    
          </md-card>
         </div>
         <br><br>

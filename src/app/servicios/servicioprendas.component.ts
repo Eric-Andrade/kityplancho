@@ -84,10 +84,10 @@ export class ServicioprendasComponent implements OnInit {
             console.log('get servicio');
             console.log(this.servicio);
             this.loading = false;
-            this.servicio = {   ID: this.servicio[0].ID,
-                                SERVNOMBRE: `${this.servicio[0].SERVNOMBRE}`,
-                                SERVACTIVO: `${this.servicio[0].SERVACTIVO}`,
-                                IDSUCURSAL: this.servicio[0].SUCURSAL,
+            this.servicio = {   ID: this.servicio.ID,
+                                SERVNOMBRE: `${this.servicio.SERVNOMBRE}`,
+                                SERVACTIVO: `${this.servicio.SERVACTIVO}`,
+                                IDSUCURSAL: this.servicio.IDSUCURSAL,
                               };
                 if (!this.servicio) {
                     this._router.navigate(['/servicios']);

@@ -25,7 +25,7 @@
                     </md-input-container>
 
                     <md-input-container dividerColor="accent">
-                      <input mdInput #prendasnombre #PNOMBREUNIDAD="ngModel" [(ngModel)]="prenda.PNOMBREUNIDAD" minlenght="3" maxlength="45" name="PNOMBREUNIDAD" placeholder="Nombre de prenda" required autocomplete="off" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,45}">
+                      <input mdInput #prendasnombre #PNOMBREUNIDAD="ngModel" [(ngModel)]="prenda.PNOMBREUNIDAD" minlenght="3" maxlength="45" name="PNOMBREUNIDAD" placeholder="Nombre de prenda" required autocomplete="off">
                       <md-error align="start">minimo 3 caracteres, preferentemente alfabéticos</md-error>
                       <md-hint align="end">{{prendasnombre.value.length}}/45</md-hint>
                     </md-input-container>
