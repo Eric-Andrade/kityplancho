@@ -21,7 +21,7 @@
                     <md-input-container dividerColor="accent" class="example-full-width form-space">
                     <input mdInput #id name="IDSP" #IDSP="ngModel" [(ngModel)]="servicio.IDSP" placeholder="ID de servicio" [disabled]="true">
                     </md-input-container>
-
+                    
                     <md2-select name="IDSERVICIO"
                               class="form-select"
                               [(ngModel)]="servicio.IDSERVICIO"
@@ -35,7 +35,7 @@
                       <input name="search" type="text" placeholder="Buscar..." />
                       </md2-select-header>-->
 
-                      <md2-option *ngFor="let i of items" [value]="i.IDSERVICIO">{{i.SERVNOMBRE}}
+                      <md2-option *ngFor="let i of items" [value]="i.ID">{{i.SERVNOMBRE}}
                       </md2-option>
                     </md2-select>
 

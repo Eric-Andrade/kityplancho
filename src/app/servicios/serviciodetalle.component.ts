@@ -86,11 +86,11 @@ export class ServiciodetalleComponent implements OnInit {
             console.log(this.servicio);
             this.loading = false;
             this.servicio = {
-                      IDPRENDAS:this.servicio[0].IDPRENDAS,
-                      IDSERVICIO:this.servicio[0].IDSERVICIO,
-                      IDSP:this.servicio[0].IDSP,
-                      SPCOSTO:this.servicio[0].SPCOSTO,
-                      SPDESCUENTO:this.servicio[0].SPDESCUENTO
+                      IDPRENDAS: response.IDPRENDA,
+                      IDSERVICIO: response.IDSERVICIO,
+                      IDSP: this.servicio.IDSP,
+                      SPCOSTO: this.servicio.SPCOSTO,
+                      SPDESCUENTO: this.servicio.SPDESCUENTO
                               };
                 if(!this.servicio){
                     this._router.navigate(['/servicios']);

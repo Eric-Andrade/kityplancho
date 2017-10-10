@@ -26,33 +26,33 @@ export class LoginComponent implements OnInit {
               private toast: Md2Toast) {
                     this.empleado = {
                       ID: null,
-                      EEMAIL:'kityplancho@gmail.com',
-                      EPASSWORD:'adminkity20171',
-                      EPRIVILEGIO:'',
-                      ENOMBRE:'',
-                      EAPELLIDOS:'',
-                      ETELEFONO:'',
-                      EDIRECCION:'',
-                      EREFERENCIAFAM1:'',
-                      EREFERENCIAFAM2:'',
-                      EREFERENCIA1:'',
-                      EREFERENCIA2:'',
-                      EFECHACONTRATO:'',
-                      EUBICACION:'',
-                      ESUELDO:'',
-                      ERFC:'',
-                      EIMSS:'',
-                      ETIPOCONTRATO:'',
+                      EEMAIL: 'kityplancho@gmail.com',
+                      EPASSWORD: 'adminkity20171',
+                      EPRIVILEGIO: '',
+                      ENOMBRE: '',
+                      EAPELLIDOS: '',
+                      ETELEFONO: '',
+                      EDIRECCION: '',
+                      EREFERENCIAFAM1: '',
+                      EREFERENCIAFAM2: '',
+                      EREFERENCIA1: '',
+                      EREFERENCIA2: '',
+                      EFECHACONTRATO: '',
+                      EUBICACION: '',
+                      ESUELDO: '',
+                      ERFC: '',
+                      EIMSS: '',
+                      ETIPOCONTRATO: '',
                       IDSUCURSAL:1,
-                  }
+                  };
                    this.username = username;
                    this.password = password;
                }
 
   ngOnInit() {
   }
-  //component login
-  public login(logindialog){
+  // component login
+  public login(logindialog) {
     // e.preventDefault();
     //   	console.log(e);
     //   	var username = e.target.elements[0].value;
@@ -64,31 +64,30 @@ export class LoginComponent implements OnInit {
     // }
 
     this._loginService.login(this.empleado).subscribe(
-          response =>{
+          response => {
               this.empleado = response;
-              console.log(this.empleado);              
-              if(response != null){
-                this.close(logindialog);
-                let username = this.empleado.EEMAIL;
-                let password = this.empleado.EPASSWORD;
-                   this._loginService.storedUserData(username, password);
-                   this._loginService.setUserLoggedIn();
-                   
-                   this._router.navigate(['pedidos']);
-                   setTimeout(()=>{
-                    location.reload();
-                    
-                   },1000)
-                  //  this._router.navigate(['pedidos']);
+              console.log(this.empleado);
+              if (response == null) {
+                this.faillogin();
 
-                 }else{
-                  this.faillogin();
+              }else {
+                  this.close(logindialog);
+                  let username = this.empleado.EEMAIL;
+                  let password = this.empleado.EPASSWORD;
+                     this._loginService.storedUserData(username, password);
+                     this._loginService.setUserLoggedIn();
+                     this._router.navigate(['pedidos']);
+                     setTimeout(() => {
+                      location.reload();
+                     }, 1000 );
+                    //  this._router.navigate(['pedidos']);
+
                   }
           },
-          error =>{
+          error => {
               this.errorMessage = <any>error;
-              if(this.errorMessage != null){
-                  console.log('Error al loggerse: '+this.errorMessage);
+              if (this.errorMessage != null){
+                  console.log('Error al loggerse: '+ this.errorMessage);
                   this.message = true;
               }
           });

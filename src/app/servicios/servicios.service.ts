@@ -32,7 +32,7 @@ export class ServiciosService {
     }
 
     getServicio(id: string) {
-        return this._http.get(this.url + 'servicios/getservicio?id='+id)
+        return this._http.get(this.url + 'servicios/getservicio?id=' + id)
           .map(res => res.json());
     }
 
@@ -91,7 +91,7 @@ export class ServiciosService {
               responseType: ResponseContentType.Json,
               withCredentials: false
             });
-    
+
           return this._http.put(this.url + `servicios?${body}`, JSON.stringify({body: body}), options)
           .map((response:Response)=>{
             JSON.stringify(response);
@@ -101,33 +101,43 @@ export class ServiciosService {
     eliminarsp(servicio){
  let body = new URLSearchParams();
       body.set('IDSP', servicio.toString());
- return this._http.post(this.url + 'deleteserviciosprenda', body, {headers : this.getHeaders()})
-      .map((response:Response)=>{
+
+      const options = new RequestOptions({
+        responseType: ResponseContentType.Json,
+        withCredentials: false
+      });
+      return this._http.delete(this.url + `serviciosprendas?id=?${body}`, options)
+      .map((response:Response) => {
         JSON.stringify(response);
       });
     }
 
     getSP(id: string) {
-        return this._http.get(this.url + 'getservicioprendas?id='+id)
+        return this._http.post(this.url + 'dedicados/servicioprendas?id='+ id, '', {headers : this.getHeaders()})
           .map(res => res.json());
     }
 
     getoneSP(id: string) {
-        return this._http.get(this.url + 'getserviciosprenda?id='+id)
+        return this._http.get(this.url + 'serviciosprendas/getserviciosprenda?id='+id)
           .map(res => res.json());
     }
 
     putoneSP(sp: SPone){
       let body = new URLSearchParams();
-          body.set('IDSP',sp.IDSP.toString());
-          body.set('IDSERVICIO',sp.IDSERVICIO.toString());
-          body.set('IDPRENDAS',sp.IDPRENDAS.toString());
-          body.set('SPCOSTO',sp.SPCOSTO.toString());
-          body.set('SPDESCUENTO',sp.SPDESCUENTO.toString());
+          body.set('IDSP', sp.IDSP.toString());
+          body.set('IDSERVICIO', sp.IDSERVICIO.toString());
+          body.set('IDPRENDAS', sp.IDPRENDAS.toString());
+          body.set('SPCOSTO', sp.SPCOSTO.toString());
+          body.set('SPDESCUENTO', sp.SPDESCUENTO.toString());
             console.log('Servicio body');
 
-          return this._http.post(this.url + 'updateserviciosprenda', body, {headers : this.getHeaders()})
-          .map((response:Response)=>{
+            const options = new RequestOptions({
+              responseType: ResponseContentType.Json,
+              withCredentials: false
+            });
+
+          return this._http.put(this.url + `serviciosprendas?${body}`, JSON.stringify({body: body}), options)
+          .map((response: Response) => {
             JSON.stringify(response);
           });
 
@@ -135,10 +145,10 @@ export class ServiciosService {
 
     private getHeaders() {
         let headers = new Headers();
-        headers.append('Content-Type','application/x-www-form-urlencoded');
-        headers.append('X-Requested-With','XMLHttpRequest');
-        headers.append('cache-control','no-cache');
-        headers.append('status','OK');
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('X-Requested-With', 'XMLHttpRequest');
+        headers.append('cache-control', 'no-cache');
+        headers.append('status', 'OK');
         return headers;
       }
 

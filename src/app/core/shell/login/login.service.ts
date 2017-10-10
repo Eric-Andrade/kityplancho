@@ -39,7 +39,7 @@ export class LoginService {
     // }
 
     public login(user:Empleados){
-      
+
             let body = new URLSearchParams();
             body.set('EEMAIL',user.EEMAIL);
             body.set('EPASSWORD',user.EPASSWORD);
@@ -48,16 +48,16 @@ export class LoginService {
             console.log(body)
              return this._http.post(this.url + `empleados/admin?${body}`, body, {headers : this.getHeaders()})
              .map( res => res.json());
-      
+
           }
-      
+
 
     setUserLoggedIn() {
-    	this.isUserLoggedIn = true;
+      this.isUserLoggedIn = true;
     }
 
     getUserLoggedIn() {
-    	return this.isUserLoggedIn;
+      return this.isUserLoggedIn;
     }
 
     logout(){
