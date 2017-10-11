@@ -186,9 +186,9 @@ export class PedidoComponent implements OnInit {
       PPAGADO: 'contraentrega',
       PFORMA: 'efectivo',
       PFECHA: '',
-      PDIRECCION_R: 'Direcion de un nuevo pedido de prueba',
+      PDIRECCION_R: '',
       PCOORDENADAS_R: '24.02780775285771,-104.65332895517349',
-      PDIRECCION_E: 'Direcion de un nuevo pedido de prueba',
+      PDIRECCION_E: '',
       PCOORDENADAS_E: '24.02780775285771,-104.65332895517349',
       IDCLIENTE: null,
   }

@@ -46,8 +46,6 @@ export class ServiciosService {
         console.log(servicio);
 
         const options = new RequestOptions({
-          // method: 'PUT',
-          // headers: this.getHeaders(),
           responseType: ResponseContentType.Json,
           withCredentials: false
         });
@@ -72,8 +70,12 @@ export class ServiciosService {
         console.log('Servicio body');
         console.log(body);
         console.log(servicios);
+        const options = new RequestOptions({
+          responseType: ResponseContentType.Json,
+          withCredentials: false
+        });
 
-      return this._http.post(this.url + 'postserviciosprenda', body, {headers : this.getHeaders()})
+      return this._http.post(this.url + `serviciosprendas?${body}`, JSON.stringify({body: body}), options)
       .map((response:Response)=>{
         JSON.stringify(response);
       });

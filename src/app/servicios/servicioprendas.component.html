@@ -16,7 +16,7 @@
               <input name="search" type="text" placeholder="Buscar..." />
               </md2-select-header>-->
 
-              <md2-option *ngFor="let p of iprenda" [value]="p.ID"><strong>{{p.ID}}</strong> | <span class="kp-text">{{p.PNOMBREUNIDAD}}</span>
+              <md2-option *ngFor="let p of iprenda" [value]="p.ID"><span class="kp-text">{{p.PNOMBREUNIDAD}}</span>
               </md2-option>
               </md2-select>
 
@@ -130,10 +130,10 @@
                           <div class="notification-wraps">
                               <div class="notification">
                                 <div>
-                                      <span>{{sp.PNOMBREUNIDAD}} {{sp.SPCOSTO | currency:'USD':true}}</span>
+                                      <span>{{sp.IDSP}} | {{sp.PNOMBREUNIDAD}} {{sp.SPCOSTO | currency:'USD':true}}</span>
 
                                 </div>
-                                <div class="" *ngIf="sp.SPDESCUENTO != 0;then thenTemplate; else elseTemplate" class="kp-text"></div>
+                                <div *ngIf="sp.SPDESCUENTO != 0;then thenTemplate; else elseTemplate" class="kp-text"></div>
                                 <ng-template #thenTemplate>
                                   <div class="notification-alert">
                                       -{{sp.SPDESCUENTO}}%

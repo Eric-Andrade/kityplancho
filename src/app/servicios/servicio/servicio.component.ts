@@ -129,7 +129,7 @@ export class ServicioComponent implements OnInit {
     setTimeout(()=>{
           this._serviciosService.getlastservicio().subscribe(
           result => {
-                 this.lastservicio = result.ULTIMOSERVICIO[0].IDSERVICIO;
+                 this.lastservicio = result.ID;
                   console.log('Último servicio');
                   console.log(this.lastservicio);
               if (!this.lastservicio) {

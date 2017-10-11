@@ -14,6 +14,7 @@ import { LoginService } from '../login/login.service';
 export class PedidosComponent implements OnInit {
     public errorMessage;
     public pedidos: Pedidos[];
+    public statuspedido: string = '';
     public loading: boolean;
     public message: boolean;
     userFilter: any = { CNOMBRE: ''};
@@ -39,6 +40,7 @@ export class PedidosComponent implements OnInit {
     this._pedidosService.getpdp().subscribe(
         result => {
             this.pedidos = result;
+            this.statuspedido = result.PSTATUS;
             if (!this.pedidos ) {
                 console.warn('Error en el servidor...');
             }else{
@@ -56,7 +58,13 @@ export class PedidosComponent implements OnInit {
   }
 
   getpedido(idpedido){
-      this._router.navigate(['pedidos',idpedido]);
+      console.log('we')
+      console.log(this.statuspedido)
+      if(this.statuspedido !== 'cotizando'){
+        this._router.navigate(['pedidos',idpedido]);
+      }else{
+        this.cotizandoPedido();
+      }
   }
 
   getcliente(idcliente){
@@ -66,6 +74,10 @@ export class PedidosComponent implements OnInit {
   failgetPedidos() {
       this.toast.toast(`Algo falló al intentar obtener la lista de pedidos, intenta de nuevo por favor`);
   }
+
+  cotizandoPedido() {
+    this.toast.toast(`Este pedido aún se encuentra en estado de cotización, espera a que termine`);
+}
 
   onScroll () {
       console.log('scrolled!!')
