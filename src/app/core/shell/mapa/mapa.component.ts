@@ -164,6 +164,7 @@ export class MapaComponent implements OnInit {
         result => {
             this.cr = result;
             let cont = 0;
+
             for(let entry of this.cr){
               let i = cont++;
               if (this.cr[i].PCOORDENADAS_R != null){

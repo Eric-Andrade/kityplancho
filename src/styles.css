@@ -276,7 +276,7 @@ md-spinner{
 .md2-select-panel {
     transform-origin: 50% bottom 0px !important;
     opacity: 1 !important;
-    min-width: calc(100% + 150px) !important;
+    /* min-width: calc(100% + 150px) !important; */
     transform: scaleY(1) !important;
 }
 

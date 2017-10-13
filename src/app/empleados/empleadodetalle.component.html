@@ -125,6 +125,7 @@
 
               <md2-select name="ETIPOCONTRATO"
                         class="form-select"
+                        style="width: 100%;"
                         [(ngModel)]="empleado.ETIPOCONTRATO"
                         #ETIPOCONTRATO="ngModel"
                         placeholder="Tipo de contrato"
@@ -192,6 +193,7 @@
 
           <md2-select name="IDSUCURSAL"
                     class="form-select"
+                    style="width: 100%;"
                     [(ngModel)]="empleado.IDSUCURSAL"
                     #IDSUCURSAL="ngModel"
                     #sucursal
@@ -204,7 +206,7 @@
             <input name="search" type="text" placeholder="Buscar..." />
             </md2-select-header>-->
 
-          <md2-option *ngFor="let s of sucursales" [value]="s.ID"><strong>{{s.ID}}</strong> | {{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
+          <md2-option *ngFor="let s of sucursales" [value]="s.ID">{{s.SNOMBRE}}: <span class="kp-text">{{s.SDIRECCION}}</span>
           </md2-option>
          </md2-select>
 

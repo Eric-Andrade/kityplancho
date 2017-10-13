@@ -102,13 +102,13 @@ export class ServiciosService {
 
     eliminarsp(servicio){
  let body = new URLSearchParams();
-      body.set('IDSP', servicio.toString());
+      body.set('ID', servicio.toString());
 
       const options = new RequestOptions({
         responseType: ResponseContentType.Json,
         withCredentials: false
       });
-      return this._http.delete(this.url + `serviciosprendas?id=?${body}`, options)
+      return this._http.delete(this.url + `serviciosprendas?${body}`, options)
       .map((response:Response) => {
         JSON.stringify(response);
       });
