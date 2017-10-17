@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
               private toast: Md2Toast) {
                     this.empleado = {
                       ID: null,
-                      EEMAIL: 'kityplancho@gmail.com',
-                      EPASSWORD: 'adminkity20171',
+                      EEMAIL: '',
+                      EPASSWORD: '',
                       EPRIVILEGIO: '',
                       ENOMBRE: '',
                       EAPELLIDOS: '',

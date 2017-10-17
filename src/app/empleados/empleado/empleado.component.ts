@@ -74,7 +74,7 @@ export class EmpleadoComponent implements OnInit {
                       EREFERENCIA1: '',
                       EREFERENCIA2: '',
                       EFECHACONTRATO: '',
-                      EUBICACION: '',
+                      EUBICACION: '24.02780775285771,-104.65332895517349',
                       ESUELDO: '',
                       ERFC: '',
                       EIMSS: '',
@@ -114,12 +114,12 @@ export class EmpleadoComponent implements OnInit {
                   this.toastMe();
               }
           }
-    )
-   },1000)
+    );
+   }, 1000);
   }
 
   public next(){
-      this.tab1disabled = true;
+      this.tab1disabled = false;
       this.tab2disabled = false;
       this.selectedIndex = 1;
   }

@@ -31,32 +31,29 @@ export class EmpleadosService {
           .map(res => res.json());
     }
 
-    postEmpleado(empleado: Empleados){
+    postEmpleado(empleado: Empleados) {
       let body = new URLSearchParams();
-          body.set('EEMAIL',empleado.EEMAIL);
-          body.set('EPASSWORD',empleado.EPASSWORD);
-          body.set('EPRIVILEGIO',empleado.EPRIVILEGIO);
-          body.set('ENOMBRE',empleado.ENOMBRE);
-          body.set('EAPELLIDOS',empleado.EAPELLIDOS);
-          body.set('ETELEFONO',empleado.ETELEFONO);
-          body.set('EDIRECCION',empleado.EDIRECCION);
-          body.set('EREFERENCIAFAM1',empleado.EREFERENCIAFAM1);
-          body.set('EREFERENCIAFAM2',empleado.EREFERENCIAFAM2);
-          body.set('EREFERENCIA1',empleado.EREFERENCIA1);
-          body.set('EREFERENCIA2',empleado.EREFERENCIA2);
-          body.set('EFECHACONTRATO',empleado.EFECHACONTRATO);
-          body.set('EUBICACION',empleado.EUBICACION);
-          body.set('ESUELDO',empleado.ESUELDO);
-          body.set('ERFC',empleado.ERFC);
-          body.set('EIMSS',empleado.EIMSS);
+          body.set('EEMAIL', empleado.EEMAIL);
+          body.set('EPASSWORD', empleado.EPASSWORD);
+          body.set('EPRIVILEGIO', empleado.EPRIVILEGIO);
+          body.set('ENOMBRE', empleado.ENOMBRE);
+          body.set('EAPELLIDOS', empleado.EAPELLIDOS);
+          body.set('ETELEFONO', empleado.ETELEFONO);
+          body.set('EDIRECCION', empleado.EDIRECCION);
+          body.set('EREFERENCIAFAM1', empleado.EREFERENCIAFAM1);
+          body.set('EREFERENCIAFAM2', empleado.EREFERENCIAFAM2);
+          body.set('EREFERENCIA1', empleado.EREFERENCIA1);
+          body.set('EREFERENCIA2', empleado.EREFERENCIA2);
+          body.set('EFECHACONTRATO', empleado.EFECHACONTRATO);
+          body.set('EUBICACION', empleado.EUBICACION);
+          body.set('ESUELDO', empleado.ESUELDO);
+          body.set('ERFC', empleado.ERFC);
+          body.set('EIMSS', empleado.EIMSS);
           body.set('ETIPOCONTRATO', empleado.ETIPOCONTRATO);
-          body.set('IDSUCURSAL',empleado.IDSUCURSAL.toString());
-        // body.set('IDEA',empleado.IDEA.toString());
-        // body.set('EAINE',empleado.EAINE);
-        // body.set('EACURP',empleado.EACURP);
-        // body.set('EAACTANACIMIEN',empleado.EAACTANACIMIENTO);
-        // body.set('EACOMPROBANTEDOM',empleado.EACOMPROBANTEDOM);
-        // body.set('IDEMPLEADOEA',empleado.IDEMPLEADOEA.toString());
+          body.set('IDSUCURSAL', empleado.IDSUCURSAL.toString());
+
+          console.log('body emppleado post');
+          console.log(body);
       const options = new RequestOptions({
           responseType: ResponseContentType.Json,
           withCredentials: false
@@ -68,27 +65,27 @@ export class EmpleadosService {
       });
     }
 
-    putEmpleado(empleado: Empleados){
+    putEmpleado(empleado: Empleados) {
         let body = new URLSearchParams();
-            body.set('ID',empleado.ID.toString());
-            body.set('EEMAIL',empleado.EEMAIL);
-            body.set('EPASSWORD',empleado.EPASSWORD);
-            body.set('EPRIVILEGIO',empleado.EPRIVILEGIO);
-            body.set('ENOMBRE',empleado.ENOMBRE);
-            body.set('EAPELLIDOS',empleado.EAPELLIDOS);
-            body.set('ETELEFONO',empleado.ETELEFONO);
-            body.set('EDIRECCION',empleado.EDIRECCION);
-            body.set('EREFERENCIAFAM1',empleado.EREFERENCIAFAM1);
-            body.set('EREFERENCIAFAM2',empleado.EREFERENCIAFAM2);
-            body.set('EREFERENCIA1',empleado.EREFERENCIA1);
-            body.set('EREFERENCIA2',empleado.EREFERENCIA2);
-            body.set('EFECHACONTRATO',empleado.EFECHACONTRATO);
-            body.set('EUBICACION',empleado.EUBICACION);
-            body.set('ESUELDO',empleado.ESUELDO);
-            body.set('ERFC',empleado.ERFC);
-            body.set('EIMSS',empleado.EIMSS);
-            body.set('ETIPOCONTRATO',empleado.ETIPOCONTRATO);
-            body.set('IDSUCURSAL',empleado.IDSUCURSAL.toString());
+            body.set('ID', empleado.ID.toString());
+            body.set('EEMAIL', empleado.EEMAIL);
+            body.set('EPASSWORD', empleado.EPASSWORD);
+            body.set('EPRIVILEGIO', empleado.EPRIVILEGIO);
+            body.set('ENOMBRE', empleado.ENOMBRE);
+            body.set('EAPELLIDOS', empleado.EAPELLIDOS);
+            body.set('ETELEFONO', empleado.ETELEFONO);
+            body.set('EDIRECCION', empleado.EDIRECCION);
+            body.set('EREFERENCIAFAM1', empleado.EREFERENCIAFAM1);
+            body.set('EREFERENCIAFAM2', empleado.EREFERENCIAFAM2);
+            body.set('EREFERENCIA1', empleado.EREFERENCIA1);
+            body.set('EREFERENCIA2', empleado.EREFERENCIA2);
+            body.set('EFECHACONTRATO', empleado.EFECHACONTRATO);
+            body.set('EUBICACION', empleado.EUBICACION);
+            body.set('ESUELDO', empleado.ESUELDO);
+            body.set('ERFC', empleado.ERFC);
+            body.set('EIMSS', empleado.EIMSS);
+            body.set('ETIPOCONTRATO', empleado.ETIPOCONTRATO);
+            body.set('IDSUCURSAL', empleado.IDSUCURSAL.toString());
             const options = new RequestOptions({
               responseType: ResponseContentType.Json,
               withCredentials: false
