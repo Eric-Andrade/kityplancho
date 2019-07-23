@@ -1,4 +1,5 @@
 import { COMPONENT_VARIABLE } from '@angular/platform-browser/src/dom/dom_renderer';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -69,6 +70,6 @@ const routes: Routes = [
   ],
   declarations: [ ShellComponent, IndexComponent, PedidosComponent, MapaComponent, PedidoComponent, PedidodetalleComponent, AcercaComponent, DataTablePipe ],
   exports: [ ShellComponent, SharedModule, LoginModule, AgmCoreModule],
-  providers: [ PedidosService, ClientesService, EmpleadosService, PerfilService, PedidoService, LoginService, AuthguardGuard ]
+  providers: [PedidosService, ClientesService, EmpleadosService, PerfilService, PedidoService, LoginService, AuthguardGuard ]
 })
 export class CoreModule { }
